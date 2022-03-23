@@ -1,0 +1,12 @@
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\da credits\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-aebaadcode (me) for porting animations and fixing them up in blockland
+-Oxy writing all of the advanced code, couldn't have done it without ya champ
+-Baja Blast for making based models and being a good friend =D
+-Conan for being patient with me and answering my stupid questions =P
+-Redo for making colored red to white ammo counter
+-Cowtastic for sending me based flesh impact and distant gunshot sounds
+-TheArmyGuy for helping me with my blender scale animation problems
+-Rally for parts of code and muzzle flashes/smoke
+-Swollow for body location code and impact effects
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Thats all folks! 
