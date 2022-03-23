@@ -57,10 +57,10 @@ datablock ItemData(RangerItem)
 	AEType = AE_HeavySAmmoItem.getID();
 	AEBase = 1;
 
-	RPM = 600;
+	RPM = 100;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The Ranger is an improvised short double barrel shotgun made with Russian gun parts.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

@@ -149,9 +149,9 @@ datablock ShapeBaseImageData(P90Image)
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
-	spreadBase = 25;
-	spreadMin = 100;
-	spreadMax = 550;
+	spreadBase = 50;
+	spreadMin = 250;
+	spreadMax = 1100;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

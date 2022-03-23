@@ -50,7 +50,7 @@ datablock ItemData(RPKItem)
 	RPM = 600;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The RPK is a light machine gun variant of the AKM assault rifle.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -129,9 +129,9 @@ datablock ShapeBaseImageData(RPKImage)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 25;
-	spreadMin = 100;
-	spreadMax = 500;
+	spreadBase = 150;
+	spreadMin = 150;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

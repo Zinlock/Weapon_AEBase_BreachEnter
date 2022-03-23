@@ -128,9 +128,9 @@ datablock ShapeBaseImageData(TommyGunImage)
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 100;
-	spreadMin = 150;
-	spreadMax = 300;
+	spreadBase = 300;
+	spreadMin = 350;
+	spreadMax = 500;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

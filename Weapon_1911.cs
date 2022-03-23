@@ -55,7 +55,7 @@ datablock ItemData(BNE_M1911Item)
 
 	//gui stuff
 	uiName = "B&E: M1911";
-	iconName = "./M1911/icon_M1911";
+	iconName = "./Icons/54";
 	doColorShift = true;
 	colorShiftColor = "0.9 0.9 0.9 1";
 
@@ -67,10 +67,10 @@ datablock ItemData(BNE_M1911Item)
 	AEType = AE_MediumPAmmoItem.getID();
 	AEBase = 1;
 
-	RPM = 1200;
+	RPM = 600;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "Gangsta niggas, PMC mercs, and law enforcement. The Glock 17 is a reliable and popular handgun among many fields of combat.";
+	description = "The M1911 is a .45 ACP semi-auto, magazine-fed pistol made by Colt in the year 1911.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -134,9 +134,9 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	muzzleFlashScale = "0.5 0.5 0.5";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 26;
+	projectileDamage = 45;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.65;
+	projectileHeadshotMult = 1.2;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.15;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
@@ -146,14 +146,14 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 3; // how much shots it takes to trigger spread i think
+	spreadBurst = 2; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
 	spreadBase = 115;
-	spreadMin = 280;
-	spreadMax = 520;
+	spreadMin = 380;
+	spreadMax = 620;
 
-	screenshakeMin = "0.025 0.025 0.025"; 
-	screenshakeMax = "0.075 0.075 0.075"; 
+	screenshakeMin = "0.075 0.075 0.075"; 
+	screenshakeMax = "0.1 0.1 0.1"; 
 
 	farShotSound = PistolEDistantSound;
 	farShotDistance = 40;

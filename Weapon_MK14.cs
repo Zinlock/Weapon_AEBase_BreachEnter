@@ -77,7 +77,7 @@ datablock ItemData(MK14Item)
 	RPM = 700;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "The Mk14 EBR is an American military battle rifle with high recoil and high damage.";
+	description = "The Mk14 EBR is an American military battle rifle with high recoil and high damage." NL "7.62 Millimeter...Full, Metal, Jacket.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

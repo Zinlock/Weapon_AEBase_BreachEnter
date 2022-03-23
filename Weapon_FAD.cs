@@ -68,10 +68,10 @@ datablock ItemData(FADItem)
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 1000;
+	RPM = 800;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The FAD is a fast-firing French bullpup assault rifle, mostly replaced in service by the HK-416.";
+	description = "The Fusil Automatico Doble is a Peruvian bullpup assault rifle manufactured by SIMA Electronica.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -149,9 +149,9 @@ datablock ShapeBaseImageData(FADImage)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 300; // m
-	spreadBase = 30;
-	spreadMin = 50;
-	spreadMax = 300;
+	spreadBase = 25;
+	spreadMin = 100;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

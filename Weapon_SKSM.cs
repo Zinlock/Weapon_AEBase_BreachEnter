@@ -70,7 +70,7 @@ datablock ItemData(SKSMItem)
 	RPM = 700;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "The SKSM EBR is an American military battle rifle with high recoil and high damage.";
+	description = "The SKS is a Russian semi-automatic rifle made in 1945." NL "The weapon saw limited action against Germany in World War 2." NL "This is a modernized sporting variant with a pistol grip, a scope, and a telescoping stock.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

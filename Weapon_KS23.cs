@@ -38,7 +38,7 @@ datablock ItemData(BNE_KS23Item)
 
 	//gui stuff
 	uiName = "B&E: KS-23";
-	iconName = "./KS23/icon_KS23";
+	iconName = "./Icons/58";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

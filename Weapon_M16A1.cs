@@ -149,9 +149,9 @@ datablock ShapeBaseImageData(M16A1Image)
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 150; // m
-	spreadBase = 25;
+	spreadBase = 50;
 	spreadMin = 100;
-	spreadMax = 400;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

@@ -553,7 +553,7 @@ datablock ItemData(RPG7Item)
 
 	//gui stuff
 	uiName = "B&E: RPG-7";
-	iconName = "./Icons/44";
+	iconName = "./Icons/55";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

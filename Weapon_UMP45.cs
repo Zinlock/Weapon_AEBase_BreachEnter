@@ -50,7 +50,7 @@ datablock ItemData(UMP45Item)
 	RPM = 600;
 	recoil = "Low"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The UMP.45 is a .45 ACP submachine gun developed and manufactured by Heckler & Koch in the 1990's." NL "Popular among police and military forces alike.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

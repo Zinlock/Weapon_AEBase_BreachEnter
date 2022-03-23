@@ -142,16 +142,16 @@ datablock ShapeBaseImageData(ThompsonImage)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.5;
+	recoilHeight = 0.25;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 100;
-	spreadMin = 150;
-	spreadMax = 300;
+	spreadBase = 200;
+	spreadMin = 250;
+	spreadMax = 400;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
 	screenshakeMax = "0.1 0.1 0.1"; 
@@ -520,7 +520,7 @@ function ThompsonSafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(ThompsonIronsightImage : ThompsonImage)
 {
-	recoilHeight = 0.125;
+	recoilHeight = 0.0625;
 
 	scopingImage = ThompsonImage;
 	sourceImage = ThompsonImage;

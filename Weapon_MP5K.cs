@@ -55,7 +55,7 @@ datablock ItemData(BNE_MP5KItem)
 
 	//gui stuff
 	uiName = "B&E: MP5K";
-	iconName = "./MP5K/icon_MP5K";
+	iconName = "./Icons/52";
 	doColorShift = true;
 	colorShiftColor = "0.28 0.3 0.33 1";
 
@@ -71,7 +71,7 @@ datablock ItemData(BNE_MP5KItem)
 	RPM = 680;
 	recoil = "Medium";
 	uiColor = "1 1 1";
-	description = "The MP5K is a powerful and accurate Austrian bullpup assault rifle chambered in 5.56mm NATO.";
+	description = "The MP5K is a more compact variant of the MP5 submachine gun.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

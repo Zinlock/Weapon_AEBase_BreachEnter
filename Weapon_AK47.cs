@@ -165,9 +165,9 @@ datablock ShapeBaseImageData(AK47Image)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
-	spreadBase = 25;
-	spreadMin = 50;
-	spreadMax = 450;
+	spreadBase = 50;
+	spreadMin = 200;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1";
 	screenshakeMax = "0.15 0.15 0.15";

@@ -46,7 +46,7 @@ datablock ItemData(Glock17Item)
 	AEType = AE_LightPAmmoItem.getID();
 	AEBase = 1;
 
-	RPM = 1200;
+	RPM = 600;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
 	description = "Gangsta niggas, PMC mercs, and law enforcement. The Glock 17 is a reliable and popular handgun among many fields of combat.";

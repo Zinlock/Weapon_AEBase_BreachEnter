@@ -69,7 +69,7 @@ datablock ItemData(BNE_SaigaItem)
 
 	//gui stuff
 	uiName = "B&E: Saiga 12";
-	iconName = "./Saiga/icon_Saiga";
+	iconName = "./Icons/53";
 	doColorShift = true;
 	colorShiftColor = "0.4 0.4 0.4 1";
 
@@ -85,7 +85,7 @@ datablock ItemData(BNE_SaigaItem)
 	RPM = 600;
 	recoil = "Heavy";
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The Saiga 12 is an automatic Russian shotgun based on the AK platform." NL "This one is loaded with a 12 gauge slugs.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -151,26 +151,26 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 11;
-	projectileCount = 8;
-	projectileHeadshotMult = 1.3;
+	projectileDamage = 45;
+	projectileCount = 1;
+	projectileHeadshotMult = 2.25;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.9;
+	recoilHeight = 2;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 450; // m
-	spreadBase = 900;
-	spreadMin = 950;
-	spreadMax = 1500;
+	spreadBase = 100;
+	spreadMin = 150;
+	spreadMax = 500;
 
-	screenshakeMin = "0.1 0.1 0.1";
-	screenshakeMax = "0.15 0.15 0.15";
+	screenshakeMin = "0.15 0.15 0.15";
+	screenshakeMax = "0.2 0.2 0.2";
 
 	farShotSound = ShottyCDistantSound;
 	farShotDistance = 40;
@@ -184,9 +184,9 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 
 	staticHitscan = false;
 	
-	projectileFalloffStart = 32;
+	projectileFalloffStart = 16;
 	projectileFalloffEnd = 128;
-	projectileFalloffDamage = 0.15;
+	projectileFalloffDamage = 0.1;
 
    //casing = " ";
 
@@ -245,7 +245,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateSequence[7]			= "ReloadStart";
 
 	stateName[8]				= "ReloadMagOut";
-	stateTimeoutValue[8]			= 0.85;
+	stateTimeoutValue[8]			= 1;
 	stateScript[8]				= "onReloadMagOut";
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
@@ -253,7 +253,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateSound[8]				= RPKMagOutSound;
 
 	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.45;
+	stateTimeoutValue[9]			= 0.65;
 	stateScript[9]				= "onReloadMagIn";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
@@ -292,7 +292,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateSequence[15]			= "ReloadStart";
 
 	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 0.9;
+	stateTimeoutValue[16]			= 1;
 	stateScript[16]				= "onReload2MagOut";
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
@@ -300,7 +300,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateSound[16]				= RPKMagOutSound;
 
 	stateName[17]				= "Reload2MagIn";
-	stateTimeoutValue[17]			= 0.45;
+	stateTimeoutValue[17]			= 0.65;
 	stateScript[17]				= "onReload2MagIn";
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
@@ -544,7 +544,7 @@ function BNE_SaigaSafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_SaigaIronsightImage : BNE_SaigaImage)
 {
-	recoilHeight = 0.1875;
+	recoilHeight = 0.5;
 
 	scopingImage = BNE_SaigaImage;
 	sourceImage = BNE_SaigaImage;

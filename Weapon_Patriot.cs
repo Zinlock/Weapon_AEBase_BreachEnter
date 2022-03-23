@@ -47,10 +47,10 @@ datablock ItemData(PatriotItem)
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 600;
-	recoil = "Medium"; 
+	RPM = 800;
+	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "An assault pistol developed for The Boss. Uses 5.56mm x 45 ammunition. The feeder mechanism inside the drum magazine forms an infinite loop shape.";
+	description = "An assault pistol developed for The Boss. Uses 5.56mmx45 ammunition." NL "The feeder mechanism inside the drum magazine forms an infinite loop shape. What a thrill...";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -125,11 +125,11 @@ datablock ShapeBaseImageData(PatriotImage)
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 3; // how much shots it takes to trigger spread i think
+	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 150; // m
-	spreadBase = 300;
-	spreadMin = 650;
-	spreadMax = 800;
+	spreadBase = 100;
+	spreadMin = 200;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 
@@ -241,7 +241,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.09;
+	stateTimeoutValue[11]			= 0.04;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";

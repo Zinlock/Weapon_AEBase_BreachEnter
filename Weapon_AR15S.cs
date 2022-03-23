@@ -50,7 +50,7 @@ datablock ItemData(AR15testItem)
 	RPM = 800;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The M4 Carbine is a 5.56×45mm NATO, air-cooled, gas-operated,[b] direct impingement, magazine-fed, select fire carbine.";
+	description = "remember lads, subscribe to pewdiepie";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

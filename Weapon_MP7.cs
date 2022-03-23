@@ -71,7 +71,7 @@ datablock ItemData(MP7Item)
 	RPM = 950;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The Heckler & Koch MP7 is a personal defense weapon chambered for the HK 4.6×30mm armor-piercing cartridge designed by German defence manufacturer Heckler & Koch.";
+	description = "The Heckler & Koch MP7 is a personal defense weapon designed by Heckler & Koch.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -263,7 +263,7 @@ datablock ShapeBaseImageData(MP7Image)
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.0375;
+	stateTimeoutValue[11]			= 0.085;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";

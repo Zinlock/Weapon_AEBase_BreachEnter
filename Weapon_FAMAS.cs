@@ -149,9 +149,9 @@ datablock ShapeBaseImageData(FAMASImage)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
-	spreadBase = 40;
-	spreadMin = 70;
-	spreadMax = 250;
+	spreadBase = 25;
+	spreadMin = 100;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.015 0.015 0.015"; 
 	screenshakeMax = "0.25 0.25 0.25";

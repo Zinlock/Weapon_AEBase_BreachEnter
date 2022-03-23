@@ -149,9 +149,9 @@ datablock ShapeBaseImageData(AUGImage)
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 20;
-	spreadMin = 30;
-	spreadMax = 300;
+	spreadBase = 25;
+	spreadMin = 100;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.015 0.015 0.015"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

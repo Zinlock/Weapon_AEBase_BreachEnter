@@ -54,7 +54,7 @@ datablock ItemData(BNE_AR1550Item)
 
 	//gui stuff
 	uiName = "B&E: AR-15.50";
-	iconName = "./AR1550/icon_AR1550";
+	iconName = "./Icons/56";
 	doColorShift = true;
 	colorShiftColor = "0.75 0.75 0.75 1";
 
@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(BNE_AR1550Image)
 	spreadReset = 350; // m
 	spreadBase = 60;
 	spreadMin = 90;
-	spreadMax = 450;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

@@ -54,7 +54,7 @@ datablock ItemData(BNE_SVDItem)
 
 	//gui stuff
 	uiName = "B&E: SVD Dragunov";
-	iconName = "./SVD/icon_SVD";
+	iconName = "./Icons/51";
 	doColorShift = true;
 	colorShiftColor = "0.4 0.4 0.4 1";
 

@@ -121,11 +121,11 @@ datablock ShapeBaseImageData(SPAS12Image)
    projectileTagStrength = 0.35;  // tagging strength
    projectileTagRecovery = 0.03; // tagging decay rate
 
-   recoilHeight = 3.5;
+   recoilHeight = 2;
    recoilWidth = 0;
    recoilWidthMax = 0;
    recoilHeightMax = 20;
-   spreadBurst = 1; // how much shots it takes to trigger spread i think
+   spreadBurst = 3; // how much shots it takes to trigger spread i think
    spreadBase = 600;
    spreadReset = 600; // m
    spreadMin = 600;
@@ -440,7 +440,7 @@ function SPAS12SafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(SPAS12IronsightImage : SPAS12Image)
 {
-	recoilHeight = 0.875;
+	recoilHeight = 0.5;
 
 	scopingImage = SPAS12Image;
 	sourceImage = SPAS12Image;

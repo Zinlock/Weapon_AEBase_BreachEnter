@@ -145,7 +145,7 @@ datablock ShapeBaseImageData(KBP9A91Image)
 	spreadReset = 150; // m
 	spreadBase = 50;
 	spreadMin = 200;
-	spreadMax = 500;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.025 0.025 0.025"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

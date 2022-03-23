@@ -113,7 +113,7 @@ datablock ShapeBaseImageData(M16ComImage)
 	spreadReset = 150; // m
 	spreadBase = 100;
 	spreadMin = 200;
-	spreadMax = 600;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 
@@ -225,7 +225,7 @@ datablock ShapeBaseImageData(M16ComImage)
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.08;
+	stateTimeoutValue[11]			= 0.04;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";

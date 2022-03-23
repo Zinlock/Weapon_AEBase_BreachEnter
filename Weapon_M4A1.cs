@@ -50,7 +50,7 @@ datablock ItemData(M4A1Item)
 	RPM = 800;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The M4 Carbine is a 5.56×45mm NATO, air-cooled, gas-operated,[b] direct impingement, magazine-fed, select fire carbine.";
+	description = "The M4 carbine is a 5.56x45mm NATO, gas-operated, magazine-fed, carbine, assault rifle developed in the United States during the 1980s." NL "It is a shortened version of the M16A2 assault rifle.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -129,8 +129,8 @@ datablock ShapeBaseImageData(M4A1Image)
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 150; // m
 	spreadBase = 25;
-	spreadMin = 120;
-	spreadMax = 410;
+	spreadMin = 100;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

@@ -68,10 +68,10 @@ datablock ItemData(TMPItem)
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 600;
+	RPM = 900;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The TMP is a 9mm machine pistol manufactured by Steyr Mannlicher." NL "It is popular among police units and military special forces.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -251,7 +251,7 @@ datablock ShapeBaseImageData(TMPImage)
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.055;
+	stateTimeoutValue[11]			= 0.06;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";

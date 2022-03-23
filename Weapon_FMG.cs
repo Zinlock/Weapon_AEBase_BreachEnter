@@ -71,7 +71,7 @@ datablock ItemData(FMGItem)
 	RPM = 1200;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "" NL "The FMG-9 is a prototype folding submachine gun designed and manufactured by Magpul Industries in the year 2008." NL "This weapon never left the prototype stage, and never saw full scale production, as it was only designed as a proof of concept." NL "And yet somehow you still got your hands on it.";
+	description = "The FMG-9 is a prototype folding submachine gun designed and manufactured by Magpul Industries in the year 2008." NL "This weapon never left the prototype stage, and never saw full scale production, as it was only designed as a proof of concept." NL "And yet somehow you still got your hands on it.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -149,9 +149,9 @@ datablock ShapeBaseImageData(FMGImage)
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 150; // m
-	spreadBase = 125;
-	spreadMin = 250;
-	spreadMax = 370;
+	spreadBase = 225;
+	spreadMin = 350;
+	spreadMax = 470;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

@@ -71,7 +71,7 @@ datablock ItemData(M60Item)
 	RPM = 600;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The M60 is a 7.62x51mm NATO belt-fed machine gun used by the United States military.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -150,9 +150,9 @@ datablock ShapeBaseImageData(M60Image)
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 35;
-	spreadMin = 110;
-	spreadMax = 510;
+	spreadBase = 100;
+	spreadMin = 100;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 
@@ -591,12 +591,6 @@ function M60IronsightImage::onUnMount(%this,%obj,%slot)
 
 datablock ShapeBaseImageData(M60BipodImage : M60Image)
 {
-	spreadBurst = 2; // how much shots it takes to trigger spread i think
-	spreadReset = 250; // m
-	spreadBase = 15;
-	spreadMin = 80;
-	spreadMax = 380;
-
 	shapeFile = "./M60/M60Bipod.dts";
 	safetyImage = M60Image;
 	scopingImage = M60IronsightBipodImage;

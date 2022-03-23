@@ -38,7 +38,7 @@ datablock ItemData(BNE_PythonItem)
 
 	//gui stuff
 	uiName = "B&E: Colt Python";
-	iconName = "./Python/icon_Python";
+	iconName = "./Icons/57";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 
