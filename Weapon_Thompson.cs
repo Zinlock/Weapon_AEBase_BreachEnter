@@ -67,11 +67,11 @@ datablock ItemData(ThompsonItem)
 	AEType = AE_MediumPAmmoItem.getID();
 	AEBase = 1;
 
-	Auto = true; 
+	Auto = true;  
 	RPM = 700;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The MAC-10 is a compact, blowback operated machine pistol/submachine gun that was developed by Gordon B. Ingram in 1964. It is chambered in either .45 ACP or 9mm.";
+	description = "The M1A1 Thompson is a cheaper variant of the M1928A1 used by America during World War 2." NL "It comes with a 20 round magazine of .45 ACP rounds.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

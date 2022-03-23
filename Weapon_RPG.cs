@@ -565,10 +565,10 @@ datablock ItemData(RPG7Item)
 	AEType = AE_RocketLAmmoItem.getID();
 	AEBase = 1;
 
-	RPM = 30;
+	RPM = 4;
 	recoil = "Holy";
 	uiColor = "1 1 1";
-	description = "Fully non lethal RPG7. Ok, it might still be a little lethal... ";
+	description = "The RPG-7 is a big, strong and powerful Anti-Armor weapon produced in the USSR from 1961 to even today." NL "It recently saw adoption by Terrorist forces in the middle east. It is the perfect weapon for protecting your 72 virgins." NL "Also, stand behind somebody who is firing this thing for a nice surprise!";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -628,8 +628,8 @@ datablock ShapeBaseImageData(RPG7Image)
 	muzzleFlashScale = "2 2 2";
 	bulletScale = "1 1 1";
 
-	screenshakeMin = "0.5 0.5 0.5"; 
-	screenshakeMax = "1 1 1"; 
+	screenshakeMin = "1.5 1.5 1.5"; 
+	screenshakeMax = "3 3 3"; 
 
 	projectileDamage = 100;
 	projectileCount = 1;

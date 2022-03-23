@@ -60,7 +60,7 @@ datablock ItemData(AR15Item)
 	RPM = 800;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The M4 Carbine is a 5.56×45mm NATO, air-cooled, gas-operated,[b] direct impingement, magazine-fed, select fire carbine.";
+	description = "The AR-15, also known as \"America's Rifle\", is a semi-auto version of the M16 rifle used by the American armed forces." NL "Accurate, powerful, reliable, easy to use, and extremely configurable, this platform still kicks ass even after many decades of use.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

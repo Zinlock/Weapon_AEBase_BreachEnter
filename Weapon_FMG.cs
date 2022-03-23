@@ -68,10 +68,10 @@ datablock ItemData(FMGItem)
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 600;
+	RPM = 1200;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "" NL "The FMG-9 is a prototype folding submachine gun designed and manufactured by Magpul Industries in the year 2008." NL "This weapon never left the prototype stage, and never saw full scale production, as it was only designed as a proof of concept." NL "And yet somehow you still got your hands on it.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

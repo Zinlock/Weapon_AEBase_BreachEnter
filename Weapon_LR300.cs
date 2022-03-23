@@ -33,7 +33,7 @@ datablock ItemData(LR300Item)
 	RPM = 800;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The M4 Carbine is a 5.56×45mm NATO, air-cooled, gas-operated,[b] direct impingement, magazine-fed, select fire carbine.";
+	description = "The LR-300 is a folding stock version of the common AR-15 rifle. This results in a more compact weapon system.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

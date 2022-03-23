@@ -50,10 +50,10 @@ datablock ItemData(BNE_PythonItem)
 	AEType = AE_HeavyPAmmoItem.getID(); 
 	AEBase = 1;
 
-  RPM = 60;
+  RPM = 100;
   Recoil = "Medium";
 	uiColor = "1 1 1";
-  description = "The Ithaca Model 37 is an accurate 12-gauge shotgun made for both civilian and military use.";
+  description = "The Colt Python is a six shot, .357 Magnum revolver commonly carried by Ram Ranch cowboys and police officers.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

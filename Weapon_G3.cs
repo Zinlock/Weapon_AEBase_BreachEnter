@@ -50,7 +50,7 @@ datablock ItemData(G3Item)
 	RPM = 500;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The G3 is a 7.62x51mm NATO select-fire battle rifle used by the German military.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

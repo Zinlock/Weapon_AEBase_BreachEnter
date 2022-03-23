@@ -33,7 +33,7 @@ datablock ItemData(AK103Item)
 	RPM = 600;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The AK-103 is pretty much a more modern AKM, but comes with Picatinny rails." NL "Our glorious leader Vladimir Putin decided to give us a Kobra sight for our very important training exercise in Ukraine.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

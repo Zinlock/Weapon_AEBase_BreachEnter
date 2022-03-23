@@ -33,7 +33,7 @@ datablock ItemData(M16ComItem)
 	RPM = 950;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "commando variant faster firerate idk insert description here lol";
+	description = "The M16 Commando is a shortened version of the standard M16 rifle marketed by Colt in the 1960's and early 70's.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

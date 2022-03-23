@@ -103,7 +103,6 @@ datablock ShapeBaseImageData(PatriotImage)
 	armReady = true;
 	hideHands = false;
 	safetyImage = PatriotSafetyImage;
-    scopingImage = PatriotIronsightImage;
 	doColorShift = true;
 	colorShiftColor = PatriotItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
@@ -121,7 +120,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.5;
+	recoilHeight = 1.5;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
@@ -132,8 +131,8 @@ datablock ShapeBaseImageData(PatriotImage)
 	spreadMin = 650;
 	spreadMax = 800;
 
-	screenshakeMin = "0.05 0.05 0.05"; 
-	screenshakeMax = "0.1 0.1 0.1"; 
+	screenshakeMin = "0.1 0.1 0.1"; 
+	screenshakeMax = "0.15 0.15 0.15"; 
 
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
@@ -218,7 +217,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateSequence[7]			= "ReloadStart";
 	
 	stateName[8]				= "ReloadMagOut";
-	stateTimeoutValue[8]			= 1;
+	stateTimeoutValue[8]			= 1.5;
 	stateScript[8]				= "onReloadMagOut";
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
@@ -226,7 +225,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateSound[8]				= AR15MagOutDRUMSound;
 	
 	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.4;
+	stateTimeoutValue[9]			= 0.5;
 	stateScript[9]				= "onReloadMagIn";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
@@ -265,7 +264,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateSequence[15]			= "ReloadStart";
 	
 	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 1;
+	stateTimeoutValue[16]			= 1.5;
 	stateScript[16]				= "onReload2MagOut";
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
@@ -273,7 +272,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateSound[16]				= AR15MagOutDRUMSound;
 	
 	stateName[17]				= "Reload2MagIn";
-	stateTimeoutValue[17]			= 0.4;
+	stateTimeoutValue[17]			= 0.5;
 	stateScript[17]				= "onReload2MagIn";
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
@@ -495,85 +494,5 @@ function PatriotSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
-	parent::onUnMount(%this,%obj,%slot);	
-}
-
-
-///////// IRONSIGHTS?
-
-datablock ShapeBaseImageData(PatriotIronsightImage : PatriotImage)
-{
-	recoilHeight = 0.15;
-
-	scopingImage = PatriotImage;
-	sourceImage = PatriotImage;
-	
-   offset = "0 0 -0.075";
-	eyeOffset = "0.00225 1.0 -1.075";
-	rotation = eulerToMatrix( "0 -20 0" );
-
-	desiredFOV = $ae_LowIronsFOV;
-	projectileZOffset = 0;
-	R_MovePenalty = 0.5;
-   
-	stateName[15]				= "Reload2";
-	stateScript[15]				= "onDone";
-	stateTimeoutValue[15]			= 1;
-	stateTransitionOnTimeout[15]		= "";
-	stateSound[15]				= "";
-	
-	stateName[7]				= "Reload";
-	stateScript[7]				= "onDone";
-	stateTimeoutValue[7]			= 1;
-	stateTransitionOnTimeout[7]		= "";
-	stateSound[7]				= "";
-};
-
-function PatriotIronsightImage::onDone(%this,%obj,%slot)
-{
-	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
-	%obj.mountImage(%this.sourceImage, 0);
-}
-
-function PatriotIronsightImage::onReady(%this,%obj,%slot)
-{
-	%obj.baadDisplayAmmo(%this);
-}
-
-function PatriotIronsightImage::AEOnFire(%this,%obj,%slot)
-{	
-	%obj.stopAudio(0); 
-  %obj.playAudio(0, M16A1Fire @ getRandom(1, 3) @ Sound);
-  
-	%obj.blockImageDismount = true;
-	%obj.schedule(200, unBlockImageDismount);
-
-	Parent::AEOnFire(%this, %obj, %slot);
-}
-
-function PatriotIronsightImage::onDryFire(%this, %obj, %slot)
-{
-	%obj.aeplayThread(2, plant);
-	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
-}
-
-// HIDES ALL HAND NODES
-
-function PatriotIronsightImage::onMount(%this,%obj,%slot)
-{
-	%obj.aeplayThread(2, plant);
-	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsIn3Sound);
-	%this.AEMountSetup(%obj, %slot);
-	parent::onMount(%this,%obj,%slot);
-}
-
-// APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
-
-function PatriotIronsightImage::onUnMount(%this,%obj,%slot)
-{
-	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsOut3Sound);
-	%this.AEUnmountCleanup(%obj, %slot);
 	parent::onUnMount(%this,%obj,%slot);	
 }

@@ -61,10 +61,10 @@ datablock ItemData(AA12Item)
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 600;
-	recoil = "Heavy"; 
+	RPM = 300;
+	recoil = "Light"; 
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The AA-12 is a powerful, full-auto beast of a shotgun, with surprisingly low recoil, actually." NL "It comes loaded with a drum magazine that has a capacity of 20 shells, this weapon is ideal for room clearing missions.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

@@ -50,7 +50,7 @@ datablock ItemData(TommyGunItem)
 	RPM = 700;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "tommy gun goes BRRRRR (italian style)";
+	description = "Keep the change ya filthy animal!" NL "An absolute classic of design and functionality, its 50 drum magazine was beloved by policemen and gangsters for decades.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

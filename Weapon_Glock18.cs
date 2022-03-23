@@ -71,7 +71,7 @@ datablock ItemData(Glock18Item)
 	RPM = 1200;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The Beretta 92 is a precision-made Italian pistol chambered in 9x19 Parabellum, designated as the Glock18 by the US Military.";
+	description = "Sheeeeit mayun dis muddafuckin blicky got a big ass magazine and it fuckin busts caps like a dayum machine gun!";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
