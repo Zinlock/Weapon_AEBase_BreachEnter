@@ -263,7 +263,7 @@ datablock ShapeBaseImageData(BNE_MP7Image)
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.085;
+	stateTimeoutValue[11]			= 0.06;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";
