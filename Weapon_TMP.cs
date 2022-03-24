@@ -1,18 +1,18 @@
-datablock AudioProfile(TMPFire1Sound)
+datablock AudioProfile(BNE_TMPFire1Sound)
 {
    filename    = "./Sounds/Fire/TMP/TMP_fire1.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(TMPFire2Sound)
+datablock AudioProfile(BNE_TMPFire2Sound)
 {
    filename    = "./Sounds/Fire/TMP/TMP_fire2.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(TMPFire3Sound)
+datablock AudioProfile(BNE_TMPFire3Sound)
 {
    filename    = "./Sounds/Fire/TMP/TMP_fire3.wav";
    description = LightClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(TMPFire3Sound)
 };
 
 // TMP
-datablock DebrisData(AETMPMagDebris)
+datablock DebrisData(BNE_TMPMagDebris)
 {
 	shapeFile = "./TMP/TMPMag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AETMPMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(TMPItem)
+datablock ItemData(BNE_TMPItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(TMPItem)
 	colorShiftColor = "0.7 0.7 0.7 1";
 
 	 // Dynamic properties defined by the scripts
-	image = TMPImage;
+	image = BNE_TMPImage;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -83,7 +83,7 @@ datablock ItemData(TMPItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(TMPImage)
+datablock ShapeBaseImageData(BNE_TMPImage)
 {
    // Basic Item properties
    shapeFile = "./TMP/TMP.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(TMPImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = TMPItem;
+   item = BNE_TMPItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(TMPImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = TMPSafetyImage;
-    scopingImage = TMPIronsightImage;
+	safetyImage = BNE_TMPSafetyImage;
+    scopingImage = BNE_TMPIronsightImage;
 	doColorShift = true;
-	colorShiftColor = TMPItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_TMPItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -232,7 +232,7 @@ datablock ShapeBaseImageData(TMPImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= TMPMagOutSound;
+	stateSound[8]				= BNE_TMPMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -240,7 +240,7 @@ datablock ShapeBaseImageData(TMPImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= TMPMagInSound;
+	stateSound[9]				= BNE_TMPMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -279,7 +279,7 @@ datablock ShapeBaseImageData(TMPImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= TMPMagOutSound;
+	stateSound[16]				= BNE_TMPMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
@@ -287,7 +287,7 @@ datablock ShapeBaseImageData(TMPImage)
 	stateTransitionOnTimeout[17]		= "Reload2Bolt";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= TMPMagInSound;
+	stateSound[17]				= BNE_TMPMagInSound;
 	
 	stateName[18]				= "Reload2Bolt";
 	stateTimeoutValue[18]			= 0.35;
@@ -295,7 +295,7 @@ datablock ShapeBaseImageData(TMPImage)
 	stateTransitionOnTimeout[18]		= "Reload2End";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "Bolt";
-	stateSound[18]				= TMPBoltSound;
+	stateSound[18]				= BNE_TMPBoltSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.25;
@@ -320,10 +320,10 @@ datablock ShapeBaseImageData(TMPImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function TMPImage::AEOnFire(%this,%obj,%slot)
+function BNE_TMPImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, TMPFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_TMPFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -331,45 +331,45 @@ function TMPImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function TMPImage::onDryFire(%this, %obj, %slot)
+function BNE_TMPImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function TMPImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_TMPImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
 }
 
-function TMPImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_TMPImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
 }
 
-function TMPImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_TMPImage::onReloadMagOut(%this,%obj,%slot)
 {
  //  %obj.aeplayThread(2, wrench);
 }
 
-function TMPImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_TMPImage::onReload2MagOut(%this,%obj,%slot)
 {
  //  %obj.aeplayThread(2, wrench);
 }
 
-function TMPImage::onReloadEnd(%this,%obj,%slot)
+function BNE_TMPImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function TMPImage::onReload2End(%this,%obj,%slot)
+function BNE_TMPImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function TMPImage::onReloadStart(%this,%obj,%slot)
+function BNE_TMPImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.schedule(200, "aeplayThread", "2", "wrench");
    %obj.aeplayThread(3, shiftleft);
@@ -377,7 +377,7 @@ function TMPImage::onReloadStart(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMedBounce @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function TMPImage::onReady(%this,%obj,%slot)
+function BNE_TMPImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -387,7 +387,7 @@ function TMPImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function TMPImage::onMount(%this,%obj,%slot)
+function BNE_TMPImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -396,7 +396,7 @@ function TMPImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function TMPImage::onUnMount(%this,%obj,%slot)
+function BNE_TMPImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -410,7 +410,7 @@ function TMPImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function TMPImage::onMagDrop(%this,%obj,%slot)
+function BNE_TMPImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -420,7 +420,7 @@ function TMPImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(TMPMagImage,0);
+	%a.mountImage(BNE_TMPMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -428,14 +428,14 @@ function TMPImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(TMPMagImage)
+datablock ShapeBaseImageData(BNE_TMPMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0 0.075 -0.1";
    rotation = eulerToMatrix( "0 0 0" );	
 	
-	casing = AETMPMagDebris;
+	casing = BNE_TMPMagDebris;
 	shellExitDir        = "0 -0.05 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -454,7 +454,7 @@ datablock ShapeBaseImageData(TMPMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function TMPMagImage::onDone(%this,%obj,%slot)
+function BNE_TMPMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -463,7 +463,7 @@ function TMPMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(TMPSafetyImage)
+datablock ShapeBaseImageData(BNE_TMPSafetyImage)
 {
    shapeFile = "./TMP/TMP.dts";
    emap = true;
@@ -473,14 +473,14 @@ datablock ShapeBaseImageData(TMPSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = TMPItem;
+   item = BNE_TMPItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = TMPImage;
+   safetyImage = BNE_TMPImage;
    doColorShift = true;
-   colorShiftColor = TMPItem.colorShiftColor;
+   colorShiftColor = BNE_TMPItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -492,7 +492,7 @@ datablock ShapeBaseImageData(TMPSafetyImage)
 
 };
 
-function TMPSafetyImage::onMount(%this,%obj,%slot)
+function BNE_TMPSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -501,7 +501,7 @@ function TMPSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function TMPSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_TMPSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -511,12 +511,12 @@ function TMPSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(TMPIronsightImage : TMPImage)
+datablock ShapeBaseImageData(BNE_TMPIronsightImage : BNE_TMPImage)
 {
 	recoilHeight = 0.225;
 
-	scopingImage = TMPImage;
-	sourceImage = TMPImage;
+	scopingImage = BNE_TMPImage;
+	sourceImage = BNE_TMPImage;
 	
 	offset = "0 0 0";
 	eyeOffset = "0 1.0 -1.025";
@@ -539,21 +539,21 @@ datablock ShapeBaseImageData(TMPIronsightImage : TMPImage)
 	stateSound[7]				= "";
 };
 
-function TMPIronsightImage::onDone(%this,%obj,%slot)
+function BNE_TMPIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function TMPIronsightImage::onReady(%this,%obj,%slot)
+function BNE_TMPIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function TMPIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_TMPIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, TMPFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_TMPFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -561,7 +561,7 @@ function TMPIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function TMPIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_TMPIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -569,7 +569,7 @@ function TMPIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function TMPIronsightImage::onMount(%this,%obj,%slot)
+function BNE_TMPIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -580,7 +580,7 @@ function TMPIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function TMPIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_TMPIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

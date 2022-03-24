@@ -20,7 +20,7 @@ datablock AudioProfile(BNE_M1911Fire3Sound)
 };
 
 // M1911
-datablock DebrisData(AEBNE_M1911MagDebris)
+datablock DebrisData(BNE_M1911MagDebris)
 {
 	shapeFile = "./M1911/M1911Mag.dts";
 	lifetime = 2.0;
@@ -235,7 +235,7 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	stateTransitionOnTimeout[7]		= "ReloadMagOut";
 	stateWaitForTimeout[7]			= true;
 	stateSequence[7]			= "MagOut";
-	stateSound[7]				= M9MagOutSound;
+	stateSound[7]				= BNE_M9MagOutSound;
 	
 	stateName[8]				= "ReloadMagOut";
 	stateTimeoutValue[8]			= 0.6;
@@ -250,7 +250,7 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= M9MagInSound;
+	stateSound[9]				= BNE_M9MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.35;
@@ -282,7 +282,7 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
 	stateWaitForTimeout[15]			= true;
 	stateSequence[15]			= "MagOutEmpty";
-	stateSound[15]				= M9MagOutSound;
+	stateSound[15]				= BNE_M9MagOutSound;
 	
 	stateName[16]				= "Reload2MagOut";
 	stateTimeoutValue[16]			= 0.6;
@@ -297,7 +297,7 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= M9MagInSound;
+	stateSound[17]				= BNE_M9MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.35;
@@ -305,7 +305,7 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	stateTransitionOnTimeout[19]		= "Reloaded";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEndEmpty";
-	stateSound[19]				= M9SlideSound;
+	stateSound[19]				= BNE_M9SlideSound;
 	
 	stateName[20]				= "ReadyLoop";
 	stateTransitionOnTimeout[20]		= "Ready";
@@ -441,7 +441,7 @@ datablock ShapeBaseImageData(BNE_M1911MagImage)
 	offset = "0 0.075 -0.25";
    rotation = eulerToMatrix( "0 0 0" );	
 	
-	casing = AEBNE_M1911MagDebris;
+	casing = BNE_M1911MagDebris;
 	shellExitDir        = "0 -0.05 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	

@@ -1,18 +1,18 @@
-datablock AudioProfile(PDRFire1Sound)
+datablock AudioProfile(BNE_PDRFire1Sound)
 {
    filename    = "./Sounds/Fire/PDR/PDR_fire1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(PDRFire2Sound)
+datablock AudioProfile(BNE_PDRFire2Sound)
 {
    filename    = "./Sounds/Fire/PDR/PDR_fire2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(PDRFire3Sound)
+datablock AudioProfile(BNE_PDRFire3Sound)
 {
    filename    = "./Sounds/Fire/PDR/PDR_fire3.wav";
    description = MediumClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(PDRFire3Sound)
 };
 
 // PDR
-datablock DebrisData(AEPDRMagDebris)
+datablock DebrisData(BNE_PDRMagDebris)
 {
 	shapeFile = "./PDR/PDRMag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEPDRMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(PDRItem)
+datablock ItemData(BNE_PDRItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(PDRItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = PDRImage;
+	image = BNE_PDRImage;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -83,7 +83,7 @@ datablock ItemData(PDRItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(PDRImage)
+datablock ShapeBaseImageData(BNE_PDRImage)
 {
    // Basic Item properties
    shapeFile = "./PDR/PDR.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(PDRImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = PDRItem;
+   item = BNE_PDRItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(PDRImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = PDRSafetyImage;
-    scopingImage = PDRIronsightImage;
+	safetyImage = BNE_PDRSafetyImage;
+    scopingImage = BNE_PDRIronsightImage;
 	doColorShift = true;
-	colorShiftColor = PDRItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_PDRItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -244,7 +244,7 @@ datablock ShapeBaseImageData(PDRImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= PDRMagOutSound;
+	stateSound[8]				= BNE_PDRMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.25;
@@ -252,7 +252,7 @@ datablock ShapeBaseImageData(PDRImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= PDRMagInSound;
+	stateSound[9]				= BNE_PDRMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -291,7 +291,7 @@ datablock ShapeBaseImageData(PDRImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= PDRMagOutSound;
+	stateSound[16]				= BNE_PDRMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.25;
@@ -299,7 +299,7 @@ datablock ShapeBaseImageData(PDRImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= PDRMagInSound;
+	stateSound[17]				= BNE_PDRMagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.6;
@@ -324,10 +324,10 @@ datablock ShapeBaseImageData(PDRImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function PDRImage::AEOnFire(%this,%obj,%slot)
+function BNE_PDRImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, PDRFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_PDRFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -335,57 +335,57 @@ function PDRImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function PDRImage::onDryFire(%this, %obj, %slot)
+function BNE_PDRImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function PDRImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_PDRImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftleft");
    %obj.schedule(50, "aeplayThread", "3", "plant");
 }
 
-function PDRImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_PDRImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftleft");
    %obj.schedule(50, "aeplayThread", "3", "plant");
-   %obj.schedule(450, playAudio, 1, PDRBoltSound);
+   %obj.schedule(450, playAudio, 1, BNE_PDRBoltSound);
 }
 
-function PDRImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_PDRImage::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function PDRImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_PDRImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function PDRImage::onReloadEnd(%this,%obj,%slot)
+function BNE_PDRImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function PDRImage::onReload2End(%this,%obj,%slot)
+function BNE_PDRImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function PDRImage::onReloadStart(%this,%obj,%slot)
+function BNE_PDRImage::onReloadStart(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(125,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(250,350),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function PDRImage::onReady(%this,%obj,%slot)
+function BNE_PDRImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -395,7 +395,7 @@ function PDRImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function PDRImage::onMount(%this,%obj,%slot)
+function BNE_PDRImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -404,7 +404,7 @@ function PDRImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function PDRImage::onUnMount(%this,%obj,%slot)
+function BNE_PDRImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -418,7 +418,7 @@ function PDRImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function PDRImage::onMagDrop(%this,%obj,%slot)
+function BNE_PDRImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -428,7 +428,7 @@ function PDRImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(PDRMagImage,0);
+	%a.mountImage(BNE_PDRMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -436,14 +436,14 @@ function PDRImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(PDRMagImage)
+datablock ShapeBaseImageData(BNE_PDRMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0 -0.25 -0.1";
    rotation = eulerToMatrix( "0 0 0" );	
 	
-	casing = AEPDRMagDebris;
+	casing = BNE_PDRMagDebris;
 	shellExitDir        = "0 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -462,7 +462,7 @@ datablock ShapeBaseImageData(PDRMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function PDRMagImage::onDone(%this,%obj,%slot)
+function BNE_PDRMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -471,7 +471,7 @@ function PDRMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(PDRSafetyImage)
+datablock ShapeBaseImageData(BNE_PDRSafetyImage)
 {
    shapeFile = "./PDR/PDR.dts";
    emap = true;
@@ -481,26 +481,36 @@ datablock ShapeBaseImageData(PDRSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = PDRItem;
+   item = BNE_PDRItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = PDRImage;
+   scopingImage = BNE_PDRIronsightImage;
+   safetyImage = BNE_PDRImage;
    doColorShift = true;
-   colorShiftColor = PDRItem.colorShiftColor;
+   colorShiftColor = BNE_PDRItem.colorShiftColor;
 
 	isSafetyImage = true;
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
 
-function PDRSafetyImage::onMount(%this,%obj,%slot)
+function BNE_PDRSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
+
+function BNE_PDRSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -509,7 +519,7 @@ function PDRSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function PDRSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_PDRSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -519,12 +529,12 @@ function PDRSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(PDRIronsightImage : PDRImage)
+datablock ShapeBaseImageData(BNE_PDRIronsightImage : BNE_PDRImage)
 {
 	recoilHeight = 0.1875;
 
-	scopingImage = PDRImage;
-	sourceImage = PDRImage;
+	scopingImage = BNE_PDRImage;
+	sourceImage = BNE_PDRImage;
 	
 	offset = "0 0 0";
 	eyeOffset = "0 0.75 -1.025";
@@ -547,21 +557,21 @@ datablock ShapeBaseImageData(PDRIronsightImage : PDRImage)
 	stateSound[7]				= "";
 };
 
-function PDRIronsightImage::onDone(%this,%obj,%slot)
+function BNE_PDRIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function PDRIronsightImage::onReady(%this,%obj,%slot)
+function BNE_PDRIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function PDRIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_PDRIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, PDRFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_PDRFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -569,7 +579,7 @@ function PDRIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function PDRIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_PDRIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -577,7 +587,7 @@ function PDRIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function PDRIronsightImage::onMount(%this,%obj,%slot)
+function BNE_PDRIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -588,7 +598,7 @@ function PDRIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function PDRIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_PDRIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

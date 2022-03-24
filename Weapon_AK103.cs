@@ -1,7 +1,7 @@
 //////////
 // item //
 //////////
-datablock ItemData(AK103Item)
+datablock ItemData(BNE_AK103Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -22,7 +22,7 @@ datablock ItemData(AK103Item)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = AK103Image;
+	image = BNE_AK103Image;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -45,7 +45,7 @@ datablock ItemData(AK103Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(AK103Image)
+datablock ShapeBaseImageData(BNE_AK103Image)
 {
    // Basic Item properties
    shapeFile = "./AK103/AK103.dts";
@@ -69,7 +69,7 @@ datablock ShapeBaseImageData(AK103Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = AK103Item;
+   item = BNE_AK103Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -85,12 +85,12 @@ datablock ShapeBaseImageData(AK103Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = AK103SafetyImage;
-    scopingImage = AK103IronsightImage;
+	safetyImage = BNE_AK103SafetyImage;
+    scopingImage = BNE_AK103IronsightImage;
 	doColorShift = true;
-	colorShiftColor = AK103Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_AK103Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
-    loopingEndSound = AK47FireLoopEndSound;
+    loopingEndSound = BNE_AK47FireLoopEndSound;
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -208,7 +208,7 @@ datablock ShapeBaseImageData(AK103Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AKMagOutSound;
+	stateSound[8]				= BNE_AKMagOutSound;
 
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -216,7 +216,7 @@ datablock ShapeBaseImageData(AK103Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AKMagInSound;
+	stateSound[9]				= BNE_AKMagInSound;
 
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -255,7 +255,7 @@ datablock ShapeBaseImageData(AK103Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AKMagOutSound;
+	stateSound[16]				= BNE_AKMagOutSound;
 
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
@@ -263,7 +263,7 @@ datablock ShapeBaseImageData(AK103Image)
 	stateTransitionOnTimeout[17]		= "Reload2Bolt";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AKMagInSound;
+	stateSound[17]				= BNE_AKMagInSound;
 
 	stateName[18]				= "Reload2Bolt";
 	stateTimeoutValue[18]			= 0.35;
@@ -271,7 +271,7 @@ datablock ShapeBaseImageData(AK103Image)
 	stateTransitionOnTimeout[18]		= "Reload2End";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "Bolt";
-	stateSound[18]				= AKBoltPullSound;
+	stateSound[18]				= BNE_AKBoltPullSound;
 
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.25;
@@ -308,9 +308,9 @@ datablock ShapeBaseImageData(AK103Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function AK103Image::AEOnFire(%this,%obj,%slot)
+function BNE_AK103Image::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, AK47FireLoopSound);
+	%obj.playAudio(0, BNE_AK47FireLoopSound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -319,59 +319,59 @@ function AK103Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function AK103Image::onEndLoop(%this, %obj, %slot)
+function BNE_AK103Image::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function AK103Image::onDryFire(%this, %obj, %slot)
+function BNE_AK103Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function AK103Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_AK103Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function AK103Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_AK103Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function AK103Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_AK103Image::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function AK103Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_AK103Image::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function AK103Image::onReload2Bolt(%this,%obj,%slot)
+function BNE_AK103Image::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function AK103Image::onReloadEnd(%this,%obj,%slot)
+function BNE_AK103Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function AK103Image::onReloadStart(%this,%obj,%slot)
+function BNE_AK103Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(225,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function AK103Image::onReady(%this,%obj,%slot)
+function BNE_AK103Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -381,7 +381,7 @@ function AK103Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function AK103Image::onMount(%this,%obj,%slot)
+function BNE_AK103Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -390,7 +390,7 @@ function AK103Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AK103Image::onUnMount(%this,%obj,%slot)
+function BNE_AK103Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -404,7 +404,7 @@ function AK103Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function AK103Image::onMagDrop(%this,%obj,%slot)
+function BNE_AK103Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -414,7 +414,7 @@ function AK103Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(AK47MagImage,0);
+	%a.mountImage(BNE_AK47MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -422,7 +422,7 @@ function AK103Image::onMagDrop(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(AK103SafetyImage)
+datablock ShapeBaseImageData(BNE_AK103SafetyImage)
 {
    shapeFile = "./AK103/AK103.dts";
    emap = true;
@@ -432,14 +432,14 @@ datablock ShapeBaseImageData(AK103SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = AK103Item;
+   item = BNE_AK103Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = AK103Image;
+   safetyImage = BNE_AK103Image;
    doColorShift = true;
-   colorShiftColor = AK103Item.colorShiftColor;
+   colorShiftColor = BNE_AK103Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -451,7 +451,7 @@ datablock ShapeBaseImageData(AK103SafetyImage)
 
 };
 
-function AK103SafetyImage::onMount(%this,%obj,%slot)
+function BNE_AK103SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -460,7 +460,7 @@ function AK103SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function AK103SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_AK103SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -470,12 +470,12 @@ function AK103SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(AK103IronsightImage : AK103Image)
+datablock ShapeBaseImageData(BNE_AK103IronsightImage : BNE_AK103Image)
 {
 	recoilHeight = 0.1875;
 
-	scopingImage = AK103Image;
-	sourceImage = AK103Image;
+	scopingImage = BNE_AK103Image;
+	sourceImage = BNE_AK103Image;
 	
    offset = "0 0 -0.065";
 	eyeOffset = "0.01 1.0 -1";
@@ -498,20 +498,20 @@ datablock ShapeBaseImageData(AK103IronsightImage : AK103Image)
 	stateSound[7]				= "";
 };
 
-function AK103IronsightImage::onDone(%this,%obj,%slot)
+function BNE_AK103IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function AK103IronsightImage::onReady(%this,%obj,%slot)
+function BNE_AK103IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function AK103IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_AK103IronsightImage::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, AK47FireLoopSound);
+	%obj.playAudio(0, BNE_AK47FireLoopSound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -520,13 +520,13 @@ function AK103IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function AK103IronsightImage::onEndLoop(%this, %obj, %slot)
+function BNE_AK103IronsightImage::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function AK103IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_AK103IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -534,7 +534,7 @@ function AK103IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function AK103IronsightImage::onMount(%this,%obj,%slot)
+function BNE_AK103IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -545,7 +545,7 @@ function AK103IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AK103IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_AK103IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

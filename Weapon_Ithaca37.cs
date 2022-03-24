@@ -1,18 +1,18 @@
-datablock AudioProfile(Ithaca37Fire1Sound)
+datablock AudioProfile(BNE_Ithaca37Fire1Sound)
 {
    filename    = "./Sounds/Fire/Ithaca37/Ithaca37_fire1.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(Ithaca37Fire2Sound)
+datablock AudioProfile(BNE_Ithaca37Fire2Sound)
 {
    filename    = "./Sounds/Fire/Ithaca37/Ithaca37_fire2.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(Ithaca37Fire3Sound)
+datablock AudioProfile(BNE_Ithaca37Fire3Sound)
 {
    filename    = "./Sounds/Fire/Ithaca37/Ithaca37_fire3.wav";
    description = HeavyClose3D;
@@ -22,7 +22,7 @@ datablock AudioProfile(Ithaca37Fire3Sound)
 //////////
 // item //
 //////////
-datablock ItemData(Ithaca37Item)
+datablock ItemData(BNE_Ithaca37Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -43,7 +43,7 @@ datablock ItemData(Ithaca37Item)
 	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = Ithaca37Image;
+	image = BNE_Ithaca37Image;
 	canDrop = true;
 	
 	AEAmmo = 6;
@@ -65,7 +65,7 @@ datablock ItemData(Ithaca37Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(Ithaca37Image)
+datablock ShapeBaseImageData(BNE_Ithaca37Image)
 {
    // Basic Item properties
    shapeFile = "./Ithaca37/Ithaca37.dts";
@@ -89,7 +89,7 @@ datablock ShapeBaseImageData(Ithaca37Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = Ithaca37Item;
+   item = BNE_Ithaca37Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -104,10 +104,10 @@ datablock ShapeBaseImageData(Ithaca37Image)
    melee = false;
    //raise your arm up or not
    armReady = true;
-   safetyImage = Ithaca37SafetyImage;
-   scopingImage = Ithaca37IronsightImage;
+   safetyImage = BNE_Ithaca37SafetyImage;
+   scopingImage = BNE_Ithaca37IronsightImage;
    doColorShift = true;
-   colorShiftColor = Ithaca37Item.colorShiftColor;
+   colorShiftColor = BNE_Ithaca37Item.colorShiftColor;
 //   shellSound = AEShellRifle;
 //   shellSoundMin = 450; //min delay for when the shell sound plays
 //   shellSoundMax = 550; //max delay for when the shell sound plays
@@ -295,7 +295,7 @@ datablock ShapeBaseImageData(Ithaca37Image)
 	stateTransitionOnTriggerUp[21]	  	= "Pump";
 };
 
-function Ithaca37Image::AEOnFire(%this,%obj,%slot)
+function BNE_Ithaca37Image::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(400, unBlockImageDismount);
@@ -303,44 +303,44 @@ function Ithaca37Image::AEOnFire(%this,%obj,%slot)
 	cancel(%obj.reloadSoundSchedule);
 	cancel(%obj.insertshellSchedule);
 	%obj.stopAudio(0); 
-	%obj.playAudio(0, Ithaca37Fire @ getRandom(1, 3) @ Sound);	
+	%obj.playAudio(0, BNE_Ithaca37Fire @ getRandom(1, 3) @ Sound);	
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function Ithaca37Image::AEOnLowClimb(%this, %obj, %slot) 
+function BNE_Ithaca37Image::AEOnLowClimb(%this, %obj, %slot) 
 {
    %obj.aeplayThread(2, plant);
 }
 
-function Ithaca37Image::onReloadStart(%this, %obj, %slot)
+function BNE_Ithaca37Image::onReloadStart(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, shiftleft); 
 }
 
-function Ithaca37Image::onReloadEnd(%this,%obj,%slot)
+function BNE_Ithaca37Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function Ithaca37Image::onReload2End(%this,%obj,%slot)
+function BNE_Ithaca37Image::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function Ithaca37Image::onReloadStart2(%this, %obj, %slot)
+function BNE_Ithaca37Image::onReloadStart2(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant); 
-	serverPlay3D(Ithaca37PumpSound,%obj.getPosition());	
+	serverPlay3D(BNE_Ithaca37PumpSound,%obj.getPosition());	
 }
 
-function Ithaca37Image::onDryFire(%this, %obj, %slot)
+function BNE_Ithaca37Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function Ithaca37Image::onReady(%this,%obj,%slot)
+function BNE_Ithaca37Image::onReady(%this,%obj,%slot)
 {
 	if(getSimTime() - %obj.reloadTime[%this.getID()] <= %this.stateTimeoutValue[0] * 1000 + 1000)
 		%obj.schedule(0, setImageAmmo, %slot, 0);
@@ -350,13 +350,13 @@ function Ithaca37Image::onReady(%this,%obj,%slot)
 	%this.AEPreAmmoCheck(%obj, %slot);
 }
 
-function Ithaca37Image::onMount(%this,%obj,%slot)
+function BNE_Ithaca37Image::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
 
-function Ithaca37Image::onUnMount(%this, %obj, %slot)
+function BNE_Ithaca37Image::onUnMount(%this, %obj, %slot)
 {	
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -366,31 +366,31 @@ function Ithaca37Image::onUnMount(%this, %obj, %slot)
 	parent::onUnMount(%this,%obj,%slot);	
 }
 
-function Ithaca37Image::LoadEffect(%this,%obj,%slot)
+function BNE_Ithaca37Image::LoadEffect(%this,%obj,%slot)
 {
-	%obj.reloadSoundSchedule = schedule(150, 0, serverPlay3D, "Ithaca37Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
+	%obj.reloadSoundSchedule = schedule(150, 0, serverPlay3D, "BNE_Ithaca37Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
     %obj.schedule(50, "aeplayThread", "3", "plant");
     %obj.schedule(50, "aeplayThread", "2", "shiftright");
     %obj.insertshellSchedule = %this.schedule(200,AEShotgunLoadOne,%obj,%slot);
 }
 
-function Ithaca37Image::AEShotgunLoadOneEffectless(%this,%obj,%slot)
+function BNE_Ithaca37Image::AEShotgunLoadOneEffectless(%this,%obj,%slot)
 {
 	Parent::AEShotgunLoadOne(%this, %obj, %slot);
 }
 
-function Ithaca37Image::onPump(%this,%obj,%slot)
+function BNE_Ithaca37Image::onPump(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	schedule(300, 0, serverPlay3D, AEShellShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
-	serverPlay3D(Ithaca37PumpSound,%obj.getPosition());	
+	serverPlay3D(BNE_Ithaca37PumpSound,%obj.getPosition());	
 }
 
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(Ithaca37SafetyImage)
+datablock ShapeBaseImageData(BNE_Ithaca37SafetyImage)
 {
    shapeFile = "./Ithaca37/Ithaca37.dts";
    emap = true;
@@ -400,14 +400,14 @@ datablock ShapeBaseImageData(Ithaca37SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = Ithaca37Item;
+   item = BNE_Ithaca37Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = Ithaca37Image;
+   safetyImage = BNE_Ithaca37Image;
    doColorShift = true;
-   colorShiftColor = Ithaca37Item.colorShiftColor;
+   colorShiftColor = BNE_Ithaca37Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -419,7 +419,7 @@ datablock ShapeBaseImageData(Ithaca37SafetyImage)
 
 };
 
-function Ithaca37SafetyImage::onMount(%this,%obj,%slot)
+function BNE_Ithaca37SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -428,7 +428,7 @@ function Ithaca37SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function Ithaca37SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_Ithaca37SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -439,12 +439,12 @@ function Ithaca37SafetyImage::onUnMount(%this, %obj, %slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(Ithaca37IronsightImage : Ithaca37Image)
+datablock ShapeBaseImageData(BNE_Ithaca37IronsightImage : BNE_Ithaca37Image)
 {
 	recoilHeight = 0.5;
 
-	scopingImage = Ithaca37Image;
-	sourceImage = Ithaca37Image;
+	scopingImage = BNE_Ithaca37Image;
+	sourceImage = BNE_Ithaca37Image;
 	
    offset = "0 0 -0.015";
 	eyeOffset = "0 1.25 -0.84";
@@ -467,37 +467,37 @@ datablock ShapeBaseImageData(Ithaca37IronsightImage : Ithaca37Image)
 	stateSound[9]				= "";
 };
 
-function Ithaca37IronsightImage::onDone(%this,%obj,%slot)
+function BNE_Ithaca37IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function Ithaca37IronsightImage::onReady(%this,%obj,%slot)
+function BNE_Ithaca37IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function Ithaca37IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_Ithaca37IronsightImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(800, unBlockImageDismount);
 
 	cancel(%obj.reloadSoundSchedule);
 	%obj.stopAudio(0); 
-	%obj.playAudio(0, Ithaca37Fire @ getRandom(1, 3) @ Sound);	
+	%obj.playAudio(0, BNE_Ithaca37Fire @ getRandom(1, 3) @ Sound);	
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function Ithaca37IronsightImage::onPump(%this,%obj,%slot)
+function BNE_Ithaca37IronsightImage::onPump(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	schedule(500, 0, serverPlay3D, AEShellShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
-	serverPlay3D(Ithaca37PumpSound,%obj.getPosition());	
+	serverPlay3D(BNE_Ithaca37PumpSound,%obj.getPosition());	
 }
 
-function Ithaca37IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_Ithaca37IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -505,7 +505,7 @@ function Ithaca37IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function Ithaca37IronsightImage::onMount(%this,%obj,%slot)
+function BNE_Ithaca37IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -516,7 +516,7 @@ function Ithaca37IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function Ithaca37IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_Ithaca37IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

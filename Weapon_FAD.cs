@@ -20,7 +20,7 @@ datablock AudioProfile(FADFire3Sound)
 };
 
 // FAD
-datablock DebrisData(AEFADMagDebris)
+datablock DebrisData(BNE_FADMagDebris)
 {
 	shapeFile = "./FAD/FADMag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEFADMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(FADItem)
+datablock ItemData(BNE_FADItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(FADItem)
 	colorShiftColor = "0.4 0.4 0.4 1.000";
 
 	 // Dynamic properties defined by the scripts
-	image = FADImage;
+	image = BNE_FADImage;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -83,7 +83,7 @@ datablock ItemData(FADItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(FADImage)
+datablock ShapeBaseImageData(BNE_FADImage)
 {
    // Basic Item properties
    shapeFile = "./FAD/FAD.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(FADImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = FADItem;
+   item = BNE_FADItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(FADImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = FADSafetyImage;
-    scopingImage = FADIronsightImage;
+	safetyImage = BNE_FADSafetyImage;
+    scopingImage = BNE_FADIronsightImage;
 	doColorShift = true;
-	colorShiftColor = FADItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_FADItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -250,7 +250,7 @@ datablock ShapeBaseImageData(FADImage)
 	stateTransitionOnTimeout[17]		= "ReloadMagIn";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagOut";
-	stateSound[17]				= FADMagOutSound;
+	stateSound[17]				= BNE_FADMagOutSound;
 	
 	stateName[18]				= "ReloadMagIn";
 	stateTimeoutValue[18]			= 0.35;
@@ -258,7 +258,7 @@ datablock ShapeBaseImageData(FADImage)
 	stateTransitionOnTimeout[18]		= "ReloadEnd";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "MagIn";
-	stateSound[18]				= FADMagInSound;
+	stateSound[18]				= BNE_FADMagInSound;
 	
 	stateName[19]				= "ReloadEnd";
 	stateTimeoutValue[19]			= 0.25;
@@ -287,7 +287,7 @@ datablock ShapeBaseImageData(FADImage)
 	stateTransitionOnTimeout[22]		= "Reload2MagIn";
 	stateWaitForTimeout[22]			= true;
 	stateSequence[22]			= "MagOut";
-	stateSound[22]				= FADMagOutSound;
+	stateSound[22]				= BNE_FADMagOutSound;
 	
 	stateName[28]				= "Reload2MagIn";
 	stateTimeoutValue[28]			= 0.35;
@@ -295,7 +295,7 @@ datablock ShapeBaseImageData(FADImage)
 	stateTransitionOnTimeout[28]		= "Reload2Bolt";
 	stateWaitForTimeout[28]			= true;
 	stateSequence[28]			= "MagIn";
-	stateSound[28]				= FADMagInSound;
+	stateSound[28]				= BNE_FADMagInSound;
 
 	stateName[23]				= "Reload2Bolt";
 	stateTimeoutValue[23]			= 0.35;
@@ -303,7 +303,7 @@ datablock ShapeBaseImageData(FADImage)
 	stateTransitionOnTimeout[23]		= "Reload2End";
 	stateWaitForTimeout[23]			= true;
 	stateSequence[23]			= "Bolt";
-	stateSound[23]				= FADBoltSound;
+	stateSound[23]				= BNE_FADBoltSound;
 	
 	stateName[24]				= "Reload2End";
 	stateTimeoutValue[24]			= 0.25;
@@ -328,10 +328,10 @@ datablock ShapeBaseImageData(FADImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function FADImage::AEOnFire(%this,%obj,%slot)
+function BNE_FADImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, M16A1Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M16A1Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -339,7 +339,7 @@ function FADImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FADImage::onDryFire(%this, %obj, %slot)
+function BNE_FADImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -347,54 +347,54 @@ function FADImage::onDryFire(%this, %obj, %slot)
 
 // MAGAZINE DROPPING
 
-function FADImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_FADImage::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function FADImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_FADImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function FADImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_FADImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function FADImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_FADImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function FADImage::onReloadStart(%this,%obj,%slot)
+function BNE_FADImage::onReloadStart(%this,%obj,%slot)
 {
   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(500,600),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
   %obj.aeplayThread(2, plant);
 }
 
-function FADImage::onReload2Start(%this,%obj,%slot)
+function BNE_FADImage::onReload2Start(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(500,600),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function FADImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_FADImage::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
   	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function FADImage::onReloadEnd(%this,%obj,%slot)
+function BNE_FADImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function FADImage::onReady(%this,%obj,%slot)
+function BNE_FADImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -404,7 +404,7 @@ function FADImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function FADImage::onMount(%this,%obj,%slot)
+function BNE_FADImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -413,7 +413,7 @@ function FADImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FADImage::onUnMount(%this,%obj,%slot)
+function BNE_FADImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -427,7 +427,7 @@ function FADImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function FADImage::onMagDrop(%this,%obj,%slot)
+function BNE_FADImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -437,7 +437,7 @@ function FADImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(FADMagImage,0);
+	%a.mountImage(BNE_FADMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -445,14 +445,14 @@ function FADImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(FADMagImage)
+datablock ShapeBaseImageData(BNE_FADMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.1 -0.3 -0.1";
    rotation = eulerToMatrix( "40 25 0" );	
 	
-	casing = AEFADMagDebris;
+	casing = BNE_FADMagDebris;
 	shellExitDir        = "-0.01 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -471,7 +471,7 @@ datablock ShapeBaseImageData(FADMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function FADMagImage::onDone(%this,%obj,%slot)
+function BNE_FADMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -480,7 +480,7 @@ function FADMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(FADSafetyImage)
+datablock ShapeBaseImageData(BNE_FADSafetyImage)
 {
    shapeFile = "./FAD/FAD.dts";
    emap = true;
@@ -490,14 +490,14 @@ datablock ShapeBaseImageData(FADSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = FADItem;
+   item = BNE_FADItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = FADImage;
+   safetyImage = BNE_FADImage;
    doColorShift = true;
-   colorShiftColor = FADItem.colorShiftColor;
+   colorShiftColor = BNE_FADItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -509,7 +509,7 @@ datablock ShapeBaseImageData(FADSafetyImage)
 
 };
 
-function FADSafetyImage::onMount(%this,%obj,%slot)
+function BNE_FADSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -518,7 +518,7 @@ function FADSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function FADSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_FADSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -528,12 +528,12 @@ function FADSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(FADIronsightImage : FADImage)
+datablock ShapeBaseImageData(BNE_FADIronsightImage : BNE_FADImage)
 {
 	recoilHeight = 0.1;
 
-	scopingImage = FADImage;
-	sourceImage = FADImage;
+	scopingImage = BNE_FADImage;
+	sourceImage = BNE_FADImage;
 	
 	offset = "0 0 0";
 	eyeOffset = "0.0055 1.0 -1.26625";
@@ -556,21 +556,21 @@ datablock ShapeBaseImageData(FADIronsightImage : FADImage)
 	stateSound[16]				= "";
 };
 
-function FADIronsightImage::onDone(%this,%obj,%slot)
+function BNE_FADIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function FADIronsightImage::onReady(%this,%obj,%slot)
+function BNE_FADIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function FADIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_FADIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, M16A1Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M16A1Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -578,7 +578,7 @@ function FADIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FADIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_FADIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -586,7 +586,7 @@ function FADIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function FADIronsightImage::onMount(%this,%obj,%slot)
+function BNE_FADIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -597,7 +597,7 @@ function FADIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FADIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_FADIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

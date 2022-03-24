@@ -1,25 +1,25 @@
-datablock AudioProfile(RangerFire1Sound)
+datablock AudioProfile(BNE_RangerFire1Sound)
 {
    filename    = "./Sounds/Fire/Ranger/Ranger_FIRE_1.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(RangerFire2Sound)
+datablock AudioProfile(BNE_RangerFire2Sound)
 {
    filename    = "./Sounds/Fire/Ranger/Ranger_FIRE_2.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(RangerFire3Sound)
+datablock AudioProfile(BNE_RangerFire3Sound)
 {
    filename    = "./Sounds/Fire/Ranger/Ranger_FIRE_3.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(RangerFire4Sound)
+datablock AudioProfile(BNE_RangerFire4Sound)
 {
    filename    = "./Sounds/Fire/Ranger/Ranger_FIRE_4.wav";
    description = HeavyClose3D;
@@ -29,7 +29,7 @@ datablock AudioProfile(RangerFire4Sound)
 //////////
 // item //
 //////////
-datablock ItemData(RangerItem)
+datablock ItemData(BNE_RangerItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -50,7 +50,7 @@ datablock ItemData(RangerItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = RangerImage;
+	image = BNE_RangerImage;
 	canDrop = true;
 
 	AEAmmo = 2;
@@ -72,7 +72,7 @@ datablock ItemData(RangerItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(RangerImage)
+datablock ShapeBaseImageData(BNE_RangerImage)
 {
    // Basic Item properties
    shapeFile = "./Ranger/Ranger.dts";
@@ -96,7 +96,7 @@ datablock ShapeBaseImageData(RangerImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = RangerItem;
+   item = BNE_RangerItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -112,10 +112,10 @@ datablock ShapeBaseImageData(RangerImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = RangerSafetyImage;
-    scopingImage = RangerIronsightImage;
+	safetyImage = BNE_RangerSafetyImage;
+    scopingImage = BNE_RangerIronsightImage;
 	doColorShift = true;
-	colorShiftColor = RangerItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_RangerItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	muzzleFlashScale = "1.5 1.5 1.5";
 	bulletScale = "1 1 1";
@@ -216,7 +216,7 @@ datablock ShapeBaseImageData(RangerImage)
 	stateTimeoutValue[7]		  	= 0.5;
 	stateWaitForTimeout[7]		  	= true;
 	stateSequence[7]			= "ReloadStart";
-	stateSound[7]				= RangerOpenSound;
+	stateSound[7]				= BNE_RangerOpenSound;
 	
 	stateName[8]				= "Reload";
 	stateTransitionOnTimeout[8]     	= "EndReload";
@@ -224,7 +224,7 @@ datablock ShapeBaseImageData(RangerImage)
 	stateTimeoutValue[8]			= 0.2;
 	stateSequence[8]			= "ShellInLeft";
 	stateScript[8]				= "AEShotgunLoadOneB";
-	stateSound[8]				= RangerInsert1Sound;
+	stateSound[8]				= BNE_RangerInsert1Sound;
 	
 	stateName[10]			  	= "ReloadStart2";
 	stateScript[10]				= "onReloadStart2";
@@ -232,7 +232,7 @@ datablock ShapeBaseImageData(RangerImage)
 	stateTimeoutValue[10]		  	= 0.5;
 	stateWaitForTimeout[10]		  	= true;
 	stateSequence[10]			= "ReloadStartEmpty";
-	stateSound[10]				= RangerOpenSound;
+	stateSound[10]				= BNE_RangerOpenSound;
 	
 	stateName[11]			  	= "Reload2A";
 	stateScript[11]				= "AEShotgunLoadOne";
@@ -240,7 +240,7 @@ datablock ShapeBaseImageData(RangerImage)
 	stateTimeoutValue[11]		  	= 0.2;
 	stateSequence[11]			= "ShellInLeftEmpty";
 	stateWaitForTimeout[11]		  	= true;
-	stateSound[11]				= RangerInsert1Sound;
+	stateSound[11]				= BNE_RangerInsert1Sound;
 	
 	stateName[12]				= "CheckAmmoA";
 	stateTimeoutValue[12]		  	= 0.1;
@@ -258,7 +258,7 @@ datablock ShapeBaseImageData(RangerImage)
 	stateWaitForTimeout[14]		  	= false;
 	stateSequence[14]			= "ShellInRight";
 	stateTransitionOnTimeout[14]	  	= "EndReload";
-	stateSound[14]				= RangerInsert2Sound;
+	stateSound[14]				= BNE_RangerInsert2Sound;
 	
 	stateName[15]			  	= "EndReload";
 	stateScript[15]				= "onReloadEnd";
@@ -293,10 +293,10 @@ datablock ShapeBaseImageData(RangerImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function RangerImage::AEOnFire(%this,%obj,%slot)
+function BNE_RangerImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, RangerFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_RangerFire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -304,68 +304,68 @@ function RangerImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function RangerImage::AEOnLowClimb(%this, %obj, %slot) 
+function BNE_RangerImage::AEOnLowClimb(%this, %obj, %slot) 
 {
    %obj.aeplayThread(2, jump);
 }
 
-function RangerImage::onDryFire(%this, %obj, %slot)
+function BNE_RangerImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function RangerImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_RangerImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftright);
    %obj.schedule(200, "aeplayThread", "2", "shiftleft");
 }
 
-function RangerImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_RangerImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftright);
 }
 
-function RangerImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_RangerImage::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.schedule(200, "aeplayThread", "2", "shiftleft");
 }
 
-function RangerImage::onReloadEnd(%this,%obj,%slot)
+function BNE_RangerImage::onReloadEnd(%this,%obj,%slot)
 {
-  %obj.schedule(150, playAudio, 1, RangerCloseSound);
+  %obj.schedule(150, playAudio, 1, BNE_RangerCloseSound);
 }
 
-function RangerImage::onReloadEndAlt(%this,%obj,%slot)
+function BNE_RangerImage::onReloadEndAlt(%this,%obj,%slot)
 {
-  %obj.schedule(150, playAudio, 1, RangerCloseSound);
+  %obj.schedule(150, playAudio, 1, BNE_RangerCloseSound);
     %obj.rangerEmpty = true;
 }
 
 // MAGAZINE DROPPING
 
-function RangerImage::AEShotgunLoadOne(%this,%obj,%slot)
+function BNE_RangerImage::AEShotgunLoadOne(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	Parent::AEShotgunLoadOne(%this, %obj, %slot);
 }
 
-function RangerImage::AEShotgunLoadOneB(%this,%obj,%slot)
+function BNE_RangerImage::AEShotgunLoadOneB(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	Parent::AEShotgunLoadOne(%this, %obj, %slot);
    %obj.schedule(350, "aeplayThread", "2", "shiftaway");
 }
 
-function RangerImage::AEShotgunLoadOneC(%this,%obj,%slot)
+function BNE_RangerImage::AEShotgunLoadOneC(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	Parent::AEShotgunLoadOne(%this, %obj, %slot);
    %obj.schedule(250, "aeplayThread", "2", "shiftaway");
 }
 
-function RangerImage::onReloadStart(%this,%obj,%slot)
+function BNE_RangerImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.schedule(75, "aeplayThread", "2", "shiftleft");
    %obj.schedule(150, "aeplayThread", "3", "plant");
@@ -373,7 +373,7 @@ function RangerImage::onReloadStart(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEShellHeavyShotgun @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function RangerImage::onReloadStart2(%this,%obj,%slot)
+function BNE_RangerImage::onReloadStart2(%this,%obj,%slot)
 {
    %obj.schedule(75, "aeplayThread", "2", "shiftleft");
    %obj.schedule(150, "aeplayThread", "3", "plant");
@@ -386,7 +386,7 @@ function RangerImage::onReloadStart2(%this,%obj,%slot)
    %obj.reload5Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEShellHeavyShotgun @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function RangerImage::onReady(%this,%obj,%slot)
+function BNE_RangerImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -396,7 +396,7 @@ function RangerImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function RangerImage::onMount(%this,%obj,%slot)
+function BNE_RangerImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -405,7 +405,7 @@ function RangerImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RangerImage::onUnMount(%this,%obj,%slot)
+function BNE_RangerImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -420,7 +420,7 @@ function RangerImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function RangerImage::onMagDrop(%this,%obj,%slot,%right)
+function BNE_RangerImage::onMagDrop(%this,%obj,%slot,%right)
 {
     %a = new aiPlayer()
     {
@@ -435,7 +435,7 @@ function RangerImage::onMagDrop(%this,%obj,%slot,%right)
     %rot = getWords(%trf, 3, 7);
     %pos = vectorAdd(%pos, vectorScale(%obj.getRightVector(), %side));
     %a.setTransform(%pos SPC %rot);
-    %a.mountImage(RangerCasingImage,0);
+    %a.mountImage(BNE_RangerCasingImage,0);
     %a.schedule(1000,delete);
 }
 
@@ -443,7 +443,7 @@ function RangerImage::onMagDrop(%this,%obj,%slot,%right)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(RangerCasingImage)
+datablock ShapeBaseImageData(BNE_RangerCasingImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
@@ -469,7 +469,7 @@ datablock ShapeBaseImageData(RangerCasingImage)
 	stateScript[2]					= "onDone";
 };
 
-function RangerCasingImage::onDone(%this,%obj,%slot)
+function BNE_RangerCasingImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -478,7 +478,7 @@ function RangerCasingImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(RangerSafetyImage)
+datablock ShapeBaseImageData(BNE_RangerSafetyImage)
 {
    shapeFile = "./Ranger/Ranger.dts";
    emap = true;
@@ -488,14 +488,14 @@ datablock ShapeBaseImageData(RangerSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = RangerItem;
+   item = BNE_RangerItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = RangerImage;
+   safetyImage = BNE_RangerImage;
    doColorShift = true;
-   colorShiftColor = RangerItem.colorShiftColor;
+   colorShiftColor = BNE_RangerItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -507,7 +507,7 @@ datablock ShapeBaseImageData(RangerSafetyImage)
 
 };
 
-function RangerSafetyImage::onMount(%this,%obj,%slot)
+function BNE_RangerSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -516,7 +516,7 @@ function RangerSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function RangerSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_RangerSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -526,12 +526,12 @@ function RangerSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(RangerIronsightImage : RangerImage)
+datablock ShapeBaseImageData(BNE_RangerIronsightImage : BNE_RangerImage)
 {
 	recoilHeight = 5;
 
-	scopingImage = RangerImage;
-	sourceImage = RangerImage;
+	scopingImage = BNE_RangerImage;
+	sourceImage = BNE_RangerImage;
 	
    offset = "0 0 -0.015";
 	eyeOffset = "-0 1.0 -0.825";
@@ -554,21 +554,21 @@ datablock ShapeBaseImageData(RangerIronsightImage : RangerImage)
 	stateSound[7]				= "";
 };
 
-function RangerIronsightImage::onDone(%this,%obj,%slot)
+function BNE_RangerIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function RangerIronsightImage::onReady(%this,%obj,%slot)
+function BNE_RangerIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function RangerIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_RangerIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, RangerFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_RangerFire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -576,7 +576,7 @@ function RangerIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function RangerIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_RangerIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -584,7 +584,7 @@ function RangerIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function RangerIronsightImage::onMount(%this,%obj,%slot)
+function BNE_RangerIronsightImage::onMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsIn3Sound, %obj.getHackPosition());
@@ -595,7 +595,7 @@ function RangerIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RangerIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_RangerIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

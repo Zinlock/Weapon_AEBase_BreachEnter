@@ -1,25 +1,25 @@
-datablock AudioProfile(OLINCAWSFire1Sound)
+datablock AudioProfile(BNE_OLINCAWSFire1Sound)
 {
    filename    = "./Sounds/Fire/OLINCAWS/CAWS_FIRE_1.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(OLINCAWSFire2Sound)
+datablock AudioProfile(BNE_OLINCAWSFire2Sound)
 {
    filename    = "./Sounds/Fire/OLINCAWS/CAWS_FIRE_2.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(OLINCAWSFire3Sound)
+datablock AudioProfile(BNE_OLINCAWSFire3Sound)
 {
    filename    = "./Sounds/Fire/OLINCAWS/CAWS_FIRE_3.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(OLINCAWSFire4Sound)
+datablock AudioProfile(BNE_OLINCAWSFire4Sound)
 {
    filename    = "./Sounds/Fire/OLINCAWS/CAWS_FIRE_4.wav";
    description = HeavyClose3D;
@@ -27,7 +27,7 @@ datablock AudioProfile(OLINCAWSFire4Sound)
 };
 
 // OLINCAWS
-datablock DebrisData(AEOLINCAWSMagDebris)
+datablock DebrisData(BNE_OLINCAWSMagDebris)
 {
 	shapeFile = "./OLINCAWS/OLINCAWSMag.dts";
 	lifetime = 2.0;
@@ -46,7 +46,7 @@ datablock DebrisData(AEOLINCAWSMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(OLINCAWSItem)
+datablock ItemData(BNE_OLINCAWSItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -67,7 +67,7 @@ datablock ItemData(OLINCAWSItem)
 	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = OLINCAWSImage;
+	image = BNE_OLINCAWSImage;
 	canDrop = true;
 
 	AEAmmo = 8;
@@ -89,7 +89,7 @@ datablock ItemData(OLINCAWSItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(OLINCAWSImage)
+datablock ShapeBaseImageData(BNE_OLINCAWSImage)
 {
    // Basic Item properties
    shapeFile = "./OLINCAWS/OLINCAWS.dts";
@@ -113,7 +113,7 @@ datablock ShapeBaseImageData(OLINCAWSImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = OLINCAWSItem;
+   item = BNE_OLINCAWSItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -129,10 +129,10 @@ datablock ShapeBaseImageData(OLINCAWSImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = OLINCAWSSafetyImage;
-    scopingImage = OLINCAWSIronsightImage;
+	safetyImage = BNE_OLINCAWSSafetyImage;
+    scopingImage = BNE_OLINCAWSIronsightImage;
 	doColorShift = true;
-	colorShiftColor = OLINCAWSItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_OLINCAWSItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellShotgun;
 	shellSoundMin = 500; //min delay for when the shell sound plays
@@ -238,7 +238,7 @@ datablock ShapeBaseImageData(OLINCAWSImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= CAWSMagOutSound;
+	stateSound[8]				= BNE_CAWSMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.3;
@@ -246,7 +246,7 @@ datablock ShapeBaseImageData(OLINCAWSImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= CAWSMagInSound;
+	stateSound[9]				= BNE_CAWSMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -278,7 +278,7 @@ datablock ShapeBaseImageData(OLINCAWSImage)
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
 	stateWaitForTimeout[15]			= true;
 	stateSequence[15]			= "ReloadStartEmpty";
-	stateSound[15]				= CAWSBoltLockSound;
+	stateSound[15]				= BNE_CAWSBoltLockSound;
 	
 	stateName[16]				= "Reload2MagOut";
 	stateTimeoutValue[16]			= 0.65;
@@ -286,7 +286,7 @@ datablock ShapeBaseImageData(OLINCAWSImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOutEmpty";
-	stateSound[16]				= CAWSMagOutSound;
+	stateSound[16]				= BNE_CAWSMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.3;
@@ -294,7 +294,7 @@ datablock ShapeBaseImageData(OLINCAWSImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= CAWSMagInSound;
+	stateSound[17]				= BNE_CAWSMagInSound;
 	
 	stateName[18]				= "Reload2End";
 	stateTimeoutValue[18]			= 0.45;
@@ -319,10 +319,10 @@ datablock ShapeBaseImageData(OLINCAWSImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function OLINCAWSImage::AEOnFire(%this,%obj,%slot)
+function BNE_OLINCAWSImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, OLINCAWSFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_OLINCAWSFire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -330,47 +330,47 @@ function OLINCAWSImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function OLINCAWSImage::AEOnLowClimb(%this, %obj, %slot)
+function BNE_OLINCAWSImage::AEOnLowClimb(%this, %obj, %slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function OLINCAWSImage::onDryFire(%this, %obj, %slot)
+function BNE_OLINCAWSImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function OLINCAWSImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function OLINCAWSImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function OLINCAWSImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReloadMagIn(%this,%obj,%slot)
 {
   %obj.schedule(50, "aeplayThread", "3", "plant");
 }
 
-function OLINCAWSImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReload2MagIn(%this,%obj,%slot)
 {
   %obj.schedule(50, "aeplayThread", "3", "plant");
   %obj.schedule(500, "aeplayThread", "2", "shiftleft");
   %obj.schedule(600, "aeplayThread", "3", "plant");
 }
 
-function OLINCAWSImage::onReloadStart(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReloadStart(%this,%obj,%slot)
 {
   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagPlasticAR @ getRandom(1,3) @ Sound,%obj.getPosition());
   %obj.aeplayThread(2, shiftleft);
 }
 
-function OLINCAWSImage::onReload2Start(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReload2Start(%this,%obj,%slot)
 {
   %obj.reload3Schedule = %this.schedule(450,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagPlasticAR @ getRandom(1,3) @ Sound,%obj.getPosition());
@@ -378,18 +378,18 @@ function OLINCAWSImage::onReload2Start(%this,%obj,%slot)
   %obj.aeplayThread(3, shiftright);
 }
 
-function OLINCAWSImage::onReloadEnd(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function OLINCAWSImage::onReload2End(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(300, playAudio, 1, CAWSBoltSound);
+    %obj.schedule(300, playAudio, 1, BNE_CAWSBoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function OLINCAWSImage::onReady(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -399,7 +399,7 @@ function OLINCAWSImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function OLINCAWSImage::onMount(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -408,7 +408,7 @@ function OLINCAWSImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function OLINCAWSImage::onUnMount(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -422,7 +422,7 @@ function OLINCAWSImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function OLINCAWSImage::onMagDrop(%this,%obj,%slot)
+function BNE_OLINCAWSImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -432,7 +432,7 @@ function OLINCAWSImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(OLINCAWSMagImage,0);
+	%a.mountImage(BNE_OLINCAWSMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -440,14 +440,14 @@ function OLINCAWSImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(OLINCAWSMagImage)
+datablock ShapeBaseImageData(BNE_OLINCAWSMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.1 0.65 0.075";
    rotation = eulerToMatrix( "-25 25 0" );	
 	
-	casing = AEOLINCAWSMagDebris;
+	casing = BNE_OLINCAWSMagDebris;
 	shellExitDir        = "0 1 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -466,7 +466,7 @@ datablock ShapeBaseImageData(OLINCAWSMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function OLINCAWSMagImage::onDone(%this,%obj,%slot)
+function BNE_OLINCAWSMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -475,7 +475,7 @@ function OLINCAWSMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(OLINCAWSSafetyImage)
+datablock ShapeBaseImageData(BNE_OLINCAWSSafetyImage)
 {
    shapeFile = "./OLINCAWS/OLINCAWS.dts";
    emap = true;
@@ -485,14 +485,14 @@ datablock ShapeBaseImageData(OLINCAWSSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = OLINCAWSItem;
+   item = BNE_OLINCAWSItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = OLINCAWSImage;
+   safetyImage = BNE_OLINCAWSImage;
    doColorShift = true;
-   colorShiftColor = OLINCAWSItem.colorShiftColor;
+   colorShiftColor = BNE_OLINCAWSItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -504,7 +504,7 @@ datablock ShapeBaseImageData(OLINCAWSSafetyImage)
 
 };
 
-function OLINCAWSSafetyImage::onMount(%this,%obj,%slot)
+function BNE_OLINCAWSSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -513,7 +513,7 @@ function OLINCAWSSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function OLINCAWSSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_OLINCAWSSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -523,12 +523,12 @@ function OLINCAWSSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(OLINCAWSIronsightImage : OLINCAWSImage)
+datablock ShapeBaseImageData(BNE_OLINCAWSIronsightImage : BNE_OLINCAWSImage)
 {
 	recoilHeight = 0.75;
 
-	scopingImage = OLINCAWSImage;
-	sourceImage = OLINCAWSImage;
+	scopingImage = BNE_OLINCAWSImage;
+	sourceImage = BNE_OLINCAWSImage;
 	
    offset = "0 0 -0.015";
 	eyeOffset = "-0.0125 1.0 -0.98";
@@ -551,21 +551,21 @@ datablock ShapeBaseImageData(OLINCAWSIronsightImage : OLINCAWSImage)
 	stateSound[7]				= "";
 };
 
-function OLINCAWSIronsightImage::onDone(%this,%obj,%slot)
+function BNE_OLINCAWSIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function OLINCAWSIronsightImage::onReady(%this,%obj,%slot)
+function BNE_OLINCAWSIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function OLINCAWSIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_OLINCAWSIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, OLINCAWSFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_OLINCAWSFire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -573,7 +573,7 @@ function OLINCAWSIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function OLINCAWSIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_OLINCAWSIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -581,7 +581,7 @@ function OLINCAWSIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function OLINCAWSIronsightImage::onMount(%this,%obj,%slot)
+function BNE_OLINCAWSIronsightImage::onMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsIn3Sound, %obj.getHackPosition());
@@ -592,7 +592,7 @@ function OLINCAWSIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function OLINCAWSIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_OLINCAWSIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

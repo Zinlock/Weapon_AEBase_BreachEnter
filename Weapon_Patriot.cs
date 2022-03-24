@@ -1,5 +1,5 @@
 // Patriot
-datablock DebrisData(AEPatriotMagDebris)
+datablock DebrisData(BNE_PatriotMagDebris)
 {
 	shapeFile = "./Patriot/PatriotMag.dts";
 	lifetime = 2.0;
@@ -18,7 +18,7 @@ datablock DebrisData(AEPatriotMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(PatriotItem)
+datablock ItemData(BNE_PatriotItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -39,7 +39,7 @@ datablock ItemData(PatriotItem)
 	colorShiftColor = "0.75 0.75 0.75 1";
 
 	 // Dynamic properties defined by the scripts
-	image = PatriotImage;
+	image = BNE_PatriotImage;
 	canDrop = true;
 
 	AEAmmo = 100;
@@ -62,7 +62,7 @@ datablock ItemData(PatriotItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(PatriotImage)
+datablock ShapeBaseImageData(BNE_PatriotImage)
 {
    // Basic Item properties
    shapeFile = "./Patriot/Patriot.dts";
@@ -86,7 +86,7 @@ datablock ShapeBaseImageData(PatriotImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = PatriotItem;
+   item = BNE_PatriotItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -102,9 +102,9 @@ datablock ShapeBaseImageData(PatriotImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = PatriotSafetyImage;
+	safetyImage = BNE_PatriotSafetyImage;
 	doColorShift = true;
-	colorShiftColor = PatriotItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_PatriotItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -222,7 +222,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AR15MagOutDRUMSound;
+	stateSound[8]				= BNE_AR15MagOutDRUMSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.5;
@@ -230,7 +230,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AR15MagInDRUMSound;
+	stateSound[9]				= BNE_AR15MagInDRUMSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -269,7 +269,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AR15MagOutDRUMSound;
+	stateSound[16]				= BNE_AR15MagOutDRUMSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.5;
@@ -277,7 +277,7 @@ datablock ShapeBaseImageData(PatriotImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AR15MagInDRUMSound;
+	stateSound[17]				= BNE_AR15MagInDRUMSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -302,10 +302,10 @@ datablock ShapeBaseImageData(PatriotImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function PatriotImage::AEOnFire(%this,%obj,%slot)
+function BNE_PatriotImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, M16A1Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M16A1Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -313,60 +313,60 @@ function PatriotImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function PatriotImage::onReloadEnd(%this,%obj,%slot)
+function BNE_PatriotImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function PatriotImage::onReload2End(%this,%obj,%slot)
+function BNE_PatriotImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(150, playAudio, 1, AR15BoltRackSound);
+    %obj.schedule(150, playAudio, 1, BNE_AR15BoltRackSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function PatriotImage::onDryFire(%this, %obj, %slot)
+function BNE_PatriotImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function PatriotImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_PatriotImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function PatriotImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_PatriotImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(400, "aeplayThread", "3", "shiftleft");
 }
 
-function PatriotImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_PatriotImage::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.schedule(200, "aeplayThread", "3", "shiftleft");
 }
 
-function PatriotImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_PatriotImage::onReloadMagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
-function PatriotImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_PatriotImage::onReload2MagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
 // MAGAZINE DROPPING
 
-function PatriotImage::onReloadStart(%this,%obj,%slot)
+function BNE_PatriotImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(225,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(450,550),0,serverPlay3D,AEWepImpactSoft @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function PatriotImage::onReady(%this,%obj,%slot)
+function BNE_PatriotImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -376,7 +376,7 @@ function PatriotImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function PatriotImage::onMount(%this,%obj,%slot)
+function BNE_PatriotImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -385,7 +385,7 @@ function PatriotImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function PatriotImage::onUnMount(%this,%obj,%slot)
+function BNE_PatriotImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -399,7 +399,7 @@ function PatriotImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function PatriotImage::onMagDrop(%this,%obj,%slot)
+function BNE_PatriotImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -409,7 +409,7 @@ function PatriotImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(PatriotMagImage,0);
+	%a.mountImage(BNE_PatriotMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -417,14 +417,14 @@ function PatriotImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(PatriotMagImage)
+datablock ShapeBaseImageData(BNE_PatriotMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.05 0.625 0.135";
    rotation = eulerToMatrix( "0 25 0" );	
 	
-	casing = AEPatriotMagDebris;
+	casing = BNE_PatriotMagDebris;
 	shellExitDir        = "0 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -443,7 +443,7 @@ datablock ShapeBaseImageData(PatriotMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function PatriotMagImage::onDone(%this,%obj,%slot)
+function BNE_PatriotMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -452,7 +452,7 @@ function PatriotMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(PatriotSafetyImage)
+datablock ShapeBaseImageData(BNE_PatriotSafetyImage)
 {
    shapeFile = "./Patriot/Patriot.dts";
    emap = true;
@@ -462,14 +462,14 @@ datablock ShapeBaseImageData(PatriotSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = PatriotItem;
+   item = BNE_PatriotItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = PatriotImage;
+   safetyImage = BNE_PatriotImage;
    doColorShift = true;
-   colorShiftColor = PatriotItem.colorShiftColor;
+   colorShiftColor = BNE_PatriotItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -481,7 +481,7 @@ datablock ShapeBaseImageData(PatriotSafetyImage)
 
 };
 
-function PatriotSafetyImage::onMount(%this,%obj,%slot)
+function BNE_PatriotSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -490,7 +490,7 @@ function PatriotSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function PatriotSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_PatriotSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	

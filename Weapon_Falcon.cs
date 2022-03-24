@@ -1,46 +1,29 @@
-datablock AudioProfile(FalconFire1Sound)
+datablock AudioProfile(BNE_FalconFire1Sound)
 {
    filename    = "./Sounds/Fire/Falcon/Falcon_FIRE_1.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(FalconFire2Sound)
+datablock AudioProfile(BNE_FalconFire2Sound)
 {
    filename    = "./Sounds/Fire/Falcon/Falcon_FIRE_2.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(FalconFire3Sound)
+datablock AudioProfile(BNE_FalconFire3Sound)
 {
    filename    = "./Sounds/Fire/Falcon/Falcon_FIRE_3.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(FalconFire4Sound)
+datablock AudioProfile(BNE_FalconFire4Sound)
 {
    filename    = "./Sounds/Fire/Falcon/Falcon_FIRE_4.wav";
    description = HeavyClose3D;
    preload = true;
-};
-
-// Falcon
-datablock DebrisData(AEFalconMagDebris)
-{
-	shapeFile = "./Falcon/FalconMag.dts";
-	lifetime = 2.0;
-	minSpinSpeed = -700.0;
-	maxSpinSpeed = -600.0;
-	elasticity = 0.5;
-	friction = 0.1;
-	numBounces = 3;
-	staticOnMaxBounce = true;
-	snapOnMaxBounce = false;
-	fade = true;
-
-	gravModifier = 2;
 };
 
 //////////
@@ -67,7 +50,7 @@ datablock ItemData(FalconItem)
 	colorShiftColor = "0.55 0.5 0.5 1";
 
 	 // Dynamic properties defined by the scripts
-	image = FalconImage;
+	image = BNE_FalconImage;
 	canDrop = true;
 
 	AEAmmo = 1;
@@ -89,7 +72,7 @@ datablock ItemData(FalconItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(FalconImage)
+datablock ShapeBaseImageData(BNE_FalconImage)
 {
    // Basic Item properties
    shapeFile = "./Falcon/Falcon.dts";
@@ -129,8 +112,8 @@ datablock ShapeBaseImageData(FalconImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = FalconBipodImage;
-    scopingImage = FalconIronsightImage;
+	safetyImage = BNE_FalconBipodImage;
+    scopingImage = BNE_FalconIronsightImage;
 	doColorShift = true;
 	colorShiftColor = FalconItem.colorShiftColor;//"0.400 0.196 0 1.000";
 	R_MovePenalty = 0.75;
@@ -241,7 +224,7 @@ datablock ShapeBaseImageData(FalconImage)
 	stateTransitionOnTimeout[7]		= "ReloadWait";
 	stateWaitForTimeout[7]			= true;
 	stateSequence[7]			= "ReloadStart";
-	stateSound[7]				= FalconBoltOpenSound;
+	stateSound[7]				= BNE_FalconBoltOpenSound;
 
 	stateName[8]				= "ReloadWait";
 	stateScript[8]				= "onReloadWait";
@@ -254,7 +237,7 @@ datablock ShapeBaseImageData(FalconImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "Reload";
-	stateSound[9]				= FalconInsertSound;
+	stateSound[9]				= BNE_FalconInsertSound;
 
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.45;
@@ -262,7 +245,7 @@ datablock ShapeBaseImageData(FalconImage)
 	stateTransitionOnTimeout[10]		= "Ready";
 	stateWaitForTimeout[10]			= true;
 	stateSequence[10]			= "ReloadEnd";
-	stateSound[10]				= FalconBoltCloseSound;
+	stateSound[10]				= BNE_FalconBoltCloseSound;
 
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
@@ -298,10 +281,10 @@ datablock ShapeBaseImageData(FalconImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function FalconImage::AEOnFire(%this,%obj,%slot)
+function BNE_FalconImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.stopAudio(0);
-  %obj.playAudio(0, FalconFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_FalconFire @ getRandom(1, 4) @ Sound);
 
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
@@ -309,43 +292,43 @@ function FalconImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FalconImage::onDryFire(%this, %obj, %slot)
+function BNE_FalconImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function FalconImage::AEOnLowClimb(%this, %obj, %slot)
+function BNE_FalconImage::AEOnLowClimb(%this, %obj, %slot)
 {
    %obj.aeplayThread(2, jump);
 }
 
-function FalconImage::onReloadInsert(%this,%obj,%slot)
+function BNE_FalconImage::onReloadInsert(%this,%obj,%slot)
 {
   %obj.schedule(50, "aeplayThread", "2", "plant");
   %obj.schedule(350, "aeplayThread", "3", "shiftright");
 }
 
-function FalconImage::onReloadEnd(%this,%obj,%slot)
+function BNE_FalconImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function FalconImage::onReload2End(%this,%obj,%slot)
+function BNE_FalconImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function FalconImage::onReloadStart(%this,%obj,%slot)
+function BNE_FalconImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(500,600),0,serverPlay3D,AEShellSniper @ getRandom(1,2) @ Sound,%obj.getPosition());
 }
 
-function FalconImage::onReady(%this,%obj,%slot)
+function BNE_FalconImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -355,7 +338,7 @@ function FalconImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function FalconImage::onMount(%this,%obj,%slot)
+function BNE_FalconImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -364,7 +347,7 @@ function FalconImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FalconImage::onUnMount(%this,%obj,%slot)
+function BNE_FalconImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -378,7 +361,7 @@ function FalconImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function FalconImage::onMagDrop(%this,%obj,%slot)
+function BNE_FalconImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -388,7 +371,7 @@ function FalconImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(FalconCasingImage,0);
+	%a.mountImage(BNE_FalconCasingImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -396,7 +379,7 @@ function FalconImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(FalconCasingImage)
+datablock ShapeBaseImageData(BNE_FalconCasingImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
@@ -422,22 +405,22 @@ datablock ShapeBaseImageData(FalconCasingImage)
 	stateScript[2]					= "onDone";
 };
 
-function FalconCasingImage::onDone(%this,%obj,%slot)
+function BNE_FalconCasingImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(FalconIronsightImage : FalconImage)
+datablock ShapeBaseImageData(BNE_FalconIronsightImage : BNE_FalconImage)
 {
 	recoilHeight = 1;
 	spreadBase = 0;
 	spreadMin = 0;
 	spreadMax = 0;
 
-	scopingImage = FalconImage;
-	sourceImage = FalconImage;
+	scopingImage = BNE_FalconImage;
+	sourceImage = BNE_FalconImage;
 
 	isScopedImage = true;
 
@@ -456,29 +439,29 @@ datablock ShapeBaseImageData(FalconIronsightImage : FalconImage)
 	stateSound[7]				= "";
 };
 
-function FalconIronsightImage::onDone(%this,%obj,%slot)
+function BNE_FalconIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function FalconIronsightImage::onReady(%this,%obj,%slot)
+function BNE_FalconIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function FalconIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_FalconIronsightImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
 
 	%obj.stopAudio(0);
-  %obj.playAudio(0, FalconFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_FalconFire @ getRandom(1, 4) @ Sound);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FalconIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_FalconIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -486,7 +469,7 @@ function FalconIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function FalconIronsightImage::onMount(%this,%obj,%slot)
+function BNE_FalconIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -497,7 +480,7 @@ function FalconIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FalconIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_FalconIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());
@@ -507,7 +490,7 @@ function FalconIronsightImage::onUnMount(%this,%obj,%slot)
 
 //ALT BIPOD STATES
 
-datablock ShapeBaseImageData(FalconBipodImage : FalconImage)
+datablock ShapeBaseImageData(BNE_FalconBipodImage : BNE_FalconImage)
 {
     shapeFile = "./Falcon/FalconBipod.dts";
 	recoilHeight = 0;
@@ -515,85 +498,85 @@ datablock ShapeBaseImageData(FalconBipodImage : FalconImage)
 	spreadBase = 0;
 	spreadMin = 0;
 	spreadMax = 0;
-	safetyImage = FalconImage;
-    scopingImage = FalconIronsightBipodImage;
+	safetyImage = BNE_FalconImage;
+    scopingImage = BNE_FalconIronsightBipodImage;
 	screenshakeMin = "0 0 0"; 
 	screenshakeMax = "0 0 0"; 
 	isSafetyImage = true;
 	isBipod = true;
 };
 
-function FalconBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_FalconBipodImage::AEOnFire(%this,%obj,%slot)
 {
-	FalconImage::AEOnFire(%this, %obj, %slot);
+	BNE_FalconImage::AEOnFire(%this, %obj, %slot);
 }
 
-function FalconBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_FalconBipodImage::onDryFire(%this, %obj, %slot)
 {
-	FalconImage::onDryFire(%this, %obj, %slot);
+	BNE_FalconImage::onDryFire(%this, %obj, %slot);
 }
 
-function FalconBipodImage::AEOnLowClimb(%this, %obj, %slot)
+function BNE_FalconBipodImage::AEOnLowClimb(%this, %obj, %slot)
 {
-	FalconImage::AEOnLowClimb(%this, %obj, %slot);
+	BNE_FalconImage::AEOnLowClimb(%this, %obj, %slot);
 }
 
-function FalconBipodImage::onReloadInsert(%this,%obj,%slot)
+function BNE_FalconBipodImage::onReloadInsert(%this,%obj,%slot)
 {
-	FalconImage::onReloadInsert(%this, %obj, %slot);
+	BNE_FalconImage::onReloadInsert(%this, %obj, %slot);
 }
 
-function FalconBipodImage::onReloadEnd(%this,%obj,%slot)
+function BNE_FalconBipodImage::onReloadEnd(%this,%obj,%slot)
 {
-	FalconImage::onReloadEnd(%this, %obj, %slot);
+	BNE_FalconImage::onReloadEnd(%this, %obj, %slot);
 }
 
-function FalconBipodImage::onReload2End(%this,%obj,%slot)
+function BNE_FalconBipodImage::onReload2End(%this,%obj,%slot)
 {
-	FalconImage::onReload2End(%this, %obj, %slot);
+	BNE_FalconImage::onReload2End(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function FalconBipodImage::onReloadStart(%this,%obj,%slot)
+function BNE_FalconBipodImage::onReloadStart(%this,%obj,%slot)
 {
-	FalconImage::onReloadStart(%this, %obj, %slot);
+	BNE_FalconImage::onReloadStart(%this, %obj, %slot);
 }
 
-function FalconBipodImage::onReady(%this,%obj,%slot)
+function BNE_FalconBipodImage::onReady(%this,%obj,%slot)
 {
-	FalconImage::onReady(%this, %obj, %slot);
+	BNE_FalconImage::onReady(%this, %obj, %slot);
 }
 
 // HIDES ALL HAND NODES
 
-function FalconBipodImage::onMount(%this,%obj,%slot)
+function BNE_FalconBipodImage::onMount(%this,%obj,%slot)
 {
-	FalconImage::onMount(%this, %obj, %slot);
+	BNE_FalconImage::onMount(%this, %obj, %slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FalconBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_FalconBipodImage::onUnMount(%this,%obj,%slot)
 {
-	FalconImage::onUnMount(%this, %obj, %slot);
+	BNE_FalconImage::onUnMount(%this, %obj, %slot);
 }
 
 /////////////////////////////////////////////////////////////////////
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function FalconBipodImage::onMagDrop(%this,%obj,%slot)
+function BNE_FalconBipodImage::onMagDrop(%this,%obj,%slot)
 {
-	FalconImage::onMagDrop(%this, %obj, %slot);
+	BNE_FalconImage::onMagDrop(%this, %obj, %slot);
 }
 
-datablock ShapeBaseImageData(FalconIronsightBipodImage : FalconIronsightImage)
+datablock ShapeBaseImageData(BNE_FalconIronsightBipodImage : BNE_FalconIronsightImage)
 {
     shapeFile = "./Falcon/FalconBipod.dts";
-	sourceImage = FalconBipodImage;
-	scopingImage = FalconBipodImage;
-	safetyImage = FalconImage;
+	sourceImage = BNE_FalconBipodImage;
+	scopingImage = BNE_FalconBipodImage;
+	safetyImage = BNE_FalconImage;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	spreadBase = 0;
@@ -605,36 +588,36 @@ datablock ShapeBaseImageData(FalconIronsightBipodImage : FalconIronsightImage)
 	isBipod = true;
 };
 
-function FalconIronsightBipodImage::onDone(%this,%obj,%slot)
+function BNE_FalconIronsightBipodImage::onDone(%this,%obj,%slot)
 {
-	FalconIronsightImage::onDone(%this, %obj, %slot);
+	BNE_FalconIronsightImage::onDone(%this, %obj, %slot);
 }
 
-function FalconIronsightBipodImage::onReady(%this,%obj,%slot)
+function BNE_FalconIronsightBipodImage::onReady(%this,%obj,%slot)
 {
-	FalconIronsightImage::onReady(%this, %obj, %slot);
+	BNE_FalconIronsightImage::onReady(%this, %obj, %slot);
 }
 
-function FalconIronsightBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_FalconIronsightBipodImage::AEOnFire(%this,%obj,%slot)
 {
-	FalconIronsightImage::AEOnFire(%this, %obj, %slot);
+	BNE_FalconIronsightImage::AEOnFire(%this, %obj, %slot);
 }
 
-function FalconIronsightBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_FalconIronsightBipodImage::onDryFire(%this, %obj, %slot)
 {
-	FalconIronsightImage::onDryFire(%this, %obj, %slot);
+	BNE_FalconIronsightImage::onDryFire(%this, %obj, %slot);
 }
 
 // HIDES ALL HAND NODES
 
-function FalconIronsightBipodImage::onMount(%this,%obj,%slot)
+function BNE_FalconIronsightBipodImage::onMount(%this,%obj,%slot)
 {
-	FalconIronsightImage::onMount(%this, %obj, %slot);
+	BNE_FalconIronsightImage::onMount(%this, %obj, %slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FalconIronsightBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_FalconIronsightBipodImage::onUnMount(%this,%obj,%slot)
 {
-	FalconIronsightImage::onUnMount(%this, %obj, %slot);
+	BNE_FalconIronsightImage::onUnMount(%this, %obj, %slot);
 }

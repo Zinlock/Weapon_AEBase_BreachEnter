@@ -1,18 +1,18 @@
-datablock AudioProfile(SPAS12Fire1Sound)
+datablock AudioProfile(BNE_SPAS12Fire1Sound)
 {
    filename    = "./Sounds/Fire/SPAS12/SPAS12_fire1.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(SPAS12Fire2Sound)
+datablock AudioProfile(BNE_SPAS12Fire2Sound)
 {
    filename    = "./Sounds/Fire/SPAS12/SPAS12_fire2.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(SPAS12Fire3Sound)
+datablock AudioProfile(BNE_SPAS12Fire3Sound)
 {
    filename    = "./Sounds/Fire/SPAS12/SPAS12_fire3.wav";
    description = HeavyClose3D;
@@ -22,7 +22,7 @@ datablock AudioProfile(SPAS12Fire3Sound)
 //////////
 // item //
 //////////
-datablock ItemData(SPAS12Item)
+datablock ItemData(BNE_SPAS12Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -43,7 +43,7 @@ datablock ItemData(SPAS12Item)
 	colorShiftColor = "0.4 0.425 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = SPAS12Image;
+	image = BNE_SPAS12Image;
 	canDrop = true;
 	
 	AEAmmo = 6;
@@ -65,7 +65,7 @@ datablock ItemData(SPAS12Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(SPAS12Image)
+datablock ShapeBaseImageData(BNE_SPAS12Image)
 {
    // Basic Item properties
    shapeFile = "./SPAS12/SPAS12.dts";
@@ -89,7 +89,7 @@ datablock ShapeBaseImageData(SPAS12Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = SPAS12Item;
+   item = BNE_SPAS12Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -104,10 +104,10 @@ datablock ShapeBaseImageData(SPAS12Image)
    melee = false;
    //raise your arm up or not
    armReady = true;
-   safetyImage = SPAS12SafetyImage;
-   scopingImage = SPAS12IronsightImage;
+   safetyImage = BNE_SPAS12SafetyImage;
+   scopingImage = BNE_SPAS12IronsightImage;
    doColorShift = true;
-   colorShiftColor = SPAS12Item.colorShiftColor;
+   colorShiftColor = BNE_SPAS12Item.colorShiftColor;
 	shellSound = AEShellShotgun;
 	shellSoundMin = 600; //min delay for when the shell sound plays
 	shellSoundMax = 700; //max delay for when the shell sound plays
@@ -301,46 +301,46 @@ datablock ShapeBaseImageData(SPAS12Image)
 	stateEmitterNode[30]				= "muzzlePoint";
 };
 
-function SPAS12Image::AEOnFire(%this,%obj,%slot)
+function BNE_SPAS12Image::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(400, unBlockImageDismount);
 
 	cancel(%obj.reloadSoundSchedule);
 	%obj.stopAudio(0); 
-	%obj.playAudio(0, SPAS12Fire @ getRandom(1, 3) @ Sound);	
+	%obj.playAudio(0, BNE_SPAS12Fire @ getRandom(1, 3) @ Sound);	
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function SPAS12Image::AEOnLowClimb(%this, %obj, %slot) 
+function BNE_SPAS12Image::AEOnLowClimb(%this, %obj, %slot) 
 {
    %obj.aeplayThread(2, plant);
 }
 
-function SPAS12Image::onReloadStart(%this, %obj, %slot)
+function BNE_SPAS12Image::onReloadStart(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, shiftleft); 
 }
 
-function SPAS12Image::onEndReload(%this, %obj, %slot)
+function BNE_SPAS12Image::onEndReload(%this, %obj, %slot)
 {
 //	%obj.aeplayThread(2, shiftleft); 
 }
 
-function SPAS12Image::onReloadStart2(%this, %obj, %slot)
+function BNE_SPAS12Image::onReloadStart2(%this, %obj, %slot)
 {
     %obj.schedule(75, "aeplayThread", "3", "plant");
-    %obj.schedule(75, playAudio, 1, SPAS12CloseSound);
+    %obj.schedule(75, playAudio, 1, BNE_SPAS12CloseSound);
 }
 
-function SPAS12Image::onDryFire(%this, %obj, %slot)
+function BNE_SPAS12Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function SPAS12Image::onReady(%this,%obj,%slot)
+function BNE_SPAS12Image::onReady(%this,%obj,%slot)
 {
 	if(getSimTime() - %obj.reloadTime[%this.getID()] <= %this.stateTimeoutValue[0] * 1000 + 1000)
 		%obj.schedule(0, setImageAmmo, %slot, 0);
@@ -350,13 +350,13 @@ function SPAS12Image::onReady(%this,%obj,%slot)
 	%this.AEPreAmmoCheck(%obj, %slot);
 }
 
-function SPAS12Image::onMount(%this,%obj,%slot)
+function BNE_SPAS12Image::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
 
-function SPAS12Image::onUnMount(%this, %obj, %slot)
+function BNE_SPAS12Image::onUnMount(%this, %obj, %slot)
 {	
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -365,31 +365,24 @@ function SPAS12Image::onUnMount(%this, %obj, %slot)
 	parent::onUnMount(%this,%obj,%slot);	
 }
 
-function SPAS12Image::LoadEffect(%this,%obj,%slot)
+function BNE_SPAS12Image::LoadEffect(%this,%obj,%slot)
 {
-	%obj.reloadSoundSchedule = schedule(150, 0, serverPlay3D, "SPAS12Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
+	%obj.reloadSoundSchedule = schedule(150, 0, serverPlay3D, "BNE_SPAS12Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
     %obj.schedule(75, "aeplayThread", "3", "plant");
     %obj.schedule(75, "aeplayThread", "2", "shiftright");
     %obj.insertshellSchedule = %this.schedule(200,AEShotgunLoadOne,%obj,%slot);
 }
 
-function SPAS12Image::AEShotgunLoadOneEffectless(%this,%obj,%slot)
+function BNE_SPAS12Image::AEShotgunLoadOneEffectless(%this,%obj,%slot)
 {
 	Parent::AEShotgunLoadOne(%this, %obj, %slot);
 }
 
-function SPAS12Image::onPump(%this,%obj,%slot)
-{
-	%obj.aeplayThread(2, plant); 
-	schedule(500, 0, serverPlay3D, AEShellShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
-	serverPlay3D(SPAS12PumpSound,%obj.getPosition());	
-}
-
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(SPAS12SafetyImage)
+datablock ShapeBaseImageData(BNE_SPAS12SafetyImage)
 {
    shapeFile = "./SPAS12/SPAS12.dts";
    emap = true;
@@ -399,14 +392,14 @@ datablock ShapeBaseImageData(SPAS12SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = SPAS12Item;
+   item = BNE_SPAS12Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = SPAS12Image;
+   safetyImage = BNE_SPAS12Image;
    doColorShift = true;
-   colorShiftColor = SPAS12Item.colorShiftColor;
+   colorShiftColor = BNE_SPAS12Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -418,7 +411,7 @@ datablock ShapeBaseImageData(SPAS12SafetyImage)
 
 };
 
-function SPAS12SafetyImage::onMount(%this,%obj,%slot)
+function BNE_SPAS12SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -427,7 +420,7 @@ function SPAS12SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function SPAS12SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_SPAS12SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -438,12 +431,12 @@ function SPAS12SafetyImage::onUnMount(%this, %obj, %slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(SPAS12IronsightImage : SPAS12Image)
+datablock ShapeBaseImageData(BNE_SPAS12IronsightImage : BNE_SPAS12Image)
 {
 	recoilHeight = 0.5;
 
-	scopingImage = SPAS12Image;
-	sourceImage = SPAS12Image;
+	scopingImage = BNE_SPAS12Image;
+	sourceImage = BNE_SPAS12Image;
 	
    offset = "0 0 -0.015";
 	eyeOffset = "-0.01 1.25 -0.9";
@@ -466,37 +459,30 @@ datablock ShapeBaseImageData(SPAS12IronsightImage : SPAS12Image)
 	stateSound[9]				= "";
 };
 
-function SPAS12IronsightImage::onDone(%this,%obj,%slot)
+function BNE_SPAS12IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function SPAS12IronsightImage::onReady(%this,%obj,%slot)
+function BNE_SPAS12IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function SPAS12IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_SPAS12IronsightImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(400, unBlockImageDismount);
 
 	cancel(%obj.reloadSoundSchedule);
 	%obj.stopAudio(0); 
-	%obj.playAudio(0, SPAS12Fire @ getRandom(1, 3) @ Sound);	
+	%obj.playAudio(0, BNE_SPAS12Fire @ getRandom(1, 3) @ Sound);	
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function SPAS12IronsightImage::onPump(%this,%obj,%slot)
-{
-	%obj.aeplayThread(2, plant); 
-	schedule(500, 0, serverPlay3D, AEShellShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
-	serverPlay3D(SPAS12PumpSound,%obj.getPosition());	
-}
-
-function SPAS12IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_SPAS12IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -504,7 +490,7 @@ function SPAS12IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function SPAS12IronsightImage::onMount(%this,%obj,%slot)
+function BNE_SPAS12IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -515,7 +501,7 @@ function SPAS12IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function SPAS12IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_SPAS12IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

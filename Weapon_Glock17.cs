@@ -1,5 +1,5 @@
 // Glock17
-datablock DebrisData(AEGlock17MagDebris)
+datablock DebrisData(BNE_Glock17MagDebris)
 {
 	shapeFile = "./Glock17/Glock17Mag.dts";
 	lifetime = 2.0;
@@ -18,7 +18,7 @@ datablock DebrisData(AEGlock17MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(Glock17Item)
+datablock ItemData(BNE_Glock17Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -39,7 +39,7 @@ datablock ItemData(Glock17Item)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = Glock17Image;
+	image = BNE_Glock17Image;
 	canDrop = true;
 
 	AEAmmo = 17;
@@ -61,7 +61,7 @@ datablock ItemData(Glock17Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(Glock17Image)
+datablock ShapeBaseImageData(BNE_Glock17Image)
 {
    // Basic Item properties
    shapeFile = "./Glock17/Glock17.dts";
@@ -85,7 +85,7 @@ datablock ShapeBaseImageData(Glock17Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = Glock17Item;
+   item = BNE_Glock17Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -101,10 +101,10 @@ datablock ShapeBaseImageData(Glock17Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = Glock17SafetyImage;
-    scopingImage = Glock17IronsightImage;
+	safetyImage = BNE_Glock17SafetyImage;
+    scopingImage = BNE_Glock17IronsightImage;
 	doColorShift = true;
-	colorShiftColor = Glock17Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_Glock17Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -213,7 +213,7 @@ datablock ShapeBaseImageData(Glock17Image)
 	stateTransitionOnTimeout[7]		= "ReloadMagOut";
 	stateWaitForTimeout[7]			= true;
 	stateSequence[7]			= "MagOut";
-	stateSound[7]				= GLOCKMagOutSound;
+	stateSound[7]				= BNE_GLOCKMagOutSound;
 	
 	stateName[8]				= "ReloadMagOut";
 	stateTimeoutValue[8]			= 0.5;
@@ -228,7 +228,7 @@ datablock ShapeBaseImageData(Glock17Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= GLOCKMagInSound;
+	stateSound[9]				= BNE_GLOCKMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.35;
@@ -260,7 +260,7 @@ datablock ShapeBaseImageData(Glock17Image)
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
 	stateWaitForTimeout[15]			= true;
 	stateSequence[15]			= "MagOutEmpty";
-	stateSound[15]				= GLOCKMagOutSound;
+	stateSound[15]				= BNE_GLOCKMagOutSound;
 	
 	stateName[16]				= "Reload2MagOut";
 	stateTimeoutValue[16]			= 0.5;
@@ -275,7 +275,7 @@ datablock ShapeBaseImageData(Glock17Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= GLOCKMagInSound;
+	stateSound[17]				= BNE_GLOCKMagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.35;
@@ -283,7 +283,7 @@ datablock ShapeBaseImageData(Glock17Image)
 	stateTransitionOnTimeout[19]		= "Reloaded";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEndEmpty";
-	stateSound[19]				= GLOCKSlideSound;
+	stateSound[19]				= BNE_GLOCKSlideSound;
 	
 	stateName[20]				= "ReadyLoop";
 	stateTransitionOnTimeout[20]		= "Ready";
@@ -308,10 +308,10 @@ datablock ShapeBaseImageData(Glock17Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function Glock17Image::AEOnFire(%this,%obj,%slot)
+function BNE_Glock17Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, GlockFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_GlockFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -319,20 +319,20 @@ function Glock17Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function Glock17Image::onDryFire(%this, %obj, %slot)
+function BNE_Glock17Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function Glock17Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_Glock17Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(40, "aeplayThread", "2", "plant");
    %obj.schedule(40, "aeplayThread", "3", "shiftright");
    %obj.schedule(300, "aeplayThread", "2", "shiftleft");
 }
 
-function Glock17Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_Glock17Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.aeplayThread(3, shiftright);
@@ -340,19 +340,19 @@ function Glock17Image::onReload2MagIn(%this,%obj,%slot)
    %obj.schedule(400, "aeplayThread", "3", "plant");
 }
 
-function Glock17Image::onReloadEnd(%this,%obj,%slot)
+function BNE_Glock17Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function Glock17Image::onReload2End(%this,%obj,%slot)
+function BNE_Glock17Image::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function Glock17Image::onReloadStart(%this,%obj,%slot)
+function BNE_Glock17Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.schedule(300, "aeplayThread", "3", "shiftleft");
    %obj.aeplayThread(2, wrench);
@@ -361,7 +361,7 @@ function Glock17Image::onReloadStart(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(150,250),0,serverPlay3D,AEMagPistol @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function Glock17Image::onReady(%this,%obj,%slot)
+function BNE_Glock17Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -371,7 +371,7 @@ function Glock17Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function Glock17Image::onMount(%this,%obj,%slot)
+function BNE_Glock17Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -380,7 +380,7 @@ function Glock17Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function Glock17Image::onUnMount(%this,%obj,%slot)
+function BNE_Glock17Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -394,7 +394,7 @@ function Glock17Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function Glock17Image::onMagDrop(%this,%obj,%slot)
+function BNE_Glock17Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -404,7 +404,7 @@ function Glock17Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(Glock17MagImage,0);
+	%a.mountImage(BNE_Glock17MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -412,14 +412,14 @@ function Glock17Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(Glock17MagImage)
+datablock ShapeBaseImageData(BNE_Glock17MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0 0.075 -0.25";
    rotation = eulerToMatrix( "0 0 0" );	
 	
-	casing = AEGlock17MagDebris;
+	casing = BNE_Glock17MagDebris;
 	shellExitDir        = "0 -0.05 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -438,7 +438,7 @@ datablock ShapeBaseImageData(Glock17MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function Glock17MagImage::onDone(%this,%obj,%slot)
+function BNE_Glock17MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -447,7 +447,7 @@ function Glock17MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(Glock17SafetyImage)
+datablock ShapeBaseImageData(BNE_Glock17SafetyImage)
 {
    shapeFile = "./Glock17/Glock17.dts";
    emap = true;
@@ -457,14 +457,14 @@ datablock ShapeBaseImageData(Glock17SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = Glock17Item;
+   item = BNE_Glock17Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = Glock17Image;
+   safetyImage = BNE_Glock17Image;
    doColorShift = true;
-   colorShiftColor = Glock17Item.colorShiftColor;
+   colorShiftColor = BNE_Glock17Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -476,7 +476,7 @@ datablock ShapeBaseImageData(Glock17SafetyImage)
 
 };
 
-function Glock17SafetyImage::onMount(%this,%obj,%slot)
+function BNE_Glock17SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -485,7 +485,7 @@ function Glock17SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function Glock17SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_Glock17SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -495,12 +495,12 @@ function Glock17SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(Glock17IronsightImage : Glock17Image)
+datablock ShapeBaseImageData(BNE_Glock17IronsightImage : BNE_Glock17Image)
 {
 	recoilHeight = 0.1625;
 
-	scopingImage = Glock17Image;
-	sourceImage = Glock17Image;
+	scopingImage = BNE_Glock17Image;
+	sourceImage = BNE_Glock17Image;
 	
 	offset = "0 0 0";
 	eyeOffset = "0 1.1 -1.32";
@@ -523,21 +523,21 @@ datablock ShapeBaseImageData(Glock17IronsightImage : Glock17Image)
 	stateSound[7]				= "";
 };
 
-function Glock17IronsightImage::onDone(%this,%obj,%slot)
+function BNE_Glock17IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function Glock17IronsightImage::onReady(%this,%obj,%slot)
+function BNE_Glock17IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function Glock17IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_Glock17IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, GlockFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_GlockFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -545,7 +545,7 @@ function Glock17IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function Glock17IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_Glock17IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -553,7 +553,7 @@ function Glock17IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function Glock17IronsightImage::onMount(%this,%obj,%slot)
+function BNE_Glock17IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -564,7 +564,7 @@ function Glock17IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function Glock17IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_Glock17IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

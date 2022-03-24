@@ -244,7 +244,7 @@ datablock ShapeBaseImageData(BNE_AR1550Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AR15MagOutDRUMSound;
+	stateSound[8]				= BNE_AR15MagOutDRUMSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.55;
@@ -252,7 +252,7 @@ datablock ShapeBaseImageData(BNE_AR1550Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AR15MagInDRUMSound;
+	stateSound[9]				= BNE_AR15MagInDRUMSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -291,7 +291,7 @@ datablock ShapeBaseImageData(BNE_AR1550Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AR15MagOutDRUMSound;
+	stateSound[16]				= BNE_AR15MagOutDRUMSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.55;
@@ -299,7 +299,7 @@ datablock ShapeBaseImageData(BNE_AR1550Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AR15MagInDRUMSound;
+	stateSound[17]				= BNE_AR15MagInDRUMSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -342,7 +342,7 @@ function BNE_AR1550Image::onReloadEnd(%this,%obj,%slot)
 
 function BNE_AR1550Image::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(150, playAudio, 1, AR15BoltRackSound);
+    %obj.schedule(150, playAudio, 1, BNE_AR15BoltRackSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 

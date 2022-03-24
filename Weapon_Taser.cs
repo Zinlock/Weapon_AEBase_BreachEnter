@@ -1,11 +1,11 @@
-datablock AudioProfile(TaserFireSound)
+datablock AudioProfile(BNE_TaserFireSound)
 {
    filename    = "./Sounds/Fire/Taser/Taser_fire.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(TasedSound)
+datablock AudioProfile(BNE_TasedSound)
 {
    filename    = "./Sounds/Fire/Taser/Tased.wav";
    description = LightClose3D;
@@ -13,7 +13,7 @@ datablock AudioProfile(TasedSound)
 };
 
 // Taser
-datablock DebrisData(AETaserMagDebris)
+datablock DebrisData(BNE_TaserMagDebris)
 {
 	shapeFile = "./Taser/TaserMag.dts";
 	lifetime = 2.0;
@@ -31,7 +31,7 @@ datablock DebrisData(AETaserMagDebris)
 
 //STUFF
 
-datablock ParticleData(taserTrailParticle)
+datablock ParticleData(BNE_taserTrailParticle)
 {
 	  gravityCoefficient   = -1;
 	dragCoefficient		= 5;
@@ -58,7 +58,7 @@ datablock ParticleData(taserTrailParticle)
 	times[2]	= 1.0;
 };
 
-datablock ParticleEmitterData(taserTrailEmitter)
+datablock ParticleEmitterData(BNE_taserTrailEmitter)
 {
    ejectionPeriodMS = 2;
    periodVarianceMS = 1;
@@ -70,12 +70,12 @@ datablock ParticleEmitterData(taserTrailEmitter)
    phiReferenceVel  = 42000;
    phiVariance      = 0;
    overrideAdvance = false;
-   particles = "taserTrailParticle";
+   particles = "BNE_taserTrailParticle";
    uiName = "taserTrail";
 
 };
 
-datablock ParticleData(taserExplosionParticle)
+datablock ParticleData(BNE_taserExplosionParticle)
 {
 	dragCoefficient		= 5;
 	windCoefficient		= 0.0;
@@ -104,7 +104,7 @@ datablock ParticleData(taserExplosionParticle)
 	times[2]	= 1.0;
 };
 
-datablock ParticleEmitterData(taserExplosionEmitter)
+datablock ParticleEmitterData(BNE_taserExplosionEmitter)
 {
    ejectionPeriodMS = 1;
    periodVarianceMS = 0;
@@ -117,18 +117,18 @@ datablock ParticleEmitterData(taserExplosionEmitter)
    phiReferenceVel  = 0;
    phiVariance      = 360;
    overrideAdvance = false;
-   particles = "taserExplosionParticle";
+   particles = "BNE_taserExplosionParticle";
 
    useEmitterColors = true;
-   uiName = "taserExplode";
+   uiName = "Taser Explosion";
 };
 
-datablock ExplosionData(taserExplosion)
+datablock ExplosionData(BNE_taserExplosion)
 {
    //explosionShape = "";
    lifeTimeMS = 150;
 
-   emitter[0] = taserExplosionEmitter;
+   emitter[0] = BNE_taserExplosionEmitter;
    particleDensity = 1000;
    particleRadius = 1.0;
 
@@ -157,10 +157,10 @@ datablock ExplosionData(taserExplosion)
 };
 
 
-datablock ProjectileData(taserProjectile : AETrailedProjectile)
+datablock ProjectileData(BNE_taserProjectile : AETrailedProjectile)
 {
-   explosion           = taserExplosion;
-   particleEmitter     = taserTrailEmitter;
+   explosion           = BNE_taserExplosion;
+   particleEmitter     = BNE_taserTrailEmitter;
 
     lifetime            = 1000;
     fadeDelay           = 750;
@@ -174,19 +174,19 @@ datablock ProjectileData(taserProjectile : AETrailedProjectile)
    gravityMod = 1;
 };
 
-function taserProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
+function BNE_taserProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
 {
 	AETrailedProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
-function taserProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
+function BNE_taserProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 {
 	if((%col.getType() & $typeMasks::playerObjectType) && isObject(%col.client))
 	{
 		%col.client.DropInventory();
 		%col.clearTools();
 		%col.stopAudio(3); 
-		%col.playAudio(3, tasedSound);
+		%col.playAudio(3, BNE_TasedSound);
 	}
 	AETrailedProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal);
 }
@@ -197,7 +197,7 @@ function taserProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 //////////
 // item //
 //////////
-datablock ItemData(TaserItem)
+datablock ItemData(BNE_TaserItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -218,7 +218,7 @@ datablock ItemData(TaserItem)
 	colorShiftColor = "0.55 0.5 0.5 1";
 
 	 // Dynamic properties defined by the scripts
-	image = TaserImage;
+	image = BNE_TaserImage;
 	canDrop = true;
 
 	AEAmmo = 1;
@@ -228,7 +228,7 @@ datablock ItemData(TaserItem)
 	RPM = 30;
 	recoil = "No"; 
 	uiColor = "1 1 1";
-	description = "Fully non lethal taser. Ok, it might still be a little lethal... ";
+	description = "The XME brand made in America taser, loaded with mostly non lethal electric bolts." NL "This big fella is capable of stopping any fentanyl addicts dead in their tracks, guaranteed!";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -240,7 +240,7 @@ datablock ItemData(TaserItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(TaserImage)
+datablock ShapeBaseImageData(BNE_TaserImage)
 {
    // Basic Item properties
    shapeFile = "./Taser/Taser.dts";
@@ -264,9 +264,9 @@ datablock ShapeBaseImageData(TaserImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = TaserItem;
+   item = BNE_TaserItem;
    ammo = " ";
-   projectile = taserProjectile;
+   projectile = BNE_taserProjectile;
    projectileType = Projectile;
 
    Mag = a;
@@ -280,10 +280,10 @@ datablock ShapeBaseImageData(TaserImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = TaserSafetyImage;
-    scopingImage = TaserIronsightImage;
+	safetyImage = BNE_TaserSafetyImage;
+    scopingImage = BNE_TaserIronsightImage;
 	doColorShift = true;
-	colorShiftColor = TaserItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_TaserItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	muzzleFlashScale = "0.25 0.25 0.25";
 	bulletScale = "1 1 1";
@@ -293,7 +293,7 @@ datablock ShapeBaseImageData(TaserImage)
 	projectileHeadshotMult = 2;
 	projectileVelocity = 50;
 	projectileTagStrength = 1;  // tagging strength
-	projectileTagRecovery = 0.02; // tagging decay rate
+	projectileTagRecovery = 0.01; // tagging decay rate
 	projectileTagIgnore = true; // ignore global tag multipliers
     alwaysSpawnProjectile = true;
 	recoilHeight = 0;
@@ -365,7 +365,7 @@ datablock ShapeBaseImageData(TaserImage)
 	stateTimeoutValue[8]			= 0.5;
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= TaserMagOutSound;
+	stateSound[8]				= BNE_TaserMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -373,7 +373,7 @@ datablock ShapeBaseImageData(TaserImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= TaserMagInSound;
+	stateSound[9]				= BNE_TaserMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -381,7 +381,7 @@ datablock ShapeBaseImageData(TaserImage)
 	stateTransitionOnTimeout[10]		= "Ready";
 	stateWaitForTimeout[10]			= true;
 	stateSequence[10]			= "ReloadEnd";
-	stateSound[10]				= TaserBoltSound;
+	stateSound[10]				= BNE_TaserBoltSound;
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
@@ -417,12 +417,12 @@ datablock ShapeBaseImageData(TaserImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function TaserImage::AEOnFire(%this,%obj,%slot)
+function BNE_TaserImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.aeplayThread(2, shiftleft);
 	%obj.aeplayThread(3, shiftright);
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, TaserFireSound);
+  %obj.playAudio(0, BNE_TaserFireSound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(250, unBlockImageDismount);
@@ -430,19 +430,19 @@ function TaserImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function TaserImage::onDryFire(%this, %obj, %slot)
+function BNE_TaserImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function TaserImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_TaserImage::onReloadMagOut(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, shiftleft);
   %obj.aeplayThread(3, plant);
 }
 
-function TaserImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_TaserImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(50, "aeplayThread", "3", "shiftright");
@@ -450,25 +450,25 @@ function TaserImage::onReloadMagIn(%this,%obj,%slot)
    %obj.schedule(400, "aeplayThread", "3", "plant");
 }
 
-function TaserImage::onReloadEnd(%this,%obj,%slot)
+function BNE_TaserImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function TaserImage::onReload2End(%this,%obj,%slot)
+function BNE_TaserImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function TaserImage::onReloadStart(%this,%obj,%slot)
+function BNE_TaserImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEMagPlasticAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function TaserImage::onReady(%this,%obj,%slot)
+function BNE_TaserImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -478,7 +478,7 @@ function TaserImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function TaserImage::onMount(%this,%obj,%slot)
+function BNE_TaserImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -487,7 +487,7 @@ function TaserImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function TaserImage::onUnMount(%this,%obj,%slot)
+function BNE_TaserImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -501,7 +501,7 @@ function TaserImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function TaserImage::onMagDrop(%this,%obj,%slot)
+function BNE_TaserImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -511,7 +511,7 @@ function TaserImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(TaserMagImage,0);
+	%a.mountImage(BNE_TaserMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -519,14 +519,14 @@ function TaserImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(TaserMagImage)
+datablock ShapeBaseImageData(BNE_TaserMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.15 0.5 0.35";
    rotation = eulerToMatrix( "0 0 0" );	
 	
-	casing = AETaserMagDebris;
+	casing = BNE_TaserMagDebris;
 	shellExitDir        = "-1 0 0.5";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -545,7 +545,7 @@ datablock ShapeBaseImageData(TaserMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function TaserMagImage::onDone(%this,%obj,%slot)
+function BNE_TaserMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -554,7 +554,7 @@ function TaserMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(TaserSafetyImage)
+datablock ShapeBaseImageData(BNE_TaserSafetyImage)
 {
    shapeFile = "./Taser/Taser.dts";
    emap = true;
@@ -564,14 +564,14 @@ datablock ShapeBaseImageData(TaserSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = TaserItem;
+   item = BNE_TaserItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = TaserImage;
+   safetyImage = BNE_TaserImage;
    doColorShift = true;
-   colorShiftColor = TaserItem.colorShiftColor;
+   colorShiftColor = BNE_TaserItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -583,7 +583,7 @@ datablock ShapeBaseImageData(TaserSafetyImage)
 
 };
 
-function TaserSafetyImage::onMount(%this,%obj,%slot)
+function BNE_TaserSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -592,7 +592,7 @@ function TaserSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function TaserSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_TaserSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -602,12 +602,12 @@ function TaserSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(TaserIronsightImage : TaserImage)
+datablock ShapeBaseImageData(BNE_TaserIronsightImage : BNE_TaserImage)
 {
 	recoilHeight = 0.25;
 
-	scopingImage = TaserImage;
-	sourceImage = TaserImage;
+	scopingImage = BNE_TaserImage;
+	sourceImage = BNE_TaserImage;
 	
 	isScopedImage = true;
 
@@ -626,29 +626,29 @@ datablock ShapeBaseImageData(TaserIronsightImage : TaserImage)
 	stateSound[7]				= "";
 };
 
-function TaserIronsightImage::onDone(%this,%obj,%slot)
+function BNE_TaserIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function TaserIronsightImage::onReady(%this,%obj,%slot)
+function BNE_TaserIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function TaserIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_TaserIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.blockImageDismount = true;
 	%obj.schedule(250, unBlockImageDismount);
 
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, TaserFireSound);
+  %obj.playAudio(0, BNE_TaserFireSound);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function TaserIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_TaserIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -656,7 +656,7 @@ function TaserIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function TaserIronsightImage::onMount(%this,%obj,%slot)
+function BNE_TaserIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -667,7 +667,7 @@ function TaserIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function TaserIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_TaserIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

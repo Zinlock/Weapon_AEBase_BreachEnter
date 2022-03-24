@@ -1,5 +1,5 @@
 // AR15test
-datablock DebrisData(AEAR15testMagDebris)
+datablock DebrisData(BNE_AR15testMagDebris)
 {
 	shapeFile = "./AR15/test/testa.dts";
 	lifetime = 2.0;
@@ -19,7 +19,7 @@ datablock DebrisData(AEAR15testMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(AR15testItem)
+datablock ItemData(BNE_AR15testItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -40,7 +40,7 @@ datablock ItemData(AR15testItem)
 	colorShiftColor = "0.75 0.75 0.75 1";
 
 	 // Dynamic properties defined by the scripts
-	image = AR15testImage;
+	image = BNE_AR15testImage;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -62,7 +62,7 @@ datablock ItemData(AR15testItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(AR15testImage)
+datablock ShapeBaseImageData(BNE_AR15testImage)
 {
    // Basic Item properties
    shapeFile = "./AR15/test/test.dts";
@@ -86,7 +86,7 @@ datablock ShapeBaseImageData(AR15testImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = AR15testItem;
+   item = BNE_AR15testItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -102,10 +102,10 @@ datablock ShapeBaseImageData(AR15testImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = AR15testSafetyImage;
-    scopingImage = AR15testIronsightImage;
+	safetyImage = BNE_AR15testSafetyImage;
+    scopingImage = BNE_AR15testIronsightImage;
 	doColorShift = true;
-	colorShiftColor = AR15testItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_AR15testItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -226,7 +226,7 @@ datablock ShapeBaseImageData(AR15testImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AR15MagOutSound;
+	stateSound[8]				= BNE_AR15MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.45;
@@ -234,7 +234,7 @@ datablock ShapeBaseImageData(AR15testImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AR15MagInSound;
+	stateSound[9]				= BNE_AR15MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -273,7 +273,7 @@ datablock ShapeBaseImageData(AR15testImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AR15MagOutSound;
+	stateSound[16]				= BNE_AR15MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.45;
@@ -281,7 +281,7 @@ datablock ShapeBaseImageData(AR15testImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AR15MagInSound;
+	stateSound[17]				= BNE_AR15MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -306,10 +306,10 @@ datablock ShapeBaseImageData(AR15testImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function AR15testImage::AEOnFire(%this,%obj,%slot)
+function BNE_AR15testImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -317,60 +317,60 @@ function AR15testImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function AR15testImage::onReloadEnd(%this,%obj,%slot)
+function BNE_AR15testImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function AR15testImage::onReload2End(%this,%obj,%slot)
+function BNE_AR15testImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(150, playAudio, 1, AR15BoltRackSound);
+    %obj.schedule(150, playAudio, 1, BNE_AR15BoltRackSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function AR15testImage::onDryFire(%this, %obj, %slot)
+function BNE_AR15testImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function AR15testImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_AR15testImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function AR15testImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_AR15testImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(400, "aeplayThread", "3", "shiftleft");
 }
 
-function AR15testImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_AR15testImage::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.schedule(200, "aeplayThread", "3", "shiftleft");
 }
 
-function AR15testImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_AR15testImage::onReloadMagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
-function AR15testImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_AR15testImage::onReload2MagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
 // MAGAZINE DROPPING
 
-function AR15testImage::onReloadStart(%this,%obj,%slot)
+function BNE_AR15testImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(125,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function AR15testImage::onReady(%this,%obj,%slot)
+function BNE_AR15testImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -380,7 +380,7 @@ function AR15testImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function AR15testImage::onMount(%this,%obj,%slot)
+function BNE_AR15testImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -389,7 +389,7 @@ function AR15testImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AR15testImage::onUnMount(%this,%obj,%slot)
+function BNE_AR15testImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -403,7 +403,7 @@ function AR15testImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function AR15testImage::onMagDrop(%this,%obj,%slot)
+function BNE_AR15testImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -413,7 +413,7 @@ function AR15testImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(AR15testMagImage,0);
+	%a.mountImage(BNE_AR15testMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -421,14 +421,14 @@ function AR15testImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(AR15testMagImage)
+datablock ShapeBaseImageData(BNE_AR15testMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.05 0.525 0.135";
    rotation = eulerToMatrix( "0 25 0" );	
 	
-	casing = AEAR15testMagDebris;
+	casing = BNE_AR15testMagDebris;
 	shellExitDir        = "0 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -447,7 +447,7 @@ datablock ShapeBaseImageData(AR15testMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function AR15testMagImage::onDone(%this,%obj,%slot)
+function BNE_AR15testMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -456,7 +456,7 @@ function AR15testMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(AR15testSafetyImage)
+datablock ShapeBaseImageData(BNE_AR15testSafetyImage)
 {
    shapeFile = "./AR15/test/test.dts";
    emap = true;
@@ -466,14 +466,14 @@ datablock ShapeBaseImageData(AR15testSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = AR15testItem;
+   item = BNE_AR15testItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = AR15testImage;
+   safetyImage = BNE_AR15testImage;
    doColorShift = true;
-   colorShiftColor = AR15testItem.colorShiftColor;
+   colorShiftColor = BNE_AR15testItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -485,7 +485,7 @@ datablock ShapeBaseImageData(AR15testSafetyImage)
 
 };
 
-function AR15testSafetyImage::onMount(%this,%obj,%slot)
+function BNE_AR15testSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -494,7 +494,7 @@ function AR15testSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function AR15testSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_AR15testSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -504,12 +504,12 @@ function AR15testSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(AR15testIronsightImage : AR15testImage)
+datablock ShapeBaseImageData(BNE_AR15testIronsightImage : BNE_AR15testImage)
 {
 	recoilHeight = 0.0625;
 
-	scopingImage = AR15testImage;
-	sourceImage = AR15testImage;
+	scopingImage = BNE_AR15testImage;
+	sourceImage = BNE_AR15testImage;
 	
    offset = "0 0 -0.075";
 	eyeOffset = "0 1.0 -1.1105";
@@ -532,21 +532,21 @@ datablock ShapeBaseImageData(AR15testIronsightImage : AR15testImage)
 	stateSound[7]				= "";
 };
 
-function AR15testIronsightImage::onDone(%this,%obj,%slot)
+function BNE_AR15testIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function AR15testIronsightImage::onReady(%this,%obj,%slot)
+function BNE_AR15testIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function AR15testIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_AR15testIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -554,7 +554,7 @@ function AR15testIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function AR15testIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_AR15testIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -562,7 +562,7 @@ function AR15testIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function AR15testIronsightImage::onMount(%this,%obj,%slot)
+function BNE_AR15testIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -573,7 +573,7 @@ function AR15testIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AR15testIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_AR15testIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound);

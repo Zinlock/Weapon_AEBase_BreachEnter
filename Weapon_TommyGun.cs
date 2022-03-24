@@ -1,5 +1,5 @@
 // TommyGun
-datablock DebrisData(AETommyGunMagDebris)
+datablock DebrisData(BNE_TommyGunMagDebris)
 {
 	shapeFile = "./TommyGun/TommyGunMag.dts";
 	lifetime = 2.0;
@@ -18,7 +18,7 @@ datablock DebrisData(AETommyGunMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(TommyGunItem)
+datablock ItemData(BNE_TommyGunItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -39,7 +39,7 @@ datablock ItemData(TommyGunItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = TommyGunImage;
+	image = BNE_TommyGunImage;
 	canDrop = true;
 
 	AEAmmo = 50;
@@ -62,7 +62,7 @@ datablock ItemData(TommyGunItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(TommyGunImage)
+datablock ShapeBaseImageData(BNE_TommyGunImage)
 {
    // Basic Item properties
    shapeFile = "./TommyGun/TommyGun.dts";
@@ -86,7 +86,7 @@ datablock ShapeBaseImageData(TommyGunImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = TommyGunItem;
+   item = BNE_TommyGunItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -102,10 +102,10 @@ datablock ShapeBaseImageData(TommyGunImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = TommyGunSafetyImage;
-    scopingImage = TommyGunIronsightImage;
+	safetyImage = BNE_TommyGunSafetyImage;
+    scopingImage = BNE_TommyGunIronsightImage;
 	doColorShift = true;
-	colorShiftColor = TommyGunItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_TommyGunItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 550; //min delay for when the shell sound plays
@@ -221,7 +221,7 @@ datablock ShapeBaseImageData(TommyGunImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= ThompsonDrumMagOutSound;
+	stateSound[8]				= BNE_ThompsonDrumMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -229,7 +229,7 @@ datablock ShapeBaseImageData(TommyGunImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= ThompsonDrumMagInSound;
+	stateSound[9]				= BNE_ThompsonDrumMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.35;
@@ -268,7 +268,7 @@ datablock ShapeBaseImageData(TommyGunImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= ThompsonDrumMagOutSound;
+	stateSound[16]				= BNE_ThompsonDrumMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
@@ -276,7 +276,7 @@ datablock ShapeBaseImageData(TommyGunImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= ThompsonDrumMagInSound;
+	stateSound[17]				= BNE_ThompsonDrumMagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.35;
@@ -307,10 +307,10 @@ datablock ShapeBaseImageData(TommyGunImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function TommyGunImage::AEOnFire(%this,%obj,%slot)
+function BNE_TommyGunImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, ThompsonFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_ThompsonFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -318,29 +318,29 @@ function TommyGunImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function TommyGunImage::onDryFire(%this, %obj, %slot)
+function BNE_TommyGunImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function TommyGunImage::onReloadEnd(%this,%obj,%slot)
+function BNE_TommyGunImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function TommyGunImage::onReload2End(%this,%obj,%slot)
+function BNE_TommyGunImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function TommyGunImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_TommyGunImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(50, "aeplayThread", "3", "shiftright");
 }
 
-function TommyGunImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_TommyGunImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, plant);
@@ -348,23 +348,23 @@ function TommyGunImage::onReloadMagOut(%this,%obj,%slot)
 
 // MAGAZINE DROPPING
 
-function TommyGunImage::onReloadStart(%this,%obj,%slot)
+function BNE_TommyGunImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftLeft);
    %obj.reload3Schedule = %this.schedule(325,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(600,700),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function TommyGunImage::onReloadStartEmpty(%this,%obj,%slot)
+function BNE_TommyGunImage::onReloadStartEmpty(%this,%obj,%slot)
 {
    %obj.schedule(550, "aeplayThread", "2", "shiftLeft");
-   %obj.schedule(350, playAudio, 1, ThompsonBoltSound);
+   %obj.schedule(350, playAudio, 1, BNE_ThompsonBoltSound);
    %obj.schedule(300, "aeplayThread", "3", "plant");
    %obj.reload3Schedule = %this.schedule(1025,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(1200,1300),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function TommyGunImage::onReady(%this,%obj,%slot)
+function BNE_TommyGunImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -374,7 +374,7 @@ function TommyGunImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function TommyGunImage::onMount(%this,%obj,%slot)
+function BNE_TommyGunImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -383,7 +383,7 @@ function TommyGunImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function TommyGunImage::onUnMount(%this,%obj,%slot)
+function BNE_TommyGunImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -397,7 +397,7 @@ function TommyGunImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function TommyGunImage::onMagDrop(%this,%obj,%slot)
+function BNE_TommyGunImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -407,7 +407,7 @@ function TommyGunImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(TommyGunMagImage,0);
+	%a.mountImage(BNE_TommyGunMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -415,14 +415,14 @@ function TommyGunImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(TommyGunMagImage)
+datablock ShapeBaseImageData(BNE_TommyGunMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.1 0.675 0.2";
    rotation = eulerToMatrix( "15 15 0" );	
 	
-	casing = AETommyGunMagDebris;
+	casing = BNE_TommyGunMagDebris;
 	shellExitDir        = "-1 0 0.1";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -441,7 +441,7 @@ datablock ShapeBaseImageData(TommyGunMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function TommyGunMagImage::onDone(%this,%obj,%slot)
+function BNE_TommyGunMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -450,7 +450,7 @@ function TommyGunMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(TommyGunSafetyImage)
+datablock ShapeBaseImageData(BNE_TommyGunSafetyImage)
 {
    shapeFile = "./TommyGun/TommyGun.dts";
    emap = true;
@@ -460,14 +460,14 @@ datablock ShapeBaseImageData(TommyGunSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = TommyGunItem;
+   item = BNE_TommyGunItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = TommyGunImage;
+   safetyImage = BNE_TommyGunImage;
    doColorShift = true;
-   colorShiftColor = TommyGunItem.colorShiftColor;
+   colorShiftColor = BNE_TommyGunItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -479,7 +479,7 @@ datablock ShapeBaseImageData(TommyGunSafetyImage)
 
 };
 
-function TommyGunSafetyImage::onMount(%this,%obj,%slot)
+function BNE_TommyGunSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -488,7 +488,7 @@ function TommyGunSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function TommyGunSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_TommyGunSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -498,12 +498,12 @@ function TommyGunSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(TommyGunIronsightImage : TommyGunImage)
+datablock ShapeBaseImageData(BNE_TommyGunIronsightImage : BNE_TommyGunImage)
 {
 	recoilHeight = 0.0875;
 
-	scopingImage = TommyGunImage;
-	sourceImage = TommyGunImage;
+	scopingImage = BNE_TommyGunImage;
+	sourceImage = BNE_TommyGunImage;
 	
    offset = "0 0.026 -0.025";
 	eyeOffset = "0.00225 1.0 -0.3725";
@@ -526,21 +526,21 @@ datablock ShapeBaseImageData(TommyGunIronsightImage : TommyGunImage)
 	stateSound[7]				= "";
 };
 
-function TommyGunIronsightImage::onDone(%this,%obj,%slot)
+function BNE_TommyGunIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function TommyGunIronsightImage::onReady(%this,%obj,%slot)
+function BNE_TommyGunIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function TommyGunIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_TommyGunIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, ThompsonFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_ThompsonFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -548,7 +548,7 @@ function TommyGunIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function TommyGunIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_TommyGunIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -556,7 +556,7 @@ function TommyGunIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function TommyGunIronsightImage::onMount(%this,%obj,%slot)
+function BNE_TommyGunIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -567,7 +567,7 @@ function TommyGunIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function TommyGunIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_TommyGunIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

@@ -1,25 +1,25 @@
-datablock AudioProfile(MK14Fire1Sound)
+datablock AudioProfile(BNE_MK14Fire1Sound)
 {
    filename    = "./Sounds/Fire/MK14/MK14_FIRE_1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(MK14Fire2Sound)
+datablock AudioProfile(BNE_MK14Fire2Sound)
 {
    filename    = "./Sounds/Fire/MK14/MK14_FIRE_2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(MK14Fire3Sound)
+datablock AudioProfile(BNE_MK14Fire3Sound)
 {
    filename    = "./Sounds/Fire/MK14/MK14_FIRE_3.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(MK14Fire4Sound)
+datablock AudioProfile(BNE_MK14Fire4Sound)
 {
    filename    = "./Sounds/Fire/MK14/MK14_FIRE_4.wav";
    description = MediumClose3D;
@@ -27,7 +27,7 @@ datablock AudioProfile(MK14Fire4Sound)
 };
 
 // MK14
-datablock DebrisData(AEMK14MagDebris)
+datablock DebrisData(BNE_MK14MagDebris)
 {
 	shapeFile = "./MK14/MK14Mag.dts";
 	lifetime = 2.0;
@@ -46,7 +46,7 @@ datablock DebrisData(AEMK14MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(MK14Item)
+datablock ItemData(BNE_MK14Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -67,7 +67,7 @@ datablock ItemData(MK14Item)
 	colorShiftColor = "0.3 0.3 0.3 1";
 
 	 // Dynamic properties defined by the scripts
-	image = MK14Image;
+	image = BNE_MK14Image;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -89,7 +89,7 @@ datablock ItemData(MK14Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(MK14Image)
+datablock ShapeBaseImageData(BNE_MK14Image)
 {
    // Basic Item properties
    shapeFile = "./MK14/MK14.dts";
@@ -113,7 +113,7 @@ datablock ShapeBaseImageData(MK14Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = MK14Item;
+   item = BNE_MK14Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -129,10 +129,10 @@ datablock ShapeBaseImageData(MK14Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = MK14SafetyImage;
-    scopingImage = MK14IronsightImage;
+	safetyImage = BNE_MK14SafetyImage;
+    scopingImage = BNE_MK14IronsightImage;
 	doColorShift = true;
-	colorShiftColor = MK14Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_MK14Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 700; //min delay for when the shell sound plays
@@ -260,7 +260,7 @@ datablock ShapeBaseImageData(MK14Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= MK14MagOutSound;
+	stateSound[8]				= BNE_MK14MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -268,7 +268,7 @@ datablock ShapeBaseImageData(MK14Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= MK14MagInSound;
+	stateSound[9]				= BNE_MK14MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -307,7 +307,7 @@ datablock ShapeBaseImageData(MK14Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOutEmpty";
-	stateSound[16]				= MK14MagOutSound;
+	stateSound[16]				= BNE_MK14MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
@@ -315,7 +315,7 @@ datablock ShapeBaseImageData(MK14Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= MK14MagInSound;
+	stateSound[17]				= BNE_MK14MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.45;
@@ -347,10 +347,10 @@ datablock ShapeBaseImageData(MK14Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function MK14Image::AEOnFire(%this,%obj,%slot)
+function BNE_MK14Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, MK14Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_MK14Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -358,55 +358,55 @@ function MK14Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function MK14Image::onDryFire(%this, %obj, %slot)
+function BNE_MK14Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
 
-function MK14Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_MK14Image::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function MK14Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_MK14Image::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function MK14Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_MK14Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function MK14Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_MK14Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(600, "aeplayThread", "3", "plant");
 }
 
-function MK14Image::onReloadStart(%this,%obj,%slot)
+function BNE_MK14Image::onReloadStart(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, shiftleft);
   %obj.reload3Schedule = %this.schedule(215,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(500,600),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function MK14Image::onReloadEnd(%this,%obj,%slot)
+function BNE_MK14Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function MK14Image::onReload2End(%this,%obj,%slot)
+function BNE_MK14Image::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(300, playAudio, 1, MK14BoltSound);
+    %obj.schedule(300, playAudio, 1, BNE_MK14BoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function MK14Image::onReady(%this,%obj,%slot)
+function BNE_MK14Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -416,7 +416,7 @@ function MK14Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function MK14Image::onMount(%this,%obj,%slot)
+function BNE_MK14Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -425,7 +425,7 @@ function MK14Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function MK14Image::onUnMount(%this,%obj,%slot)
+function BNE_MK14Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -439,7 +439,7 @@ function MK14Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function MK14Image::onMagDrop(%this,%obj,%slot)
+function BNE_MK14Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -449,7 +449,7 @@ function MK14Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(MK14MagImage,0);
+	%a.mountImage(BNE_MK14MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -457,14 +457,14 @@ function MK14Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(MK14MagImage)
+datablock ShapeBaseImageData(BNE_MK14MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.07 0.75 0.25";
    rotation = eulerToMatrix( "40 25 0" );	
 	
-	casing = AEMK14MagDebris;
+	casing = BNE_MK14MagDebris;
 	shellExitDir        = "-0.25 0.25 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -483,7 +483,7 @@ datablock ShapeBaseImageData(MK14MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function MK14MagImage::onDone(%this,%obj,%slot)
+function BNE_MK14MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -492,7 +492,7 @@ function MK14MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(MK14SafetyImage)
+datablock ShapeBaseImageData(BNE_MK14SafetyImage)
 {
    shapeFile = "./MK14/MK14.dts";
    emap = true;
@@ -502,14 +502,14 @@ datablock ShapeBaseImageData(MK14SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = MK14Item;
+   item = BNE_MK14Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = MK14Image;
+   safetyImage = BNE_MK14Image;
    doColorShift = true;
-   colorShiftColor = MK14Item.colorShiftColor;
+   colorShiftColor = BNE_MK14Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -521,7 +521,7 @@ datablock ShapeBaseImageData(MK14SafetyImage)
 
 };
 
-function MK14SafetyImage::onMount(%this,%obj,%slot)
+function BNE_MK14SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -530,7 +530,7 @@ function MK14SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function MK14SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_MK14SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -540,12 +540,12 @@ function MK14SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(MK14IronsightImage : MK14Image)
+datablock ShapeBaseImageData(BNE_MK14IronsightImage : BNE_MK14Image)
 {
 	recoilHeight = 0.2;
 
-	scopingImage = MK14Image;
-	sourceImage = MK14Image;
+	scopingImage = BNE_MK14Image;
+	sourceImage = BNE_MK14Image;
 	
    offset = "0 0 -0.02";
 	eyeOffset = "0.005 1.25 -1.06";
@@ -568,21 +568,21 @@ datablock ShapeBaseImageData(MK14IronsightImage : MK14Image)
 	stateSound[7]				= "";
 };
 
-function MK14IronsightImage::onDone(%this,%obj,%slot)
+function BNE_MK14IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function MK14IronsightImage::onReady(%this,%obj,%slot)
+function BNE_MK14IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function MK14IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_MK14IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, MK14Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_MK14Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -590,7 +590,7 @@ function MK14IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function MK14IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_MK14IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -598,7 +598,7 @@ function MK14IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function MK14IronsightImage::onMount(%this,%obj,%slot)
+function BNE_MK14IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -609,7 +609,7 @@ function MK14IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function MK14IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_MK14IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

@@ -1,5 +1,5 @@
 // M93R
-datablock DebrisData(AEM93RMagDebris)
+datablock DebrisData(BNE_M93RMagDebris)
 {
 	shapeFile = "./M93R/M93RMag.dts";
 	lifetime = 2.0;
@@ -18,7 +18,7 @@ datablock DebrisData(AEM93RMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(M93RItem)
+datablock ItemData(BNE_M93RItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -39,7 +39,7 @@ datablock ItemData(M93RItem)
 	colorShiftColor = "0.3 0.3 0.3 1";
 
 	 // Dynamic properties defined by the scripts
-	image = M93RImage;
+	image = BNE_M93RImage;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -62,7 +62,7 @@ datablock ItemData(M93RItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(M93RImage)
+datablock ShapeBaseImageData(BNE_M93RImage)
 {
    // Basic Item properties
    shapeFile = "./M93R/M93R.dts";
@@ -86,7 +86,7 @@ datablock ShapeBaseImageData(M93RImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = M93RItem;
+   item = BNE_M93RItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -102,10 +102,10 @@ datablock ShapeBaseImageData(M93RImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = M93RSafetyImage;
-    scopingImage = M93RIronsightImage;
+	safetyImage = BNE_M93RSafetyImage;
+    scopingImage = BNE_M93RIronsightImage;
 	doColorShift = true;
-	colorShiftColor = M93RItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_M93RItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -282,7 +282,7 @@ datablock ShapeBaseImageData(M93RImage)
 	stateTransitionOnTimeout[16]		= "ReloadMagOut";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= M9MagOutSound;
+	stateSound[16]				= BNE_M9MagOutSound;
 	
 	stateName[17]				= "ReloadMagOut";
 	stateTimeoutValue[17]			= 0.5;
@@ -297,7 +297,7 @@ datablock ShapeBaseImageData(M93RImage)
 	stateTransitionOnTimeout[18]		= "ReloadEnd";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "MagIn";
-	stateSound[18]				= M9MagInSound;
+	stateSound[18]				= BNE_M9MagInSound;
 	
 	stateName[19]				= "ReloadEnd";
 	stateTimeoutValue[19]			= 0.35;
@@ -319,7 +319,7 @@ datablock ShapeBaseImageData(M93RImage)
 	stateTransitionOnTimeout[21]		= "Reload2MagOut";
 	stateWaitForTimeout[21]			= true;
 	stateSequence[21]			= "MagOutEmpty";
-	stateSound[21]				= M9MagOutSound;
+	stateSound[21]				= BNE_M9MagOutSound;
 	
 	stateName[22]				= "Reload2MagOut";
 	stateTimeoutValue[22]			= 0.5;
@@ -334,7 +334,7 @@ datablock ShapeBaseImageData(M93RImage)
 	stateTransitionOnTimeout[23]		= "Reload2End";
 	stateWaitForTimeout[23]			= true;
 	stateSequence[23]			= "MagInEmpty";
-	stateSound[23]				= M9MagInSound;
+	stateSound[23]				= BNE_M9MagInSound;
 	
 	stateName[24]				= "Reload2End";
 	stateTimeoutValue[24]			= 0.35;
@@ -342,7 +342,7 @@ datablock ShapeBaseImageData(M93RImage)
 	stateTransitionOnTimeout[24]		= "Ready";
 	stateWaitForTimeout[24]			= true;
 	stateSequence[24]			= "ReloadEndEmpty";
-	stateSound[24]				= M9SlideSound;
+	stateSound[24]				= BNE_M9SlideSound;
 	
 	stateName[25]				= "ReadyLoop";
 	stateTransitionOnTimeout[25]		= "Ready";
@@ -366,10 +366,10 @@ datablock ShapeBaseImageData(M93RImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function M93RImage::AEOnFire(%this,%obj,%slot)
+function BNE_M93RImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, M9Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M9Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
@@ -377,20 +377,20 @@ function M93RImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function M93RImage::onDryFire(%this, %obj, %slot)
+function BNE_M93RImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function M93RImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_M93RImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
    %obj.schedule(50, "aeplayThread", "3", "plant");
    %obj.schedule(300, "aeplayThread", "3", "shiftleft");
 }
 
-function M93RImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_M93RImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
    %obj.schedule(50, "aeplayThread", "3", "plant");
@@ -398,12 +398,12 @@ function M93RImage::onReload2MagIn(%this,%obj,%slot)
    %obj.schedule(400, "aeplayThread", "3", "plant");
 }
 
-function M93RImage::onReloadEnd(%this,%obj,%slot)
+function BNE_M93RImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function M93RImage::onReload2End(%this,%obj,%slot)
+function BNE_M93RImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
@@ -411,7 +411,7 @@ function M93RImage::onReload2End(%this,%obj,%slot)
 
 // MAGAZINE DROPPING
 
-function M93RImage::onReloadStart(%this,%obj,%slot)
+function BNE_M93RImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.schedule(300, "aeplayThread", "3", "shiftleft");
    %obj.aeplayThread(2, wrench);
@@ -420,7 +420,7 @@ function M93RImage::onReloadStart(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(150,250),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function M93RImage::onReady(%this,%obj,%slot)
+function BNE_M93RImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -430,7 +430,7 @@ function M93RImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function M93RImage::onMount(%this,%obj,%slot)
+function BNE_M93RImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -439,7 +439,7 @@ function M93RImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function M93RImage::onUnMount(%this,%obj,%slot)
+function BNE_M93RImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -453,7 +453,7 @@ function M93RImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function M93RImage::onMagDrop(%this,%obj,%slot)
+function BNE_M93RImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -463,7 +463,7 @@ function M93RImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(M93RMagImage,0);
+	%a.mountImage(BNE_M93RMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -471,7 +471,7 @@ function M93RImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(M93RMagImage)
+datablock ShapeBaseImageData(BNE_M93RMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
@@ -497,7 +497,7 @@ datablock ShapeBaseImageData(M93RMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function M93RMagImage::onDone(%this,%obj,%slot)
+function BNE_M93RMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -506,7 +506,7 @@ function M93RMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(M93RSafetyImage)
+datablock ShapeBaseImageData(BNE_M93RSafetyImage)
 {
    shapeFile = "./M93R/M93R.dts";
    emap = true;
@@ -516,14 +516,14 @@ datablock ShapeBaseImageData(M93RSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = M93RItem;
+   item = BNE_M93RItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = M93RImage;
+   safetyImage = BNE_M93RImage;
    doColorShift = true;
-   colorShiftColor = M93RItem.colorShiftColor;
+   colorShiftColor = BNE_M93RItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -535,7 +535,7 @@ datablock ShapeBaseImageData(M93RSafetyImage)
 
 };
 
-function M93RSafetyImage::onMount(%this,%obj,%slot)
+function BNE_M93RSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -544,7 +544,7 @@ function M93RSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function M93RSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_M93RSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -554,12 +554,12 @@ function M93RSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(M93RIronsightImage : M93RImage)
+datablock ShapeBaseImageData(BNE_M93RIronsightImage : BNE_M93RImage)
 {
 	recoilHeight = 0.1125;
 
-	scopingImage = M93RImage;
-	sourceImage = M93RImage;
+	scopingImage = BNE_M93RImage;
+	sourceImage = BNE_M93RImage;
 	
    offset = "0 0 -0.06";
 	eyeOffset = "0 1.25 -0.75";
@@ -582,21 +582,21 @@ datablock ShapeBaseImageData(M93RIronsightImage : M93RImage)
 	stateSound[16]				= "";
 };
 
-function M93RIronsightImage::onDone(%this,%obj,%slot)
+function BNE_M93RIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function M93RIronsightImage::onReady(%this,%obj,%slot)
+function BNE_M93RIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function M93RIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_M93RIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, M9Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M9Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
@@ -604,7 +604,7 @@ function M93RIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function M93RIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_M93RIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -612,7 +612,7 @@ function M93RIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function M93RIronsightImage::onMount(%this,%obj,%slot)
+function BNE_M93RIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -623,7 +623,7 @@ function M93RIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function M93RIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_M93RIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

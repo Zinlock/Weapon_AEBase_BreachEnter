@@ -1,18 +1,18 @@
-datablock AudioProfile(SKSFire1Sound)
+datablock AudioProfile(BNE_SKSFire1Sound)
 {
    filename    = "./Sounds/Fire/SKS/SKS_fire1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(SKSFire2Sound)
+datablock AudioProfile(BNE_SKSFire2Sound)
 {
    filename    = "./Sounds/Fire/SKS/SKS_fire2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(SKSFire3Sound)
+datablock AudioProfile(BNE_SKSFire3Sound)
 {
    filename    = "./Sounds/Fire/SKS/SKS_fire3.wav";
    description = MediumClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(SKSFire3Sound)
 };
 
 // SKSM
-datablock DebrisData(AESKSMMagDebris)
+datablock DebrisData(BNE_SKSMMagDebris)
 {
 	shapeFile = "./SKSM/SKSMMag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AESKSMMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(SKSMItem)
+datablock ItemData(BNE_SKSMItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(SKSMItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = SKSMImage;
+	image = BNE_SKSMImage;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -82,7 +82,7 @@ datablock ItemData(SKSMItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(SKSMImage : SKSImage)
+datablock ShapeBaseImageData(BNE_SKSMImage : SKSImage)
 {
    // Basic Item properties
    shapeFile = "./SKSM/SKSM.dts";
@@ -106,7 +106,7 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = SKSMItem;
+   item = BNE_SKSMItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -122,10 +122,10 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = SKSMSafetyImage;
-    scopingImage = SKSMIronsightImage;
+	safetyImage = BNE_SKSMSafetyImage;
+    scopingImage = BNE_SKSMIronsightImage;
 	doColorShift = true;
-	colorShiftColor = SKSMItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_SKSMItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 700; //min delay for when the shell sound plays
@@ -253,7 +253,7 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AKMagOutSound;
+	stateSound[8]				= BNE_AKMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.45;
@@ -261,7 +261,7 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AKMagInSound;
+	stateSound[9]				= BNE_AKMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -300,7 +300,7 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOutEmpty";
-	stateSound[16]				= AKMagOutSound;
+	stateSound[16]				= BNE_AKMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.45;
@@ -308,7 +308,7 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= AKMagInSound;
+	stateSound[17]				= BNE_AKMagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.45;
@@ -340,10 +340,10 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function SKSMImage::AEOnFire(%this,%obj,%slot)
+function BNE_SKSMImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, SKSFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_SKSFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -351,66 +351,66 @@ function SKSMImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function SKSMImage::AEOnLowClimb(%this, %obj, %slot) 
+function BNE_SKSMImage::AEOnLowClimb(%this, %obj, %slot) 
 {
  //  %obj.aeplayThread(2, plant);
 }
 
-function SKSMImage::onDryFire(%this, %obj, %slot)
+function BNE_SKSMImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
 
-function SKSMImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_SKSMImage::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function SKSMImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_SKSMImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
 }
 
-function SKSMImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_SKSMImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function SKSMImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_SKSMImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(600, "aeplayThread", "3", "plant");
 }
 
-function SKSMImage::onReloadStart(%this,%obj,%slot)
+function BNE_SKSMImage::onReloadStart(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, shiftleft);
   %obj.reload3Schedule = %this.schedule(215,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(500,600),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function SKSMImage::onReload2Start(%this,%obj,%slot)
+function BNE_SKSMImage::onReload2Start(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
   %obj.aeplayThread(3, shiftright);
 }
 
-function SKSMImage::onReloadEnd(%this,%obj,%slot)
+function BNE_SKSMImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function SKSMImage::onReload2End(%this,%obj,%slot)
+function BNE_SKSMImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(200, playAudio, 1, AUGBoltSound);
+    %obj.schedule(200, playAudio, 1, BNE_AUGBoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function SKSMImage::onReady(%this,%obj,%slot)
+function BNE_SKSMImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -420,7 +420,7 @@ function SKSMImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function SKSMImage::onMount(%this,%obj,%slot)
+function BNE_SKSMImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -429,7 +429,7 @@ function SKSMImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function SKSMImage::onUnMount(%this,%obj,%slot)
+function BNE_SKSMImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -443,7 +443,7 @@ function SKSMImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function SKSMImage::onMagDrop(%this,%obj,%slot)
+function BNE_SKSMImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -453,7 +453,7 @@ function SKSMImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(SKSMMagImage,0);
+	%a.mountImage(BNE_SKSMMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -461,14 +461,14 @@ function SKSMImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(SKSMMagImage)
+datablock ShapeBaseImageData(BNE_SKSMMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.15 0.75 0.1";
    rotation = eulerToMatrix( "0 40 0" );	
 	
-	casing = AESKSMMagDebris;
+	casing = BNE_SKSMMagDebris;
 	shellExitDir        = "0 1 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -487,7 +487,7 @@ datablock ShapeBaseImageData(SKSMMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function SKSMMagImage::onDone(%this,%obj,%slot)
+function BNE_SKSMMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -496,7 +496,7 @@ function SKSMMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(SKSMSafetyImage)
+datablock ShapeBaseImageData(BNE_SKSMSafetyImage)
 {
    shapeFile = "./SKSM/SKSM.dts";
    emap = true;
@@ -506,14 +506,14 @@ datablock ShapeBaseImageData(SKSMSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = SKSMItem;
+   item = BNE_SKSMItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = SKSMImage;
+   safetyImage = BNE_SKSMImage;
    doColorShift = true;
-   colorShiftColor = SKSMItem.colorShiftColor;
+   colorShiftColor = BNE_SKSMItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -525,7 +525,7 @@ datablock ShapeBaseImageData(SKSMSafetyImage)
 
 };
 
-function SKSMSafetyImage::onMount(%this,%obj,%slot)
+function BNE_SKSMSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -534,7 +534,7 @@ function SKSMSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function SKSMSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_SKSMSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -544,12 +544,12 @@ function SKSMSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(SKSMIronsightImage : SKSMImage)
+datablock ShapeBaseImageData(BNE_SKSMIronsightImage : BNE_SKSMImage)
 {
 	recoilHeight = 0.25;
 
-	scopingImage = SKSMImage;
-	sourceImage = SKSMImage;
+	scopingImage = BNE_SKSMImage;
+	sourceImage = BNE_SKSMImage;
 	
 	offset = "0 0 0";
 	eyeOffset = "-0.02544 1.55 -1.07264";
@@ -574,21 +574,21 @@ datablock ShapeBaseImageData(SKSMIronsightImage : SKSMImage)
 	stateSound[7]				= "";
 };
 
-function SKSMIronsightImage::onDone(%this,%obj,%slot)
+function BNE_SKSMIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function SKSMIronsightImage::onReady(%this,%obj,%slot)
+function BNE_SKSMIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function SKSMIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_SKSMIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, SKSFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_SKSFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -596,7 +596,7 @@ function SKSMIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function SKSMIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_SKSMIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -604,7 +604,7 @@ function SKSMIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function SKSMIronsightImage::onMount(%this,%obj,%slot)
+function BNE_SKSMIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -615,7 +615,7 @@ function SKSMIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function SKSMIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_SKSMIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

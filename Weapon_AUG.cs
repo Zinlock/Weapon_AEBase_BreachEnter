@@ -1,18 +1,18 @@
-datablock AudioProfile(AUGFire1Sound)
+datablock AudioProfile(BNE_AUGFire1Sound)
 {
    filename    = "./Sounds/Fire/AUG/AUG_fire1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(AUGFire2Sound)
+datablock AudioProfile(BNE_AUGFire2Sound)
 {
    filename    = "./Sounds/Fire/AUG/AUG_fire2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(AUGFire3Sound)
+datablock AudioProfile(BNE_AUGFire3Sound)
 {
    filename    = "./Sounds/Fire/AUG/AUG_fire3.wav";
    description = MediumClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(AUGFire3Sound)
 };
 
 // AUG
-datablock DebrisData(AEAUGMagDebris)
+datablock DebrisData(BNE_AUGMagDebris)
 {
 	shapeFile = "./AUG/AUGMag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEAUGMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(AUGItem)
+datablock ItemData(BNE_AUGItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(AUGItem)
 	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = AUGImage;
+	image = BNE_AUGImage;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -83,7 +83,7 @@ datablock ItemData(AUGItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(AUGImage)
+datablock ShapeBaseImageData(BNE_AUGImage)
 {
    // Basic Item properties
    shapeFile = "./AUG/AUG.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(AUGImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = AUGItem;
+   item = BNE_AUGItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(AUGImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = AUGSafetyImage;
-    scopingImage = AUGIronsightImage;
+	safetyImage = BNE_AUGSafetyImage;
+    scopingImage = BNE_AUGIronsightImage;
 	doColorShift = true;
-	colorShiftColor = AUGItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_AUGItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -254,7 +254,7 @@ datablock ShapeBaseImageData(AUGImage)
 	stateTransitionOnTimeout[17]		= "ReloadMagIn";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagOut";
-	stateSound[17]				= AUGMagOutSound;
+	stateSound[17]				= BNE_AUGMagOutSound;
 	
 	stateName[18]				= "ReloadMagIn";
 	stateTimeoutValue[18]			= 0.3;
@@ -262,7 +262,7 @@ datablock ShapeBaseImageData(AUGImage)
 	stateTransitionOnTimeout[18]		= "ReloadEnd";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "MagIn";
-	stateSound[18]				= AUGMagInSound;
+	stateSound[18]				= BNE_AUGMagInSound;
 	
 	stateName[19]				= "ReloadEnd";
 	stateTimeoutValue[19]			= 0.35;
@@ -284,7 +284,7 @@ datablock ShapeBaseImageData(AUGImage)
 	stateTransitionOnTimeout[21]		= "Reload2MagOut";
 	stateWaitForTimeout[21]			= true;
 	stateSequence[21]			= "ReloadStartEmpty";
-	stateSound[21]				= AUGBoltLockSound;
+	stateSound[21]				= BNE_AUGBoltLockSound;
 	
 	stateName[22]				= "Reload2MagOut";
 	stateTimeoutValue[22]			= 0.65;
@@ -292,7 +292,7 @@ datablock ShapeBaseImageData(AUGImage)
 	stateTransitionOnTimeout[22]		= "Reload2MagIn";
 	stateWaitForTimeout[22]			= true;
 	stateSequence[22]			= "MagOutEmpty";
-	stateSound[22]				= AUGMagOutSound;
+	stateSound[22]				= BNE_AUGMagOutSound;
 	
 	stateName[23]				= "Reload2MagIn";
 	stateTimeoutValue[23]			= 0.3;
@@ -300,7 +300,7 @@ datablock ShapeBaseImageData(AUGImage)
 	stateTransitionOnTimeout[23]		= "Reload2End";
 	stateWaitForTimeout[23]			= true;
 	stateSequence[23]			= "MagInEmpty";
-	stateSound[23]				= AUGMagInSound;
+	stateSound[23]				= BNE_AUGMagInSound;
 	
 	stateName[24]				= "Reload2End";
 	stateTimeoutValue[24]			= 0.5;
@@ -325,10 +325,10 @@ datablock ShapeBaseImageData(AUGImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function AUGImage::AEOnFire(%this,%obj,%slot)
+function BNE_AUGImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AUGFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AUGFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
@@ -336,26 +336,26 @@ function AUGImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function AUGImage::onDryFire(%this, %obj, %slot)
+function BNE_AUGImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function AUGImage::onReloadEnd(%this,%obj,%slot)
+function BNE_AUGImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function AUGImage::onReload2End(%this,%obj,%slot)
+function BNE_AUGImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(300, playAudio, 1, AUGBoltSound);
+    %obj.schedule(300, playAudio, 1, BNE_AUGBoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function AUGImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_AUGImage::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
@@ -363,7 +363,7 @@ function AUGImage::onReload2MagOut(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function AUGImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_AUGImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
@@ -371,30 +371,30 @@ function AUGImage::onReloadMagOut(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function AUGImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_AUGImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function AUGImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_AUGImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(500, "aeplayThread", "2", "shiftleft");
    %obj.schedule(600, "aeplayThread", "3", "plant");
 }
 
-function AUGImage::onReloadStart(%this,%obj,%slot)
+function BNE_AUGImage::onReloadStart(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
 }
 
-function AUGImage::onReload2Start(%this,%obj,%slot)
+function BNE_AUGImage::onReload2Start(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
   %obj.aeplayThread(3, shiftright);
 }
 
-function AUGImage::onReady(%this,%obj,%slot)
+function BNE_AUGImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -404,7 +404,7 @@ function AUGImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function AUGImage::onMount(%this,%obj,%slot)
+function BNE_AUGImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -413,7 +413,7 @@ function AUGImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AUGImage::onUnMount(%this,%obj,%slot)
+function BNE_AUGImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -427,7 +427,7 @@ function AUGImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function AUGImage::onMagDrop(%this,%obj,%slot)
+function BNE_AUGImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -437,7 +437,7 @@ function AUGImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(AUGMagImage,0);
+	%a.mountImage(BNE_AUGMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -445,14 +445,14 @@ function AUGImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(AUGMagImage)
+datablock ShapeBaseImageData(BNE_AUGMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.05 -0.1 -0.1";
    rotation = eulerToMatrix( "40 25 0" );	
 	
-	casing = AEAUGMagDebris;
+	casing = BNE_AUGMagDebris;
 	shellExitDir        = "-0.05 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -471,7 +471,7 @@ datablock ShapeBaseImageData(AUGMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function AUGMagImage::onDone(%this,%obj,%slot)
+function BNE_AUGMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -480,7 +480,7 @@ function AUGMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(AUGSafetyImage)
+datablock ShapeBaseImageData(BNE_AUGSafetyImage)
 {
    shapeFile = "./AUG/AUG.dts";
    emap = true;
@@ -490,14 +490,14 @@ datablock ShapeBaseImageData(AUGSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = AUGItem;
+   item = BNE_AUGItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = AUGImage;
+   safetyImage = BNE_AUGImage;
    doColorShift = true;
-   colorShiftColor = AUGItem.colorShiftColor;
+   colorShiftColor = BNE_AUGItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -509,7 +509,7 @@ datablock ShapeBaseImageData(AUGSafetyImage)
 
 };
 
-function AUGSafetyImage::onMount(%this,%obj,%slot)
+function BNE_AUGSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -518,7 +518,7 @@ function AUGSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function AUGSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_AUGSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -528,12 +528,12 @@ function AUGSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(AUGIronsightImage : AUGImage)
+datablock ShapeBaseImageData(BNE_AUGIronsightImage : BNE_AUGImage)
 {
 	recoilHeight = 0.07;
 
-	scopingImage = AUGImage;
-	sourceImage = AUGImage;
+	scopingImage = BNE_AUGImage;
+	sourceImage = BNE_AUGImage;
 	
 	offset = "0 0 0";
 	eyeOffset = "-0.011 1.0 -1.275";
@@ -556,21 +556,21 @@ datablock ShapeBaseImageData(AUGIronsightImage : AUGImage)
 	stateSound[16]				= "";
 };
 
-function AUGIronsightImage::onDone(%this,%obj,%slot)
+function BNE_AUGIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function AUGIronsightImage::onReady(%this,%obj,%slot)
+function BNE_AUGIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function AUGIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_AUGIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AUGFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AUGFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
@@ -578,7 +578,7 @@ function AUGIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function AUGIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_AUGIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -586,7 +586,7 @@ function AUGIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function AUGIronsightImage::onMount(%this,%obj,%slot)
+function BNE_AUGIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -597,7 +597,7 @@ function AUGIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AUGIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_AUGIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound);

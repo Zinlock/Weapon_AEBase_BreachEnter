@@ -1,18 +1,18 @@
-datablock AudioProfile(FAMASFire1Sound)
+datablock AudioProfile(BNE_FAMASFire1Sound)
 {
    filename    = "./Sounds/Fire/FAMAS/FAMAS_fire1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(FAMASFire2Sound)
+datablock AudioProfile(BNE_FAMASFire2Sound)
 {
    filename    = "./Sounds/Fire/FAMAS/FAMAS_fire2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(FAMASFire3Sound)
+datablock AudioProfile(BNE_FAMASFire3Sound)
 {
    filename    = "./Sounds/Fire/FAMAS/FAMAS_fire3.wav";
    description = MediumClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(FAMASFire3Sound)
 };
 
 // FAMAS
-datablock DebrisData(AEFAMASMagDebris)
+datablock DebrisData(BNE_FAMASMagDebris)
 {
 	shapeFile = "./FAMAS/famasmag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEFAMASMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(FAMASItem)
+datablock ItemData(BNE_FAMASItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(FAMASItem)
 	colorShiftColor = "0.35 0.35 0.35 1.000";
 
 	 // Dynamic properties defined by the scripts
-	image = FAMASImage;
+	image = BNE_FAMASImage;
 	canDrop = true;
 
 	AEAmmo = 24;
@@ -83,7 +83,7 @@ datablock ItemData(FAMASItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(FAMASImage)
+datablock ShapeBaseImageData(BNE_FAMASImage)
 {
    // Basic Item properties
    shapeFile = "./FAMAS/famas.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(FAMASImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = FAMASItem;
+   item = BNE_FAMASItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(FAMASImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = FAMASBipodImage;
-    scopingImage = FAMASIronsightImage;
+	safetyImage = BNE_FAMASBipodImage;
+    scopingImage = BNE_FAMASIronsightImage;
 	doColorShift = true;
-	colorShiftColor = FAMASItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_FAMASItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -306,7 +306,7 @@ datablock ShapeBaseImageData(FAMASImage)
 	stateTransitionOnTimeout[17]		= "ReloadMagIn";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagOut";
-	stateSound[17]				= FAMASMagOutSound;
+	stateSound[17]				= BNE_FAMASMagOutSound;
 	
 	stateName[18]				= "ReloadMagIn";
 	stateTimeoutValue[18]			= 0.35;
@@ -314,7 +314,7 @@ datablock ShapeBaseImageData(FAMASImage)
 	stateTransitionOnTimeout[18]		= "ReloadEnd";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "MagIn";
-	stateSound[18]				= FAMASMagInSound;
+	stateSound[18]				= BNE_FAMASMagInSound;
 	
 	stateName[19]				= "ReloadEnd";
 	stateTimeoutValue[19]			= 0.25;
@@ -343,7 +343,7 @@ datablock ShapeBaseImageData(FAMASImage)
 	stateTransitionOnTimeout[22]		= "Reload2MagIn";
 	stateWaitForTimeout[22]			= true;
 	stateSequence[22]			= "MagOut";
-	stateSound[22]				= FAMASMagOutSound;
+	stateSound[22]				= BNE_FAMASMagOutSound;
 	
 	stateName[28]				= "Reload2MagIn";
 	stateTimeoutValue[28]			= 0.35;
@@ -351,7 +351,7 @@ datablock ShapeBaseImageData(FAMASImage)
 	stateTransitionOnTimeout[28]		= "Reload2Bolt";
 	stateWaitForTimeout[28]			= true;
 	stateSequence[28]			= "MagIn";
-	stateSound[28]				= FAMASMagInSound;
+	stateSound[28]				= BNE_FAMASMagInSound;
 
 	stateName[23]				= "Reload2Bolt";
 	stateTimeoutValue[23]			= 0.35;
@@ -359,7 +359,7 @@ datablock ShapeBaseImageData(FAMASImage)
 	stateTransitionOnTimeout[23]		= "Reload2End";
 	stateWaitForTimeout[23]			= true;
 	stateSequence[23]			= "Bolt";
-	stateSound[23]				= FAMASBoltSound;
+	stateSound[23]				= BNE_FAMASBoltSound;
 	
 	stateName[24]				= "Reload2End";
 	stateTimeoutValue[24]			= 0.25;
@@ -384,10 +384,10 @@ datablock ShapeBaseImageData(FAMASImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function FAMASImage::AEOnFire(%this,%obj,%slot)
+function BNE_FAMASImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, FAMASFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_FAMASFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -395,7 +395,7 @@ function FAMASImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FAMASImage::onDryFire(%this, %obj, %slot)
+function BNE_FAMASImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -403,7 +403,7 @@ function FAMASImage::onDryFire(%this, %obj, %slot)
 
 // MAGAZINE DROPPING
 
-function FAMASImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_FAMASImage::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
@@ -411,7 +411,7 @@ function FAMASImage::onReload2MagOut(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function FAMASImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_FAMASImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, shiftright);
@@ -419,41 +419,41 @@ function FAMASImage::onReloadMagOut(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function FAMASImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_FAMASImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftleft");
    %obj.schedule(50, "aeplayThread", "3", "plant");
 }
 
-function FAMASImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_FAMASImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftleft");
    %obj.schedule(50, "aeplayThread", "3", "plant");
 }
 
-function FAMASImage::onReloadStart(%this,%obj,%slot)
+function BNE_FAMASImage::onReloadStart(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
 }
 
-function FAMASImage::onReload2Start(%this,%obj,%slot)
+function BNE_FAMASImage::onReload2Start(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
 }
 
-function FAMASImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_FAMASImage::onReload2Bolt(%this,%obj,%slot)
 {
 	%obj.aeplayThread("3", "shiftleft");
 	%obj.schedule(60, "aeplayThread", "2", "plant");
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function FAMASImage::onReloadEnd(%this,%obj,%slot)
+function BNE_FAMASImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function FAMASImage::onReady(%this,%obj,%slot)
+function BNE_FAMASImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -463,7 +463,7 @@ function FAMASImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function FAMASImage::onMount(%this,%obj,%slot)
+function BNE_FAMASImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -472,7 +472,7 @@ function FAMASImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FAMASImage::onUnMount(%this,%obj,%slot)
+function BNE_FAMASImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -486,7 +486,7 @@ function FAMASImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function FAMASImage::onMagDrop(%this,%obj,%slot)
+function BNE_FAMASImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -496,7 +496,7 @@ function FAMASImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(FAMASMagImage,0);
+	%a.mountImage(BNE_FAMASMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -504,14 +504,14 @@ function FAMASImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(FAMASMagImage)
+datablock ShapeBaseImageData(BNE_FAMASMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.05 -0.25 -0.1";
    rotation = eulerToMatrix( "40 25 0" );	
 	
-	casing = AEFAMASMagDebris;
+	casing = BNE_FAMASMagDebris;
 	shellExitDir        = "-0.05 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -530,19 +530,19 @@ datablock ShapeBaseImageData(FAMASMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function FAMASMagImage::onDone(%this,%obj,%slot)
+function BNE_FAMASMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(FAMASIronsightImage : FAMASImage)
+datablock ShapeBaseImageData(BNE_FAMASIronsightImage : BNE_FAMASImage)
 {
 	recoilHeight = 0.1;
 
-	scopingImage = FAMASImage;
-	sourceImage = FAMASImage;
+	scopingImage = BNE_FAMASImage;
+	sourceImage = BNE_FAMASImage;
 	
 	offset = "0 0 0";
 	eyeOffset = "0.004 1.0 -1.215";
@@ -565,21 +565,21 @@ datablock ShapeBaseImageData(FAMASIronsightImage : FAMASImage)
 	stateSound[16]				= "";
 };
 
-function FAMASIronsightImage::onDone(%this,%obj,%slot)
+function BNE_FAMASIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function FAMASIronsightImage::onReady(%this,%obj,%slot)
+function BNE_FAMASIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function FAMASIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_FAMASIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, FAMASFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_FAMASFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -587,7 +587,7 @@ function FAMASIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FAMASIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_FAMASIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -595,7 +595,7 @@ function FAMASIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function FAMASIronsightImage::onMount(%this,%obj,%slot)
+function BNE_FAMASIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -606,7 +606,7 @@ function FAMASIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FAMASIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_FAMASIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());
@@ -616,11 +616,11 @@ function FAMASIronsightImage::onUnMount(%this,%obj,%slot)
 
 //ALT BIPOD STATES
 
-datablock ShapeBaseImageData(FAMASBipodImage : FAMASImage)
+datablock ShapeBaseImageData(BNE_FAMASBipodImage : BNE_FAMASImage)
 {
     shapeFile = "./FAMAS/FAMASBipod.dts";
-	safetyImage = FAMASImage;
-    scopingImage = FAMASIronsightBipodImage;
+	safetyImage = BNE_FAMASImage;
+    scopingImage = BNE_FAMASIronsightBipodImage;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	screenshakeMin = "0 0 0"; 
@@ -629,92 +629,92 @@ datablock ShapeBaseImageData(FAMASBipodImage : FAMASImage)
 	isBipod = true;
 };
 
-function FAMASBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_FAMASBipodImage::AEOnFire(%this,%obj,%slot)
 {	
-	FAMASImage::AEOnFire(%this, %obj, %slot);
+	BNE_FAMASImage::AEOnFire(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_FAMASBipodImage::onDryFire(%this, %obj, %slot)
 {
-	FAMASImage::onDryFire(%this, %obj, %slot);
+	BNE_FAMASImage::onDryFire(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function FAMASBipodImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReload2MagOut(%this,%obj,%slot)
 {
-	FAMASImage::onReload2MagOut(%this, %obj, %slot);
+	BNE_FAMASImage::onReload2MagOut(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReloadMagOut(%this,%obj,%slot)
 {
-	FAMASImage::onReloadMagOut(%this, %obj, %slot);
+	BNE_FAMASImage::onReloadMagOut(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReloadMagIn(%this,%obj,%slot)
 {
-	FAMASImage::onReloadMagIn(%this, %obj, %slot);
+	BNE_FAMASImage::onReloadMagIn(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReload2MagIn(%this,%obj,%slot)
 {
-	FAMASImage::onReload2MagIn(%this, %obj, %slot);
+	BNE_FAMASImage::onReload2MagIn(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReloadStart(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReloadStart(%this,%obj,%slot)
 {
-	FAMASImage::onReloadStart(%this, %obj, %slot);
+	BNE_FAMASImage::onReloadStart(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReload2Start(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReload2Start(%this,%obj,%slot)
 {
-	FAMASImage::onReload2Start(%this, %obj, %slot);
+	BNE_FAMASImage::onReload2Start(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReload2Bolt(%this,%obj,%slot)
 {
-	FAMASImage::onReload2Bolt(%this, %obj, %slot);
+	BNE_FAMASImage::onReload2Bolt(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReloadEnd(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReloadEnd(%this,%obj,%slot)
 {
-	FAMASImage::onReloadEnd(%this, %obj, %slot);
+	BNE_FAMASImage::onReloadEnd(%this, %obj, %slot);
 }
 
-function FAMASBipodImage::onReady(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onReady(%this,%obj,%slot)
 {
-	FAMASImage::onReady(%this, %obj, %slot);
+	BNE_FAMASImage::onReady(%this, %obj, %slot);
 }
 
 // HIDES ALL HAND NODES
 
-function FAMASBipodImage::onMount(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onMount(%this,%obj,%slot)
 {
-	FAMASImage::onMount(%this, %obj, %slot);
+	BNE_FAMASImage::onMount(%this, %obj, %slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FAMASBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onUnMount(%this,%obj,%slot)
 {
-	FAMASImage::onUnMount(%this, %obj, %slot);	
+	BNE_FAMASImage::onUnMount(%this, %obj, %slot);	
 }
 
 /////////////////////////////////////////////////////////////////////
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function FAMASBipodImage::onMagDrop(%this,%obj,%slot)
+function BNE_FAMASBipodImage::onMagDrop(%this,%obj,%slot)
 {
-	FAMASImage::onMagDrop(%this, %obj, %slot);
+	BNE_FAMASImage::onMagDrop(%this, %obj, %slot);
 }
 
-datablock ShapeBaseImageData(FAMASIronsightBipodImage : FAMASIronsightImage)
+datablock ShapeBaseImageData(BNE_FAMASIronsightBipodImage : BNE_FAMASIronsightImage)
 {
     shapeFile = "./FAMAS/FAMASBipod.dts";
-	sourceImage = FAMASBipodImage;
-	scopingImage = FAMASBipodImage;
-	safetyImage = FAMASImage;
+	sourceImage = BNE_FAMASBipodImage;
+	scopingImage = BNE_FAMASBipodImage;
+	safetyImage = BNE_FAMASImage;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	screenshakeMin = "0 0 0"; 
@@ -723,36 +723,36 @@ datablock ShapeBaseImageData(FAMASIronsightBipodImage : FAMASIronsightImage)
 	isBipod = true;
 };
 
-function FAMASIronsightBipodImage::onDone(%this,%obj,%slot)
+function BNE_FAMASIronsightBipodImage::onDone(%this,%obj,%slot)
 {
-	FAMASIronsightImage::onDone(%this, %obj, %slot);
+	BNE_FAMASIronsightImage::onDone(%this, %obj, %slot);
 }
 
-function FAMASIronsightBipodImage::onReady(%this,%obj,%slot)
+function BNE_FAMASIronsightBipodImage::onReady(%this,%obj,%slot)
 {
-	FAMASIronsightImage::onReady(%this, %obj, %slot);
+	BNE_FAMASIronsightImage::onReady(%this, %obj, %slot);
 }
 
-function FAMASIronsightBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_FAMASIronsightBipodImage::AEOnFire(%this,%obj,%slot)
 {	
-	FAMASIronsightImage::AEOnFire(%this, %obj, %slot);
+	BNE_FAMASIronsightImage::AEOnFire(%this, %obj, %slot);
 }
 
-function FAMASIronsightBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_FAMASIronsightBipodImage::onDryFire(%this, %obj, %slot)
 {
-	FAMASIronsightImage::onDryFire(%this, %obj, %slot);
+	BNE_FAMASIronsightImage::onDryFire(%this, %obj, %slot);
 }
 
 // HIDES ALL HAND NODES
 
-function FAMASIronsightBipodImage::onMount(%this,%obj,%slot)
+function BNE_FAMASIronsightBipodImage::onMount(%this,%obj,%slot)
 {
-	FAMASIronsightImage::onMount(%this, %obj, %slot);
+	BNE_FAMASIronsightImage::onMount(%this, %obj, %slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FAMASIronsightBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_FAMASIronsightBipodImage::onUnMount(%this,%obj,%slot)
 {
-	FAMASIronsightImage::onUnMount(%this, %obj, %slot);
+	BNE_FAMASIronsightImage::onUnMount(%this, %obj, %slot);
 }

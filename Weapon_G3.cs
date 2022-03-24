@@ -1,5 +1,5 @@
 // G3
-datablock DebrisData(AEG3MagDebris)
+datablock DebrisData(BNE_G3MagDebris)
 {
 	shapeFile = "./G3/G3Mag.dts";
 	lifetime = 2.0;
@@ -18,7 +18,7 @@ datablock DebrisData(AEG3MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(G3Item)
+datablock ItemData(BNE_G3Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -39,7 +39,7 @@ datablock ItemData(G3Item)
 	colorShiftColor = "0.75 0.75 0.75 1";
 
 	 // Dynamic properties defined by the scripts
-	image = G3Image;
+	image = BNE_G3Image;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -62,7 +62,7 @@ datablock ItemData(G3Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(G3Image)
+datablock ShapeBaseImageData(BNE_G3Image)
 {
    // Basic Item properties
    shapeFile = "./G3/G3.dts";
@@ -86,7 +86,7 @@ datablock ShapeBaseImageData(G3Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = G3Item;
+   item = BNE_G3Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -102,10 +102,10 @@ datablock ShapeBaseImageData(G3Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = G3SafetyImage;
-    scopingImage = G3IronsightImage;
+	safetyImage = BNE_G3SafetyImage;
+    scopingImage = BNE_G3IronsightImage;
 	doColorShift = true;
-	colorShiftColor = G3Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_G3Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -223,7 +223,7 @@ datablock ShapeBaseImageData(G3Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AKMagOutSound;
+	stateSound[8]				= BNE_AKMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -231,7 +231,7 @@ datablock ShapeBaseImageData(G3Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AKMagInSound;
+	stateSound[9]				= BNE_AKMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -270,7 +270,7 @@ datablock ShapeBaseImageData(G3Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AKMagOutSound;
+	stateSound[16]				= BNE_AKMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
@@ -278,7 +278,7 @@ datablock ShapeBaseImageData(G3Image)
 	stateTransitionOnTimeout[17]		= "Reload2Bolt";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AKMagInSound;
+	stateSound[17]				= BNE_AKMagInSound;
 	
 	stateName[18]				= "Reload2Bolt";
 	stateTimeoutValue[18]			= 0.35;
@@ -286,7 +286,7 @@ datablock ShapeBaseImageData(G3Image)
 	stateTransitionOnTimeout[18]		= "Reload2End";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "Bolt";
-	stateSound[18]				= AKBoltPullSound;
+	stateSound[18]				= BNE_AKBoltPullSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.25;
@@ -311,10 +311,10 @@ datablock ShapeBaseImageData(G3Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function G3Image::AEOnFire(%this,%obj,%slot)
+function BNE_G3Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AK47Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -322,57 +322,57 @@ function G3Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function G3Image::onDryFire(%this, %obj, %slot)
+function BNE_G3Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function G3Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_G3Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function G3Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_G3Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function G3Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_G3Image::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function G3Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_G3Image::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function G3Image::onReload2Bolt(%this,%obj,%slot)
+function BNE_G3Image::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function G3Image::onReloadEnd(%this,%obj,%slot)
+function BNE_G3Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function G3Image::onReload2End(%this,%obj,%slot)
+function BNE_G3Image::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function G3Image::onReloadStart(%this,%obj,%slot)
+function BNE_G3Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(225,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function G3Image::onReady(%this,%obj,%slot)
+function BNE_G3Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -382,7 +382,7 @@ function G3Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function G3Image::onMount(%this,%obj,%slot)
+function BNE_G3Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -391,7 +391,7 @@ function G3Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function G3Image::onUnMount(%this,%obj,%slot)
+function BNE_G3Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -405,7 +405,7 @@ function G3Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function G3Image::onMagDrop(%this,%obj,%slot)
+function BNE_G3Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -415,7 +415,7 @@ function G3Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(G3MagImage,0);
+	%a.mountImage(BNE_G3MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -423,14 +423,14 @@ function G3Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(G3MagImage)
+datablock ShapeBaseImageData(BNE_G3MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.15 0.7 0.15";
    rotation = eulerToMatrix( "0 40 0" );	
 	
-	casing = AEG3MagDebris;
+	casing = BNE_G3MagDebris;
 	shellExitDir        = "0 1 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -449,7 +449,7 @@ datablock ShapeBaseImageData(G3MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function G3MagImage::onDone(%this,%obj,%slot)
+function BNE_G3MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -458,7 +458,7 @@ function G3MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(G3SafetyImage)
+datablock ShapeBaseImageData(BNE_G3SafetyImage)
 {
    shapeFile = "./G3/G3.dts";
    emap = true;
@@ -468,14 +468,14 @@ datablock ShapeBaseImageData(G3SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = G3Item;
+   item = BNE_G3Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = G3Image;
+   safetyImage = BNE_G3Image;
    doColorShift = true;
-   colorShiftColor = G3Item.colorShiftColor;
+   colorShiftColor = BNE_G3Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -487,7 +487,7 @@ datablock ShapeBaseImageData(G3SafetyImage)
 
 };
 
-function G3SafetyImage::onMount(%this,%obj,%slot)
+function BNE_G3SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -496,7 +496,7 @@ function G3SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function G3SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_G3SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -506,12 +506,12 @@ function G3SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(G3IronsightImage : G3Image)
+datablock ShapeBaseImageData(BNE_G3IronsightImage : BNE_G3Image)
 {
 	recoilHeight = 0.1875;
 
-	scopingImage = G3Image;
-	sourceImage = G3Image;
+	scopingImage = BNE_G3Image;
+	sourceImage = BNE_G3Image;
 	
    offset = "0 0 -0.065";
 	eyeOffset = "0.01035 1.0 -1.0899";
@@ -534,21 +534,21 @@ datablock ShapeBaseImageData(G3IronsightImage : G3Image)
 	stateSound[7]				= "";
 };
 
-function G3IronsightImage::onDone(%this,%obj,%slot)
+function BNE_G3IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function G3IronsightImage::onReady(%this,%obj,%slot)
+function BNE_G3IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function G3IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_G3IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AK47Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -556,7 +556,7 @@ function G3IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function G3IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_G3IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -564,7 +564,7 @@ function G3IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function G3IronsightImage::onMount(%this,%obj,%slot)
+function BNE_G3IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -575,7 +575,7 @@ function G3IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function G3IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_G3IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

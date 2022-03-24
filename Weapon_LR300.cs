@@ -1,7 +1,7 @@
 //////////
 // item //
 //////////
-datablock ItemData(LR300Item)
+datablock ItemData(BNE_LR300Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -22,7 +22,7 @@ datablock ItemData(LR300Item)
 	colorShiftColor = "0.75 0.75 0.75 1";
 
 	 // Dynamic properties defined by the scripts
-	image = LR300Image;
+	image = BNE_LR300Image;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -45,7 +45,7 @@ datablock ItemData(LR300Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(LR300Image)
+datablock ShapeBaseImageData(BNE_LR300Image)
 {
    // Basic Item properties
    shapeFile = "./LR300/LR300.dts";
@@ -69,7 +69,7 @@ datablock ShapeBaseImageData(LR300Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = LR300Item;
+   item = BNE_LR300Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -85,10 +85,10 @@ datablock ShapeBaseImageData(LR300Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = LR300SafetyImage;
-    scopingImage = LR300IronsightImage;
+	safetyImage = BNE_LR300SafetyImage;
+    scopingImage = BNE_LR300IronsightImage;
 	doColorShift = true;
-	colorShiftColor = LR300Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_LR300Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -206,7 +206,7 @@ datablock ShapeBaseImageData(LR300Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AR15MagOutSound;
+	stateSound[8]				= BNE_AR15MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.45;
@@ -214,7 +214,7 @@ datablock ShapeBaseImageData(LR300Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AR15MagInSound;
+	stateSound[9]				= BNE_AR15MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -253,7 +253,7 @@ datablock ShapeBaseImageData(LR300Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AR15MagOutSound;
+	stateSound[16]				= BNE_AR15MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.45;
@@ -261,7 +261,7 @@ datablock ShapeBaseImageData(LR300Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AR15MagInSound;
+	stateSound[17]				= BNE_AR15MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -286,10 +286,10 @@ datablock ShapeBaseImageData(LR300Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function LR300Image::AEOnFire(%this,%obj,%slot)
+function BNE_LR300Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, M16A1Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M16A1Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -297,61 +297,61 @@ function LR300Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function LR300Image::onReloadEnd(%this,%obj,%slot)
+function BNE_LR300Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function LR300Image::onReload2End(%this,%obj,%slot)
+function BNE_LR300Image::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(150, playAudio, 1, AR15BoltRackSound);
+    %obj.schedule(150, playAudio, 1, BNE_AR15BoltRackSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 
-function LR300Image::onDryFire(%this, %obj, %slot)
+function BNE_LR300Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function LR300Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_LR300Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function LR300Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_LR300Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(400, "aeplayThread", "3", "shiftleft");
 }
 
-function LR300Image::onReload2Bolt(%this,%obj,%slot)
+function BNE_LR300Image::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.schedule(200, "aeplayThread", "3", "shiftleft");
 }
 
-function LR300Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_LR300Image::onReloadMagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
-function LR300Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_LR300Image::onReload2MagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
 // MAGAZINE DROPPING
 
-function LR300Image::onReloadStart(%this,%obj,%slot)
+function BNE_LR300Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(125,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function LR300Image::onReady(%this,%obj,%slot)
+function BNE_LR300Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -361,7 +361,7 @@ function LR300Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function LR300Image::onMount(%this,%obj,%slot)
+function BNE_LR300Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -370,7 +370,7 @@ function LR300Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function LR300Image::onUnMount(%this,%obj,%slot)
+function BNE_LR300Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -384,7 +384,7 @@ function LR300Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function LR300Image::onMagDrop(%this,%obj,%slot)
+function BNE_LR300Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -394,7 +394,7 @@ function LR300Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(M4A1MagImage,0);
+	%a.mountImage(BNE_M4A1MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -402,7 +402,7 @@ function LR300Image::onMagDrop(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(LR300SafetyImage)
+datablock ShapeBaseImageData(BNE_LR300SafetyImage)
 {
    shapeFile = "./LR300/LR300.dts";
    emap = true;
@@ -412,14 +412,14 @@ datablock ShapeBaseImageData(LR300SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = LR300Item;
+   item = BNE_LR300Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = LR300Image;
+   safetyImage = BNE_LR300Image;
    doColorShift = true;
-   colorShiftColor = LR300Item.colorShiftColor;
+   colorShiftColor = BNE_LR300Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -431,7 +431,7 @@ datablock ShapeBaseImageData(LR300SafetyImage)
 
 };
 
-function LR300SafetyImage::onMount(%this,%obj,%slot)
+function BNE_LR300SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -440,7 +440,7 @@ function LR300SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function LR300SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_LR300SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -450,12 +450,12 @@ function LR300SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(LR300IronsightImage : LR300Image)
+datablock ShapeBaseImageData(BNE_LR300IronsightImage : BNE_LR300Image)
 {
 	recoilHeight = 0.0625;
 
-	scopingImage = LR300Image;
-	sourceImage = LR300Image;
+	scopingImage = BNE_LR300Image;
+	sourceImage = BNE_LR300Image;
 	
    offset = "0 0 -0.075";
 	eyeOffset = "0 1.0 -1.191";
@@ -478,21 +478,21 @@ datablock ShapeBaseImageData(LR300IronsightImage : LR300Image)
 	stateSound[7]				= "";
 };
 
-function LR300IronsightImage::onDone(%this,%obj,%slot)
+function BNE_LR300IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function LR300IronsightImage::onReady(%this,%obj,%slot)
+function BNE_LR300IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function LR300IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_LR300IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, M16A1Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M16A1Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -500,7 +500,7 @@ function LR300IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function LR300IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_LR300IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -508,7 +508,7 @@ function LR300IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function LR300IronsightImage::onMount(%this,%obj,%slot)
+function BNE_LR300IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -519,7 +519,7 @@ function LR300IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function LR300IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_LR300IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound);

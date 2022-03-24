@@ -242,7 +242,7 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AKMagOutSound;
+	stateSound[8]				= BNE_AKMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.45;
@@ -250,7 +250,7 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AKMagInSound;
+	stateSound[9]				= BNE_AKMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.4;
@@ -289,7 +289,7 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AKMagOutSound;
+	stateSound[16]				= BNE_AKMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.45;
@@ -297,7 +297,7 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	stateTransitionOnTimeout[17]		= "Reload2Bolt";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AKMagInSound;
+	stateSound[17]				= BNE_AKMagInSound;
 	
 	stateName[23]				= "Reload2Bolt";
 	stateTimeoutValue[23]			= 0.4;
@@ -305,7 +305,7 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	stateTransitionOnTimeout[23]		= "Reload2End";
 	stateWaitForTimeout[23]			= true;
 	stateSequence[23]			= "Bolt";
-	stateSound[23]				= AKBoltPullSound;
+	stateSound[23]				= BNE_AKBoltPullSound;
 
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.4;

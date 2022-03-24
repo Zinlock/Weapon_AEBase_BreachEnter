@@ -326,7 +326,7 @@ function BNE_KS23Image::onReloadStart(%this, %obj, %slot)
 function BNE_KS23Image::onReloadStart2(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, shiftright);
-	serverPlay3D(KS23PumpBackSound,%obj.getPosition());	
+	serverPlay3D(BNE_KS23PumpBackSound,%obj.getPosition());	
 }
 
 function BNE_KS23Image::onDryFire(%this, %obj, %slot)
@@ -363,18 +363,18 @@ function BNE_KS23Image::onUnMount(%this, %obj, %slot)
 
 function BNE_KS23Image::LoadEffect(%this,%obj,%slot)
 {
-    %obj.reloadSoundSchedule = schedule(250, %obj, serverPlay3D, "KS23Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
+    %obj.reloadSoundSchedule = schedule(250, %obj, serverPlay3D, "BNE_KS23Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
     %obj.schedule(150, "aeplayThread", "3", "plant");
     %obj.insertshellSchedule = %this.schedule(250,AEShotgunLoadOne,%obj,%slot);
 }
 
 function BNE_KS23Image::LoadEffectEmpty(%this,%obj,%slot)
 {
-    %obj.reloadSoundSchedule = schedule(200, %obj, serverPlay3D, "KS23Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
+    %obj.reloadSoundSchedule = schedule(200, %obj, serverPlay3D, "BNE_KS23Insert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
     %obj.schedule(100, "aeplayThread", "3", "plant");
     %obj.schedule(250, "aeplayThread", "2", "shiftLeft");
     %obj.insertshellSchedule = %this.schedule(200,AEShotgunLoadOne,%obj,%slot);
-    schedule(300, %obj, serverPlay3D, KS23PumpForwardSound, %obj.getPosition());
+    schedule(300, %obj, serverPlay3D, BNE_KS23PumpForwardSound, %obj.getPosition());
 }
 
 function BNE_KS23Image::AEShotgunLoadOneEffectless(%this,%obj,%slot)
@@ -386,7 +386,7 @@ function BNE_KS23Image::onPump(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	schedule(300, 0, serverPlay3D, AEShellHeavyShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
-	serverPlay3D(KS23PumpSound,%obj.getPosition());	
+	serverPlay3D(BNE_KS23PumpSound,%obj.getPosition());	
 }
 
 ////////////////////////////////////////////////////////////
@@ -497,7 +497,7 @@ function BNE_KS23IronsightImage::onPump(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	schedule(500, 0, serverPlay3D, AEShellHeavyShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
-	serverPlay3D(KS23PumpSound,%obj.getPosition());	
+	serverPlay3D(BNE_KS23PumpSound,%obj.getPosition());	
 }
 
 function BNE_KS23IronsightImage::onDryFire(%this, %obj, %slot)

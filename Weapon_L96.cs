@@ -1,25 +1,25 @@
-datablock AudioProfile(L96Fire1Sound)
+datablock AudioProfile(BNE_L96Fire1Sound)
 {
    filename    = "./Sounds/Fire/L96/L96_FIRE_1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(L96Fire2Sound)
+datablock AudioProfile(BNE_L96Fire2Sound)
 {
    filename    = "./Sounds/Fire/L96/L96_FIRE_2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(L96Fire3Sound)
+datablock AudioProfile(BNE_L96Fire3Sound)
 {
    filename    = "./Sounds/Fire/L96/L96_FIRE_3.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(L96Fire4Sound)
+datablock AudioProfile(BNE_L96Fire4Sound)
 {
    filename    = "./Sounds/Fire/L96/L96_FIRE_4.wav";
    description = MediumClose3D;
@@ -27,7 +27,7 @@ datablock AudioProfile(L96Fire4Sound)
 };
 
 // L96
-datablock DebrisData(AEL96MagDebris)
+datablock DebrisData(BNE_L96MagDebris)
 {
 	shapeFile = "./L96/L96Mag.dts";
 	lifetime = 2.0;
@@ -46,7 +46,7 @@ datablock DebrisData(AEL96MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(L96Item)
+datablock ItemData(BNE_L96Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -67,7 +67,7 @@ datablock ItemData(L96Item)
 	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = L96Image;
+	image = BNE_L96Image;
 	canDrop = true;
 
 	AEAmmo = 5;
@@ -89,7 +89,7 @@ datablock ItemData(L96Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(L96Image)
+datablock ShapeBaseImageData(BNE_L96Image)
 {
    // Basic Item properties
    shapeFile = "./L96/L96.dts";
@@ -113,7 +113,7 @@ datablock ShapeBaseImageData(L96Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = L96Item;
+   item = BNE_L96Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -128,10 +128,10 @@ datablock ShapeBaseImageData(L96Image)
    melee = false;
    //raise your arm up or not
    armReady = true;
-   safetyImage = L96BipodImage;
-   scopingImage = L96IronsightImage;
+   safetyImage = BNE_L96BipodImage;
+   scopingImage = BNE_L96IronsightImage;
    doColorShift = true;
-   colorShiftColor = L96Item.colorShiftColor;
+   colorShiftColor = BNE_L96Item.colorShiftColor;
 
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
@@ -252,7 +252,7 @@ datablock ShapeBaseImageData(L96Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= L96MagOutSound;
+	stateSound[8]				= BNE_L96MagOutSound;
 
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.5;
@@ -260,7 +260,7 @@ datablock ShapeBaseImageData(L96Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= L96MagInSound;
+	stateSound[9]				= BNE_L96MagInSound;
 
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -293,7 +293,7 @@ datablock ShapeBaseImageData(L96Image)
 	stateWaitForTimeout[15]			= true;
 	stateSequence[15]			= "ReloadStartEmpty";
 	stateEjectShell[15]                = true;
-	stateSound[15]				= L96BoltOpenSound;
+	stateSound[15]				= BNE_L96BoltOpenSound;
 
 	stateName[16]				= "Reload2MagOut";
 	stateTimeoutValue[16]			= 0.65;
@@ -301,7 +301,7 @@ datablock ShapeBaseImageData(L96Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOutEmpty";
-	stateSound[16]				= L96MagOutSound;
+	stateSound[16]				= BNE_L96MagOutSound;
 
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.5;
@@ -309,7 +309,7 @@ datablock ShapeBaseImageData(L96Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= L96MagInSound;
+	stateSound[17]				= BNE_L96MagInSound;
 
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -317,7 +317,7 @@ datablock ShapeBaseImageData(L96Image)
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEndEmpty";
-	stateSound[19]				= L96BoltCloseSound;
+	stateSound[19]				= BNE_L96BoltCloseSound;
 
 	stateName[20]				= "BoltCheck";
 	stateTransitionOnNoAmmo[20]		= "EmptyCheckA";
@@ -346,10 +346,10 @@ datablock ShapeBaseImageData(L96Image)
 	stateTransitionOnTriggerUp[25]	  	= "BoltCheck";
 };
 
-function L96Image::AEOnFire(%this,%obj,%slot)
+function BNE_L96Image::AEOnFire(%this,%obj,%slot)
 {
 	%obj.stopAudio(0);
-  %obj.playAudio(0, L96Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_L96Fire @ getRandom(1, 4) @ Sound);
 
 	%obj.blockImageDismount = true;
 	%obj.schedule(800, unBlockImageDismount);
@@ -357,50 +357,50 @@ function L96Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function L96Image::AEOnLowClimb(%this, %obj, %slot)
+function BNE_L96Image::AEOnLowClimb(%this, %obj, %slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
 
-function L96Image::onBolt(%this,%obj,%slot)
+function BNE_L96Image::onBolt(%this,%obj,%slot)
 {
-    %obj.schedule(0, playAudio, 1, L96BoltOpenSound);
-    %obj.schedule(300, playAudio, 1, L96BoltCloseSound);
+    %obj.schedule(0, playAudio, 1, BNE_L96BoltOpenSound);
+    %obj.schedule(300, playAudio, 1, BNE_L96BoltCloseSound);
 	%obj.aeplayThread(2, shiftleft);
 	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 }
-function L96Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_L96Image::onReload2MagOut(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, shiftright);
    %obj.aeplayThread(3, plant);
 }
 
-function L96Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_L96Image::onReloadMagOut(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, shiftright);
    %obj.aeplayThread(3, plant);
 }
 
-function L96Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_L96Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(75, "aeplayThread", "2", "shiftright");
    %obj.schedule(75, "aeplayThread", "3", "plant");
 }
 
-function L96Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_L96Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(75, "aeplayThread", "2", "shiftright");
    %obj.schedule(75, "aeplayThread", "3", "plant");
 }
 
-function L96Image::onReloadStart(%this,%obj,%slot)
+function BNE_L96Image::onReloadStart(%this,%obj,%slot)
 {
   %obj.reload3Schedule = %this.schedule(215,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(500,600),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function L96Image::onReload2Start(%this,%obj,%slot)
+function BNE_L96Image::onReload2Start(%this,%obj,%slot)
 {
   %obj.reload3Schedule = %this.schedule(400,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
@@ -408,24 +408,24 @@ function L96Image::onReload2Start(%this,%obj,%slot)
   %obj.aeplayThread(2, shiftleft);
 }
 
-function L96Image::onReloadEnd(%this,%obj,%slot)
+function BNE_L96Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function L96Image::onReload2End(%this,%obj,%slot)
+function BNE_L96Image::onReload2End(%this,%obj,%slot)
 {
     %obj.aeplayThread(2, shiftright);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function L96Image::onDryFire(%this, %obj, %slot)
+function BNE_L96Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function L96Image::onReady(%this,%obj,%slot)
+function BNE_L96Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -433,14 +433,14 @@ function L96Image::onReady(%this,%obj,%slot)
 		%obj.schedule(0, setImageAmmo, %slot, 0);
 }
 
-function L96Image::onMount(%this,%obj,%slot)
+function BNE_L96Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
 
-function L96Image::onUnMount(%this, %obj, %slot)
+function BNE_L96Image::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -454,7 +454,7 @@ function L96Image::onUnMount(%this, %obj, %slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function L96Image::onMagDrop(%this,%obj,%slot)
+function BNE_L96Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -464,7 +464,7 @@ function L96Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(L96MagImage,0);
+	%a.mountImage(BNE_L96MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -472,14 +472,14 @@ function L96Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(L96MagImage)
+datablock ShapeBaseImageData(BNE_L96MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.05 0.65 0.15";
    rotation = eulerToMatrix( "0 15 0" );
 
-	casing = AEL96MagDebris;
+	casing = BNE_L96MagDebris;
 	shellExitDir        = "-0.25 0.25 -0.75";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;
@@ -498,12 +498,12 @@ datablock ShapeBaseImageData(L96MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function L96MagImage::onDone(%this,%obj,%slot)
+function BNE_L96MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
 
-datablock ShapeBaseImageData(L96IronsightImage : L96Image)
+datablock ShapeBaseImageData(BNE_L96IronsightImage : BNE_L96Image)
 {
 	recoilHeight = 1;
 	spreadBase = 0;
@@ -511,8 +511,8 @@ datablock ShapeBaseImageData(L96IronsightImage : L96Image)
 	spreadMax = 0;
 
 
-	scopingImage = L96Image;
-	sourceImage = L96Image;
+	scopingImage = BNE_L96Image;
+	sourceImage = BNE_L96Image;
 
 	offset = "0 0 0";
 	eyeOffset = "0.0039 1.54 -0.9291";
@@ -535,38 +535,38 @@ datablock ShapeBaseImageData(L96IronsightImage : L96Image)
 	stateSound[7]				= "";
 };
 
-function L96IronsightImage::onDone(%this,%obj,%slot)
+function BNE_L96IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function L96IronsightImage::onReady(%this,%obj,%slot)
+function BNE_L96IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function L96IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_L96IronsightImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(800, unBlockImageDismount);
 
 	cancel(%obj.reloadSoundSchedule);
 	%obj.stopAudio(0);
-	%obj.playAudio(0, L96Fire @ getRandom(1, 4) @ Sound);
+	%obj.playAudio(0, BNE_L96Fire @ getRandom(1, 4) @ Sound);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function L96IronsightImage::onBolt(%this,%obj,%slot)
+function BNE_L96IronsightImage::onBolt(%this,%obj,%slot)
 {
-    %obj.schedule(0, playAudio, 1, L96BoltOpenSound);
-    %obj.schedule(300, playAudio, 1, L96BoltCloseSound);
+    %obj.schedule(0, playAudio, 1, BNE_L96BoltOpenSound);
+    %obj.schedule(300, playAudio, 1, BNE_L96BoltCloseSound);
 	%obj.aeplayThread(2, plant);
 	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 }
 
-function L96IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_L96IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -574,7 +574,7 @@ function L96IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function L96IronsightImage::onMount(%this,%obj,%slot)
+function BNE_L96IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 
@@ -587,7 +587,7 @@ function L96IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function L96IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_L96IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound);
@@ -598,7 +598,7 @@ function L96IronsightImage::onUnMount(%this,%obj,%slot)
 
 //ALT BIPOD STATES
 
-datablock ShapeBaseImageData(L96BipodImage : L96Image)
+datablock ShapeBaseImageData(BNE_L96BipodImage : BNE_L96Image)
 {
     shapeFile = "./L96/L96Bipod.dts";
 	recoilHeight = 0;
@@ -606,99 +606,99 @@ datablock ShapeBaseImageData(L96BipodImage : L96Image)
 	spreadBase = 0;
 	spreadMin = 0;
 	spreadMax = 0;
-	safetyImage = L96Image;
-    scopingImage = L96IronsightBipodImage;
+	safetyImage = BNE_L96Image;
+    scopingImage = BNE_L96IronsightBipodImage;
 	screenshakeMin = "0 0 0"; 
 	screenshakeMax = "0 0 0"; 
 	isSafetyImage = true;
 	isBipod = true;
 };
 
-function L96BipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_L96BipodImage::AEOnFire(%this,%obj,%slot)
 {
-	L96Image::AEOnFire(%this, %obj, %slot);
+	BNE_L96Image::AEOnFire(%this, %obj, %slot);
 }
 
-function L96BipodImage::AEOnLowClimb(%this, %obj, %slot)
+function BNE_L96BipodImage::AEOnLowClimb(%this, %obj, %slot)
 {
-	L96Image::AEOnLowClimb(%this, %obj, %slot);
+	BNE_L96Image::AEOnLowClimb(%this, %obj, %slot);
 }
 
-function L96BipodImage::onBolt(%this,%obj,%slot)
+function BNE_L96BipodImage::onBolt(%this,%obj,%slot)
 {
-	L96Image::onBolt(%this, %obj, %slot);
+	BNE_L96Image::onBolt(%this, %obj, %slot);
 }
-function L96BipodImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_L96BipodImage::onReload2MagOut(%this,%obj,%slot)
 {
-	L96Image::onReload2MagOut(%this, %obj, %slot);
-}
-
-function L96BipodImage::onReloadMagOut(%this,%obj,%slot)
-{
-	L96Image::onReloadMagOut(%this, %obj, %slot);
+	BNE_L96Image::onReload2MagOut(%this, %obj, %slot);
 }
 
-function L96BipodImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_L96BipodImage::onReloadMagOut(%this,%obj,%slot)
 {
-	L96Image::onReloadMagIn(%this, %obj, %slot);
+	BNE_L96Image::onReloadMagOut(%this, %obj, %slot);
 }
 
-function L96BipodImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_L96BipodImage::onReloadMagIn(%this,%obj,%slot)
 {
-	L96Image::onReload2MagIn(%this, %obj, %slot);
+	BNE_L96Image::onReloadMagIn(%this, %obj, %slot);
 }
 
-function L96BipodImage::onReloadStart(%this,%obj,%slot)
+function BNE_L96BipodImage::onReload2MagIn(%this,%obj,%slot)
 {
-	L96Image::onReloadStart(%this, %obj, %slot);
+	BNE_L96Image::onReload2MagIn(%this, %obj, %slot);
 }
 
-function L96BipodImage::onReload2Start(%this,%obj,%slot)
+function BNE_L96BipodImage::onReloadStart(%this,%obj,%slot)
 {
-	L96Image::onReload2Start(%this, %obj, %slot);
+	BNE_L96Image::onReloadStart(%this, %obj, %slot);
 }
 
-function L96BipodImage::onReloadEnd(%this,%obj,%slot)
+function BNE_L96BipodImage::onReload2Start(%this,%obj,%slot)
 {
-	L96Image::onReloadEnd(%this, %obj, %slot);
+	BNE_L96Image::onReload2Start(%this, %obj, %slot);
 }
 
-function L96BipodImage::onReload2End(%this,%obj,%slot)
+function BNE_L96BipodImage::onReloadEnd(%this,%obj,%slot)
 {
-	L96Image::onReload2End(%this, %obj, %slot);
+	BNE_L96Image::onReloadEnd(%this, %obj, %slot);
 }
 
-function L96BipodImage::onDryFire(%this, %obj, %slot)
+function BNE_L96BipodImage::onReload2End(%this,%obj,%slot)
 {
-	L96Image::onDryFire(%this, %obj, %slot);
+	BNE_L96Image::onReload2End(%this, %obj, %slot);
 }
 
-function L96BipodImage::onReady(%this,%obj,%slot)
+function BNE_L96BipodImage::onDryFire(%this, %obj, %slot)
 {
-	L96Image::onReady(%this, %obj, %slot);
+	BNE_L96Image::onDryFire(%this, %obj, %slot);
 }
 
-function L96BipodImage::onMount(%this,%obj,%slot)
+function BNE_L96BipodImage::onReady(%this,%obj,%slot)
 {
-	L96Image::onMount(%this, %obj, %slot);
+	BNE_L96Image::onReady(%this, %obj, %slot);
 }
 
-function L96BipodImage::onUnMount(%this, %obj, %slot)
+function BNE_L96BipodImage::onMount(%this,%obj,%slot)
 {
-	L96Image::onUnMount(%this, %obj, %slot);
+	BNE_L96Image::onMount(%this, %obj, %slot);
 }
 
-function L96BipodImage::onMagDrop(%this,%obj,%slot)
+function BNE_L96BipodImage::onUnMount(%this, %obj, %slot)
 {
-	L96Image::onMagDrop(%this, %obj, %slot);
+	BNE_L96Image::onUnMount(%this, %obj, %slot);
 }
 
-datablock ShapeBaseImageData(L96IronsightBipodImage : L96IronsightImage)
+function BNE_L96BipodImage::onMagDrop(%this,%obj,%slot)
+{
+	BNE_L96Image::onMagDrop(%this, %obj, %slot);
+}
+
+datablock ShapeBaseImageData(BNE_L96IronsightBipodImage : BNE_L96IronsightImage)
 {
     shapeFile = "./L96/L96Bipod.dts";
-	sourceImage = L96BipodImage;
-	scopingImage = L96BipodImage;
-	safetyImage = L96Image;
+	sourceImage = BNE_L96BipodImage;
+	scopingImage = BNE_L96BipodImage;
+	safetyImage = BNE_L96Image;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	spreadBase = 0;
@@ -710,41 +710,41 @@ datablock ShapeBaseImageData(L96IronsightBipodImage : L96IronsightImage)
 	isBipod = true;
 };
 
-function L96IronsightBipodImage::onDone(%this,%obj,%slot)
+function BNE_L96IronsightBipodImage::onDone(%this,%obj,%slot)
 {
-	L96IronsightImage::onDone(%this, %obj, %slot);
+	BNE_L96IronsightImage::onDone(%this, %obj, %slot);
 }
 
-function L96IronsightBipodImage::onReady(%this,%obj,%slot)
+function BNE_L96IronsightBipodImage::onReady(%this,%obj,%slot)
 {
-	L96IronsightImage::onReady(%this, %obj, %slot);
+	BNE_L96IronsightImage::onReady(%this, %obj, %slot);
 }
 
-function L96IronsightBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_L96IronsightBipodImage::AEOnFire(%this,%obj,%slot)
 {
-	L96IronsightImage::AEOnFire(%this, %obj, %slot);
+	BNE_L96IronsightImage::AEOnFire(%this, %obj, %slot);
 }
 
-function L96IronsightBipodImage::onBolt(%this,%obj,%slot)
+function BNE_L96IronsightBipodImage::onBolt(%this,%obj,%slot)
 {
-	L96IronsightImage::onBolt(%this, %obj, %slot);
+	BNE_L96IronsightImage::onBolt(%this, %obj, %slot);
 }
 
-function L96IronsightBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_L96IronsightBipodImage::onDryFire(%this, %obj, %slot)
 {
-	L96IronsightImage::onDryFire(%this, %obj, %slot);
+	BNE_L96IronsightImage::onDryFire(%this, %obj, %slot);
 }
 
 // HIDES ALL HAND NODES
 
-function L96IronsightBipodImage::onMount(%this,%obj,%slot)
+function BNE_L96IronsightBipodImage::onMount(%this,%obj,%slot)
 {
-	L96IronsightImage::onMount(%this, %obj, %slot);
+	BNE_L96IronsightImage::onMount(%this, %obj, %slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function L96IronsightBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_L96IronsightBipodImage::onUnMount(%this,%obj,%slot)
 {
-	L96IronsightImage::onUnMount(%this, %obj, %slot);
+	BNE_L96IronsightImage::onUnMount(%this, %obj, %slot);
 }

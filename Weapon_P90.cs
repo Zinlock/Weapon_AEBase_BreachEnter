@@ -1,18 +1,18 @@
-datablock AudioProfile(P90Fire1Sound)
+datablock AudioProfile(BNE_P90Fire1Sound)
 {
    filename    = "./Sounds/Fire/P90/P90_fire1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(P90Fire2Sound)
+datablock AudioProfile(BNE_P90Fire2Sound)
 {
    filename    = "./Sounds/Fire/P90/P90_fire2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-datablock AudioProfile(P90Fire3Sound)
+datablock AudioProfile(BNE_P90Fire3Sound)
 {
    filename    = "./Sounds/Fire/P90/P90_fire3.wav";
    description = MediumClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(P90Fire3Sound)
 };
 
 // P90
-datablock DebrisData(AEP90MagDebris)
+datablock DebrisData(BNE_P90MagDebris)
 {
 	shapeFile = "./P90/P90Mag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEP90MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(P90Item)
+datablock ItemData(BNE_P90Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(P90Item)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = P90Image;
+	image = BNE_P90Image;
 	canDrop = true;
 
 	AEAmmo = 50;
@@ -83,7 +83,7 @@ datablock ItemData(P90Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(P90Image)
+datablock ShapeBaseImageData(BNE_P90Image)
 {
    // Basic Item properties
    shapeFile = "./P90/P90.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(P90Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = P90Item;
+   item = BNE_P90Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(P90Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = P90SafetyImage;
-    scopingImage = P90IronsightImage;
+	safetyImage = BNE_P90SafetyImage;
+    scopingImage = BNE_P90IronsightImage;
 	doColorShift = true;
-	colorShiftColor = P90Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_P90Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 150; //min delay for when the shell sound plays
@@ -244,7 +244,7 @@ datablock ShapeBaseImageData(P90Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= P90MagOutSound;
+	stateSound[8]				= BNE_P90MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.25;
@@ -252,7 +252,7 @@ datablock ShapeBaseImageData(P90Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= P90MagInSound;
+	stateSound[9]				= BNE_P90MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -291,7 +291,7 @@ datablock ShapeBaseImageData(P90Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= P90MagOutSound;
+	stateSound[16]				= BNE_P90MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.25;
@@ -299,7 +299,7 @@ datablock ShapeBaseImageData(P90Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= P90MagInSound;
+	stateSound[17]				= BNE_P90MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -324,10 +324,10 @@ datablock ShapeBaseImageData(P90Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function P90Image::AEOnFire(%this,%obj,%slot)
+function BNE_P90Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, P90Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_P90Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -335,54 +335,54 @@ function P90Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function P90Image::onDryFire(%this, %obj, %slot)
+function BNE_P90Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function P90Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_P90Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(125, "aeplayThread", "3", "plant");
    %obj.schedule(125, "aeplayThread", "2", "shiftleft");
 }
 
-function P90Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_P90Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(125, "aeplayThread", "3", "plant");
    %obj.schedule(125, "aeplayThread", "2", "shiftleft");
-   %obj.schedule(350, playAudio, 1, P90BoltSound);
+   %obj.schedule(350, playAudio, 1, BNE_P90BoltSound);
 }
 
-function P90Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_P90Image::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, wrench);
 }
 
-function P90Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_P90Image::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, wrench);
 }
 
-function P90Image::onReloadEnd(%this,%obj,%slot)
+function BNE_P90Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function P90Image::onReload2End(%this,%obj,%slot)
+function BNE_P90Image::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 // MAGAZINE DROPPING
 
-function P90Image::onReloadStart(%this,%obj,%slot)
+function BNE_P90Image::onReloadStart(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(750,850),0,serverPlay3D,AEMagPlasticAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function P90Image::onReady(%this,%obj,%slot)
+function BNE_P90Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -392,7 +392,7 @@ function P90Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function P90Image::onMount(%this,%obj,%slot)
+function BNE_P90Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -401,7 +401,7 @@ function P90Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function P90Image::onUnMount(%this,%obj,%slot)
+function BNE_P90Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -415,7 +415,7 @@ function P90Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function P90Image::onMagDrop(%this,%obj,%slot)
+function BNE_P90Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -425,7 +425,7 @@ function P90Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(P90MagImage,0);
+	%a.mountImage(BNE_P90MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -433,14 +433,14 @@ function P90Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(P90MagImage)
+datablock ShapeBaseImageData(BNE_P90MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.05 0.175 0.3";
    rotation = eulerToMatrix( "0 0 15" );	
 	
-	casing = AEP90MagDebris;
+	casing = BNE_P90MagDebris;
 	shellExitDir        = "0.1 -0.1 0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -459,7 +459,7 @@ datablock ShapeBaseImageData(P90MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function P90MagImage::onDone(%this,%obj,%slot)
+function BNE_P90MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -468,7 +468,7 @@ function P90MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(P90SafetyImage)
+datablock ShapeBaseImageData(BNE_P90SafetyImage)
 {
    shapeFile = "./P90/P90.dts";
    emap = true;
@@ -478,14 +478,14 @@ datablock ShapeBaseImageData(P90SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = P90Item;
+   item = BNE_P90Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = P90Image;
+   safetyImage = BNE_P90Image;
    doColorShift = true;
-   colorShiftColor = P90Item.colorShiftColor;
+   colorShiftColor = BNE_P90Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -497,7 +497,7 @@ datablock ShapeBaseImageData(P90SafetyImage)
 
 };
 
-function P90SafetyImage::onMount(%this,%obj,%slot)
+function BNE_P90SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -506,7 +506,7 @@ function P90SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function P90SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_P90SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -516,12 +516,12 @@ function P90SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(P90IronsightImage : P90Image)
+datablock ShapeBaseImageData(BNE_P90IronsightImage : BNE_P90Image)
 {
 	recoilHeight = 0.1875;
 
-	scopingImage = P90Image;
-	sourceImage = P90Image;
+	scopingImage = BNE_P90Image;
+	sourceImage = BNE_P90Image;
 	
 	offset = "0 0 0";
 	eyeOffset = "0.00525 0.4 -1.01";
@@ -544,21 +544,21 @@ datablock ShapeBaseImageData(P90IronsightImage : P90Image)
 	stateSound[7]				= "";
 };
 
-function P90IronsightImage::onDone(%this,%obj,%slot)
+function BNE_P90IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function P90IronsightImage::onReady(%this,%obj,%slot)
+function BNE_P90IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function P90IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_P90IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, P90Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_P90Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -566,7 +566,7 @@ function P90IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function P90IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_P90IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -574,7 +574,7 @@ function P90IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function P90IronsightImage::onMount(%this,%obj,%slot)
+function BNE_P90IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -585,7 +585,7 @@ function P90IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function P90IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_P90IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

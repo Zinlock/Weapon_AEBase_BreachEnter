@@ -1,25 +1,25 @@
-datablock AudioProfile(M200Fire1Sound)
+datablock AudioProfile(BNE_M200Fire1Sound)
 {
    filename    = "./Sounds/Fire/M200/M200_FIRE_1.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(M200Fire2Sound)
+datablock AudioProfile(BNE_M200Fire2Sound)
 {
    filename    = "./Sounds/Fire/M200/M200_FIRE_2.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(M200Fire3Sound)
+datablock AudioProfile(BNE_M200Fire3Sound)
 {
    filename    = "./Sounds/Fire/M200/M200_FIRE_3.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(M200Fire4Sound)
+datablock AudioProfile(BNE_M200Fire4Sound)
 {
    filename    = "./Sounds/Fire/M200/M200_FIRE_4.wav";
    description = HeavyClose3D;
@@ -27,7 +27,7 @@ datablock AudioProfile(M200Fire4Sound)
 };
 
 // M200
-datablock DebrisData(AEM200MagDebris)
+datablock DebrisData(BNE_M200MagDebris)
 {
 	shapeFile = "./M200/M200Mag.dts";
 	lifetime = 2.0;
@@ -46,7 +46,7 @@ datablock DebrisData(AEM200MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(M200Item)
+datablock ItemData(BNE_M200Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -67,7 +67,7 @@ datablock ItemData(M200Item)
 	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = M200Image;
+	image = BNE_M200Image;
 	canDrop = true;
 
 	AEAmmo = 5;
@@ -89,7 +89,7 @@ datablock ItemData(M200Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(M200Image)
+datablock ShapeBaseImageData(BNE_M200Image)
 {
    // Basic Item properties
    shapeFile = "./M200/M200.dts";
@@ -113,7 +113,7 @@ datablock ShapeBaseImageData(M200Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = M200Item;
+   item = BNE_M200Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -128,10 +128,10 @@ datablock ShapeBaseImageData(M200Image)
    melee = false;
    //raise your arm up or not
    armReady = true;
-   safetyImage = M200BipodImage;
-   scopingImage = M200IronsightImage;
+   safetyImage = BNE_M200BipodImage;
+   scopingImage = BNE_M200IronsightImage;
    doColorShift = true;
-   colorShiftColor = M200Item.colorShiftColor;
+   colorShiftColor = BNE_M200Item.colorShiftColor;
 
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
@@ -262,7 +262,7 @@ datablock ShapeBaseImageData(M200Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= M200MagOutSound;
+	stateSound[8]				= BNE_M200MagOutSound;
 
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.65;
@@ -270,7 +270,7 @@ datablock ShapeBaseImageData(M200Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= M200MagInSound;
+	stateSound[9]				= BNE_M200MagInSound;
 
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -303,7 +303,7 @@ datablock ShapeBaseImageData(M200Image)
 	stateWaitForTimeout[15]			= true;
 	stateSequence[15]			= "ReloadStartEmpty";
 	stateEjectShell[15]                = true;
-	stateSound[15]				= M200BoltOpenSound;
+	stateSound[15]				= BNE_M200BoltOpenSound;
 
 	stateName[16]				= "Reload2MagOut";
 	stateTimeoutValue[16]			= 0.75;
@@ -311,7 +311,7 @@ datablock ShapeBaseImageData(M200Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOutEmpty";
-	stateSound[16]				= M200MagOutSound;
+	stateSound[16]				= BNE_M200MagOutSound;
 
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.65;
@@ -319,7 +319,7 @@ datablock ShapeBaseImageData(M200Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= M200MagInSound;
+	stateSound[17]				= BNE_M200MagInSound;
 
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -327,7 +327,7 @@ datablock ShapeBaseImageData(M200Image)
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEndEmpty";
-	stateSound[19]				= M200BoltCloseSound;
+	stateSound[19]				= BNE_M200BoltCloseSound;
 
 	stateName[20]				= "BoltCheck";
 	stateTransitionOnNoAmmo[20]		= "EmptyCheckA";
@@ -356,10 +356,10 @@ datablock ShapeBaseImageData(M200Image)
 	stateTransitionOnTriggerUp[25]	  	= "BoltCheck";
 };
 
-function M200Image::AEOnFire(%this,%obj,%slot)
+function BNE_M200Image::AEOnFire(%this,%obj,%slot)
 {
 	%obj.stopAudio(0);
-  %obj.playAudio(0, M200Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_M200Fire @ getRandom(1, 4) @ Sound);
 
 	%obj.blockImageDismount = true;
 	%obj.schedule(800, unBlockImageDismount);
@@ -367,50 +367,50 @@ function M200Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function M200Image::AEOnLowClimb(%this, %obj, %slot)
+function BNE_M200Image::AEOnLowClimb(%this, %obj, %slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
 
-function M200Image::onBolt(%this,%obj,%slot)
+function BNE_M200Image::onBolt(%this,%obj,%slot)
 {
-  %obj.schedule(0, playAudio, 1, M200BoltOpenSound);
-  %obj.schedule(350, playAudio, 1, M200BoltCloseSound);
+  %obj.schedule(0, playAudio, 1, BNE_M200BoltOpenSound);
+  %obj.schedule(350, playAudio, 1, BNE_M200BoltCloseSound);
 	%obj.aeplayThread(2, shiftleft);
 	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 }
-function M200Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_M200Image::onReload2MagOut(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, shiftright);
    %obj.aeplayThread(3, plant);
 }
 
-function M200Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_M200Image::onReloadMagOut(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, shiftright);
    %obj.aeplayThread(3, plant);
 }
 
-function M200Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_M200Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(100, "aeplayThread", "2", "shiftright");
    %obj.schedule(100, "aeplayThread", "3", "plant");
 }
 
-function M200Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_M200Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(100, "aeplayThread", "2", "shiftright");
    %obj.schedule(100, "aeplayThread", "3", "plant");
 }
 
-function M200Image::onReloadStart(%this,%obj,%slot)
+function BNE_M200Image::onReloadStart(%this,%obj,%slot)
 {
   %obj.reload3Schedule = %this.schedule(215,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(500,600),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function M200Image::onReload2Start(%this,%obj,%slot)
+function BNE_M200Image::onReload2Start(%this,%obj,%slot)
 {
   %obj.reload3Schedule = %this.schedule(400,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEMagMetalAR @ getRandom(1,2) @ Sound,%obj.getPosition());
@@ -418,24 +418,24 @@ function M200Image::onReload2Start(%this,%obj,%slot)
   %obj.aeplayThread(2, shiftleft);
 }
 
-function M200Image::onReloadEnd(%this,%obj,%slot)
+function BNE_M200Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function M200Image::onReload2End(%this,%obj,%slot)
+function BNE_M200Image::onReload2End(%this,%obj,%slot)
 {
     %obj.aeplayThread(2, shiftright);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function M200Image::onDryFire(%this, %obj, %slot)
+function BNE_M200Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function M200Image::onReady(%this,%obj,%slot)
+function BNE_M200Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -443,14 +443,14 @@ function M200Image::onReady(%this,%obj,%slot)
 		%obj.schedule(0, setImageAmmo, %slot, 0);
 }
 
-function M200Image::onMount(%this,%obj,%slot)
+function BNE_M200Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
 
-function M200Image::onUnMount(%this, %obj, %slot)
+function BNE_M200Image::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -464,7 +464,7 @@ function M200Image::onUnMount(%this, %obj, %slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function M200Image::onMagDrop(%this,%obj,%slot)
+function BNE_M200Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -474,7 +474,7 @@ function M200Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(M200MagImage,0);
+	%a.mountImage(BNE_M200MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -482,14 +482,14 @@ function M200Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(M200MagImage)
+datablock ShapeBaseImageData(BNE_M200MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.05 0.65 0.15";
    rotation = eulerToMatrix( "0 15 0" );
 
-	casing = AEM200MagDebris;
+	casing = BNE_M200MagDebris;
 	shellExitDir        = "-0.25 0.25 -0.75";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;
@@ -508,7 +508,7 @@ datablock ShapeBaseImageData(M200MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function M200MagImage::onDone(%this,%obj,%slot)
+function BNE_M200MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -517,7 +517,7 @@ function M200MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(M200SafetyImage)
+datablock ShapeBaseImageData(BNE_M200SafetyImage)
 {
    shapeFile = "./M200/M200.dts";
    emap = true;
@@ -527,14 +527,14 @@ datablock ShapeBaseImageData(M200SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = M200Item;
+   item = BNE_M200Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = M200Image;
+   safetyImage = BNE_M200Image;
    doColorShift = true;
-   colorShiftColor = M200Item.colorShiftColor;
+   colorShiftColor = BNE_M200Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -546,7 +546,7 @@ datablock ShapeBaseImageData(M200SafetyImage)
 
 };
 
-function M200SafetyImage::onMount(%this,%obj,%slot)
+function BNE_M200SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -555,7 +555,7 @@ function M200SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function M200SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_M200SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);
@@ -566,7 +566,7 @@ function M200SafetyImage::onUnMount(%this, %obj, %slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(M200IronsightImage : M200Image)
+datablock ShapeBaseImageData(BNE_M200IronsightImage : BNE_M200Image)
 {
 	recoilHeight = 0.2;
 	spreadBase = 0;
@@ -575,8 +575,8 @@ datablock ShapeBaseImageData(M200IronsightImage : M200Image)
 
 	isScopedImage = true;
 
-	scopingImage = M200Image;
-	sourceImage = M200Image;
+	scopingImage = BNE_M200Image;
+	sourceImage = BNE_M200Image;
 
 	offset = "0 0 0";
 	eyeOffset = "0.00175 1.75 -0.98552";
@@ -599,38 +599,38 @@ datablock ShapeBaseImageData(M200IronsightImage : M200Image)
 	stateSound[7]				= "";
 };
 
-function M200IronsightImage::onDone(%this,%obj,%slot)
+function BNE_M200IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function M200IronsightImage::onReady(%this,%obj,%slot)
+function BNE_M200IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function M200IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_M200IronsightImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(800, unBlockImageDismount);
 
 	cancel(%obj.reloadSoundSchedule);
 	%obj.stopAudio(0);
-	%obj.playAudio(0, M200Fire @ getRandom(1, 4) @ Sound);
+	%obj.playAudio(0, BNE_M200Fire @ getRandom(1, 4) @ Sound);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function M200IronsightImage::onBolt(%this,%obj,%slot)
+function BNE_M200IronsightImage::onBolt(%this,%obj,%slot)
 {
-  %obj.schedule(0, playAudio, 1, M200BoltOpenSound);
-  %obj.schedule(350, playAudio, 1, M200BoltCloseSound);
+  %obj.schedule(0, playAudio, 1, BNE_M200BoltOpenSound);
+  %obj.schedule(350, playAudio, 1, BNE_M200BoltCloseSound);
 	%obj.aeplayThread(2, plant);
 	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 }
 
-function M200IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_M200IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -638,7 +638,7 @@ function M200IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function M200IronsightImage::onMount(%this,%obj,%slot)
+function BNE_M200IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 
@@ -651,7 +651,7 @@ function M200IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function M200IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_M200IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());
@@ -662,7 +662,7 @@ function M200IronsightImage::onUnMount(%this,%obj,%slot)
 
 //ALT BIPOD STATES
 
-datablock ShapeBaseImageData(M200BipodImage : M200Image)
+datablock ShapeBaseImageData(BNE_M200BipodImage : BNE_M200Image)
 {
     shapeFile = "./M200/M200Bipod.dts";
 	recoilHeight = 0;
@@ -670,100 +670,100 @@ datablock ShapeBaseImageData(M200BipodImage : M200Image)
 	spreadBase = 0;
 	spreadMin = 0;
 	spreadMax = 0;
-	safetyImage = M200Image;
-    scopingImage = M200IronsightBipodImage;
+	safetyImage = BNE_M200Image;
+    scopingImage = BNE_M200IronsightBipodImage;
 	screenshakeMin = "0 0 0"; 
 	screenshakeMax = "0 0 0"; 
 	isSafetyImage = true;
 	isBipod = true;
 };
 
-function M200BipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_M200BipodImage::AEOnFire(%this,%obj,%slot)
 {
-	M200Image::AEOnFire(%this, %obj, %slot);
+	BNE_M200Image::AEOnFire(%this, %obj, %slot);
 }
 
-function M200BipodImage::AEOnLowClimb(%this, %obj, %slot)
+function BNE_M200BipodImage::AEOnLowClimb(%this, %obj, %slot)
 {
-	M200Image::AEOnLowClimb(%this, %obj, %slot);
+	BNE_M200Image::AEOnLowClimb(%this, %obj, %slot);
 }
 
-function M200BipodImage::onBolt(%this,%obj,%slot)
+function BNE_M200BipodImage::onBolt(%this,%obj,%slot)
 {
-	M200Image::onBolt(%this, %obj, %slot);
+	BNE_M200Image::onBolt(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_M200BipodImage::onReload2MagOut(%this,%obj,%slot)
 {
-	M200Image::onReload2MagOut(%this, %obj, %slot);
+	BNE_M200Image::onReload2MagOut(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_M200BipodImage::onReloadMagOut(%this,%obj,%slot)
 {
-	M200Image::onReloadMagOut(%this, %obj, %slot);
+	BNE_M200Image::onReloadMagOut(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_M200BipodImage::onReloadMagIn(%this,%obj,%slot)
 {
-	M200Image::onReloadMagIn(%this, %obj, %slot);
+	BNE_M200Image::onReloadMagIn(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_M200BipodImage::onReload2MagIn(%this,%obj,%slot)
 {
-	M200Image::onReload2MagIn(%this, %obj, %slot);
+	BNE_M200Image::onReload2MagIn(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReloadStart(%this,%obj,%slot)
+function BNE_M200BipodImage::onReloadStart(%this,%obj,%slot)
 {
-	M200Image::onReloadStart(%this, %obj, %slot);
+	BNE_M200Image::onReloadStart(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReload2Start(%this,%obj,%slot)
+function BNE_M200BipodImage::onReload2Start(%this,%obj,%slot)
 {
-	M200Image::onReload2Start(%this, %obj, %slot);
+	BNE_M200Image::onReload2Start(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReloadEnd(%this,%obj,%slot)
+function BNE_M200BipodImage::onReloadEnd(%this,%obj,%slot)
 {
-	M200Image::onReloadEnd(%this, %obj, %slot);
+	BNE_M200Image::onReloadEnd(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReload2End(%this,%obj,%slot)
+function BNE_M200BipodImage::onReload2End(%this,%obj,%slot)
 {
-	M200Image::onReload2End(%this, %obj, %slot);
+	BNE_M200Image::onReload2End(%this, %obj, %slot);
 }
 
-function M200BipodImage::onDryFire(%this, %obj, %slot)
+function BNE_M200BipodImage::onDryFire(%this, %obj, %slot)
 {
-	M200Image::onDryFire(%this, %obj, %slot);
+	BNE_M200Image::onDryFire(%this, %obj, %slot);
 }
 
-function M200BipodImage::onReady(%this,%obj,%slot)
+function BNE_M200BipodImage::onReady(%this,%obj,%slot)
 {
-	M200Image::onReady(%this, %obj, %slot);
+	BNE_M200Image::onReady(%this, %obj, %slot);
 }
 
-function M200BipodImage::onMount(%this,%obj,%slot)
+function BNE_M200BipodImage::onMount(%this,%obj,%slot)
 {
-	M200Image::onMount(%this, %obj, %slot);
+	BNE_M200Image::onMount(%this, %obj, %slot);
 }
 
-function M200BipodImage::onUnMount(%this, %obj, %slot)
+function BNE_M200BipodImage::onUnMount(%this, %obj, %slot)
 {
-	M200Image::onUnMount(%this, %obj, %slot);
+	BNE_M200Image::onUnMount(%this, %obj, %slot);
 }
 
-function M200BipodImage::onMagDrop(%this,%obj,%slot)
+function BNE_M200BipodImage::onMagDrop(%this,%obj,%slot)
 {
-	M200Image::onMagDrop(%this, %obj, %slot);
+	BNE_M200Image::onMagDrop(%this, %obj, %slot);
 }
 
-datablock ShapeBaseImageData(M200IronsightBipodImage : M200IronsightImage)
+datablock ShapeBaseImageData(BNE_M200IronsightBipodImage : BNE_M200IronsightImage)
 {
     shapeFile = "./M200/M200Bipod.dts";
-	sourceImage = M200BipodImage;
-	scopingImage = M200BipodImage;
-	safetyImage = M200Image;
+	sourceImage = BNE_M200BipodImage;
+	scopingImage = BNE_M200BipodImage;
+	safetyImage = BNE_M200Image;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	spreadBase = 0;
@@ -776,37 +776,37 @@ datablock ShapeBaseImageData(M200IronsightBipodImage : M200IronsightImage)
 	isBipod = true;
 };
 
-function M200IronsightBipodImage::onDone(%this,%obj,%slot)
+function BNE_M200IronsightBipodImage::onDone(%this,%obj,%slot)
 {
-	M200IronsightImage::onDone(%this, %obj, %slot);
+	BNE_M200IronsightImage::onDone(%this, %obj, %slot);
 }
 
-function M200IronsightBipodImage::onReady(%this,%obj,%slot)
+function BNE_M200IronsightBipodImage::onReady(%this,%obj,%slot)
 {
-	M200IronsightImage::onReady(%this, %obj, %slot);
+	BNE_M200IronsightImage::onReady(%this, %obj, %slot);
 }
 
-function M200IronsightBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_M200IronsightBipodImage::AEOnFire(%this,%obj,%slot)
 {
-	M200IronsightImage::AEOnFire(%this, %obj, %slot);
+	BNE_M200IronsightImage::AEOnFire(%this, %obj, %slot);
 }
 
-function M200IronsightBipodImage::onBolt(%this,%obj,%slot)
+function BNE_M200IronsightBipodImage::onBolt(%this,%obj,%slot)
 {
-	M200IronsightImage::onBolt(%this, %obj, %slot);
+	BNE_M200IronsightImage::onBolt(%this, %obj, %slot);
 }
 
-function M200IronsightBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_M200IronsightBipodImage::onDryFire(%this, %obj, %slot)
 {
-	M200IronsightImage::onDryFire(%this, %obj, %slot);
+	BNE_M200IronsightImage::onDryFire(%this, %obj, %slot);
 }
 
-function M200IronsightBipodImage::onMount(%this,%obj,%slot)
+function BNE_M200IronsightBipodImage::onMount(%this,%obj,%slot)
 {
-	M200IronsightImage::onMount(%this, %obj, %slot);
+	BNE_M200IronsightImage::onMount(%this, %obj, %slot);
 }
 
-function M200IronsightBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_M200IronsightBipodImage::onUnMount(%this,%obj,%slot)
 {
-	M200IronsightImage::onUnMount(%this, %obj, %slot);
+	BNE_M200IronsightImage::onUnMount(%this, %obj, %slot);
 }

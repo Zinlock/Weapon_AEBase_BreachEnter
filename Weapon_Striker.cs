@@ -1,18 +1,18 @@
-datablock AudioProfile(StrikerFire1Sound)
+datablock AudioProfile(BNE_StrikerFire1Sound)
 {
    filename    = "./Sounds/Fire/Striker/Striker_fire1.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(StrikerFire2Sound)
+datablock AudioProfile(BNE_StrikerFire2Sound)
 {
    filename    = "./Sounds/Fire/Striker/Striker_fire2.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(StrikerFire3Sound)
+datablock AudioProfile(BNE_StrikerFire3Sound)
 {
    filename    = "./Sounds/Fire/Striker/Striker_fire3.wav";
    description = HeavyClose3D;
@@ -22,7 +22,7 @@ datablock AudioProfile(StrikerFire3Sound)
 //////////
 // item //
 //////////
-datablock ItemData(StrikerItem)
+datablock ItemData(BNE_StrikerItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -43,7 +43,7 @@ datablock ItemData(StrikerItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = StrikerImage;
+	image = BNE_StrikerImage;
 	canDrop = true;
 	
 	AEAmmo = 12;
@@ -65,7 +65,7 @@ datablock ItemData(StrikerItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(StrikerImage)
+datablock ShapeBaseImageData(BNE_StrikerImage)
 {
    // Basic Item properties
    shapeFile = "./Striker/Striker12.dts";
@@ -89,7 +89,7 @@ datablock ShapeBaseImageData(StrikerImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = StrikerItem;
+   item = BNE_StrikerItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -104,10 +104,10 @@ datablock ShapeBaseImageData(StrikerImage)
    melee = false;
    //raise your arm up or not
    armReady = true;
-   safetyImage = StrikerSafetyImage;
-   scopingImage = StrikerIronsightImage;
+   safetyImage = BNE_StrikerSafetyImage;
+   scopingImage = BNE_StrikerIronsightImage;
    doColorShift = true;
-   colorShiftColor = StrikerItem.colorShiftColor;
+   colorShiftColor = BNE_StrikerItem.colorShiftColor;
 	shellSound = AEShellShotgun;
 	shellSoundMin = 600; //min delay for when the shell sound plays
 	shellSoundMax = 700; //max delay for when the shell sound plays
@@ -294,7 +294,7 @@ datablock ShapeBaseImageData(StrikerImage)
 	stateScript[23]				= "AEShotgunLoadOneEffectless";
 };
 
-function StrikerImage::AEOnFire(%this,%obj,%slot)
+function BNE_StrikerImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(400, unBlockImageDismount);
@@ -304,33 +304,33 @@ function StrikerImage::AEOnFire(%this,%obj,%slot)
 	cancel(%obj.reloadSound2Schedule);
 	cancel(%obj.reloadSound3Schedule);
 	%obj.stopAudio(0); 
-	%obj.playAudio(0, StrikerFire @ getRandom(1, 3) @ Sound);	
+	%obj.playAudio(0, BNE_StrikerFire @ getRandom(1, 3) @ Sound);	
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function StrikerImage::AEOnLowClimb(%this, %obj, %slot) 
+function BNE_StrikerImage::AEOnLowClimb(%this, %obj, %slot) 
 {
    %obj.aeplayThread(2, plant);
 }
 
-function StrikerImage::onReloadStart(%this, %obj, %slot)
+function BNE_StrikerImage::onReloadStart(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, shiftleft); 
 }
 
-function StrikerImage::onEndReload(%this, %obj, %slot)
+function BNE_StrikerImage::onEndReload(%this, %obj, %slot)
 {
 //	%obj.aeplayThread(2, shiftleft); 
 }
 
-function StrikerImage::onDryFire(%this, %obj, %slot)
+function BNE_StrikerImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function StrikerImage::onReady(%this,%obj,%slot)
+function BNE_StrikerImage::onReady(%this,%obj,%slot)
 {
 	if(getSimTime() - %obj.reloadTime[%this.getID()] <= %this.stateTimeoutValue[0] * 1000 + 1000)
 		%obj.schedule(0, setImageAmmo, %slot, 0);
@@ -340,13 +340,13 @@ function StrikerImage::onReady(%this,%obj,%slot)
 	%this.AEPreAmmoCheck(%obj, %slot);
 }
 
-function StrikerImage::onMount(%this,%obj,%slot)
+function BNE_StrikerImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
 
-function StrikerImage::onUnMount(%this, %obj, %slot)
+function BNE_StrikerImage::onUnMount(%this, %obj, %slot)
 {	
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -358,22 +358,22 @@ function StrikerImage::onUnMount(%this, %obj, %slot)
 	parent::onUnMount(%this,%obj,%slot);	
 }
 
-function StrikerImage::AEShotgunLoadOne(%this,%obj,%slot)
+function BNE_StrikerImage::AEShotgunLoadOne(%this,%obj,%slot)
 {
-	%obj.reloadSoundSchedule = schedule(150, 0, serverPlay3D, "StrikerInsert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
+	%obj.reloadSoundSchedule = schedule(150, 0, serverPlay3D, "BNE_StrikerInsert" @ getRandom(1, 3) @ "Sound", %obj.getPosition());
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
    %obj.schedule(50, "aeplayThread", "3", "shiftleft");
 	Parent::AEShotgunLoadOne(%this, %obj, %slot);
 }
 
-function StrikerImage::PartCycle(%this,%obj,%slot)
+function BNE_StrikerImage::PartCycle(%this,%obj,%slot)
 {
-	serverPlay3D(StrikerCloseSound,%obj.getPosition());	
+	serverPlay3D(BNE_StrikerCloseSound,%obj.getPosition());	
 	%obj.aeplayThread(2, shiftleft);
 	%obj.aeplayThread(3, plant); 
 }
 
-function StrikerImage::AEShotgunLoadOneEffectless(%this,%obj,%slot)
+function BNE_StrikerImage::AEShotgunLoadOneEffectless(%this,%obj,%slot)
 {
 	Parent::AEShotgunLoadOne(%this, %obj, %slot);
 }
@@ -382,7 +382,7 @@ function StrikerImage::AEShotgunLoadOneEffectless(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(StrikerSafetyImage)
+datablock ShapeBaseImageData(BNE_StrikerSafetyImage)
 {
    shapeFile = "./Striker/Striker12.dts";
    emap = true;
@@ -392,14 +392,14 @@ datablock ShapeBaseImageData(StrikerSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = StrikerItem;
+   item = BNE_StrikerItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = StrikerImage;
+   safetyImage = BNE_StrikerImage;
    doColorShift = true;
-   colorShiftColor = StrikerItem.colorShiftColor;
+   colorShiftColor = BNE_StrikerItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -411,7 +411,7 @@ datablock ShapeBaseImageData(StrikerSafetyImage)
 
 };
 
-function StrikerSafetyImage::onMount(%this,%obj,%slot)
+function BNE_StrikerSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -420,7 +420,7 @@ function StrikerSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function StrikerSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_StrikerSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -431,12 +431,12 @@ function StrikerSafetyImage::onUnMount(%this, %obj, %slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(StrikerIronsightImage : StrikerImage)
+datablock ShapeBaseImageData(BNE_StrikerIronsightImage : BNE_StrikerImage)
 {
 	recoilHeight = 0.875;
 
-	scopingImage = StrikerImage;
-	sourceImage = StrikerImage;
+	scopingImage = BNE_StrikerImage;
+	sourceImage = BNE_StrikerImage;
 	
    offset = "0 0 -0.015";
 	eyeOffset = "-0.001 1.25 -1.088";
@@ -459,37 +459,37 @@ datablock ShapeBaseImageData(StrikerIronsightImage : StrikerImage)
 	stateSound[9]				= "";
 };
 
-function StrikerIronsightImage::onDone(%this,%obj,%slot)
+function BNE_StrikerIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function StrikerIronsightImage::onReady(%this,%obj,%slot)
+function BNE_StrikerIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function StrikerIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_StrikerIronsightImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.blockImageDismount = true;
 	%obj.schedule(400, unBlockImageDismount);
 
 	cancel(%obj.reloadSoundSchedule);
 	%obj.stopAudio(0); 
-	%obj.playAudio(0, StrikerFire @ getRandom(1, 3) @ Sound);	
+	%obj.playAudio(0, BNE_StrikerFire @ getRandom(1, 3) @ Sound);	
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function StrikerIronsightImage::onPump(%this,%obj,%slot)
+function BNE_StrikerIronsightImage::onPump(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
 	schedule(500, 0, serverPlay3D, AEShellShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
 	serverPlay3D(StrikerPumpSound,%obj.getPosition());	
 }
 
-function StrikerIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_StrikerIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -497,7 +497,7 @@ function StrikerIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function StrikerIronsightImage::onMount(%this,%obj,%slot)
+function BNE_StrikerIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -508,7 +508,7 @@ function StrikerIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function StrikerIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_StrikerIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

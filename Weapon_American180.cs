@@ -1,11 +1,11 @@
-datablock AudioProfile(American180FireLoopSound)
+datablock AudioProfile(BNE_American180FireLoopSound)
 {
    filename    = "./Sounds/Fire/American180/a180_LP.wav";
    description = BAADFireLightLoop3D;
    preload = true;
 };
 
-datablock AudioProfile(American180FireLoopEndSound)
+datablock AudioProfile(BNE_American180FireLoopEndSound)
 {
    filename    = "./Sounds/Fire/American180/a180_LP_end.wav";
    description = LightClose3D;
@@ -13,7 +13,7 @@ datablock AudioProfile(American180FireLoopEndSound)
 };
 
 // American180
-datablock DebrisData(AEAmerican180MagDebris)
+datablock DebrisData(BNE_American180MagDebris)
 {
 	shapeFile = "./American180/American180Mag.dts";
 	lifetime = 2.0;
@@ -32,7 +32,7 @@ datablock DebrisData(AEAmerican180MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(American180Item)
+datablock ItemData(BNE_American180Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -53,7 +53,7 @@ datablock ItemData(American180Item)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = American180Image;
+	image = BNE_American180Image;
 	canDrop = true;
 
 	AEAmmo = 165;
@@ -76,7 +76,7 @@ datablock ItemData(American180Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(American180Image)
+datablock ShapeBaseImageData(BNE_American180Image)
 {
    // Basic Item properties
    shapeFile = "./American180/American180.dts";
@@ -100,7 +100,7 @@ datablock ShapeBaseImageData(American180Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = American180Item;
+   item = BNE_American180Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -116,12 +116,12 @@ datablock ShapeBaseImageData(American180Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = American180SafetyImage;
-    scopingImage = American180IronsightImage;
+	safetyImage = BNE_American180SafetyImage;
+    scopingImage = BNE_American180IronsightImage;
 	doColorShift = true;
-	colorShiftColor = American180Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_American180Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
-    loopingEndSound = American180FireLoopEndSound;
+    loopingEndSound = BNE_American180FireLoopEndSound;
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 200; //min delay for when the shell sound plays
@@ -227,7 +227,7 @@ datablock ShapeBaseImageData(American180Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= American180MagOutSound;
+	stateSound[8]				= BNE_American180MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -235,7 +235,7 @@ datablock ShapeBaseImageData(American180Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= American180MagInSound;
+	stateSound[9]				= BNE_American180MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.35;
@@ -274,7 +274,7 @@ datablock ShapeBaseImageData(American180Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= American180MagOutSound;
+	stateSound[16]				= BNE_American180MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
@@ -282,7 +282,7 @@ datablock ShapeBaseImageData(American180Image)
 	stateTransitionOnTimeout[17]		= "Reload2Bolt";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= American180MagInSound;
+	stateSound[17]				= BNE_American180MagInSound;
 	
 	stateName[18]				= "Reload2Bolt";
 	stateTimeoutValue[18]			= 0.35;
@@ -290,7 +290,7 @@ datablock ShapeBaseImageData(American180Image)
 	stateTransitionOnTimeout[18]		= "Reload2End";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "Bolt";
-	stateSound[18]				= American180BoltSound;
+	stateSound[18]				= BNE_American180BoltSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.35;
@@ -327,9 +327,9 @@ datablock ShapeBaseImageData(American180Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function American180Image::AEOnFire(%this,%obj,%slot)
+function BNE_American180Image::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, American180FireLoopSound);
+	%obj.playAudio(0, BNE_American180FireLoopSound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -338,61 +338,61 @@ function American180Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function American180Image::onEndLoop(%this, %obj, %slot)
+function BNE_American180Image::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function American180Image::onDryFire(%this, %obj, %slot)
+function BNE_American180Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function American180Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_American180Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function American180Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_American180Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function American180Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_American180Image::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, plant);
 }
 
-function American180Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_American180Image::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
    %obj.aeplayThread(3, plant);
 }
 
-function American180Image::onReload2Bolt(%this,%obj,%slot)
+function BNE_American180Image::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function American180Image::onReloadEnd(%this,%obj,%slot)
+function BNE_American180Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function American180Image::onReloadStart(%this,%obj,%slot)
+function BNE_American180Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(325,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(600,700),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function American180Image::onReady(%this,%obj,%slot)
+function BNE_American180Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -402,7 +402,7 @@ function American180Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function American180Image::onMount(%this,%obj,%slot)
+function BNE_American180Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -411,7 +411,7 @@ function American180Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function American180Image::onUnMount(%this,%obj,%slot)
+function BNE_American180Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -425,7 +425,7 @@ function American180Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function American180Image::onMagDrop(%this,%obj,%slot)
+function BNE_American180Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -435,7 +435,7 @@ function American180Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(American180MagImage,0);
+	%a.mountImage(BNE_American180MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -443,14 +443,14 @@ function American180Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(American180MagImage)
+datablock ShapeBaseImageData(BNE_American180MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.35 0.5 0.5";
    rotation = eulerToMatrix( "0 -25 0" );	
 	
-	casing = AEAmerican180MagDebris;
+	casing = BNE_American180MagDebris;
 	shellExitDir        = "-1 0 0.5";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -469,7 +469,7 @@ datablock ShapeBaseImageData(American180MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function American180MagImage::onDone(%this,%obj,%slot)
+function BNE_American180MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -478,7 +478,7 @@ function American180MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(American180SafetyImage)
+datablock ShapeBaseImageData(BNE_American180SafetyImage)
 {
    shapeFile = "./American180/American180.dts";
    emap = true;
@@ -488,14 +488,14 @@ datablock ShapeBaseImageData(American180SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = American180Item;
+   item = BNE_American180Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = American180Image;
+   safetyImage = BNE_American180Image;
    doColorShift = true;
-   colorShiftColor = American180Item.colorShiftColor;
+   colorShiftColor = BNE_American180Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -507,7 +507,7 @@ datablock ShapeBaseImageData(American180SafetyImage)
 
 };
 
-function American180SafetyImage::onMount(%this,%obj,%slot)
+function BNE_American180SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -516,7 +516,7 @@ function American180SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function American180SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_American180SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -526,12 +526,12 @@ function American180SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(American180IronsightImage : American180Image)
+datablock ShapeBaseImageData(BNE_American180IronsightImage : BNE_American180Image)
 {
 	recoilHeight = 0.025;
 
-	scopingImage = American180Image;
-	sourceImage = American180Image;
+	scopingImage = BNE_American180Image;
+	sourceImage = BNE_American180Image;
 	
    offset = "0 0.026 -0.025";
 	eyeOffset = "0.00225 1.0 -0.4425";
@@ -554,20 +554,20 @@ datablock ShapeBaseImageData(American180IronsightImage : American180Image)
 	stateSound[7]				= "";
 };
 
-function American180IronsightImage::onDone(%this,%obj,%slot)
+function BNE_American180IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function American180IronsightImage::onReady(%this,%obj,%slot)
+function BNE_American180IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function American180IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_American180IronsightImage::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, American180FireLoopSound);
+	%obj.playAudio(0, BNE_American180FireLoopSound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -576,13 +576,13 @@ function American180IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function American180IronsightImage::onEndLoop(%this, %obj, %slot)
+function BNE_American180IronsightImage::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function American180IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_American180IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -590,7 +590,7 @@ function American180IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function American180IronsightImage::onMount(%this,%obj,%slot)
+function BNE_American180IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -601,7 +601,7 @@ function American180IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function American180IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_American180IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

@@ -34,7 +34,7 @@ datablock AudioProfile(BNE_SaigaFire3Sound)
 };
 
 // Saiga
-datablock DebrisData(AEBNE_SaigaMagDebris)
+datablock DebrisData(BNE_SaigaMagDebris)
 {
 	shapeFile = "./Saiga/SaigaMag.dts";
 	lifetime = 2.0;
@@ -250,7 +250,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= RPKMagOutSound;
+	stateSound[8]				= BNE_RPKMagOutSound;
 
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.65;
@@ -258,7 +258,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= RPKMagInSound;
+	stateSound[9]				= BNE_RPKMagInSound;
 
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.35;
@@ -297,7 +297,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= RPKMagOutSound;
+	stateSound[16]				= BNE_RPKMagOutSound;
 
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.65;
@@ -305,7 +305,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= RPKMagInSound;
+	stateSound[17]				= BNE_RPKMagInSound;
 
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.45;
@@ -391,7 +391,7 @@ function BNE_SaigaImage::onReload2MagOut(%this,%obj,%slot)
 function BNE_SaigaImage::onReload2End(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
-    %obj.schedule(150, playAudio, 1, AKBoltPullSound);
+    %obj.schedule(150, playAudio, 1, BNE_AKBoltPullSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
@@ -451,7 +451,7 @@ function BNE_SaigaImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(SaigaMagImage,0);
+	%a.mountImage(BNE_SaigaMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -459,14 +459,14 @@ function BNE_SaigaImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(SaigaMagImage)
+datablock ShapeBaseImageData(BNE_SaigaMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.15 0.7 0.15";
    rotation = eulerToMatrix( "0 40 0" );
 
-	casing = AEBNE_SaigaMagDebris;
+	casing = BNE_SaigaMagDebris;
 	shellExitDir        = "0 1 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;
@@ -485,7 +485,7 @@ datablock ShapeBaseImageData(SaigaMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function SaigaMagImage::onDone(%this,%obj,%slot)
+function BNE_SaigaMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }

@@ -1,18 +1,18 @@
-datablock AudioProfile(FMGFire1Sound)
+datablock AudioProfile(BNE_FMGFire1Sound)
 {
    filename    = "./Sounds/Fire/FMG/FMG_fire1.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(FMGFire2Sound)
+datablock AudioProfile(BNE_FMGFire2Sound)
 {
    filename    = "./Sounds/Fire/FMG/FMG_fire2.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(FMGFire3Sound)
+datablock AudioProfile(BNE_FMGFire3Sound)
 {
    filename    = "./Sounds/Fire/FMG/FMG_fire3.wav";
    description = LightClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(FMGFire3Sound)
 };
 
 // FMG
-datablock DebrisData(AEFMGMagDebris)
+datablock DebrisData(BNE_FMGMagDebris)
 {
 	shapeFile = "./FMG/FMGMag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEFMGMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(FMGItem)
+datablock ItemData(BNE_FMGItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(FMGItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = FMGEquipImage;
+	image = BNE_FMGEquipImage;
 	canDrop = true;
 
 	AEAmmo = 32;
@@ -83,7 +83,7 @@ datablock ItemData(FMGItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(FMGImage)
+datablock ShapeBaseImageData(BNE_FMGImage)
 {
    // Basic Item properties
    shapeFile = "./FMG/FMG.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(FMGImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = FMGItem;
+   item = BNE_FMGItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(FMGImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = FMGSafetyImage;
-    scopingImage = FMGIronsightImage;
+	safetyImage = BNE_FMGSafetyImage;
+    scopingImage = BNE_FMGIronsightImage;
 	doColorShift = true;
-	colorShiftColor = FMGItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_FMGItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -228,7 +228,7 @@ datablock ShapeBaseImageData(FMGImage)
 	stateTransitionOnTimeout[7]		= "ReloadMagOut";
 	stateWaitForTimeout[7]			= true;
 	stateSequence[7]			= "MagOut";
-	stateSound[7]				= FMGMagOutSound;
+	stateSound[7]				= BNE_FMGMagOutSound;
 	
 	stateName[8]				= "ReloadMagOut";
 	stateTimeoutValue[8]			= 0.25;
@@ -243,7 +243,7 @@ datablock ShapeBaseImageData(FMGImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= FMGMagInSound;
+	stateSound[9]				= BNE_FMGMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -275,7 +275,7 @@ datablock ShapeBaseImageData(FMGImage)
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
 	stateWaitForTimeout[15]			= true;
 	stateSequence[15]			= "MagOut";
-	stateSound[15]				= FMGMagOutSound;
+	stateSound[15]				= BNE_FMGMagOutSound;
 	
 	stateName[16]				= "Reload2MagOut";
 	stateTimeoutValue[16]			= 0.25;
@@ -290,7 +290,7 @@ datablock ShapeBaseImageData(FMGImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= FMGMagInSound;
+	stateSound[17]				= BNE_FMGMagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.65;
@@ -315,10 +315,10 @@ datablock ShapeBaseImageData(FMGImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function FMGImage::AEOnFire(%this,%obj,%slot)
+function BNE_FMGImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, FMGFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_FMGFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -326,36 +326,36 @@ function FMGImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FMGImage::onDryFire(%this, %obj, %slot)
+function BNE_FMGImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function FMGImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_FMGImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(25, "aeplayThread", "3", "shiftright");
 }
 
-function FMGImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_FMGImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(25, "aeplayThread", "3", "shiftright");
-   %obj.schedule(650, playAudio, 1, FMGBoltSound);
+   %obj.schedule(650, playAudio, 1, BNE_FMGBoltSound);
 }
 
-function FMGImage::onReloadEnd(%this,%obj,%slot)
+function BNE_FMGImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function FMGImage::onReload2End(%this,%obj,%slot)
+function BNE_FMGImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function FMGImage::onReloadStart(%this,%obj,%slot)
+function BNE_FMGImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.schedule(300, "aeplayThread", "3", "shiftleft");
    %obj.aeplayThread(2, wrench);
@@ -364,7 +364,7 @@ function FMGImage::onReloadStart(%this,%obj,%slot)
    %obj.reload4Schedule = schedule(getRandom(100,150),0,serverPlay3D,AEMagPlasticAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function FMGImage::onReady(%this,%obj,%slot)
+function BNE_FMGImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -374,7 +374,7 @@ function FMGImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function FMGImage::onMount(%this,%obj,%slot)
+function BNE_FMGImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -383,7 +383,7 @@ function FMGImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FMGImage::onUnMount(%this,%obj,%slot)
+function BNE_FMGImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -397,7 +397,7 @@ function FMGImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function FMGImage::onMagDrop(%this,%obj,%slot)
+function BNE_FMGImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -407,7 +407,7 @@ function FMGImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(FMGMagImage,0);
+	%a.mountImage(FMGEquipImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -415,14 +415,14 @@ function FMGImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(FMGMagImage)
+datablock ShapeBaseImageData(FMGEquipImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0 0.075 -0.1";
    rotation = eulerToMatrix( "0 0 0" );	
 	
-	casing = AEFMGMagDebris;
+	casing = BNE_FMGMagDebris;
 	shellExitDir        = "0 -0.05 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -441,7 +441,7 @@ datablock ShapeBaseImageData(FMGMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function FMGMagImage::onDone(%this,%obj,%slot)
+function FMGEquipImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -450,7 +450,7 @@ function FMGMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(FMGSafetyImage)
+datablock ShapeBaseImageData(BNE_FMGSafetyImage)
 {
    shapeFile = "./FMG/FMG.dts";
    emap = true;
@@ -460,14 +460,14 @@ datablock ShapeBaseImageData(FMGSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = FMGItem;
+   item = BNE_FMGItem;
    ammo = " ";
    melee = false;
    armReady = true;
    hideHands = false;
-   safetyImage = FMGEquipImage;
+   safetyImage = BNE_FMGEquipImage;
    doColorShift = true;
-   colorShiftColor = FMGItem.colorShiftColor;
+   colorShiftColor = BNE_FMGItem.colorShiftColor;
    
 		flashlightDistance = 8;
 		laserOffStates = "";
@@ -483,7 +483,7 @@ datablock ShapeBaseImageData(FMGSafetyImage)
 
 };
 
-function FMGSafetyImage::onMount(%this,%obj,%slot)
+function BNE_FMGSafetyImage::onMount(%this,%obj,%slot)
 {
     %obj.mount1Schedule = %obj.schedule(0, playAudio, 1, FMGFlipCloseSound);
 	%this.AEMountSetup(%obj, %slot);
@@ -495,7 +495,7 @@ function FMGSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function FMGSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_FMGSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	cancel(%obj.mount1Schedule);
@@ -509,12 +509,12 @@ function FMGSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(FMGIronsightImage : FMGImage)
+datablock ShapeBaseImageData(BNE_FMGIronsightImage : BNE_FMGImage)
 {
 	recoilHeight = 0.125;
 
-	scopingImage = FMGImage;
-	sourceImage = FMGImage;
+	scopingImage = BNE_FMGImage;
+	sourceImage = BNE_FMGImage;
 	
 	offset = "0 0 0";
 	eyeOffset = "0 1.0 -1.215";
@@ -537,21 +537,21 @@ datablock ShapeBaseImageData(FMGIronsightImage : FMGImage)
 	stateSound[7]				= "";
 };
 
-function FMGIronsightImage::onDone(%this,%obj,%slot)
+function BNE_FMGIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function FMGIronsightImage::onReady(%this,%obj,%slot)
+function BNE_FMGIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function FMGIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_FMGIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, FMGFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_FMGFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -559,7 +559,7 @@ function FMGIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function FMGIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_FMGIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -567,7 +567,7 @@ function FMGIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function FMGIronsightImage::onMount(%this,%obj,%slot)
+function BNE_FMGIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -578,7 +578,7 @@ function FMGIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function FMGIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_FMGIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());
@@ -588,7 +588,7 @@ function FMGIronsightImage::onUnMount(%this,%obj,%slot)
 
 // EQUIP IMAGE THING
 
-datablock ShapeBaseImageData(FMGEquipImage)
+datablock ShapeBaseImageData(BNE_FMGEquipImage)
 {
    shapeFile = "./FMG/FMG.dts";
    emap = true;
@@ -598,14 +598,14 @@ datablock ShapeBaseImageData(FMGEquipImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = FMGItem;
-   sourceImage = FMGImage;
+   item = BNE_FMGItem;
+   sourceImage = BNE_FMGImage;
    ammo = " ";
    melee = false;
    armReady = true;
    hideHands = false;
    doColorShift = true;
-   colorShiftColor = FMGItem.colorShiftColor;
+   colorShiftColor = BNE_FMGItem.colorShiftColor;
    
 		flashlightDistance = 8;
 		laserOffStates = "";
@@ -627,7 +627,7 @@ datablock ShapeBaseImageData(FMGEquipImage)
 
 };
 
-function FMGEquipImage::onMount(%this,%obj,%slot)
+function BNE_FMGEquipImage::onMount(%this,%obj,%slot)
 {
     %obj.schedule(50, playAudio, 1, FMGFlipSound);
     %obj.schedule(100, "aeplayThread", "2", "shiftdown");
@@ -637,13 +637,13 @@ function FMGEquipImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function FMGEquipImage::onUnMount(%this, %obj, %slot)
+function BNE_FMGEquipImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	parent::onUnMount(%this,%obj,%slot);	
 }
 
-function FMGEquipImage::onDone(%this,%obj,%slot)
+function BNE_FMGEquipImage::onDone(%this,%obj,%slot)
 {
 	%obj.mountImage(%this.sourceImage, 0);
 }

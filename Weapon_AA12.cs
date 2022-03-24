@@ -1,11 +1,11 @@
-datablock AudioProfile(AA12FireLoopASound)
+datablock AudioProfile(BNE_AA12FireLoopASound)
 {
    filename    = "./Sounds/Fire/AA12/AA12_LP_A.wav";
    description = BAADFireHeavyLoop3D;
    preload = true;
 };
 
-datablock AudioProfile(AA12FireLoopEndSound)
+datablock AudioProfile(BNE_AA12FireLoopEndSound)
 {
    filename    = "./Sounds/Fire/AA12/AA12_LP_END.wav";
    description = HeavyClose3D;
@@ -13,7 +13,7 @@ datablock AudioProfile(AA12FireLoopEndSound)
 };
 
 // AA12
-datablock DebrisData(AEAA12MagDebris)
+datablock DebrisData(BNE_AA12MagDebris)
 {
 	shapeFile = "./AA12/AA12Mag.dts";
 	lifetime = 2.0;
@@ -32,7 +32,7 @@ datablock DebrisData(AEAA12MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(AA12Item)
+datablock ItemData(BNE_AA12Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -53,7 +53,7 @@ datablock ItemData(AA12Item)
 	colorShiftColor = "0.25 0.25 0.25 1";
 
 	 // Dynamic properties defined by the scripts
-	image = AA12Image;
+	image = BNE_AA12Image;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -76,7 +76,7 @@ datablock ItemData(AA12Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(AA12Image)
+datablock ShapeBaseImageData(BNE_AA12Image)
 {
    // Basic Item properties
    shapeFile = "./AA12/AA12.dts";
@@ -100,7 +100,7 @@ datablock ShapeBaseImageData(AA12Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = AA12Item;
+   item = BNE_AA12Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -116,16 +116,16 @@ datablock ShapeBaseImageData(AA12Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = AA12SafetyImage;
-    scopingImage = AA12IronsightImage;
+	safetyImage = BNE_AA12SafetyImage;
+    scopingImage = BNE_AA12IronsightImage;
 	doColorShift = true;
-	colorShiftColor = AA12Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_AA12Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellShotgun;
 	shellSoundMin = 500; //min delay for when the shell sound plays
 	shellSoundMax = 600; //max delay for when the shell sound plays
 
-    loopingEndSound = AA12FireLoopEndSound;
+    loopingEndSound = BNE_AA12FireLoopEndSound;
 
 	muzzleFlashScale = "1.5 1.5 1.5";
 	bulletScale = "1 1 1";
@@ -237,7 +237,7 @@ datablock ShapeBaseImageData(AA12Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AA12MagOutSound;
+	stateSound[8]				= BNE_AA12MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.35;
@@ -245,7 +245,7 @@ datablock ShapeBaseImageData(AA12Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AA12MagInSound;
+	stateSound[9]				= BNE_AA12MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -277,7 +277,7 @@ datablock ShapeBaseImageData(AA12Image)
 	stateTransitionOnTimeout[15]		= "Reload2Start";
 	stateWaitForTimeout[15]			= true;
 	stateSequence[15]			= "BoltBack";
-	stateSound[15]				= AA12BoltSound;
+	stateSound[15]				= BNE_AA12BoltSound;
 	
 	stateName[18]				= "Reload2Start";
 	stateTimeoutValue[18]			= 0.25;
@@ -292,7 +292,7 @@ datablock ShapeBaseImageData(AA12Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AA12MagOutSound;
+	stateSound[16]				= BNE_AA12MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
@@ -300,7 +300,7 @@ datablock ShapeBaseImageData(AA12Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AA12MagInSound;
+	stateSound[17]				= BNE_AA12MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.25;
@@ -343,9 +343,9 @@ datablock ShapeBaseImageData(AA12Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function AA12Image::AEOnFire(%this,%obj,%slot)
+function BNE_AA12Image::AEOnFire(%this,%obj,%slot)
 {	
-	%obj.playAudio(0, AA12FireLoopASound);
+	%obj.playAudio(0, BNE_AA12FireLoopASound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -354,75 +354,75 @@ function AA12Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function AA12Image::onEndLoop(%this, %obj, %slot)
+function BNE_AA12Image::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function AA12Image::AEOnLowClimb(%this, %obj, %slot)
+function BNE_AA12Image::AEOnLowClimb(%this, %obj, %slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function AA12Image::onDryFire(%this, %obj, %slot)
+function BNE_AA12Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function AA12Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_AA12Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(100, "aeplayThread", "2", "plant");
 }
 
-function AA12Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_AA12Image::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, wrench);
 }
 
 
-function AA12Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_AA12Image::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, wrench);
 }
 
-function AA12Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_AA12Image::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(100, "aeplayThread", "2", "plant");
 }
 
-function AA12Image::onBoltBack(%this,%obj,%slot)
+function BNE_AA12Image::onBoltBack(%this,%obj,%slot)
 {
    %obj.schedule(250, "aeplayThread", "2", "shiftright");
    %obj.schedule(250, "aeplayThread", "3", "plant");
 }
 
-function AA12Image::onReload2Bolt(%this,%obj,%slot)
+function BNE_AA12Image::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function AA12Image::onReloadEnd(%this,%obj,%slot)
+function BNE_AA12Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function AA12Image::onReload2End(%this,%obj,%slot)
+function BNE_AA12Image::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function AA12Image::onReloadStart(%this,%obj,%slot)
+function BNE_AA12Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function AA12Image::onReady(%this,%obj,%slot)
+function BNE_AA12Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -432,7 +432,7 @@ function AA12Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function AA12Image::onMount(%this,%obj,%slot)
+function BNE_AA12Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -441,7 +441,7 @@ function AA12Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AA12Image::onUnMount(%this,%obj,%slot)
+function BNE_AA12Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -455,7 +455,7 @@ function AA12Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function AA12Image::onMagDrop(%this,%obj,%slot)
+function BNE_AA12Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -480,7 +480,7 @@ datablock ShapeBaseImageData(AA12MagImage)
 	offset = "-0.0 0.55 0.1";
    rotation = eulerToMatrix( "0 15 0" );	
 	
-	casing = AEAA12MagDebris;
+	casing = BNE_AA12MagDebris;
 	shellExitDir        = "0 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -508,7 +508,7 @@ function AA12MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(AA12SafetyImage)
+datablock ShapeBaseImageData(BNE_AA12SafetyImage)
 {
    shapeFile = "./AA12/AA12.dts";
    emap = true;
@@ -518,14 +518,14 @@ datablock ShapeBaseImageData(AA12SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = AA12Item;
+   item = BNE_AA12Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = AA12Image;
+   safetyImage = BNE_AA12Image;
    doColorShift = true;
-   colorShiftColor = AA12Item.colorShiftColor;
+   colorShiftColor = BNE_AA12Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -537,7 +537,7 @@ datablock ShapeBaseImageData(AA12SafetyImage)
 
 };
 
-function AA12SafetyImage::onMount(%this,%obj,%slot)
+function BNE_AA12SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -546,7 +546,7 @@ function AA12SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function AA12SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_AA12SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -556,12 +556,12 @@ function AA12SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(AA12IronsightImage : AA12Image)
+datablock ShapeBaseImageData(BNE_AA12IronsightImage : BNE_AA12Image)
 {
 	recoilHeight = 0.25;
 
-	scopingImage = AA12Image;
-	sourceImage = AA12Image;
+	scopingImage = BNE_AA12Image;
+	sourceImage = BNE_AA12Image;
 	
 	offset = "0 0 0";
 	eyeOffset = "0.015 1.0 -0.595";
@@ -584,20 +584,20 @@ datablock ShapeBaseImageData(AA12IronsightImage : AA12Image)
 	stateSound[7]				= "";
 };
 
-function AA12IronsightImage::onDone(%this,%obj,%slot)
+function BNE_AA12IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function AA12IronsightImage::onReady(%this,%obj,%slot)
+function BNE_AA12IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function AA12IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_AA12IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
-	%obj.playAudio(0, AA12FireLoopASound);
+	%obj.playAudio(0, BNE_AA12FireLoopASound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -606,13 +606,13 @@ function AA12IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function AA12IronsightImage::onEndLoop(%this, %obj, %slot)
+function BNE_AA12IronsightImage::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function AA12IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_AA12IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -620,7 +620,7 @@ function AA12IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function AA12IronsightImage::onMount(%this,%obj,%slot)
+function BNE_AA12IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -631,7 +631,7 @@ function AA12IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function AA12IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_AA12IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

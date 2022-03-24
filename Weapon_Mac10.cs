@@ -1,18 +1,18 @@
-datablock AudioProfile(Mac10Fire1Sound)
+datablock AudioProfile(BNE_Mac10Fire1Sound)
 {
    filename    = "./Sounds/Fire/Mac10/Mac10_fire1.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(Mac10Fire2Sound)
+datablock AudioProfile(BNE_Mac10Fire2Sound)
 {
    filename    = "./Sounds/Fire/Mac10/Mac10_fire2.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(Mac10Fire3Sound)
+datablock AudioProfile(BNE_Mac10Fire3Sound)
 {
    filename    = "./Sounds/Fire/Mac10/Mac10_fire3.wav";
    description = LightClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(Mac10Fire3Sound)
 };
 
 // Mac10
-datablock DebrisData(AEMac10MagDebris)
+datablock DebrisData(BNE_Mac10MagDebris)
 {
 	shapeFile = "./Mac10/Mac10Mag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEMac10MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(Mac10Item)
+datablock ItemData(BNE_Mac10Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(Mac10Item)
 	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = Mac10Image;
+	image = BNE_Mac10Image;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -83,7 +83,7 @@ datablock ItemData(Mac10Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(Mac10Image)
+datablock ShapeBaseImageData(BNE_Mac10Image)
 {
    // Basic Item properties
    shapeFile = "./Mac10/Mac10.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(Mac10Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = Mac10Item;
+   item = BNE_Mac10Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(Mac10Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = Mac10SafetyImage;
-    scopingImage = Mac10IronsightImage;
+	safetyImage = BNE_Mac10SafetyImage;
+    scopingImage = BNE_Mac10IronsightImage;
 	doColorShift = true;
-	colorShiftColor = Mac10Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_Mac10Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -242,7 +242,7 @@ datablock ShapeBaseImageData(Mac10Image)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= MAC10MagOutSound;
+	stateSound[8]				= BNE_MAC10MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.25;
@@ -250,7 +250,7 @@ datablock ShapeBaseImageData(Mac10Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= MAC10MagInSound;
+	stateSound[9]				= BNE_MAC10MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -289,7 +289,7 @@ datablock ShapeBaseImageData(Mac10Image)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= MAC10MagOutSound;
+	stateSound[16]				= BNE_MAC10MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.25;
@@ -297,7 +297,7 @@ datablock ShapeBaseImageData(Mac10Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= MAC10MagInSound;
+	stateSound[17]				= BNE_MAC10MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.25;
@@ -328,10 +328,10 @@ datablock ShapeBaseImageData(Mac10Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function Mac10Image::AEOnFire(%this,%obj,%slot)
+function BNE_Mac10Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, Mac10Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_Mac10Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -339,29 +339,29 @@ function Mac10Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function Mac10Image::onDryFire(%this, %obj, %slot)
+function BNE_Mac10Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function Mac10Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_Mac10Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
 }
 
-function Mac10Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_Mac10Image::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, wrench);
    %obj.aeplayThread(3, plant);
 }
 
-function Mac10Image::onReloadEnd(%this,%obj,%slot)
+function BNE_Mac10Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function Mac10Image::onReload2End(%this,%obj,%slot)
+function BNE_Mac10Image::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
@@ -369,22 +369,22 @@ function Mac10Image::onReload2End(%this,%obj,%slot)
 
 // MAGAZINE DROPPING
 
-function Mac10Image::onReloadStart(%this,%obj,%slot)
+function BNE_Mac10Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftLeft);
    %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(450,550),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function Mac10Image::onReloadStartEmpty(%this,%obj,%slot)
+function BNE_Mac10Image::onReloadStartEmpty(%this,%obj,%slot)
 {
-   %obj.schedule(200, playAudio, 1, MAC10BoltLockSound);
+   %obj.schedule(200, playAudio, 1, BNE_MAC10BoltLockSound);
    %obj.schedule(225, "aeplayThread", "2", "plant");
    %obj.reload3Schedule = %this.schedule(675,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(650,750),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function Mac10Image::onReady(%this,%obj,%slot)
+function BNE_Mac10Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -394,7 +394,7 @@ function Mac10Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function Mac10Image::onMount(%this,%obj,%slot)
+function BNE_Mac10Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -403,7 +403,7 @@ function Mac10Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function Mac10Image::onUnMount(%this,%obj,%slot)
+function BNE_Mac10Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -417,7 +417,7 @@ function Mac10Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function Mac10Image::onMagDrop(%this,%obj,%slot)
+function BNE_Mac10Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -427,7 +427,7 @@ function Mac10Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(Mac10MagImage,0);
+	%a.mountImage(BNE_Mac10MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -435,14 +435,14 @@ function Mac10Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(Mac10MagImage)
+datablock ShapeBaseImageData(BNE_Mac10MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.05 0.1 -0.2";
    rotation = eulerToMatrix( "0 15 0" );	
 	
-	casing = AEMac10MagDebris;
+	casing = BNE_Mac10MagDebris;
 	shellExitDir        = "0 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -461,7 +461,7 @@ datablock ShapeBaseImageData(Mac10MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function Mac10MagImage::onDone(%this,%obj,%slot)
+function BNE_Mac10MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -470,7 +470,7 @@ function Mac10MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(Mac10SafetyImage)
+datablock ShapeBaseImageData(BNE_Mac10SafetyImage)
 {
    shapeFile = "./Mac10/Mac10.dts";
    emap = true;
@@ -480,14 +480,14 @@ datablock ShapeBaseImageData(Mac10SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = Mac10Item;
+   item = BNE_Mac10Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = Mac10Image;
+   safetyImage = BNE_Mac10Image;
    doColorShift = true;
-   colorShiftColor = Mac10Item.colorShiftColor;
+   colorShiftColor = BNE_Mac10Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -499,7 +499,7 @@ datablock ShapeBaseImageData(Mac10SafetyImage)
 
 };
 
-function Mac10SafetyImage::onMount(%this,%obj,%slot)
+function BNE_Mac10SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -508,7 +508,7 @@ function Mac10SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function Mac10SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_Mac10SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -518,12 +518,12 @@ function Mac10SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(Mac10IronsightImage : Mac10Image)
+datablock ShapeBaseImageData(BNE_Mac10IronsightImage : BNE_Mac10Image)
 {
 	recoilHeight = 0.25;
 
-	scopingImage = Mac10Image;
-	sourceImage = Mac10Image;
+	scopingImage = BNE_Mac10Image;
+	sourceImage = BNE_Mac10Image;
 	
    offset = "0 -0.1 -0.025";
 	eyeOffset = "0.00075 1.0 -0.9725";
@@ -546,21 +546,21 @@ datablock ShapeBaseImageData(Mac10IronsightImage : Mac10Image)
 	stateSound[7]				= "";
 };
 
-function Mac10IronsightImage::onDone(%this,%obj,%slot)
+function BNE_Mac10IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function Mac10IronsightImage::onReady(%this,%obj,%slot)
+function BNE_Mac10IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function Mac10IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_Mac10IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, Mac10Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_Mac10Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -568,7 +568,7 @@ function Mac10IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function Mac10IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_Mac10IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -576,7 +576,7 @@ function Mac10IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function Mac10IronsightImage::onMount(%this,%obj,%slot)
+function BNE_Mac10IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -587,7 +587,7 @@ function Mac10IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function Mac10IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_Mac10IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

@@ -1,5 +1,5 @@
 // RPK
-datablock DebrisData(AERPKMagDebris)
+datablock DebrisData(BNE_RPKMagDebris)
 {
 	shapeFile = "./RPK/RPKMag.dts";
 	lifetime = 2.0;
@@ -18,7 +18,7 @@ datablock DebrisData(AERPKMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(RPKItem)
+datablock ItemData(BNE_RPKItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -39,7 +39,7 @@ datablock ItemData(RPKItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = RPKImage;
+	image = BNE_RPKImage;
 	canDrop = true;
 
 	AEAmmo = 75;
@@ -62,7 +62,7 @@ datablock ItemData(RPKItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(RPKImage)
+datablock ShapeBaseImageData(BNE_RPKImage)
 {
    // Basic Item properties
    shapeFile = "./RPK/RPK.dts";
@@ -86,7 +86,7 @@ datablock ShapeBaseImageData(RPKImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = RPKItem;
+   item = BNE_RPKItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -102,10 +102,10 @@ datablock ShapeBaseImageData(RPKImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = RPKBipodImage;
-    scopingImage = RPKIronsightImage;
+	safetyImage = BNE_RPKBipodImage;
+    scopingImage = BNE_RPKIronsightImage;
 	doColorShift = true;
-	colorShiftColor = RPKItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_RPKItem.colorShiftColor;//"0.400 0.196 0 1.000";
 	R_MovePenalty = 0.9;
 
 	shellSound = AEShellRifle;
@@ -224,7 +224,7 @@ datablock ShapeBaseImageData(RPKImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= RPKMagOutSound;
+	stateSound[8]				= BNE_RPKMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.5;
@@ -232,7 +232,7 @@ datablock ShapeBaseImageData(RPKImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= RPKMagInSound;
+	stateSound[9]				= BNE_RPKMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.35;
@@ -271,7 +271,7 @@ datablock ShapeBaseImageData(RPKImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= RPKMagOutSound;
+	stateSound[16]				= BNE_RPKMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.5;
@@ -279,7 +279,7 @@ datablock ShapeBaseImageData(RPKImage)
 	stateTransitionOnTimeout[17]		= "Reload2Bolt";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= RPKMagInSound;
+	stateSound[17]				= BNE_RPKMagInSound;
 	
 	stateName[18]				= "Reload2Bolt";
 	stateTimeoutValue[18]			= 0.35;
@@ -287,7 +287,7 @@ datablock ShapeBaseImageData(RPKImage)
 	stateTransitionOnTimeout[18]		= "Reload2End";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "Bolt";
-	stateSound[18]				= AKBoltPullSound;
+	stateSound[18]				= BNE_AKBoltPullSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.35;
@@ -312,10 +312,10 @@ datablock ShapeBaseImageData(RPKImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function RPKImage::AEOnFire(%this,%obj,%slot)
+function BNE_RPKImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AK47Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -323,53 +323,53 @@ function RPKImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function RPKImage::onDryFire(%this, %obj, %slot)
+function BNE_RPKImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function RPKImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_RPKImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(100, "aeplayThread", "2", "plant");
 }
 
-function RPKImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_RPKImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(100, "aeplayThread", "2", "plant");
 }
 
-function RPKImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_RPKImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function RPKImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_RPKImage::onReload2MagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 }
 
-function RPKImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_RPKImage::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function RPKImage::onReloadEnd(%this,%obj,%slot)
+function BNE_RPKImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function RPKImage::onReloadStart(%this,%obj,%slot)
+function BNE_RPKImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(300,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function RPKImage::onReady(%this,%obj,%slot)
+function BNE_RPKImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -379,7 +379,7 @@ function RPKImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function RPKImage::onMount(%this,%obj,%slot)
+function BNE_RPKImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -388,7 +388,7 @@ function RPKImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RPKImage::onUnMount(%this,%obj,%slot)
+function BNE_RPKImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -402,7 +402,7 @@ function RPKImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function RPKImage::onMagDrop(%this,%obj,%slot)
+function BNE_RPKImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -412,7 +412,7 @@ function RPKImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(RPKMagImage,0);
+	%a.mountImage(BNE_RPKMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -420,14 +420,14 @@ function RPKImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(RPKMagImage)
+datablock ShapeBaseImageData(BNE_RPKMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.1 0.425 0.07";
    rotation = eulerToMatrix( "0 30 0" );	
 	
-	casing = AERPKMagDebris;
+	casing = BNE_RPKMagDebris;
 	shellExitDir        = "0 1 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -446,19 +446,19 @@ datablock ShapeBaseImageData(RPKMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function RPKMagImage::onDone(%this,%obj,%slot)
+function BNE_RPKMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(RPKIronsightImage : RPKImage)
+datablock ShapeBaseImageData(BNE_RPKIronsightImage : BNE_RPKImage)
 {
 	recoilHeight = 0.1325;
 
-	scopingImage = RPKImage;
-	sourceImage = RPKImage;
+	scopingImage = BNE_RPKImage;
+	sourceImage = BNE_RPKImage;
 	
    offset = "0 0 -0.065";
 	eyeOffset = "0.01425 1.0 -0.997";
@@ -481,21 +481,21 @@ datablock ShapeBaseImageData(RPKIronsightImage : RPKImage)
 	stateSound[7]				= "";
 };
 
-function RPKIronsightImage::onDone(%this,%obj,%slot)
+function BNE_RPKIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function RPKIronsightImage::onReady(%this,%obj,%slot)
+function BNE_RPKIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function RPKIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_RPKIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AK47Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -503,7 +503,7 @@ function RPKIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function RPKIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_RPKIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -511,7 +511,7 @@ function RPKIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function RPKIronsightImage::onMount(%this,%obj,%slot)
+function BNE_RPKIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -522,7 +522,7 @@ function RPKIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RPKIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_RPKIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());
@@ -532,11 +532,11 @@ function RPKIronsightImage::onUnMount(%this,%obj,%slot)
 
 //ALT BIPOD STATES
 
-datablock ShapeBaseImageData(RPKBipodImage : RPKImage)
+datablock ShapeBaseImageData(BNE_RPKBipodImage : BNE_RPKImage)
 {
     shapeFile = "./RPK/RPKBipod.dts";
-	safetyImage = RPKImage;
-    scopingImage = RPKIronsightBipodImage;
+	safetyImage = BNE_RPKImage;
+    scopingImage = BNE_RPKIronsightBipodImage;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	screenshakeMin = "0 0 0"; 
@@ -545,87 +545,87 @@ datablock ShapeBaseImageData(RPKBipodImage : RPKImage)
 	isBipod = true;
 };
 
-function RPKBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_RPKBipodImage::AEOnFire(%this,%obj,%slot)
 {	
-	RPKImage::AEOnFire(%this, %obj, %slot);
+	BNE_RPKImage::AEOnFire(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_RPKBipodImage::onDryFire(%this, %obj, %slot)
 {
-	RPKImage::onDryFire(%this, %obj, %slot);
+	BNE_RPKImage::onDryFire(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReloadMagIn(%this,%obj,%slot)
 {
-	RPKImage::onReloadMagIn(%this, %obj, %slot);
+	BNE_RPKImage::onReloadMagIn(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReload2MagIn(%this,%obj,%slot)
 {
-	RPKImage::onReload2MagIn(%this, %obj, %slot);
+	BNE_RPKImage::onReload2MagIn(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReloadMagOut(%this,%obj,%slot)
 {
-	RPKImage::onReloadMagOut(%this, %obj, %slot);
+	BNE_RPKImage::onReloadMagOut(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReload2MagOut(%this,%obj,%slot)
 {
-	RPKImage::onReload2MagOut(%this, %obj, %slot);
+	BNE_RPKImage::onReload2MagOut(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReload2Bolt(%this,%obj,%slot)
 {
-	RPKImage::onReload2Bolt(%this, %obj, %slot);
+	BNE_RPKImage::onReload2Bolt(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onReloadEnd(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReloadEnd(%this,%obj,%slot)
 {
-	RPKImage::onReloadEnd(%this, %obj, %slot);
+	BNE_RPKImage::onReloadEnd(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function RPKBipodImage::onReloadStart(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReloadStart(%this,%obj,%slot)
 {
-	RPKImage::onReloadStart(%this, %obj, %slot);
+	BNE_RPKImage::onReloadStart(%this, %obj, %slot);
 }
 
-function RPKBipodImage::onReady(%this,%obj,%slot)
+function BNE_RPKBipodImage::onReady(%this,%obj,%slot)
 {
-	RPKImage::onReady(%this, %obj, %slot);
+	BNE_RPKImage::onReady(%this, %obj, %slot);
 }
 
 // HIDES ALL HAND NODES
 
-function RPKBipodImage::onMount(%this,%obj,%slot)
+function BNE_RPKBipodImage::onMount(%this,%obj,%slot)
 {
-	RPKImage::onMount(%this, %obj, %slot);
+	BNE_RPKImage::onMount(%this, %obj, %slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RPKBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_RPKBipodImage::onUnMount(%this,%obj,%slot)
 {
-	RPKImage::onUnMount(%this, %obj, %slot);
+	BNE_RPKImage::onUnMount(%this, %obj, %slot);
 }
 
 /////////////////////////////////////////////////////////////////////
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function RPKBipodImage::onMagDrop(%this,%obj,%slot)
+function BNE_RPKBipodImage::onMagDrop(%this,%obj,%slot)
 {
-	RPKImage::onMagDrop(%this, %obj, %slot);
+	BNE_RPKImage::onMagDrop(%this, %obj, %slot);
 }
 
-datablock ShapeBaseImageData(RPKIronsightBipodImage : RPKIronsightImage)
+datablock ShapeBaseImageData(BNE_RPKIronsightBipodImage : BNE_RPKIronsightImage)
 {
     shapeFile = "./RPK/RPKBipod.dts";
-	sourceImage = RPKBipodImage;
-	scopingImage = RPKBipodImage;
-	safetyImage = RPKImage;
+	sourceImage = BNE_RPKBipodImage;
+	scopingImage = BNE_RPKBipodImage;
+	safetyImage = BNE_RPKImage;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	screenshakeMin = "0 0 0"; 
@@ -634,36 +634,36 @@ datablock ShapeBaseImageData(RPKIronsightBipodImage : RPKIronsightImage)
 	isBipod = true;
 };
 
-function RPKIronsightBipodImage::onDone(%this,%obj,%slot)
+function BNE_RPKIronsightBipodImage::onDone(%this,%obj,%slot)
 {
-	RPKIronsightImage::onDone(%this, %obj, %slot);
+	BNE_RPKIronsightImage::onDone(%this, %obj, %slot);
 }
 
-function RPKIronsightBipodImage::onReady(%this,%obj,%slot)
+function BNE_RPKIronsightBipodImage::onReady(%this,%obj,%slot)
 {
-	RPKIronsightImage::onReady(%this, %obj, %slot);
+	BNE_RPKIronsightImage::onReady(%this, %obj, %slot);
 }
 
-function RPKIronsightBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_RPKIronsightBipodImage::AEOnFire(%this,%obj,%slot)
 {	
-	RPKIronsightImage::AEOnFire(%this, %obj, %slot);
+	BNE_RPKIronsightImage::AEOnFire(%this, %obj, %slot);
 }
 
-function RPKIronsightBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_RPKIronsightBipodImage::onDryFire(%this, %obj, %slot)
 {
-	RPKIronsightImage::onDryFire(%this, %obj, %slot);
+	BNE_RPKIronsightImage::onDryFire(%this, %obj, %slot);
 }
 
 // HIDES ALL HAND NODES
 
-function RPKIronsightBipodImage::onMount(%this,%obj,%slot)
+function BNE_RPKIronsightBipodImage::onMount(%this,%obj,%slot)
 {
-	RPKIronsightImage::onMount(%this, %obj, %slot);
+	BNE_RPKIronsightImage::onMount(%this, %obj, %slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RPKIronsightBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_RPKIronsightBipodImage::onUnMount(%this,%obj,%slot)
 {
-	RPKIronsightImage::onUnMount(%this, %obj, %slot);
+	BNE_RPKIronsightImage::onUnMount(%this, %obj, %slot);
 }

@@ -20,7 +20,7 @@ datablock AudioProfile(BNE_MP5KFire3Sound)
 };
 
 // MP5K
-datablock DebrisData(AEBNE_MP5KMagDebris)
+datablock DebrisData(BNE_MP5KMagDebris)
 {
 	shapeFile = "./MP5K/MP5KMag.dts";
 	lifetime = 2.0;
@@ -244,7 +244,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
 	stateTransitionOnTimeout[17]		= "ReloadMagIn";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagOut";
-	stateSound[17]				= HKMagOutSound;
+	stateSound[17]				= BNE_HKMagOutSound;
 	
 	stateName[18]				= "ReloadMagIn";
 	stateTimeoutValue[18]			= 0.35;
@@ -252,7 +252,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
 	stateTransitionOnTimeout[18]		= "ReloadEnd";
 	stateWaitForTimeout[18]			= true;
 	stateSequence[18]			= "MagIn";
-	stateSound[18]				= HKMagInSound;
+	stateSound[18]				= BNE_HKMagInSound;
 	
 	stateName[19]				= "ReloadEnd";
 	stateTimeoutValue[19]			= 0.25;
@@ -274,7 +274,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
 	stateTransitionOnTimeout[21]		= "Reload2MagOut";
 	stateWaitForTimeout[21]			= true;
 	stateSequence[21]			= "ReloadStartEmpty";
-	stateSound[21]				= HKBoltLockSound;
+	stateSound[21]				= BNE_HKBoltLockSound;
 	
 	stateName[22]				= "Reload2MagOut";
 	stateTimeoutValue[22]			= 0.45;
@@ -282,7 +282,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
 	stateTransitionOnTimeout[22]		= "Reload2MagIn";
 	stateWaitForTimeout[22]			= true;
 	stateSequence[22]			= "MagOutEmpty";
-	stateSound[22]				= HKMagOutSound;
+	stateSound[22]				= BNE_HKMagOutSound;
 	
 	stateName[23]				= "Reload2MagIn";
 	stateTimeoutValue[23]			= 0.35;
@@ -290,7 +290,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
 	stateTransitionOnTimeout[23]		= "Reload2End";
 	stateWaitForTimeout[23]			= true;
 	stateSequence[23]			= "MagInEmpty";
-	stateSound[23]				= HKMagInSound;
+	stateSound[23]				= BNE_HKMagInSound;
 	
 	stateName[24]				= "Reload2End";
 	stateTimeoutValue[24]			= 0.4;
@@ -339,7 +339,7 @@ function BNE_MP5KImage::onReloadEnd(%this,%obj,%slot)
 
 function BNE_MP5KImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(50, playAudio, 1, HKBoltCloseSound);
+    %obj.schedule(50, playAudio, 1, BNE_HKBoltCloseSound);
     Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
@@ -427,7 +427,7 @@ function BNE_MP5KImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(MP5KMagImage,0);
+	%a.mountImage(BNE_MP5KMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -435,14 +435,14 @@ function BNE_MP5KImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(MP5KMagImage)
+datablock ShapeBaseImageData(BNE_MP5KMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "-0.125 0.75 0.15";
 	rotation = eulerToMatrix( "20 25 0" );    
 	
-	casing = AEBNE_MP5KMagDebris;
+	casing = BNE_MP5KMagDebris;
 	shellExitDir        = "0 0.1 -1";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;    
@@ -461,7 +461,7 @@ datablock ShapeBaseImageData(MP5KMagImage)
 	stateScript[2]                    = "onDone";
 };
 
-function MP5KMagImage::onDone(%this,%obj,%slot)
+function BNE_MP5KMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }

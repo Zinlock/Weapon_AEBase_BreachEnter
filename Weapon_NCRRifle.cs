@@ -1,7 +1,7 @@
 //////////
 // item //
 //////////
-datablock ItemData(NCRRifleItem)
+datablock ItemData(BNE_NCRRifleItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -22,7 +22,7 @@ datablock ItemData(NCRRifleItem)
 	colorShiftColor = "0.75 0.75 0.75 1";
 
 	 // Dynamic properties defined by the scripts
-	image = NCRRifleImage;
+	image = BNE_NCRRifleImage;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -44,7 +44,7 @@ datablock ItemData(NCRRifleItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(NCRRifleImage)
+datablock ShapeBaseImageData(BNE_NCRRifleImage)
 {
    // Basic Item properties
    shapeFile = "./NCRRifle/NCRRifle.dts";
@@ -68,7 +68,7 @@ datablock ShapeBaseImageData(NCRRifleImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = NCRRifleItem;
+   item = BNE_NCRRifleItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -84,10 +84,10 @@ datablock ShapeBaseImageData(NCRRifleImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = NCRRifleSafetyImage;
-    scopingImage = NCRRifleIronsightImage;
+	safetyImage = BNE_NCRRifleSafetyImage;
+    scopingImage = BNE_NCRRifleIronsightImage;
 	doColorShift = true;
-	colorShiftColor = NCRRifleItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_NCRRifleItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -205,7 +205,7 @@ datablock ShapeBaseImageData(NCRRifleImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= AR15MagOutSound;
+	stateSound[8]				= BNE_AR15MagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.3;
@@ -213,7 +213,7 @@ datablock ShapeBaseImageData(NCRRifleImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= AR15MagInSound;
+	stateSound[9]				= BNE_AR15MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -252,7 +252,7 @@ datablock ShapeBaseImageData(NCRRifleImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= AR15MagOutSound;
+	stateSound[16]				= BNE_AR15MagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.3;
@@ -260,7 +260,7 @@ datablock ShapeBaseImageData(NCRRifleImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= AR15MagInSound;
+	stateSound[17]				= BNE_AR15MagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.5;
@@ -285,10 +285,10 @@ datablock ShapeBaseImageData(NCRRifleImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function NCRRifleImage::AEOnFire(%this,%obj,%slot)
+function BNE_NCRRifleImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -296,65 +296,65 @@ function NCRRifleImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function NCRRifleImage::onReload2End(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(150, playAudio, 1, AR15BoltRackSound);
+    %obj.schedule(150, playAudio, 1, BNE_AR15BoltRackSound);
 }
 
-function NCRRifleImage::onDryFire(%this, %obj, %slot)
+function BNE_NCRRifleImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function NCRRifleImage::onReloadEnd(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function NCRRifleImage::onReload2End(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(150, playAudio, 1, AR15BoltRackSound);
+    %obj.schedule(150, playAudio, 1, BNE_AR15BoltRackSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function NCRRifleImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function NCRRifleImage::onReload2MagIn(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReload2MagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
    %obj.schedule(400, "aeplayThread", "3", "shiftleft");
 }
 
-function NCRRifleImage::onReload2Bolt(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReload2Bolt(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.schedule(200, "aeplayThread", "3", "shiftleft");
 }
 
-function NCRRifleImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReloadMagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
-function NCRRifleImage::onReload2MagOut(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReload2MagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 }
 
 // MAGAZINE DROPPING
 
-function NCRRifleImage::onReloadStart(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
    %obj.reload3Schedule = %this.schedule(125,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function NCRRifleImage::onReady(%this,%obj,%slot)
+function BNE_NCRRifleImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -364,7 +364,7 @@ function NCRRifleImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function NCRRifleImage::onMount(%this,%obj,%slot)
+function BNE_NCRRifleImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -373,7 +373,7 @@ function NCRRifleImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function NCRRifleImage::onUnMount(%this,%obj,%slot)
+function BNE_NCRRifleImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -387,7 +387,7 @@ function NCRRifleImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function NCRRifleImage::onMagDrop(%this,%obj,%slot)
+function BNE_NCRRifleImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -397,7 +397,7 @@ function NCRRifleImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(M16A1MagImage,0);
+	%a.mountImage(BNE_M16A1MagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -405,7 +405,7 @@ function NCRRifleImage::onMagDrop(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(NCRRifleSafetyImage)
+datablock ShapeBaseImageData(BNE_NCRRifleSafetyImage)
 {
    shapeFile = "./NCRRifle/NCRRifle.dts";
    emap = true;
@@ -415,14 +415,14 @@ datablock ShapeBaseImageData(NCRRifleSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = NCRRifleItem;
+   item = BNE_NCRRifleItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = NCRRifleImage;
+   safetyImage = BNE_NCRRifleImage;
    doColorShift = true;
-   colorShiftColor = NCRRifleItem.colorShiftColor;
+   colorShiftColor = BNE_NCRRifleItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -434,7 +434,7 @@ datablock ShapeBaseImageData(NCRRifleSafetyImage)
 
 };
 
-function NCRRifleSafetyImage::onMount(%this,%obj,%slot)
+function BNE_NCRRifleSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -443,7 +443,7 @@ function NCRRifleSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function NCRRifleSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_NCRRifleSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -453,12 +453,12 @@ function NCRRifleSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(NCRRifleIronsightImage : NCRRifleImage)
+datablock ShapeBaseImageData(BNE_NCRRifleIronsightImage : BNE_NCRRifleImage)
 {
 	recoilHeight = 0.05;
 
-	scopingImage = NCRRifleImage;
-	sourceImage = NCRRifleImage;
+	scopingImage = BNE_NCRRifleImage;
+	sourceImage = BNE_NCRRifleImage;
 	
    offset = "0 0 -0.075";
 	eyeOffset = "0.00225 1.0 -1.075";
@@ -481,21 +481,21 @@ datablock ShapeBaseImageData(NCRRifleIronsightImage : NCRRifleImage)
 	stateSound[7]				= "";
 };
 
-function NCRRifleIronsightImage::onDone(%this,%obj,%slot)
+function BNE_NCRRifleIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function NCRRifleIronsightImage::onReady(%this,%obj,%slot)
+function BNE_NCRRifleIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function NCRRifleIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_NCRRifleIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -503,7 +503,7 @@ function NCRRifleIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function NCRRifleIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_NCRRifleIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -511,7 +511,7 @@ function NCRRifleIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function NCRRifleIronsightImage::onMount(%this,%obj,%slot)
+function BNE_NCRRifleIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -522,7 +522,7 @@ function NCRRifleIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function NCRRifleIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_NCRRifleIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound);

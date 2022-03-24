@@ -1,18 +1,18 @@
-datablock AudioProfile(ThompsonFire1Sound)
+datablock AudioProfile(BNE_ThompsonFire1Sound)
 {
    filename    = "./Sounds/Fire/Thompson/Thompson_fire1.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(ThompsonFire2Sound)
+datablock AudioProfile(BNE_ThompsonFire2Sound)
 {
    filename    = "./Sounds/Fire/Thompson/Thompson_fire2.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(ThompsonFire3Sound)
+datablock AudioProfile(BNE_ThompsonFire3Sound)
 {
    filename    = "./Sounds/Fire/Thompson/Thompson_fire3.wav";
    description = LightClose3D;
@@ -20,7 +20,7 @@ datablock AudioProfile(ThompsonFire3Sound)
 };
 
 // Thompson
-datablock DebrisData(AEThompsonMagDebris)
+datablock DebrisData(BNE_ThompsonMagDebris)
 {
 	shapeFile = "./Thompson/ThompsonMag.dts";
 	lifetime = 2.0;
@@ -39,7 +39,7 @@ datablock DebrisData(AEThompsonMagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(ThompsonItem)
+datablock ItemData(BNE_ThompsonItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -60,7 +60,7 @@ datablock ItemData(ThompsonItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = ThompsonImage;
+	image = BNE_ThompsonImage;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -83,7 +83,7 @@ datablock ItemData(ThompsonItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(ThompsonImage)
+datablock ShapeBaseImageData(BNE_ThompsonImage)
 {
    // Basic Item properties
    shapeFile = "./Thompson/Thompson.dts";
@@ -107,7 +107,7 @@ datablock ShapeBaseImageData(ThompsonImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = ThompsonItem;
+   item = BNE_ThompsonItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
@@ -123,10 +123,10 @@ datablock ShapeBaseImageData(ThompsonImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = ThompsonSafetyImage;
-    scopingImage = ThompsonIronsightImage;
+	safetyImage = BNE_ThompsonSafetyImage;
+    scopingImage = BNE_ThompsonIronsightImage;
 	doColorShift = true;
-	colorShiftColor = ThompsonItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_ThompsonItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 550; //min delay for when the shell sound plays
@@ -242,7 +242,7 @@ datablock ShapeBaseImageData(ThompsonImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= ThompsonMagOutSound;
+	stateSound[8]				= BNE_ThompsonMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.25;
@@ -250,7 +250,7 @@ datablock ShapeBaseImageData(ThompsonImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= ThompsonMagInSound;
+	stateSound[9]				= BNE_ThompsonMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -289,7 +289,7 @@ datablock ShapeBaseImageData(ThompsonImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOut";
-	stateSound[16]				= ThompsonMagOutSound;
+	stateSound[16]				= BNE_ThompsonMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.25;
@@ -297,7 +297,7 @@ datablock ShapeBaseImageData(ThompsonImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
-	stateSound[17]				= ThompsonMagInSound;
+	stateSound[17]				= BNE_ThompsonMagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.25;
@@ -328,10 +328,10 @@ datablock ShapeBaseImageData(ThompsonImage)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function ThompsonImage::AEOnFire(%this,%obj,%slot)
+function BNE_ThompsonImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, ThompsonFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_ThompsonFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -339,28 +339,28 @@ function ThompsonImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function ThompsonImage::onDryFire(%this, %obj, %slot)
+function BNE_ThompsonImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function ThompsonImage::onReloadEnd(%this,%obj,%slot)
+function BNE_ThompsonImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function ThompsonImage::onReload2End(%this,%obj,%slot)
+function BNE_ThompsonImage::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function ThompsonImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_ThompsonImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(10, "aeplayThread", "2", "plant");
 }
 
-function ThompsonImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_ThompsonImage::onReloadMagOut(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, wrench);
    %obj.aeplayThread(3, plant);
@@ -368,23 +368,23 @@ function ThompsonImage::onReloadMagOut(%this,%obj,%slot)
 
 // MAGAZINE DROPPING
 
-function ThompsonImage::onReloadStart(%this,%obj,%slot)
+function BNE_ThompsonImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftLeft);
    %obj.reload3Schedule = %this.schedule(225,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(450,550),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function ThompsonImage::onReloadStartEmpty(%this,%obj,%slot)
+function BNE_ThompsonImage::onReloadStartEmpty(%this,%obj,%slot)
 {
    %obj.schedule(350, "aeplayThread", "2", "shiftLeft");
-   %obj.schedule(250, playAudio, 1, ThompsonBoltSound);
+   %obj.schedule(250, playAudio, 1, BNE_ThompsonBoltSound);
    %obj.schedule(200, "aeplayThread", "3", "plant");
    %obj.reload3Schedule = %this.schedule(825,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(850,950),0,serverPlay3D,AEMagMetalAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function ThompsonImage::onReady(%this,%obj,%slot)
+function BNE_ThompsonImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -394,7 +394,7 @@ function ThompsonImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function ThompsonImage::onMount(%this,%obj,%slot)
+function BNE_ThompsonImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -403,7 +403,7 @@ function ThompsonImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function ThompsonImage::onUnMount(%this,%obj,%slot)
+function BNE_ThompsonImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -417,7 +417,7 @@ function ThompsonImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function ThompsonImage::onMagDrop(%this,%obj,%slot)
+function BNE_ThompsonImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -427,7 +427,7 @@ function ThompsonImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(ThompsonMagImage,0);
+	%a.mountImage(BNE_ThompsonMagImage,0);
 	%a.schedule(1000,delete);
 }
 
@@ -435,14 +435,14 @@ function ThompsonImage::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(ThompsonMagImage)
+datablock ShapeBaseImageData(BNE_ThompsonMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
 	offset = "0.1 0.675 0.15";
    rotation = eulerToMatrix( "15 15 0" );	
 	
-	casing = AEThompsonMagDebris;
+	casing = BNE_ThompsonMagDebris;
 	shellExitDir        = "-0.1 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -461,7 +461,7 @@ datablock ShapeBaseImageData(ThompsonMagImage)
 	stateScript[2]					= "onDone";
 };
 
-function ThompsonMagImage::onDone(%this,%obj,%slot)
+function BNE_ThompsonMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -470,7 +470,7 @@ function ThompsonMagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(ThompsonSafetyImage)
+datablock ShapeBaseImageData(BNE_ThompsonSafetyImage)
 {
    shapeFile = "./Thompson/Thompson.dts";
    emap = true;
@@ -480,14 +480,14 @@ datablock ShapeBaseImageData(ThompsonSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = ThompsonItem;
+   item = BNE_ThompsonItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = ThompsonImage;
+   safetyImage = BNE_ThompsonImage;
    doColorShift = true;
-   colorShiftColor = ThompsonItem.colorShiftColor;
+   colorShiftColor = BNE_ThompsonItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -499,7 +499,7 @@ datablock ShapeBaseImageData(ThompsonSafetyImage)
 
 };
 
-function ThompsonSafetyImage::onMount(%this,%obj,%slot)
+function BNE_ThompsonSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -508,7 +508,7 @@ function ThompsonSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function ThompsonSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_ThompsonSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -518,12 +518,12 @@ function ThompsonSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(ThompsonIronsightImage : ThompsonImage)
+datablock ShapeBaseImageData(BNE_ThompsonIronsightImage : BNE_ThompsonImage)
 {
 	recoilHeight = 0.0625;
 
-	scopingImage = ThompsonImage;
-	sourceImage = ThompsonImage;
+	scopingImage = BNE_ThompsonImage;
+	sourceImage = BNE_ThompsonImage;
 	
    offset = "0 0.026 -0.025";
 	eyeOffset = "0.00225 1.0 -0.388";
@@ -546,21 +546,21 @@ datablock ShapeBaseImageData(ThompsonIronsightImage : ThompsonImage)
 	stateSound[7]				= "";
 };
 
-function ThompsonIronsightImage::onDone(%this,%obj,%slot)
+function BNE_ThompsonIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function ThompsonIronsightImage::onReady(%this,%obj,%slot)
+function BNE_ThompsonIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function ThompsonIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_ThompsonIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, ThompsonFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_ThompsonFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -568,7 +568,7 @@ function ThompsonIronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function ThompsonIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_ThompsonIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -576,7 +576,7 @@ function ThompsonIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function ThompsonIronsightImage::onMount(%this,%obj,%slot)
+function BNE_ThompsonIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -587,7 +587,7 @@ function ThompsonIronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function ThompsonIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_ThompsonIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());

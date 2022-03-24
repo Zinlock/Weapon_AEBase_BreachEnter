@@ -17,35 +17,35 @@ datablock AudioDescription(ExplosionDesc3d)
 	type = 2;
 };
 
-datablock AudioProfile(RPG7FireSound)
+datablock AudioProfile(BNE_RPG7FireSound)
 {
    filename    = "./Sounds/Fire/RPG/RPG_fire.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(RPG7IgniteSound)
+datablock AudioProfile(BNE_RPG7IgniteSound)
 {
    filename    = "./Sounds/Fire/RPG/RPGIGNITE.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(RPG7ExplodeSound)
+datablock AudioProfile(BNE_RPG7ExplodeSound)
 {
    filename    = "./Sounds/Fire/RPG/RPGEXPLODE.wav";
    description = ExplosionClose3D;
    preload = true;
 };
 
-datablock AudioProfile(RPG7ExplodeDistSound)
+datablock AudioProfile(BNE_RPG7ExplodeDistSound)
 {
    filename    = "./Sounds/Fire/RPG/RPGEXPLODDIST.wav";
    description = ExplosionFar3D;
    preload = true;
 };
 
-datablock AudioProfile(RPG7RocketLoopSound)
+datablock AudioProfile(BNE_RPG7RocketLoopSound)
 {
    filename    = "./Sounds/Fire/RPG/RPGLOOP.wav";
    description = BAADFireHeavyLoop3D;
@@ -53,7 +53,7 @@ datablock AudioProfile(RPG7RocketLoopSound)
 };
 
 // RPG-7
-datablock DebrisData(AERPG7MagDebris)
+datablock DebrisData(BNE_RPG7MagDebris)
 {
 	shapeFile = "./RPG/rpgrocketinactive.dts";
 	lifetime = 2.0;
@@ -68,12 +68,12 @@ datablock DebrisData(AERPG7MagDebris)
 
 	gravModifier = 3;
 };
-datablock ExplosionData(RPG7FailureExplosion : gunExplosion)
+datablock ExplosionData(BNE_RPG7FailureExplosion : gunExplosion)
 {
    emitter[0] = "";
    particleEmitter = "";
    lightStartRadius = 0;
-   debris = AERPG7MagDebris;
+   debris = BNE_RPG7MagDebris;
    debrisNum = 1;
    debrisNumVariance = 0;
    debrisPhiMin = 0;
@@ -83,7 +83,7 @@ datablock ExplosionData(RPG7FailureExplosion : gunExplosion)
    debrisVelocity = 15;
    debrisVelocityVariance = 1;
 };
-datablock ProjectileData(RPG7FailedProjectile)
+datablock ProjectileData(BNE_RPG7FailedProjectile)
 {
 	directDamage        = 0;
    projectileShapeName = "base/data/shapes/empty.dts";
@@ -98,15 +98,15 @@ datablock ProjectileData(RPG7FailedProjectile)
    deleteOnBounce = false;
    
    hasLight    = false;
-   explosion           = RPG7FailureExplosion;
+   explosion           = BNE_RPG7FailureExplosion;
    particleEmitter     = "";
    uiName = "";
 };
 
-datablock ExplosionData(RPG7KickoffExplosion)
+datablock ExplosionData(BNE_RPG7KickoffExplosion)
 {
    explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
-	soundProfile = RPG7IgniteSound;
+	soundProfile = BNE_RPG7IgniteSound;
 
    lifeTimeMS = 150;
 
@@ -151,7 +151,7 @@ datablock ExplosionData(RPG7KickoffExplosion)
    playerBurnTime = 0;
 };
 
-datablock ParticleData(RPG7BlastHazeParticle)
+datablock ParticleData(BNE_RPG7BlastHazeParticle)
 {
 	dragCoefficient		= 2.5;
 	windCoefficient		= 0.0;
@@ -184,7 +184,7 @@ datablock ParticleData(RPG7BlastHazeParticle)
 	times[2]	= 1.0;
 };
 
-datablock ParticleEmitterData(RPG7BlastHazeEmitter)
+datablock ParticleEmitterData(BNE_RPG7BlastHazeEmitter)
 {
 	ejectionPeriodMS = 8;
 	periodVarianceMS = 0;
@@ -197,10 +197,10 @@ datablock ParticleEmitterData(RPG7BlastHazeEmitter)
 	phiVariance      = 360;
 	overrideAdvance = false;
 
-  particles = "RPG7BlastHazeParticle";
+  particles = "BNE_RPG7BlastHazeParticle";
 };
 
-datablock ParticleData(RPG7BlastSmokeParticle)
+datablock ParticleData(BNE_RPG7BlastSmokeParticle)
 {
 	dragCoefficient		= 2.5;
 	windCoefficient		= 0.0;
@@ -230,7 +230,7 @@ datablock ParticleData(RPG7BlastSmokeParticle)
 	times[2]	= 1.0;
 };
 
-datablock ParticleEmitterData(RPG7BlastSmokeEmitter)
+datablock ParticleEmitterData(BNE_RPG7BlastSmokeEmitter)
 {
 	ejectionPeriodMS = 2;
 	periodVarianceMS = 0;
@@ -243,10 +243,10 @@ datablock ParticleEmitterData(RPG7BlastSmokeEmitter)
 	phiVariance      = 360;
 	overrideAdvance = false;
 
-  particles = "RPG7BlastSmokeParticle";
+  particles = "BNE_RPG7BlastSmokeParticle";
 };
 
-datablock ParticleData(RPG7BlastDebrisParticle)
+datablock ParticleData(BNE_RPG7BlastDebrisParticle)
 {
 	dragCoefficient = 0;
 	gravityCoefficient = 5;
@@ -265,7 +265,7 @@ datablock ParticleData(RPG7BlastDebrisParticle)
 	useInvAlpha = true;
 };
 
-datablock ParticleEmitterData(RPG7BlastDebrisEmitter)
+datablock ParticleEmitterData(BNE_RPG7BlastDebrisEmitter)
 {
 	ejectionPeriodMS = 3;
 	periodVarianceMS = 0;
@@ -278,10 +278,10 @@ datablock ParticleEmitterData(RPG7BlastDebrisEmitter)
 	phiVariance = 360;
 	overrideAdvance = false;
 
-  particles = "RPG7BlastDebrisParticle";
+  particles = "BNE_RPG7BlastDebrisParticle";
 };
 
-datablock ParticleData(RPG7BlastDebrisParticle)
+datablock ParticleData(BNE_RPG7BlastDebrisParticle)
 {
      dragCoefficient		= 5.0;
      windCoefficient		= 1.0;
@@ -317,7 +317,7 @@ datablock ParticleData(RPG7BlastDebrisParticle)
 	times[3]	= 1.0;
 };
 
-datablock ParticleEmitterData(RPG7BlastDebrisEmitter)
+datablock ParticleEmitterData(BNE_RPG7BlastDebrisEmitter)
 {
    ejectionPeriodMS = 8;
    periodVarianceMS = 0;
@@ -329,12 +329,12 @@ datablock ParticleEmitterData(RPG7BlastDebrisEmitter)
    phiReferenceVel  = 30;
    phiVariance      = 32;
    overrideAdvance = false;
-   particles = "RPG7BlastDebrisParticle";
+   particles = "BNE_RPG7BlastDebrisParticle";
 };
 
-datablock DebrisData(RPG7BlastDebrisData)
+datablock DebrisData(BNE_RPG7BlastDebrisData)
 {
-	emitters = RPG7BlastDebrisEmitter;
+	emitters = BNE_RPG7BlastDebrisEmitter;
 
 	shapeFile = "base/data/shapes/empty.dts";
 	lifetime = 0.3;
@@ -350,22 +350,22 @@ datablock DebrisData(RPG7BlastDebrisData)
 	gravModifier = 0.5;
 };
 
-datablock ExplosionData(RPG7Explosion)
+datablock ExplosionData(BNE_RPG7Explosion)
 {
    //explosionShape = "";
 	explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
-	soundProfile = RPG7ExplodeSound;
+	soundProfile = BNE_RPG7ExplodeSound;
 
 	lifeTimeMS = 350;
 
-	particleEmitter = RPG7BlastDebrisEmitter;
+	particleEmitter = BNE_RPG7BlastDebrisEmitter;
 	particleDensity = 60;
 	particleRadius = 0.35;
 
-	emitter[0] = RPG7BlastHazeEmitter;
-	emitter[1] = RPG7BlastSmokeEmitter;
+	emitter[0] = BNE_RPG7BlastHazeEmitter;
+	emitter[1] = BNE_RPG7BlastSmokeEmitter;
 
-	debris = RPG7BlastDebrisData;
+	debris = BNE_RPG7BlastDebrisData;
 	debrisNum = 30;
 	debrisNumVariance = 10;
 	debrisPhiMin = 0;
@@ -397,7 +397,7 @@ datablock ExplosionData(RPG7Explosion)
 	impulseForce = 1000;
 };
 
-datablock ProjectileData(RPG7Projectile)
+datablock ProjectileData(BNE_RPG7Projectile)
 {
    projectileShapeName = "./RPG/RPGRocket.dts";
    directDamage        = 100;
@@ -405,7 +405,7 @@ datablock ProjectileData(RPG7Projectile)
    radiusDamageType = $DamageType::AE;
    impactImpulse	   = 1;
    verticalImpulse	   = 1000;
-   explosion           = RPG7Explosion;
+   explosion           = BNE_RPG7Explosion;
    particleEmitter     = rocketTrailEmitter;
 
    brickExplosionRadius = 3;
@@ -414,7 +414,7 @@ datablock ProjectileData(RPG7Projectile)
    brickExplosionMaxVolume = 30;          //max volume of bricks that we can destroy
    brickExplosionMaxVolumeFloating = 60;  //max volume of bricks that we can destroy if they aren't connected to the ground (should always be >= brickExplosionMaxVolume)
 
-   sound = RPG7RocketLoopSound;
+   sound = BNE_RPG7RocketLoopSound;
 
    muzzleVelocity      = 200;
    velInheritFactor    = 0;
@@ -434,12 +434,12 @@ datablock ProjectileData(RPG7Projectile)
    uiName = "RPG-7 Rocket";
 };
 
-function RPG7Projectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
+function BNE_RPG7Projectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
 {
 	AETrailedProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
-function RPG7Projectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity)
+function BNE_RPG7Projectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity)
 {
 	%src = %obj.getTransform();
 	for(%i = 0; %i < ClientGroup.getCount(); %i++)
@@ -450,17 +450,17 @@ function RPG7Projectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %vel
 			continue;
 
 		if(vectorDist(%targ.getTransform(), %src) > 50)
-			%cc.play3D(RPG7ExplodeDistSound, %src);
+			%cc.play3D(BNE_RPG7ExplodeDistSound, %src);
 	}
 	AETrailedProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
-function RPG7Projectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
+function BNE_RPG7Projectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 {
 	AETrailedProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal);
 }
 
-datablock ProjectileData(RPG7ProjectileInactiveProjectile : RPG7Projectile)
+datablock ProjectileData(BNE_RPG7ProjectileInactiveProjectile : BNE_RPG7Projectile)
 {
    directDamage        = 100;
    directDamageType = $DamageType::AE;
@@ -475,29 +475,29 @@ datablock ProjectileData(RPG7ProjectileInactiveProjectile : RPG7Projectile)
    
    destroyOnBounce = true;
    deleteOnBounce = true;
-   bounceDestroyProjectile = RPG7FailedProjectile;
-   activatedProjectile = RPG7Projectile;
+   bounceDestroyProjectile = BNE_RPG7FailedProjectile;
+   activatedProjectile = BNE_RPG7Projectile;
    
    
    hasLight    = false;
-   explosion           = RPG7KickoffExplosion;
+   explosion           = BNE_RPG7KickoffExplosion;
    particleEmitter     = "";
    uiName = "";
 };
 
-function RPG7ProjectileInactiveProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
+function BNE_RPG7ProjectileInactiveProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
 {
 	AETrailedProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
-function RPG7ProjectileInactiveProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
+function BNE_RPG7ProjectileInactiveProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 {
 	AETrailedProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal);
 }
 
 //END OF STUFF
 
-datablock ParticleData(RPG7LauncherSmokeParticle)
+datablock ParticleData(BNE_RPG7LauncherSmokeParticle)
 {
 	dragCoefficient      = 6;
 	gravityCoefficient   = 0;
@@ -517,7 +517,7 @@ datablock ParticleData(RPG7LauncherSmokeParticle)
 
 	useInvAlpha = false;
 };
-datablock ParticleEmitterData(RPG7LauncherSmokeEmitter)
+datablock ParticleEmitterData(BNE_RPG7LauncherSmokeEmitter)
 {
    ejectionPeriodMS = 3;
    periodVarianceMS = 0;
@@ -529,7 +529,7 @@ datablock ParticleEmitterData(RPG7LauncherSmokeEmitter)
    phiReferenceVel  = 0;
    phiVariance      = 360;
    overrideAdvance = false;
-   particles = "RPG7LauncherSmokeParticle";
+   particles = "BNE_RPG7LauncherSmokeParticle";
 
    uiName = "";
 };
@@ -537,7 +537,7 @@ datablock ParticleEmitterData(RPG7LauncherSmokeEmitter)
 //////////
 // item //
 //////////
-datablock ItemData(RPG7Item)
+datablock ItemData(BNE_RPG7Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
@@ -558,7 +558,7 @@ datablock ItemData(RPG7Item)
 	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = RPG7Image;
+	image = BNE_RPG7Image;
 	canDrop = true;
 
 	AEAmmo = 1;
@@ -580,7 +580,7 @@ datablock ItemData(RPG7Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(RPG7Image)
+datablock ShapeBaseImageData(BNE_RPG7Image)
 {
    // Basic Item properties
    shapeFile = "./RPG/RPG.dts";
@@ -604,9 +604,9 @@ datablock ShapeBaseImageData(RPG7Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = RPG7Item;
+   item = BNE_RPG7Item;
    ammo = " ";
-   projectile = RPG7Projectile;
+   projectile = BNE_RPG7Projectile;
    projectileType = Projectile;
 
    Mag = a;
@@ -620,10 +620,10 @@ datablock ShapeBaseImageData(RPG7Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = RPG7SafetyImage;
-    scopingImage = RPG7IronsightImage;
+	safetyImage = BNE_RPG7SafetyImage;
+    scopingImage = BNE_RPG7IronsightImage;
 	doColorShift = true;
-	colorShiftColor = RPG7Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_RPG7Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	muzzleFlashScale = "2 2 2";
 	bulletScale = "1 1 1";
@@ -673,7 +673,7 @@ datablock ShapeBaseImageData(RPG7Image)
 
 	stateName[2]                       = "preFire";
 	stateTransitionOnTimeout[2]        = "Fire";
-	stateEmitter[2]					= RPG7LauncherSmokeEmitter;
+	stateEmitter[2]					= BNE_RPG7LauncherSmokeEmitter;
 	stateEmitterTime[2]				= 0.05;
 	stateEmitterNode[2]				= tailNode;
 	stateScript[2]                     = "AEOnFire";
@@ -712,7 +712,7 @@ datablock ShapeBaseImageData(RPG7Image)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= RPG7MagInSound;
+	stateSound[9]				= BNE_RPG7MagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.4;
@@ -760,11 +760,11 @@ datablock ShapeBaseImageData(RPG7Image)
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function RPG7Image::AEOnFire(%this,%obj,%slot)
+function BNE_RPG7Image::AEOnFire(%this,%obj,%slot)
 {	
     %obj.schedule(50, "aeplayThread", "2", "jump");
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, RPG7FireSound);
+  %obj.playAudio(0, BNE_RPG7FireSound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(750, unBlockImageDismount);
@@ -772,44 +772,44 @@ function RPG7Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function RPG7Image::onCock(%this, %obj, %slot)
+function BNE_RPG7Image::onCock(%this, %obj, %slot)
 {
-    %obj.schedule(100, playAudio, 1, RPG7CockSound);
+    %obj.schedule(100, playAudio, 1, BNE_RPG7CockSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function RPG7Image::onDryFire(%this, %obj, %slot)
+function BNE_RPG7Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function RPG7Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_RPG7Image::onReloadMagIn(%this,%obj,%slot)
 {
     %obj.schedule(300, "aeplayThread", "3", "plant");
     %obj.schedule(300, "aeplayThread", "2", "shiftright");
-    %obj.schedule(350, playAudio, 1, RPG7TwistSound);
+    %obj.schedule(350, playAudio, 1, BNE_RPG7TwistSound);
 }
 
-function RPG7Image::onReloadEnd(%this,%obj,%slot)
+function BNE_RPG7Image::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function RPG7Image::onReload2End(%this,%obj,%slot)
+function BNE_RPG7Image::onReload2End(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function RPG7Image::onReloadStart(%this,%obj,%slot)
+function BNE_RPG7Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEMagPlasticAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function RPG7Image::onReady(%this,%obj,%slot)
+function BNE_RPG7Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -819,7 +819,7 @@ function RPG7Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function RPG7Image::onMount(%this,%obj,%slot)
+function BNE_RPG7Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -828,7 +828,7 @@ function RPG7Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RPG7Image::onUnMount(%this,%obj,%slot)
+function BNE_RPG7Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -842,7 +842,7 @@ function RPG7Image::onUnMount(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(RPG7SafetyImage)
+datablock ShapeBaseImageData(BNE_RPG7SafetyImage)
 {
    shapeFile = "./RPG/RPG.dts";
    emap = true;
@@ -852,14 +852,14 @@ datablock ShapeBaseImageData(RPG7SafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = RPG7Item;
+   item = BNE_RPG7Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   safetyImage = RPG7Image;
+   safetyImage = BNE_RPG7Image;
    doColorShift = true;
-   colorShiftColor = RPG7Item.colorShiftColor;
+   colorShiftColor = BNE_RPG7Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -871,7 +871,7 @@ datablock ShapeBaseImageData(RPG7SafetyImage)
 
 };
 
-function RPG7SafetyImage::onMount(%this,%obj,%slot)
+function BNE_RPG7SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -880,7 +880,7 @@ function RPG7SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function RPG7SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_RPG7SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -890,12 +890,12 @@ function RPG7SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(RPG7IronsightImage : RPG7Image)
+datablock ShapeBaseImageData(BNE_RPG7IronsightImage : BNE_RPG7Image)
 {
 	recoilHeight = 0.25;
 
-	scopingImage = RPG7Image;
-	sourceImage = RPG7Image;
+	scopingImage = BNE_RPG7Image;
+	sourceImage = BNE_RPG7Image;
 	
   offset = "0 0.075 0.075";
 	eyeOffset = "0.193 1 -0.4569";
@@ -912,34 +912,34 @@ datablock ShapeBaseImageData(RPG7IronsightImage : RPG7Image)
 	stateSound[7]				= "";
 };
 
-function RPG7IronsightImage::onDone(%this,%obj,%slot)
+function BNE_RPG7IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function RPG7IronsightImage::onReady(%this,%obj,%slot)
+function BNE_RPG7IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function RPG7IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_RPG7IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
 
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, RPG7FireSound);
+  %obj.playAudio(0, BNE_RPG7FireSound);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function RPG7IronsightImage::onCock(%this, %obj, %slot)
+function BNE_RPG7IronsightImage::onCock(%this, %obj, %slot)
 {
-    %obj.schedule(250, playAudio, 1, RPG7CockSound);
+    %obj.schedule(250, playAudio, 1, BNE_RPG7CockSound);
 }
 
-function RPG7IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_RPG7IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -947,7 +947,7 @@ function RPG7IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function RPG7IronsightImage::onMount(%this,%obj,%slot)
+function BNE_RPG7IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -958,7 +958,7 @@ function RPG7IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function RPG7IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_RPG7IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound);

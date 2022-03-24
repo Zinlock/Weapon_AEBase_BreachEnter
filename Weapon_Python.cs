@@ -320,20 +320,20 @@ function BNE_PythonImage::AEOnLowClimb(%this, %obj, %slot)
 
 function BNE_PythonImage::onReloadExtract(%this, %obj, %slot)
 {
-	%obj.playAudio(0, PythonOutSound);
+	%obj.playAudio(0, BNE_PythonOutSound);
 	%obj.AEUnloadMag();
 	%obj.baadDisplayAmmo(%this);
 }
 
 function BNE_PythonImage::onReloadStart(%this, %obj, %slot)
 {
-	%obj.playAudio(0, PythonOpenSound);
+	%obj.playAudio(0, BNE_PythonOpenSound);
 	%obj.aeplayThread(2, shiftleft); 
 }
 
 function BNE_PythonImage::onReloadEnd(%this,%obj,%slot)
 {
-	%obj.reloadSoundSchedule = %obj.schedule(100, playAudio, 0, PythonCloseSound);
+	%obj.reloadSoundSchedule = %obj.schedule(100, playAudio, 0, BNE_PythonCloseSound);
 	cancel(%obj.insertshellSchedule);
 }
 
@@ -376,9 +376,9 @@ function BNE_PythonImage::onUnMount(%this, %obj, %slot)
 
 function BNE_PythonImage::LoadEffect(%this,%obj,%slot)
 {
-	//%obj.reloadSoundSchedule = %obj.schedule(50, playAudio, 0, "PythonInsert" @ getRandom(1, 3) @ "Sound");
+	//%obj.reloadSoundSchedule = %obj.schedule(50, playAudio, 0, "BNE_PythonInsert" @ getRandom(1, 3) @ "Sound");
 	%obj.stopAudio(0);
-	%obj.playAudio(0, "PythonInsert" @ getRandom(1, 3) @ "Sound");
+	%obj.playAudio(0, "BNE_PythonInsert" @ getRandom(1, 3) @ "Sound");
     // %obj.schedule(100, "aeplayThread", "3", "plant");
     // %obj.schedule(150, "aeplayThread", "2", "shiftright");
     %obj.insertshellSchedule = %this.schedule(50,AEShotgunLoadOne,%obj,%slot);
