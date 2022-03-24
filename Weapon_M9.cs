@@ -311,7 +311,7 @@ datablock ShapeBaseImageData(BNE_M9Image)
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEndEmpty";
-	stateSound[19]				= M9SlideSound;
+	stateSound[19]				= BNE_M9SlideSound;
 	
 	stateName[20]				= "ReadyLoop";
 	stateTransitionOnTimeout[20]		= "Ready";

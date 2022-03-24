@@ -478,7 +478,7 @@ datablock ShapeBaseImageData(BNE_M93RMagImage)
 	offset = "0 0.075 -0.1";
    rotation = eulerToMatrix( "0 0 0" );	
 	
-	casing = AEM9MagDebris;
+	casing = BNE_M9MagDebris;
 	shellExitDir        = "0 -0.05 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	

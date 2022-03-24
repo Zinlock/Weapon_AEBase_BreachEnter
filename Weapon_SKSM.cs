@@ -82,7 +82,7 @@ datablock ItemData(BNE_SKSMItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(BNE_SKSMImage : SKSImage)
+datablock ShapeBaseImageData(BNE_SKSMImage)
 {
    // Basic Item properties
    shapeFile = "./SKSM/SKSM.dts";
