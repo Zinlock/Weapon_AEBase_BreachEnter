@@ -1,3 +1,17 @@
+datablock AudioProfile(BNE_G3FireLoopSound)
+{
+   filename    = "./Sounds/Fire/G3/G3_LP.wav";
+   description = BAADFireMediumLoop3D;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_G3FireLoopEndSound)
+{
+   filename    = "./Sounds/Fire/G3/G3_LP_END.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+
 // G3
 datablock DebrisData(BNE_G3MagDebris)
 {
@@ -111,6 +125,8 @@ datablock ShapeBaseImageData(BNE_G3Image)
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
 
+  loopingEndSound = BNE_G3FireLoopEndSound;
+
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
@@ -121,7 +137,7 @@ datablock ShapeBaseImageData(BNE_G3Image)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.75;
+	recoilHeight = 0.5;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
@@ -200,126 +216,137 @@ datablock ShapeBaseImageData(BNE_G3Image)
 	stateSequence[3]                = "Fire";
 	stateWaitForTimeout[3]			= true;
 	
-	stateName[5]				= "LoadCheckA";
-	stateScript[5]				= "AEMagLoadCheck";
-	stateTimeoutValue[5]			= 0.1;
-	stateTransitionOnTimeout[5]		= "LoadCheckB";
+	stateName[4]				= "FireLoadCheckA";
+	stateScript[4]				= "AEMagLoadCheck";
+	stateTimeoutValue[4]			= 0.12;
+	stateTransitionOnTimeout[4]		= "FireLoadCheckB";
 	
-	stateName[6]				= "LoadCheckB";
-	stateTransitionOnAmmo[6]		= "Ready";
-	stateTransitionOnNotLoaded[6] = "Empty";
-	stateTransitionOnNoAmmo[6]		= "Reload2";
+	stateName[5]				= "FireLoadCheckB";
+	stateTransitionOnAmmo[5]		= "TrigCheck";
+	stateTransitionOnNoAmmo[5]		= "EndLoopEmpty";
+	stateTransitionOnNotLoaded[5]  = "EndLoop";
 
-	stateName[7]				= "Reload";
-	stateTimeoutValue[7]			= 0.25;
-	stateScript[7]				= "onReloadStart";
-	stateTransitionOnTimeout[7]		= "ReloadMagOut";
-	stateWaitForTimeout[7]			= true;
-	stateSequence[7]			= "ReloadStart";
-	
-	stateName[8]				= "ReloadMagOut";
-	stateTimeoutValue[8]			= 0.75;
-	stateScript[8]				= "onReloadMagOut";
-	stateTransitionOnTimeout[8]		= "ReloadMagIn";
-	stateWaitForTimeout[8]			= true;
-	stateSequence[8]			= "MagOut";
-	stateSound[8]				= BNE_AKMagOutSound;
-	
-	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.35;
-	stateScript[9]				= "onReloadMagIn";
-	stateTransitionOnTimeout[9]		= "ReloadEnd";
-	stateWaitForTimeout[9]			= true;
-	stateSequence[9]			= "MagIn";
-	stateSound[9]				= BNE_AKMagInSound;
-	
-	stateName[10]				= "ReloadEnd";
-	stateTimeoutValue[10]			= 0.25;
-	stateScript[10]				= "onReloadEnd";
-	stateTransitionOnTimeout[10]		= "Ready";
-	stateWaitForTimeout[10]			= true;
-	stateSequence[10]			= "ReloadEnd";
-	
-	stateName[11]				= "FireLoadCheckA";
-	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.12;
-	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
-	
-	stateName[12]				= "FireLoadCheckB";
-	stateTransitionOnAmmo[12]		= "Ready";
-	stateTransitionOnNoAmmo[12]		= "Reload2";	
-	stateTransitionOnNotLoaded[12]  = "Ready";
-		
-	stateName[14]				= "Reloaded";
+	stateName[14]				= "LoadCheckA";
+	stateScript[14]				= "AEMagLoadCheck";
 	stateTimeoutValue[14]			= 0.1;
-	stateScript[14]				= "AEMagReloadAll";
-	stateTransitionOnTimeout[14]		= "Ready";
-
-// EMPTY RELOAD STATE
-
-	stateName[15]				= "Reload2";
-	stateTimeoutValue[15]			= 0.25;
-	stateScript[15]				= "onReloadStart";
-	stateTransitionOnTimeout[15]		= "Reload2MagOut";
-	stateWaitForTimeout[15]			= true;
-	stateSequence[15]			= "ReloadStart";
+	stateTransitionOnTimeout[14]		= "LoadCheckB";
 	
-	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 0.75;
-	stateScript[16]				= "onReload2MagOut";
-	stateTransitionOnTimeout[16]		= "Reload2MagIn";
+	stateName[15]				= "LoadCheckB";
+	stateTransitionOnAmmo[15]		= "Ready";
+	stateTransitionOnNotLoaded[15] = "Empty";
+	stateTransitionOnNoAmmo[15]		= "Reload2";
+
+	stateName[16]				= "Reload";
+	stateTimeoutValue[16]			= 0.2;
+	stateScript[16]				= "onReloadStart";
+	stateTransitionOnTimeout[16]		= "ReloadMagOut";
 	stateWaitForTimeout[16]			= true;
-	stateSequence[16]			= "MagOut";
-	stateSound[16]				= BNE_AKMagOutSound;
+	stateSequence[16]			= "ReloadStart";
 	
-	stateName[17]				= "Reload2MagIn";
-	stateTimeoutValue[17]			= 0.35;
-	stateScript[17]				= "onReload2MagIn";
-	stateTransitionOnTimeout[17]		= "Reload2Bolt";
+	stateName[17]				= "ReloadMagOut";
+	stateTimeoutValue[17]			= 0.55;
+	stateScript[17]				= "onReloadMagOut";
+	stateTransitionOnTimeout[17]		= "ReloadMagIn";
 	stateWaitForTimeout[17]			= true;
-	stateSequence[17]			= "MagIn";
-	stateSound[17]				= BNE_AKMagInSound;
+	stateSequence[17]			= "MagOut";
+	stateSound[17]				= BNE_KBP9A91MagOutSound;
 	
-	stateName[18]				= "Reload2Bolt";
-	stateTimeoutValue[18]			= 0.35;
-	stateScript[18]				= "onReload2Bolt";
-	stateTransitionOnTimeout[18]		= "Reload2End";
+	stateName[18]				= "ReloadMagIn";
+	stateTimeoutValue[18]			= 0.45;
+	stateScript[18]				= "onReloadMagIn";
+	stateTransitionOnTimeout[18]		= "ReloadEnd";
 	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "Bolt";
-	stateSound[18]				= BNE_AKBoltPullSound;
+	stateSequence[18]			= "MagIn";
+	stateSound[18]				= BNE_KBP9A91MagInSound;
 	
-	stateName[19]				= "Reload2End";
-	stateTimeoutValue[19]			= 0.25;
-	stateScript[19]				= "onReload2End";
+	stateName[19]				= "ReloadEnd";
+	stateTimeoutValue[19]			= 0.3;
+	stateScript[19]				= "onReloadEnd";
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEnd";
-	
-	stateName[20]				= "ReadyLoop";
+		
+	stateName[20]				= "Reloaded";
+	stateTimeoutValue[20]			= 0.1;
+	stateScript[20]				= "AEMagReloadAll";
 	stateTransitionOnTimeout[20]		= "Ready";
 
-	stateName[21]          = "Empty";
-	stateTransitionOnTriggerDown[21]  = "Dryfire";
-	stateTransitionOnLoaded[21] = "Reload2";
-	stateScript[21]        = "AEOnEmpty";
+// EMPTY RELOAD STATE
 
-	stateName[22]           = "Dryfire";
-	stateTransitionOnTriggerUp[22] = "Empty";
-	stateWaitForTimeout[22]    = false;
-	stateScript[22]      = "onDryFire";
+	stateName[21]				= "Reload2";
+	stateTimeoutValue[21]			= 0.4;
+	stateScript[21]				= "onReload2Start";
+	stateTransitionOnTimeout[21]		= "Reload2MagOut";
+	stateWaitForTimeout[21]			= true;
+	stateSequence[21]			= "ReloadStartEmpty";
+	stateSound[21]				= BNE_HKBoltLockSound;
+	
+	stateName[22]				= "Reload2MagOut";
+	stateTimeoutValue[22]			= 0.55;
+	stateScript[22]				= "onReload2MagOut";
+	stateTransitionOnTimeout[22]		= "Reload2MagIn";
+	stateWaitForTimeout[22]			= true;
+	stateSequence[22]			= "MagOutEmpty";
+	stateSound[22]				= BNE_KBP9A91MagOutSound;
+	
+	stateName[23]				= "Reload2MagIn";
+	stateTimeoutValue[23]			= 0.45;
+	stateScript[23]				= "onReload2MagIn";
+	stateTransitionOnTimeout[23]		= "Reload2End";
+	stateWaitForTimeout[23]			= true;
+	stateSequence[23]			= "MagInEmpty";
+	stateSound[23]				= BNE_KBP9A91MagInSound;
+	
+	stateName[24]				= "Reload2End";
+	stateTimeoutValue[24]			= 0.5;
+	stateScript[24]				= "onReload2End";
+	stateTransitionOnTimeout[24]		= "Ready";
+	stateWaitForTimeout[24]			= true;
+	stateSequence[24]			= "ReloadEndEmpty";
+	
+	stateName[25]				= "ReadyLoop";
+	stateTransitionOnTimeout[25]		= "Ready";
+
+	stateName[26]          = "Empty";
+	stateTransitionOnTriggerDown[26]  = "Dryfire";
+	stateTransitionOnLoaded[26] = "Reload2";
+	stateScript[26]        = "AEOnEmpty";
+
+	stateName[27]           = "Dryfire";
+	stateTransitionOnTriggerUp[27] = "Empty";
+	stateWaitForTimeout[27]    = false;
+	stateScript[27]      = "onDryFire";
+
+	stateName[28]          = "TrigCheck";
+	stateTransitionOnTriggerDown[28]  = "preFire";
+	stateTransitionOnTimeout[28]		= "EndLoop";
+	
+	stateName[29]          = "EndLoop";
+	stateScript[29]				= "onEndLoop";
+	stateTransitionOnTimeout[29]		= "Ready";
+	
+	stateName[30]          = "EndLoopEmpty";
+	stateScript[30]				= "onEndLoop";
+	stateTransitionOnTimeout[30]		= "Reload2";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
 function BNE_G3Image::AEOnFire(%this,%obj,%slot)
 {	
-	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
+	%obj.playAudio(0, BNE_G3FireLoopSound);
+	%obj.FireLoop = true;
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
 
 	Parent::AEOnFire(%this, %obj, %slot);
+}
+
+function BNE_G3Image::onEndLoop(%this, %obj, %slot)
+{
+	%obj.playAudio(0, %this.loopingEndSound);
+	%obj.FireLoop = false;
 }
 
 function BNE_G3Image::onDryFire(%this, %obj, %slot)
@@ -330,27 +357,31 @@ function BNE_G3Image::onDryFire(%this, %obj, %slot)
 
 function BNE_G3Image::onReloadMagIn(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, plant);
+   %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
 function BNE_G3Image::onReload2MagIn(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, plant);
+	%obj.schedule(50, "aeplayThread", "2", "plant");
+	%obj.schedule(500, "aeplayThread", "2", "shiftleft");
+	%obj.schedule(600, "aeplayThread", "3", "plant");
 }
 
 function BNE_G3Image::onReloadMagOut(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, plant);
+	%obj.aeplayThread(2, shiftleft);
+	%obj.aeplayThread(3, shiftright);
 }
 
 function BNE_G3Image::onReload2MagOut(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, plant);
+	%obj.aeplayThread(2, shiftleft);
+	%obj.aeplayThread(3, shiftright);
 }
 
 function BNE_G3Image::onReload2Bolt(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, plant);
+	%obj.aeplayThread(2, plant);
 }
 
 function BNE_G3Image::onReloadEnd(%this,%obj,%slot)
@@ -360,6 +391,7 @@ function BNE_G3Image::onReloadEnd(%this,%obj,%slot)
 
 function BNE_G3Image::onReload2End(%this,%obj,%slot)
 {
+	%obj.schedule(50, playAudio, 1, BNE_HKBoltCloseSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
@@ -368,8 +400,16 @@ function BNE_G3Image::onReload2End(%this,%obj,%slot)
 function BNE_G3Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
-   %obj.reload3Schedule = %this.schedule(225,onMagDrop,%obj,%slot);
+   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
+}
+
+function BNE_G3Image::onReload2Start(%this,%obj,%slot)
+{
+  %obj.aeplayThread(2, plant);
+  %obj.aeplayThread(3, shiftright);
+   %obj.reload3Schedule = %this.schedule(400,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(775,850),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
 function BNE_G3Image::onReady(%this,%obj,%slot)
@@ -427,7 +467,7 @@ datablock ShapeBaseImageData(BNE_G3MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
-	offset = "-0.15 0.7 0.15";
+	offset = "0.02 0.65 0.05";
    rotation = eulerToMatrix( "0 40 0" );	
 	
 	casing = BNE_G3MagDebris;
@@ -521,17 +561,17 @@ datablock ShapeBaseImageData(BNE_G3IronsightImage : BNE_G3Image)
 	projectileZOffset = 0;
 	R_MovePenalty = 0.5;
    
-	stateName[15]				= "Reload2";
-	stateScript[15]				= "onDone";
-	stateTimeoutValue[15]			= 1;
-	stateTransitionOnTimeout[15]		= "";
-	stateSound[15]				= "";
+	stateName[16]				= "Reload2";
+	stateScript[16]				= "onDone";
+	stateTimeoutValue[16]			= 1;
+	stateTransitionOnTimeout[16]		= "";
+	stateSound[16]				= "";
 	
-	stateName[7]				= "Reload";
-	stateScript[7]				= "onDone";
-	stateTimeoutValue[7]			= 1;
-	stateTransitionOnTimeout[7]		= "";
-	stateSound[7]				= "";
+	stateName[21]				= "Reload";
+	stateScript[21]				= "onDone";
+	stateTimeoutValue[21]			= 1;
+	stateTransitionOnTimeout[21]		= "";
+	stateSound[21]				= "";
 };
 
 function BNE_G3IronsightImage::onDone(%this,%obj,%slot)
@@ -545,10 +585,16 @@ function BNE_G3IronsightImage::onReady(%this,%obj,%slot)
 	%obj.baadDisplayAmmo(%this);
 }
 
+function BNE_G3IronsightImage::onEndLoop(%this, %obj, %slot)
+{
+	%obj.playAudio(0, %this.loopingEndSound);
+	%obj.FireLoop = false;
+}
+
 function BNE_G3IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
-	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
+	%obj.playAudio(0, BNE_G3FireLoopSound);
+	%obj.FireLoop = true;
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
