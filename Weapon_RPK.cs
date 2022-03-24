@@ -1,3 +1,10 @@
+datablock AudioProfile(BNE_RPKFireLoopSound)
+{
+   filename    = "./Sounds/Fire/AK47/RPK_LP.wav";
+   description = BAADFireMediumLoop3D;
+   preload = true;
+};
+
 // RPK
 datablock DebrisData(BNE_RPKMagDebris)
 {
@@ -111,6 +118,8 @@ datablock ShapeBaseImageData(BNE_RPKImage)
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
+
+    loopingEndSound = BNE_AK47FireLoopEndSound;
 
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
@@ -247,9 +256,9 @@ datablock ShapeBaseImageData(BNE_RPKImage)
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";
-	stateTransitionOnAmmo[12]		= "Ready";
-	stateTransitionOnNoAmmo[12]		= "Reload2";	
-	stateTransitionOnNotLoaded[12]  = "Ready";
+	stateTransitionOnAmmo[12]		= "TrigCheck";
+	stateTransitionOnNoAmmo[12]		= "EndLoopEmpty";	
+	stateTransitionOnNotLoaded[12]  = "EndLoop";
 		
 	stateName[14]				= "Reloaded";
 	stateTimeoutValue[14]			= 0.1;
@@ -308,19 +317,37 @@ datablock ShapeBaseImageData(BNE_RPKImage)
 	stateTransitionOnTriggerUp[22] = "Empty";
 	stateWaitForTimeout[22]    = false;
 	stateScript[22]      = "onDryFire";
+	
+	stateName[23]          = "TrigCheck";
+	stateTransitionOnTriggerDown[23]  = "preFire";
+	stateTransitionOnTimeout[23]		= "EndLoop";
+	
+	stateName[24]          = "EndLoop";
+	stateScript[24]				= "onEndLoop";
+	stateTransitionOnTimeout[24]		= "Ready";
+	
+	stateName[25]          = "EndLoopEmpty";
+	stateScript[25]				= "onEndLoop";
+	stateTransitionOnTimeout[25]		= "Reload2";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
 function BNE_RPKImage::AEOnFire(%this,%obj,%slot)
-{	
-	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
-  
+{
+	%obj.playAudio(0, BNE_RPKFireLoopSound);
+    %obj.FireLoop = true;
+	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
+	
+	Parent::AEOnFire(%this, %obj, %slot); 	
+}
 
-	Parent::AEOnFire(%this, %obj, %slot);
+function BNE_RPKImage::onEndLoop(%this, %obj, %slot)
+{
+    %obj.playAudio(0, %this.loopingEndSound);
+    %obj.FireLoop = false;
 }
 
 function BNE_RPKImage::onDryFire(%this, %obj, %slot)
@@ -493,14 +520,20 @@ function BNE_RPKIronsightImage::onReady(%this,%obj,%slot)
 }
 
 function BNE_RPKIronsightImage::AEOnFire(%this,%obj,%slot)
-{	
-	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AK47Fire @ getRandom(1, 3) @ Sound);
-  
+{
+	%obj.playAudio(0, BNE_RPKFireLoopSound);
+    %obj.FireLoop = true;
+	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
+	
+	Parent::AEOnFire(%this, %obj, %slot); 	
+}
 
-	Parent::AEOnFire(%this, %obj, %slot);
+function BNE_RPKIronsightImage::onEndLoop(%this, %obj, %slot)
+{
+    %obj.playAudio(0, %this.loopingEndSound);
+    %obj.FireLoop = false;
 }
 
 function BNE_RPKIronsightImage::onDryFire(%this, %obj, %slot)

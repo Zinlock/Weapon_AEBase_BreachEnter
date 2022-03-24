@@ -521,7 +521,7 @@ function BNE_MP7SafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_MP7IronsightImage : BNE_MP7Image)
 {
-	recoilHeight = 0.25;
+	recoilHeight = 0.125;
 
 	scopingImage = BNE_MP7Image;
 	sourceImage = BNE_MP7Image;

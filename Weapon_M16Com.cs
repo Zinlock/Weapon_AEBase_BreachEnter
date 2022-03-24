@@ -289,7 +289,7 @@ datablock ShapeBaseImageData(BNE_M16ComImage)
 function BNE_M16ComImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_M16A1Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -491,7 +491,7 @@ function BNE_M16ComIronsightImage::onReady(%this,%obj,%slot)
 function BNE_M16ComIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_M16A1Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
