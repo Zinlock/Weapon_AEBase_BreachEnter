@@ -493,6 +493,7 @@ datablock ShapeBaseImageData(BNE_RangerSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_RangerIronsightImage;
    safetyImage = BNE_RangerImage;
    doColorShift = true;
    colorShiftColor = BNE_RangerItem.colorShiftColor;
@@ -501,11 +502,20 @@ datablock ShapeBaseImageData(BNE_RangerSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_RangerSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_RangerSafetyImage::onMount(%this,%obj,%slot)
 {

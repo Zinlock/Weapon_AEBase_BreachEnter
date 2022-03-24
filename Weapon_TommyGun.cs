@@ -465,6 +465,7 @@ datablock ShapeBaseImageData(BNE_TommyGunSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_TommyGunIronsightImage;
    safetyImage = BNE_TommyGunImage;
    doColorShift = true;
    colorShiftColor = BNE_TommyGunItem.colorShiftColor;
@@ -473,11 +474,20 @@ datablock ShapeBaseImageData(BNE_TommyGunSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_TommyGunSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_TommyGunSafetyImage::onMount(%this,%obj,%slot)
 {

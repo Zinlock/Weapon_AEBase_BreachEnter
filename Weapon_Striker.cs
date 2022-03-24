@@ -397,6 +397,7 @@ datablock ShapeBaseImageData(BNE_StrikerSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_StrikerIronsightImage;
    safetyImage = BNE_StrikerImage;
    doColorShift = true;
    colorShiftColor = BNE_StrikerItem.colorShiftColor;
@@ -405,11 +406,20 @@ datablock ShapeBaseImageData(BNE_StrikerSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_StrikerSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_StrikerSafetyImage::onMount(%this,%obj,%slot)
 {

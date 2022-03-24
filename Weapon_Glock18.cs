@@ -484,6 +484,7 @@ datablock ShapeBaseImageData(BNE_Glock18SafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_Glock18IronsightImage;
    safetyImage = BNE_Glock18Image;
    doColorShift = true;
    colorShiftColor = BNE_Glock18Item.colorShiftColor;
@@ -492,11 +493,20 @@ datablock ShapeBaseImageData(BNE_Glock18SafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_Glock18SafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_Glock18SafetyImage::onMount(%this,%obj,%slot)
 {

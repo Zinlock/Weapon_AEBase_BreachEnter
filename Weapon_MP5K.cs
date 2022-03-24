@@ -485,6 +485,7 @@ datablock ShapeBaseImageData(BNE_MP5KSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_MP5KIronsightImage;
    safetyImage = BNE_MP5KImage;
    doColorShift = true;
    colorShiftColor = BNE_MP5KItem.colorShiftColor;
@@ -493,11 +494,20 @@ datablock ShapeBaseImageData(BNE_MP5KSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_MP5KSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_MP5KSafetyImage::onMount(%this,%obj,%slot)
 {

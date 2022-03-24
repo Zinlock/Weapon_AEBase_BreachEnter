@@ -1,20 +1,13 @@
-datablock AudioProfile(BNE_M60Fire1Sound)
+datablock AudioProfile(BNE_M60FireLoopSound)
 {
-   filename    = "./Sounds/Fire/M60/M60_fire1.wav";
-   description = MediumClose3D;
+   filename    = "./Sounds/Fire/M60/M60_LP.wav";
+   description = BAADFireMediumLoop3D;
    preload = true;
 };
 
-datablock AudioProfile(BNE_M60Fire2Sound)
+datablock AudioProfile(BNE_M60FireLoopEndSound)
 {
-   filename    = "./Sounds/Fire/M60/M60_fire2.wav";
-   description = MediumClose3D;
-   preload = true;
-};
-
-datablock AudioProfile(BNE_M60Fire3Sound)
-{
-   filename    = "./Sounds/Fire/M60/M60_fire3.wav";
+   filename    = "./Sounds/Fire/M60/M60_LP_END.wav";
    description = MediumClose3D;
    preload = true;
 };
@@ -133,6 +126,8 @@ datablock ShapeBaseImageData(BNE_M60Image)
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
 
+    loopingEndSound = BNE_M60FireLoopEndSound;
+
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
@@ -223,14 +218,14 @@ datablock ShapeBaseImageData(BNE_M60Image)
 	stateSequence[3]                = "Fire";
 	stateWaitForTimeout[3]			= true;
 	
-	stateName[29]                    = "FireEmpty";
-	stateTransitionOnTimeout[29]     = "FireLoadCheckA";
-	stateEmitter[29]					= AEBaseSmokeEmitter;
-	stateEmitterTime[29]				= 0.05;
-	stateEmitterNode[29]				= "muzzlePoint";
-	stateAllowImageChange[29]        = false;
-	stateSequence[29]                = "FireEmpty";
-	stateWaitForTimeout[29]			= true;
+	stateName[4]                    = "FireEmpty";
+	stateTransitionOnTimeout[4]     = "FireLoadCheckA";
+	stateEmitter[4]					= AEBaseSmokeEmitter;
+	stateEmitterTime[4]				= 0.05;
+	stateEmitterNode[4]				= "muzzlePoint";
+	stateAllowImageChange[4]        = false;
+	stateSequence[4]                = "FireEmpty";
+	stateWaitForTimeout[4]			= true;
 	
 	stateName[5]				= "LoadCheckA";
 	stateScript[5]				= "AEMagLoadCheck";
@@ -257,116 +252,134 @@ datablock ShapeBaseImageData(BNE_M60Image)
 	stateSequence[8]			= "HideBelt";
 	stateSound[8]				= BNE_M60RemoveSound;
 	
-	stateName[10]				= "ReloadMagOut";
+	stateName[9]				= "ReloadMagOut";
+	stateTimeoutValue[9]			= 1.25;
+	stateScript[9]				= "onReloadMagOut";
+	stateTransitionOnTimeout[9]		= "ReloadMagIn";
+	stateWaitForTimeout[9]			= true;
+	stateSequence[9]			= "MagOut";
+	stateSound[9]				= BNE_M60MagOutSound;
+	
+	stateName[10]				= "ReloadMagIn";
 	stateTimeoutValue[10]			= 0.75;
-	stateScript[10]				= "onReloadMagOut";
-	stateTransitionOnTimeout[10]		= "ReloadMagIn";
+	stateScript[10]				= "onReloadMagIn";
+	stateTransitionOnTimeout[10]		= "ReloadPutBelt";
 	stateWaitForTimeout[10]			= true;
-	stateSequence[10]			= "MagOut";
-	stateSound[10]				= BNE_M60MagOutSound;
+	stateSequence[10]			= "MagIn";
+	stateSound[10]				= BNE_M60MagInSound;
 	
-	stateName[12]				= "ReloadMagIn";
-	stateTimeoutValue[12]			= 0.35;
-	stateScript[12]				= "onReloadMagIn";
-	stateTransitionOnTimeout[12]		= "ReloadPutBelt";
-	stateWaitForTimeout[12]			= true;
-	stateSequence[12]			= "MagIn";
-	stateSound[12]				= BNE_M60MagInSound;
+	stateName[11]				= "ReloadPutBelt";
+	stateTimeoutValue[11]			= 0.5;
+	stateScript[11]				= "onReloadPutBelt";
+	stateTransitionOnTimeout[11]		= "Reload2End";
+	stateWaitForTimeout[11]			= true;
+	stateSequence[11]			= "PutBelt";
+	stateSound[11]				= BNE_M60AttachSound;
 	
-	stateName[13]				= "ReloadPutBelt";
-	stateTimeoutValue[13]			= 0.5;
-	stateScript[13]				= "onReloadPutBelt";
-	stateTransitionOnTimeout[13]		= "Reload2End";
-	stateWaitForTimeout[13]			= true;
-	stateSequence[13]			= "PutBelt";
-	stateSound[13]				= BNE_M60AttachSound;
+	stateName[12]				= "FireLoadCheckA";
+	stateScript[12]				= "AEMagLoadCheck";
+	stateTimeoutValue[12]			= 0.1;
+	stateTransitionOnTimeout[12]		= "FireLoadCheckB";
 	
-	stateName[15]				= "FireLoadCheckA";
-	stateScript[15]				= "AEMagLoadCheck";
-	stateTimeoutValue[15]			= 0.1;
-	stateTransitionOnTimeout[15]		= "FireLoadCheckB";
-	
-	stateName[16]				= "FireLoadCheckB";
-	stateTransitionOnAmmo[16]		= "Ready";
-	stateTransitionOnNoAmmo[16]		= "Reload2";	
-	stateTransitionOnNotLoaded[16]  = "Ready";
+	stateName[13]				= "FireLoadCheckB";
+	stateTransitionOnAmmo[13]		= "TrigCheck";
+	stateTransitionOnNoAmmo[13]		= "EndLoopEmpty";
+	stateTransitionOnNotLoaded[13]  = "EndLoop";
 		
-	stateName[17]				= "Reloaded";
-	stateTimeoutValue[17]			= 0.1;
-	stateScript[17]				= "AEMagReloadAll";
-	stateTransitionOnTimeout[17]		= "Ready";
+	stateName[14]				= "Reloaded";
+	stateTimeoutValue[14]			= 0.1;
+	stateScript[14]				= "AEMagReloadAll";
+	stateTransitionOnTimeout[14]		= "Ready";
 
 // EMPTY RELOAD STATE
 
-	stateName[18]				= "Reload2";
-	stateTimeoutValue[18]			= 0.35;
-	stateScript[18]				= "onReload2Start";
-	stateTransitionOnTimeout[18]		= "Reload2MagOut";
+	stateName[15]				= "Reload2";
+	stateTimeoutValue[15]			= 0.35;
+	stateScript[15]				= "onReload2Start";
+	stateTransitionOnTimeout[15]		= "Reload2MagOut";
+	stateWaitForTimeout[15]			= true;
+	stateSequence[15]			= "ReloadStartEmpty";
+	
+	stateName[16]				= "Reload2MagOut";
+	stateTimeoutValue[16]			= 1.25;
+	stateScript[16]				= "onReloadMagOut";
+	stateTransitionOnTimeout[16]		= "Reload2MagIn";
+	stateWaitForTimeout[16]			= true;
+	stateSequence[16]			= "MagOut";
+	stateSound[16]				= BNE_M60MagOutSound;
+	
+	stateName[17]				= "Reload2MagIn";
+	stateTimeoutValue[17]			= 0.75;
+	stateScript[17]				= "onReloadMagIn";
+	stateTransitionOnTimeout[17]		= "Reload2PutBelt";
+	stateWaitForTimeout[17]			= true;
+	stateSequence[17]			= "MagIn";
+	stateSound[17]				= BNE_M60MagInSound;
+	
+	stateName[18]				= "Reload2PutBelt";
+	stateTimeoutValue[18]			= 0.5;
+	stateScript[18]				= "onReloadPutBelt";
+	stateTransitionOnTimeout[18]		= "Reload2End";
 	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "ReloadStartEmpty";
+	stateSequence[18]			= "PutBelt";
+	stateSound[18]				= BNE_M60AttachSound;
 	
-	stateName[20]				= "Reload2MagOut";
-	stateTimeoutValue[20]			= 0.75;
-	stateScript[20]				= "onReloadMagOut";
-	stateTransitionOnTimeout[20]		= "Reload2MagIn";
-	stateWaitForTimeout[20]			= true;
-	stateSequence[20]			= "MagOut";
-	stateSound[20]				= BNE_M60MagOutSound;
+	stateName[19]				= "Reload2End";
+	stateTimeoutValue[19]			= 0.75;
+	stateScript[19]				= "onReload2End";     
+	stateTransitionOnTimeout[19]		= "Reloaded";
+	stateWaitForTimeout[19]			= true;
+	stateSequence[19]			= "ReloadEndEmpty";
 	
-	stateName[22]				= "Reload2MagIn";
-	stateTimeoutValue[22]			= 0.35;
-	stateScript[22]				= "onReloadMagIn";
-	stateTransitionOnTimeout[22]		= "Reload2PutBelt";
-	stateWaitForTimeout[22]			= true;
-	stateSequence[22]			= "MagIn";
-	stateSound[22]				= BNE_M60MagInSound;
+	stateName[20]				= "ReadyLoop";
+	stateTransitionOnTimeout[20]		= "Ready";
+
+	stateName[21]          = "Empty";
+	stateTransitionOnTriggerDown[21]  = "Dryfire";
+	stateTransitionOnLoaded[21] = "Reload2";
+	stateScript[21]        = "AEOnEmpty";
+
+	stateName[22]           = "Dryfire";
+	stateTransitionOnTriggerUp[22] = "Empty";
+	stateWaitForTimeout[22]    = false;
+	stateScript[22]      = "onDryFire";
 	
-	stateName[23]				= "Reload2PutBelt";
-	stateTimeoutValue[23]			= 0.5;
-	stateScript[23]				= "onReloadPutBelt";
-	stateTransitionOnTimeout[23]		= "Reload2End";
-	stateWaitForTimeout[23]			= true;
-	stateSequence[23]			= "PutBelt";
-	stateSound[23]				= BNE_M60AttachSound;
+	stateName[23]           = "NoAmmoFlashFix";
+	stateTransitionOnTimeout[23] = "FireEmpty";
+	stateEmitter[23]					= AEBaseRifleFlashEmitter;
+	stateEmitterTime[23]				= 0.05;
+	stateEmitterNode[23]				= "muzzlePoint";
 	
-	stateName[24]				= "Reload2End";
-	stateTimeoutValue[24]			= 0.75;
-	stateScript[24]				= "onReload2End";     
-	stateTransitionOnTimeout[24]		= "Reloaded";
-	stateWaitForTimeout[24]			= true;
-	stateSequence[24]			= "ReloadEndEmpty";
+	stateName[24]          = "TrigCheck";
+	stateTransitionOnTriggerDown[24]  = "preFire";
+	stateTransitionOnTimeout[24]		= "EndLoop";
 	
-	stateName[25]				= "ReadyLoop";
+	stateName[25]          = "EndLoop";
+	stateScript[25]				= "onEndLoop";
 	stateTransitionOnTimeout[25]		= "Ready";
-
-	stateName[26]          = "Empty";
-	stateTransitionOnTriggerDown[26]  = "Dryfire";
-	stateTransitionOnLoaded[26] = "Reload2";
-	stateScript[26]        = "AEOnEmpty";
-
-	stateName[27]           = "Dryfire";
-	stateTransitionOnTriggerUp[27] = "Empty";
-	stateWaitForTimeout[27]    = false;
-	stateScript[27]      = "onDryFire";
 	
-	stateName[28]           = "NoAmmoFlashFix";
-	stateTransitionOnTimeout[28] = "FireEmpty";
-	stateEmitter[28]					= AEBaseRifleFlashEmitter;
-	stateEmitterTime[28]				= 0.05;
-	stateEmitterNode[28]				= "muzzlePoint";
+	stateName[26]          = "EndLoopEmpty";
+	stateScript[26]				= "onEndLoop";
+	stateTransitionOnTimeout[26]		= "Reload2";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
 function BNE_M60Image::AEOnFire(%this,%obj,%slot)
-{	
-	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_M60Fire @ getRandom(1, 3) @ Sound);
-  
+{
+	%obj.playAudio(0, BNE_M60FireLoopSound);
+    %obj.FireLoop = true;
+	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
+	
+	Parent::AEOnFire(%this, %obj, %slot); 	
+}
 
-	Parent::AEOnFire(%this, %obj, %slot);
+function BNE_M60Image::onEndLoop(%this, %obj, %slot)
+{
+    %obj.playAudio(0, %this.loopingEndSound);
+    %obj.FireLoop = false;
 }
 
 function BNE_M60Image::onReloadEnd(%this,%obj,%slot)
@@ -525,11 +538,11 @@ datablock ShapeBaseImageData(BNE_M60IronsightImage : BNE_M60Image)
 	projectileZOffset = 0;
 	R_MovePenalty = 0.25;
    
-	stateName[18]				= "Reload2";
-	stateScript[18]				= "onDone";
-	stateTimeoutValue[18]			= 1;
-	stateTransitionOnTimeout[18]		= "";
-	stateSound[18]				= "";
+	stateName[15]				= "Reload2";
+	stateScript[15]				= "onDone";
+	stateTimeoutValue[15]			= 1;
+	stateTransitionOnTimeout[15]		= "";
+	stateSound[15]				= "";
 	
 	stateName[7]				= "Reload";
 	stateScript[7]				= "onDone";
@@ -550,14 +563,20 @@ function BNE_M60IronsightImage::onReady(%this,%obj,%slot)
 }
 
 function BNE_M60IronsightImage::AEOnFire(%this,%obj,%slot)
-{	
-	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_M60Fire @ getRandom(1, 3) @ Sound);
-  
+{
+	%obj.playAudio(0, BNE_M60FireLoopSound);
+    %obj.FireLoop = true;
+	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
+	
+	Parent::AEOnFire(%this, %obj, %slot); 	
+}
 
-	Parent::AEOnFire(%this, %obj, %slot);
+function BNE_M60IronsightImage::onEndLoop(%this, %obj, %slot)
+{
+    %obj.playAudio(0, %this.loopingEndSound);
+    %obj.FireLoop = false;
 }
 
 function BNE_M60IronsightImage::onDryFire(%this, %obj, %slot)

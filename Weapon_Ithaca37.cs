@@ -405,6 +405,7 @@ datablock ShapeBaseImageData(BNE_Ithaca37SafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_Ithaca37IronsightImage;
    safetyImage = BNE_Ithaca37Image;
    doColorShift = true;
    colorShiftColor = BNE_Ithaca37Item.colorShiftColor;
@@ -413,11 +414,20 @@ datablock ShapeBaseImageData(BNE_Ithaca37SafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_Ithaca37SafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_Ithaca37SafetyImage::onMount(%this,%obj,%slot)
 {

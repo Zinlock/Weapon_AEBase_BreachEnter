@@ -495,6 +495,7 @@ datablock ShapeBaseImageData(BNE_FADSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_FADIronsightImage;
    safetyImage = BNE_FADImage;
    doColorShift = true;
    colorShiftColor = BNE_FADItem.colorShiftColor;
@@ -503,11 +504,20 @@ datablock ShapeBaseImageData(BNE_FADSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_FADSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_FADSafetyImage::onMount(%this,%obj,%slot)
 {

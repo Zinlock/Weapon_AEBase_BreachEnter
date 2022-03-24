@@ -485,6 +485,7 @@ datablock ShapeBaseImageData(BNE_ThompsonSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_ThompsonIronsightImage;
    safetyImage = BNE_ThompsonImage;
    doColorShift = true;
    colorShiftColor = BNE_ThompsonItem.colorShiftColor;
@@ -493,11 +494,20 @@ datablock ShapeBaseImageData(BNE_ThompsonSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_ThompsonSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_ThompsonSafetyImage::onMount(%this,%obj,%slot)
 {

@@ -493,6 +493,7 @@ datablock ShapeBaseImageData(BNE_American180SafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_American180IronsightImage;
    safetyImage = BNE_American180Image;
    doColorShift = true;
    colorShiftColor = BNE_American180Item.colorShiftColor;
@@ -501,11 +502,20 @@ datablock ShapeBaseImageData(BNE_American180SafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_American180SafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_American180SafetyImage::onMount(%this,%obj,%slot)
 {

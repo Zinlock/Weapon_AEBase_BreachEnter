@@ -477,11 +477,21 @@ datablock ShapeBaseImageData(BNE_FMGSafetyImage)
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.35;
 	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
 	stateSequence[0]			= "FMGFold";
 
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
+
 };
+
+function BNE_FMGSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_FMGSafetyImage::onMount(%this,%obj,%slot)
 {

@@ -403,6 +403,7 @@ datablock ShapeBaseImageData(BNE_PythonSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_PythonIronsightImage;
    safetyImage = BNE_PythonImage;
    doColorShift = true;
    colorShiftColor = BNE_PythonItem.colorShiftColor;
@@ -411,11 +412,20 @@ datablock ShapeBaseImageData(BNE_PythonSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_PythonSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_PythonSafetyImage::onMount(%this,%obj,%slot)
 {

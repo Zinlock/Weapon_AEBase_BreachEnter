@@ -478,6 +478,7 @@ datablock ShapeBaseImageData(BNE_TMPSafetyImage)
    melee = false;
    armReady = false;
    hideHands = false;
+   scopingImage = BNE_TMPIronsightImage;
    safetyImage = BNE_TMPImage;
    doColorShift = true;
    colorShiftColor = BNE_TMPItem.colorShiftColor;
@@ -486,11 +487,20 @@ datablock ShapeBaseImageData(BNE_TMPSafetyImage)
 
 	stateName[0]                    	= "Activate";
 	stateTimeoutValue[0]            	= 0.1;
-	stateWaitForTimeout[0]		  	= false;
-	stateTransitionOnTimeout[0]     	= "";
-	stateSound[0]				= "";
+	stateTransitionOnTimeout[0]     	= "Ready";
+	
+	stateName[1]                     	= "Ready";
+	stateTransitionOnTriggerDown[1]  	= "Done";
+	
+	stateName[2]				= "Done";
+	stateScript[2]				= "onDone";
 
 };
+
+function BNE_TMPSafetyImage::onDone(%this,%obj,%slot)
+{
+	%obj.mountImage(%this.safetyImage, 0);
+}
 
 function BNE_TMPSafetyImage::onMount(%this,%obj,%slot)
 {
