@@ -392,7 +392,7 @@ function BNE_TMPSImage::onMagDrop(%this,%obj,%slot)
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
 	%a.mountImage(BNE_TMPMagImage,0);
-	%a.schedule(1000,delete);
+	%a.schedule(2500,delete);
 }
 
 ////////////////////////////////////////////////////////////

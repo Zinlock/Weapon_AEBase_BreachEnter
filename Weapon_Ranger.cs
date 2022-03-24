@@ -436,7 +436,7 @@ function BNE_RangerImage::onMagDrop(%this,%obj,%slot,%right)
     %pos = vectorAdd(%pos, vectorScale(%obj.getRightVector(), %side));
     %a.setTransform(%pos SPC %rot);
     %a.mountImage(BNE_RangerCasingImage,0);
-    %a.schedule(1000,delete);
+    %a.schedule(2500,delete);
 }
 
 //////////////////////////////////////////////////////////////////

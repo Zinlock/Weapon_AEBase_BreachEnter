@@ -465,15 +465,15 @@ function BNE_AA12Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(AA12MagImage,0);
-	%a.schedule(5000,delete);
+	%a.mountImage(BNE_AA12MagImage,0);
+	%a.schedule(2500,delete);
 }
 
 //////////////////////////////////////////////////////////////////
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(AA12MagImage)
+datablock ShapeBaseImageData(BNE_AA12MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
@@ -499,7 +499,7 @@ datablock ShapeBaseImageData(AA12MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function AA12MagImage::onDone(%this,%obj,%slot)
+function BNE_AA12MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }

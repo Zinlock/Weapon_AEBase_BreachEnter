@@ -465,7 +465,7 @@ function BNE_L96Image::onMagDrop(%this,%obj,%slot)
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
 	%a.mountImage(BNE_L96MagImage,0);
-	%a.schedule(1000,delete);
+	%a.schedule(2500,delete);
 }
 
 //////////////////////////////////////////////////////////////////
