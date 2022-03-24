@@ -142,7 +142,7 @@ datablock ShapeBaseImageData(BNE_MP7Image)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 1;
+	recoilHeight = 0.5;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
