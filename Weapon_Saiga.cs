@@ -167,7 +167,7 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 	spreadReset = 450; // m
 	spreadBase = 100;
 	spreadMin = 150;
-	spreadMax = 500;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.15 0.15 0.15";
 	screenshakeMax = "0.2 0.2 0.2";

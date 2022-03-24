@@ -150,7 +150,7 @@ datablock ShapeBaseImageData(SKSMImage : SKSImage)
 	spreadReset = 350; // m
 	spreadBase = 20;
 	spreadMin = 60;
-	spreadMax = 120;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

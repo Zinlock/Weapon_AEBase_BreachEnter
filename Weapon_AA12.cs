@@ -146,7 +146,7 @@ datablock ShapeBaseImageData(AA12Image)
 	spreadReset = 250; // m
 	spreadBase = 1000;
 	spreadMin = 1100;
-	spreadMax = 1200;
+	spreadMax = 1100;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.3 0.3 0.3"; 

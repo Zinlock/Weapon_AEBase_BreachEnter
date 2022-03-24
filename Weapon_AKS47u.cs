@@ -130,7 +130,7 @@ datablock ShapeBaseImageData(AKS47UImage)
 	spreadReset = 250; // m
 	spreadBase = 25;
 	spreadMin = 200;
-	spreadMax = 500;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

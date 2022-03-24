@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(ThompsonImage)
 	spreadReset = 250; // m
 	spreadBase = 200;
 	spreadMin = 250;
-	spreadMax = 400;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

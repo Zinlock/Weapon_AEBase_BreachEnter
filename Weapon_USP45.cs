@@ -157,7 +157,7 @@ datablock ShapeBaseImageData(USP45Image)
 	spreadReset = 350; // m
 	spreadBase = 100;
 	spreadMin = 100;
-	spreadMax = 100;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

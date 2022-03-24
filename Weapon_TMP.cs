@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(TMPImage)
 	spreadReset = 150; // m
 	spreadBase = 400;
 	spreadMin = 400;
-	spreadMax = 400;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.025 0.025 0.025"; 
 	screenshakeMax = "0.075 0.075 0.075";

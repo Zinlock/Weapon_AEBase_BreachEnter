@@ -130,7 +130,7 @@ datablock ShapeBaseImageData(AR15testImage)
 	spreadReset = 150; // m
 	spreadBase = 25;
 	spreadMin = 100;
-	spreadMax = 400;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

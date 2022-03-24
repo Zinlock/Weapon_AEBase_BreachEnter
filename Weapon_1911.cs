@@ -150,7 +150,7 @@ datablock ShapeBaseImageData(BNE_M1911Image)
 	spreadReset = 350; // m
 	spreadBase = 115;
 	spreadMin = 380;
-	spreadMax = 620;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

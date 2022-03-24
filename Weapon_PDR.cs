@@ -149,9 +149,9 @@ datablock ShapeBaseImageData(PDRImage)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 25;
-	spreadMin = 100;
-	spreadMax = 400;
+	spreadBase = 50;
+	spreadMin = 150;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

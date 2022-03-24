@@ -153,11 +153,11 @@ datablock ShapeBaseImageData(OLINCAWSImage)
 	recoilWidthMax = 0;
 	recoilHeightMax = 25;
 
-	spreadBurst = 1; // how much shots it takes to trigger spread i think
+	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
 	spreadBase = 1000;
 	spreadMin = 1100;
-	spreadMax = 1300;
+	spreadMax = 1100;
 
 	screenshakeMin = "0.15 0.15 0.15"; 
 	screenshakeMax = "0.35 0.35 0.35"; 

@@ -130,7 +130,7 @@ datablock ShapeBaseImageData(UMP45Image)
 	spreadReset = 250; // m
 	spreadBase = 100;
 	spreadMin = 150;
-	spreadMax = 300;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

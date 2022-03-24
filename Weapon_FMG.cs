@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(FMGImage)
 	spreadReset = 150; // m
 	spreadBase = 225;
 	spreadMin = 350;
-	spreadMax = 470;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

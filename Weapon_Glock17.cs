@@ -127,9 +127,9 @@ datablock ShapeBaseImageData(Glock17Image)
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 155;
-	spreadMin = 350;
-	spreadMax = 450;
+	spreadBase = 255;
+	spreadMin = 450;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.025 0.025 0.025"; 
 	screenshakeMax = "0.075 0.075 0.075"; 

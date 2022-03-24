@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(Mac10Image)
 	spreadReset = 250; // m
 	spreadBase = 160;
 	spreadMin = 450;
-	spreadMax = 500;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

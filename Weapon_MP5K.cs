@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
 	spreadReset = 250; // m
 	spreadBase = 40;
 	spreadMin = 60;
-	spreadMax = 500;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.015 0.015 0.015"; 
 	screenshakeMax = "0.1 0.1 0.1"; 

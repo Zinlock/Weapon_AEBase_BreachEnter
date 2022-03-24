@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(MP7Image)
 	spreadReset = 150; // m
 	spreadBase = 200;
 	spreadMin = 300;
-	spreadMax = 400;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

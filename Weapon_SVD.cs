@@ -149,7 +149,7 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	spreadReset = 350; // m
 	spreadBase = 40;
 	spreadMin = 50;
-	spreadMax = 80;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

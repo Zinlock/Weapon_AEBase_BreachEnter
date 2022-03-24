@@ -151,7 +151,7 @@ datablock ShapeBaseImageData(P90Image)
 	spreadReset = 350; // m
 	spreadBase = 50;
 	spreadMin = 250;
-	spreadMax = 1100;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.15 0.15 0.15"; 

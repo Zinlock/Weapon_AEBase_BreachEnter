@@ -133,7 +133,7 @@ datablock ShapeBaseImageData(TMPSImage)
 	spreadReset = 150; // m
 	spreadBase = 125;
 	spreadMin = 250;
-	spreadMax = 350;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.025 0.025 0.025"; 
 	screenshakeMax = "0.075 0.075 0.075";

@@ -157,7 +157,7 @@ datablock ShapeBaseImageData(MK14Image)
 	spreadReset = 250; // m
 	spreadBase = 20;
 	spreadMin = 60;
-	spreadMax = 120;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.025 0.025 0.025"; 
 	screenshakeMax = "0.075 0.075 0.075"; 

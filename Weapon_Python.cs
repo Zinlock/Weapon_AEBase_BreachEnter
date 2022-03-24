@@ -130,7 +130,7 @@ datablock ShapeBaseImageData(BNE_PythonImage)
    spreadBase = 50;
    spreadReset = 400; // m
    spreadMin = 90;
-   spreadMax = 250;
+   spreadMax = 1000;
 
    screenshakeMin = "0.25 0.25 0.25"; 
    screenshakeMax = "0.5 0.5 0.5"; 

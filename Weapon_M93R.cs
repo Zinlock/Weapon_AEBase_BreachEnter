@@ -130,7 +130,7 @@ datablock ShapeBaseImageData(M93RImage)
 	spreadReset = 350; // m
 	spreadBase = 175;
 	spreadMin = 350;
-	spreadMax = 450;
+	spreadMax = 1500;
 
 	screenshakeMin = "0.025 0.025 0.025"; 
 	screenshakeMax = "0.075 0.075 0.075"; 

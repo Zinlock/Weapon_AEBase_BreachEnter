@@ -146,7 +146,7 @@ datablock ShapeBaseImageData(American180Image)
 	spreadReset = 250; // m
 	spreadBase = 25;
 	spreadMin = 100;
-	spreadMax = 400;
+	spreadMax = 1000;
 
 	screenshakeMin = "0.01 0.01 0.01"; 
 	screenshakeMax = "0.1 0.1 0.1";
