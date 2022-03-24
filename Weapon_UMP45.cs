@@ -555,7 +555,7 @@ function BNE_UMP45IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsIn3Sound, %obj.getHackPosition());
+		%obj.client.play2D(AEAdsIn3Sound); // %obj.getHackPosition());
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
@@ -565,7 +565,7 @@ function BNE_UMP45IronsightImage::onMount(%this,%obj,%slot)
 function BNE_UMP45IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());
+		%obj.client.play2D(AEAdsOut3Sound); // %obj.getHackPosition());
 	%this.AEUnmountCleanup(%obj, %slot);
 	parent::onUnMount(%this,%obj,%slot);	
 }

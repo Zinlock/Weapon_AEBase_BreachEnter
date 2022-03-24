@@ -71,7 +71,7 @@ datablock ItemData(BNE_P90Item)
 	RPM = 850;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The FN P90, also known as the FN Project 1990 PDWS, is a compact 5.7×28mm personal defense weapon designed and manufactured by FN Herstal in Belgium.";
+	description = "The FN P90, also known as the FN Project 1990 PDWS, is a compact 5.7x28mm personal defense weapon designed and manufactured by FN Herstal in Belgium.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -578,7 +578,7 @@ function BNE_P90IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsIn3Sound, %obj.getHackPosition());
+		%obj.client.play2D(AEAdsIn3Sound); // %obj.getHackPosition());
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
@@ -588,7 +588,7 @@ function BNE_P90IronsightImage::onMount(%this,%obj,%slot)
 function BNE_P90IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsOut3Sound, %obj.getHackPosition());
+		%obj.client.play2D(AEAdsOut3Sound); // %obj.getHackPosition());
 	%this.AEUnmountCleanup(%obj, %slot);
 	parent::onUnMount(%this,%obj,%slot);	
 }
