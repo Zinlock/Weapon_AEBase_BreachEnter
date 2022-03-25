@@ -279,10 +279,10 @@ datablock ShapeBaseImageData(BNE_G3Image)
 	stateTransitionOnTimeout[21]		= "Reload2MagOut";
 	stateWaitForTimeout[21]			= true;
 	stateSequence[21]			= "ReloadStartEmpty";
-	stateSound[21]				= BNE_HKBoltLockSound;
+	stateSound[21]				= BNE_AUGBoltLockSound;
 	
 	stateName[22]				= "Reload2MagOut";
-	stateTimeoutValue[22]			= 0.55;
+	stateTimeoutValue[22]			= 0.65;
 	stateScript[22]				= "onReload2MagOut";
 	stateTransitionOnTimeout[22]		= "Reload2MagIn";
 	stateWaitForTimeout[22]			= true;
@@ -298,7 +298,7 @@ datablock ShapeBaseImageData(BNE_G3Image)
 	stateSound[23]				= BNE_KBP9A91MagInSound;
 	
 	stateName[24]				= "Reload2End";
-	stateTimeoutValue[24]			= 0.5;
+	stateTimeoutValue[24]			= 0.3;
 	stateScript[24]				= "onReload2End";
 	stateTransitionOnTimeout[24]		= "Ready";
 	stateWaitForTimeout[24]			= true;
@@ -363,8 +363,7 @@ function BNE_G3Image::onReloadMagIn(%this,%obj,%slot)
 function BNE_G3Image::onReload2MagIn(%this,%obj,%slot)
 {
 	%obj.schedule(50, "aeplayThread", "2", "plant");
-	%obj.schedule(500, "aeplayThread", "2", "shiftleft");
-	%obj.schedule(600, "aeplayThread", "3", "plant");
+	%obj.schedule(550, "aeplayThread", "3", "plant");
 }
 
 function BNE_G3Image::onReloadMagOut(%this,%obj,%slot)
@@ -391,7 +390,7 @@ function BNE_G3Image::onReloadEnd(%this,%obj,%slot)
 
 function BNE_G3Image::onReload2End(%this,%obj,%slot)
 {
-	%obj.schedule(50, playAudio, 1, BNE_HKBoltCloseSound);
+	%obj.schedule(50, playAudio, 1, BNE_AUGBoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
