@@ -114,9 +114,9 @@ datablock ShapeBaseImageData(BNE_PythonImage)
    muzzleFlashScale = "1.5 1.5 1.5";
    bulletScale = "1 1 1";
 
-   projectileDamage = 27;
+   projectileDamage = 36;
    projectileCount = 1;
-   projectileHeadshotMult = 1.9;
+   projectileHeadshotMult = 1.8;
    projectileVelocity = 200;
    projectileTagStrength = 0.35;  // tagging strength
    projectileTagRecovery = 0.03; // tagging decay rate

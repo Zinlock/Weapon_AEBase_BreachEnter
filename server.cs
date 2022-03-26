@@ -102,7 +102,9 @@ else
 	exec("./Weapon_Saiga.cs");
 	exec("./Weapon_Python.cs");
 	exec("./Weapon_Uzi.cs");
-	// exec("./Weapon_1911S.cs"); // todo (anims)
-	// exec("./Weapon_KH2002.cs"); // todo (mesh, anims, code)
-	// exec("./Weapon_ScarH.cs"); // todo (mesh, anims, code)
+	exec("./Weapon_TT33.cs");
+	exec("./Weapon_Luger.cs");
+	exec("./Weapon_Tec9.cs");
+	exec("./Weapon_L85.cs");
+	// exec("./Weapon_Mosin.cs");
 }

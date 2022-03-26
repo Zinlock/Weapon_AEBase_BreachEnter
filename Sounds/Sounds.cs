@@ -126,6 +126,13 @@ datablock AudioProfile(BNE_AR15BoltRackSound)
    preload = true;
 };
 
+datablock AudioProfile(BNE_AR15BoltSound)
+{
+   filename    = "./Reload/AR15/AR15BoltRel.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
 datablock AudioProfile(BNE_AR15MagInSound)
 {
    filename    = "./Reload/AR15/AR15MagIn.wav";
