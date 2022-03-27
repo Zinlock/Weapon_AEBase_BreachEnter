@@ -495,7 +495,7 @@ function BNE_FMGSafetyImage::onDone(%this,%obj,%slot)
 
 function BNE_FMGSafetyImage::onMount(%this,%obj,%slot)
 {
-    %obj.mount1Schedule = %obj.schedule(0, playAudio, 1, FMGFlipCloseSound);
+    %obj.mount1Schedule = %obj.schedule(0, playAudio, 1, BNE_FMGFlipCloseSound);
 	%this.AEMountSetup(%obj, %slot);
     %obj.mount2Schedule = %obj.schedule(0, "aeplayThread", "2", "shiftup");
     %obj.mount3Schedule = %obj.schedule(250, "aeplayThread", "3", "shiftdown");
@@ -639,7 +639,7 @@ datablock ShapeBaseImageData(BNE_FMGEquipImage)
 
 function BNE_FMGEquipImage::onMount(%this,%obj,%slot)
 {
-    %obj.schedule(50, playAudio, 1, FMGFlipSound);
+    %obj.schedule(50, playAudio, 1, BNE_FMGFlipSound);
     %obj.schedule(100, "aeplayThread", "2", "shiftdown");
 	%this.AEMountSetup(%obj, %slot);
 	cancel(%obj.reload3Schedule);
