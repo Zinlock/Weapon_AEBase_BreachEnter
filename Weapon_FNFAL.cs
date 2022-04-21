@@ -143,7 +143,7 @@ datablock ShapeBaseImageData(BNE_FNFALImage)
 	recoilHeightMax = 20;
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
-	spreadReset = 350; // m
+	spreadReset = 150; // m
 	spreadBase = 25;
 	spreadMin = 150;
 	spreadMax = 1000;
