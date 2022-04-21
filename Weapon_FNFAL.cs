@@ -1,21 +1,21 @@
-datablock AudioProfile(BNE_G3FireLoopSound)
+datablock AudioProfile(BNE_FNFALFireLoopSound)
 {
-   filename    = "./Sounds/Fire/G3/G3_LP.wav";
+   filename    = "./Sounds/Fire/FNFAL/FNFAL_FireLoop.wav";
    description = BAADFireMediumLoop3D;
    preload = true;
 };
 
-datablock AudioProfile(BNE_G3FireLoopEndSound)
+datablock AudioProfile(BNE_FNFALFireLoopEndSound)
 {
-   filename    = "./Sounds/Fire/G3/G3_LP_END.wav";
+   filename    = "./Sounds/Fire/FNFAL/FNFAL_FireLoopEnd.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-// G3
-datablock DebrisData(BNE_G3MagDebris)
+// FNFAL
+datablock DebrisData(BNE_FNFALMagDebris)
 {
-	shapeFile = "./G3/G3Mag.dts";
+	shapeFile = "./FNFAL/FNFALMag.dts";
 	lifetime = 2.0;
 	minSpinSpeed = -700.0;
 	maxSpinSpeed = -600.0;
@@ -32,13 +32,13 @@ datablock DebrisData(BNE_G3MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(BNE_G3Item)
+datablock ItemData(BNE_FNFALItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
 
 	 // Basic Item Properties
-	shapeFile = "./G3/G3.dts";
+	shapeFile = "./FNFAL/FNFAL.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -47,13 +47,13 @@ datablock ItemData(BNE_G3Item)
 	emap = true;
 
 	//gui stuff
-	uiName = "B&E: G3";
-	iconName = "./Icons/17";
+	uiName = "B&E: FN FAL";
+	iconName = "./Icons/6";
 	doColorShift = true;
-	colorShiftColor = "0.75 0.75 0.75 1";
+	colorShiftColor = "0.42 0.41 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = BNE_G3Image;
+	image = BNE_FNFALImage;
 	canDrop = true;
 
 	AEAmmo = 20;
@@ -61,10 +61,10 @@ datablock ItemData(BNE_G3Item)
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 500;
-	recoil = "Heavy"; 
+	RPM = 700;
+	recoil = "Heavy";
 	uiColor = "1 1 1";
-	description = "The G3 is a 7.62x51mm NATO select-fire battle rifle used by the German military.";
+	description = "The FN FAL is a battle rifle developed in Belgium in 1953, famously nicknamed 'Right Arm of the Free World.'" NL "The weapon is chambered in 7.62x51mm NATO cartridges and packs quite a hefty punch, while having a lot of recoil." NL "'Our journey to victory has begin! Death to the MPLA!!' - Jonas Savimbi";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -76,23 +76,23 @@ datablock ItemData(BNE_G3Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(BNE_G3Image)
+datablock ShapeBaseImageData(BNE_FNFALImage)
 {
    // Basic Item properties
-   shapeFile = "./G3/G3.dts";
+   shapeFile = "./FNFAL/FNFAL.dts";
    emap = true;
 
    // Specify mount point & offset for 3rd person, and eye offset
    // for first person rendering.
    mountPoint = 0;
-   offset = "0 0 -0.065";
+   offset = "-0.025 0 -0.04";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
 
    // When firing from a point offset from the eye, muzzle correction
    // will adjust the muzzle vector to point to the eye LOS point.
    // Since this weapon doesn't actually fire from the muzzle point,
-   // we need to turn this off.  
+   // we need to turn this off.
    correctMuzzleVector = true;
 
    // Add the WeaponImage namespace as a parent, WeaponImage namespace
@@ -100,60 +100,60 @@ datablock ShapeBaseImageData(BNE_G3Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = BNE_G3Item;
+   item = BNE_FNFALItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
 
    casing = AE_BERifleShellDebris;
-   shellExitDir        = "1 0 0.5";
+   shellExitDir        = "1 0 0.75";
    shellExitOffset     = "0 0 0";
-   shellExitVariance   = 25;	
+   shellExitVariance   = 25;
    shellVelocity       = 5.0;
-	
+
    //melee particles shoot from eye node for consistancy
 	melee = false;
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = BNE_G3SafetyImage;
-    scopingImage = BNE_G3IronsightImage;
+	safetyImage = BNE_FNFALSafetyImage;
+    scopingImage = BNE_FNFALIronsightImage;
 	doColorShift = true;
-	colorShiftColor = BNE_G3Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_FNFALItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
 
-  loopingEndSound = BNE_G3FireLoopEndSound;
+    loopingEndSound = BNE_FNFALFireLoopEndSound;
 
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
 	projectileDamage = 35;
 	projectileCount = 1;
-	projectileHeadshotMult = 2;
+	projectileHeadshotMult = 1.85;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.5;
+	recoilHeight = 0.8;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
-	spreadReset = 250; // m
+	spreadReset = 350; // m
 	spreadBase = 25;
-	spreadMin = 100;
+	spreadMin = 150;
 	spreadMax = 1000;
 
-	screenshakeMin = "0.1 0.1 0.1"; 
-	screenshakeMax = "0.15 0.15 0.15"; 
+	screenshakeMin = "0.125 0.125 0.125";
+	screenshakeMax = "0.175 0.175 0.175";
 
 	farShotSound = RifleGDistantSound;
 	farShotDistance = 40;
-	
+
 	sonicWhizz = true;
 	whizzSupersonic = true;
 	whizzThrough = false;
@@ -172,10 +172,10 @@ datablock ShapeBaseImageData(BNE_G3Image)
 	staticScaleCalibre = 0.25;
 	staticScaleLength = 0.25;
 	staticUnitsPerSecond = $ae_RifleUPS;
-	
-	projectileFalloffStart = 75;
-	projectileFalloffEnd = 200;
-	projectileFalloffDamage = 0.5;
+
+	projectileFalloffStart = 64;
+	projectileFalloffEnd = 192;
+	projectileFalloffDamage = 0.65;
 
    //casing = " ";
 
@@ -215,203 +215,195 @@ datablock ShapeBaseImageData(BNE_G3Image)
 	stateAllowImageChange[3]        = false;
 	stateSequence[3]                = "Fire";
 	stateWaitForTimeout[3]			= true;
-	
-	stateName[4]				= "FireLoadCheckA";
-	stateScript[4]				= "AEMagLoadCheck";
-	stateTimeoutValue[4]			= 0.12;
-	stateTransitionOnTimeout[4]		= "FireLoadCheckB";
-	
-	stateName[5]				= "FireLoadCheckB";
-	stateTransitionOnAmmo[5]		= "TrigCheck";
-	stateTransitionOnNoAmmo[5]		= "EndLoopEmpty";
-	stateTransitionOnNotLoaded[5]  = "EndLoop";
 
-	stateName[14]				= "LoadCheckA";
-	stateScript[14]				= "AEMagLoadCheck";
-	stateTimeoutValue[14]			= 0.1;
-	stateTransitionOnTimeout[14]		= "LoadCheckB";
-	
-	stateName[15]				= "LoadCheckB";
-	stateTransitionOnAmmo[15]		= "Ready";
-	stateTransitionOnNotLoaded[15] = "Empty";
-	stateTransitionOnNoAmmo[15]		= "Reload2";
+	stateName[5]				= "LoadCheckA";
+	stateScript[5]				= "AEMagLoadCheck";
+	stateTimeoutValue[5]			= 0.1;
+	stateTransitionOnTimeout[5]		= "LoadCheckB";
 
-	stateName[16]				= "Reload";
-	stateTimeoutValue[16]			= 0.2;
-	stateScript[16]				= "onReloadStart";
-	stateTransitionOnTimeout[16]		= "ReloadMagOut";
-	stateWaitForTimeout[16]			= true;
-	stateSequence[16]			= "ReloadStart";
-	
-	stateName[17]				= "ReloadMagOut";
-	stateTimeoutValue[17]			= 0.55;
-	stateScript[17]				= "onReloadMagOut";
-	stateTransitionOnTimeout[17]		= "ReloadMagIn";
-	stateWaitForTimeout[17]			= true;
-	stateSequence[17]			= "MagOut";
-	stateSound[17]				= BNE_KBP9A91MagOutSound;
-	
-	stateName[18]				= "ReloadMagIn";
-	stateTimeoutValue[18]			= 0.45;
-	stateScript[18]				= "onReloadMagIn";
-	stateTransitionOnTimeout[18]		= "ReloadEnd";
-	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "MagIn";
-	stateSound[18]				= BNE_KBP9A91MagInSound;
-	
-	stateName[19]				= "ReloadEnd";
-	stateTimeoutValue[19]			= 0.3;
-	stateScript[19]				= "onReloadEnd";
-	stateTransitionOnTimeout[19]		= "Ready";
-	stateWaitForTimeout[19]			= true;
-	stateSequence[19]			= "ReloadEnd";
-		
-	stateName[20]				= "Reloaded";
-	stateTimeoutValue[20]			= 0.1;
-	stateScript[20]				= "AEMagReloadAll";
-	stateTransitionOnTimeout[20]		= "Ready";
+	stateName[6]				= "LoadCheckB";
+	stateTransitionOnAmmo[6]		= "Ready";
+	stateTransitionOnNotLoaded[6] = "Empty";
+	stateTransitionOnNoAmmo[6]		= "Reload2";
+
+	stateName[7]				= "Reload";
+	stateTimeoutValue[7]			= 0.25;
+	stateScript[7]				= "onReloadStart";
+	stateTransitionOnTimeout[7]		= "ReloadMagOut";
+	stateWaitForTimeout[7]			= true;
+	stateSequence[7]			= "ReloadStart";
+
+	stateName[8]				= "ReloadMagOut";
+	stateTimeoutValue[8]			= 0.6;
+	stateScript[8]				= "onReloadMagOut";
+	stateTransitionOnTimeout[8]		= "ReloadMagIn";
+	stateWaitForTimeout[8]			= true;
+	stateSequence[8]			= "MagOut";
+	stateSound[8]				= BNE_FNFALMagOutSound;
+
+	stateName[9]				= "ReloadMagIn";
+	stateTimeoutValue[9]			= 0.4;
+	stateScript[9]				= "onReloadMagIn";
+	stateTransitionOnTimeout[9]		= "ReloadEnd";
+	stateWaitForTimeout[9]			= true;
+	stateSequence[9]			= "MagIn";
+	stateSound[9]				= BNE_FNFALMagInSound;
+
+	stateName[10]				= "ReloadEnd";
+	stateTimeoutValue[10]			= 0.25;
+	stateScript[10]				= "onReloadEnd";
+	stateTransitionOnTimeout[10]		= "Ready";
+	stateWaitForTimeout[10]			= true;
+	stateSequence[10]			= "ReloadEnd";
+
+	stateName[11]				= "FireLoadCheckA";
+	stateScript[11]				= "AEMagLoadCheck";
+	stateTimeoutValue[11]			= 0.09;
+	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
+
+	stateName[12]				= "FireLoadCheckB";
+	stateTransitionOnAmmo[12]		= "TrigCheck";
+	stateTransitionOnNoAmmo[12]		= "EndLoopEmpty";
+	stateTransitionOnNotLoaded[12]  = "EndLoop";
+
+	stateName[14]				= "Reloaded";
+	stateTimeoutValue[14]			= 0.2;
+	stateScript[14]				= "AEMagReloadAll";
+	stateTransitionOnTimeout[14]		= "Ready";
 
 // EMPTY RELOAD STATE
 
-	stateName[21]				= "Reload2";
-	stateTimeoutValue[21]			= 0.4;
-	stateScript[21]				= "onReload2Start";
-	stateTransitionOnTimeout[21]		= "Reload2MagOut";
-	stateWaitForTimeout[21]			= true;
-	stateSequence[21]			= "ReloadStartEmpty";
-	stateSound[21]				= BNE_AUGBoltLockSound;
+	stateName[15]				= "Reload2";
+	stateTimeoutValue[15]			= 0.25;
+	stateScript[15]				= "onReloadStart";
+	stateTransitionOnTimeout[15]		= "Reload2MagOut";
+	stateWaitForTimeout[15]			= true;
+	stateSequence[15]			= "ReloadStart";
+
+	stateName[16]				= "Reload2MagOut";
+	stateTimeoutValue[16]			= 0.6;
+	stateScript[16]				= "onReload2MagOut";
+	stateTransitionOnTimeout[16]		= "Reload2MagIn";
+	stateWaitForTimeout[16]			= true;
+	stateSequence[16]			= "MagOut";
+	stateSound[16]				= BNE_FNFALMagOutSound;
+
+	stateName[17]				= "Reload2MagIn";
+	stateTimeoutValue[17]			= 0.3;
+	stateScript[17]				= "onReload2MagIn";
+	stateTransitionOnTimeout[17]		= "Reload2Bolt";
+	stateWaitForTimeout[17]			= true;
+	stateSequence[17]			= "MagIn";
+	stateSound[17]				= BNE_FNFALMagInSound;
+
+	stateName[18]				= "Reload2Bolt";
+	stateTimeoutValue[18]			= 0.45;
+	stateScript[18]				= "onReload2Bolt";
+	stateTransitionOnTimeout[18]		= "Reload2End";
+	stateWaitForTimeout[18]			= true;
+	stateSequence[18]			= "Bolt";
+	stateSound[18]				= BNE_AKBoltPullSound;
+
+	stateName[19]				= "Reload2End";
+	stateTimeoutValue[19]			= 0.25;
+	stateScript[19]				= "onReload2End";
+	stateTransitionOnTimeout[19]		= "Ready";
+	stateWaitForTimeout[19]			= true;
+	stateSequence[19]			= "ReloadEnd";
+
+	stateName[20]				= "ReadyLoop";
+	stateTransitionOnTimeout[20]		= "Ready";
+
+	stateName[21]          = "Empty";
+	stateTransitionOnTriggerDown[21]  = "Dryfire";
+	stateTransitionOnLoaded[21] = "Reload2";
+	stateScript[21]        = "AEOnEmpty";
+
+	stateName[22]           = "Dryfire";
+	stateTransitionOnTriggerUp[22] = "Empty";
+	stateWaitForTimeout[22]    = false;
+	stateScript[22]      = "onDryFire";
 	
-	stateName[22]				= "Reload2MagOut";
-	stateTimeoutValue[22]			= 0.65;
-	stateScript[22]				= "onReload2MagOut";
-	stateTransitionOnTimeout[22]		= "Reload2MagIn";
-	stateWaitForTimeout[22]			= true;
-	stateSequence[22]			= "MagOutEmpty";
-	stateSound[22]				= BNE_KBP9A91MagOutSound;
+	stateName[23]          = "TrigCheck";
+	stateTransitionOnTriggerDown[23]  = "preFire";
+	stateTransitionOnTimeout[23]		= "EndLoop";
 	
-	stateName[23]				= "Reload2MagIn";
-	stateTimeoutValue[23]			= 0.45;
-	stateScript[23]				= "onReload2MagIn";
-	stateTransitionOnTimeout[23]		= "Reload2End";
-	stateWaitForTimeout[23]			= true;
-	stateSequence[23]			= "MagInEmpty";
-	stateSound[23]				= BNE_KBP9A91MagInSound;
-	
-	stateName[24]				= "Reload2End";
-	stateTimeoutValue[24]			= 0.3;
-	stateScript[24]				= "onReload2End";
+	stateName[24]          = "EndLoop";
+	stateScript[24]				= "onEndLoop";
 	stateTransitionOnTimeout[24]		= "Ready";
-	stateWaitForTimeout[24]			= true;
-	stateSequence[24]			= "ReloadEndEmpty";
 	
-	stateName[25]				= "ReadyLoop";
-	stateTransitionOnTimeout[25]		= "Ready";
-
-	stateName[26]          = "Empty";
-	stateTransitionOnTriggerDown[26]  = "Dryfire";
-	stateTransitionOnLoaded[26] = "Reload2";
-	stateScript[26]        = "AEOnEmpty";
-
-	stateName[27]           = "Dryfire";
-	stateTransitionOnTriggerUp[27] = "Empty";
-	stateWaitForTimeout[27]    = false;
-	stateScript[27]      = "onDryFire";
-
-	stateName[28]          = "TrigCheck";
-	stateTransitionOnTriggerDown[28]  = "preFire";
-	stateTransitionOnTimeout[28]		= "EndLoop";
-	
-	stateName[29]          = "EndLoop";
-	stateScript[29]				= "onEndLoop";
-	stateTransitionOnTimeout[29]		= "Ready";
-	
-	stateName[30]          = "EndLoopEmpty";
-	stateScript[30]				= "onEndLoop";
-	stateTransitionOnTimeout[30]		= "Reload2";
+	stateName[25]          = "EndLoopEmpty";
+	stateScript[25]				= "onEndLoop";
+	stateTransitionOnTimeout[25]		= "Reload2";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function BNE_G3Image::AEOnFire(%this,%obj,%slot)
-{	
-	%obj.playAudio(0, BNE_G3FireLoopSound);
-	%obj.FireLoop = true;
-  
+function BNE_FNFALImage::AEOnFire(%this,%obj,%slot)
+{
+	%obj.playAudio(0, BNE_FNFALFireLoopSound);
+    %obj.FireLoop = true;
+	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
-
-	Parent::AEOnFire(%this, %obj, %slot);
+	
+	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function BNE_G3Image::onEndLoop(%this, %obj, %slot)
+function BNE_FNFALImage::onEndLoop(%this, %obj, %slot)
 {
-	%obj.playAudio(0, %this.loopingEndSound);
-	%obj.FireLoop = false;
+    %obj.playAudio(0, %this.loopingEndSound);
+    %obj.FireLoop = false;
 }
 
-function BNE_G3Image::onDryFire(%this, %obj, %slot)
+function BNE_FNFALImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function BNE_G3Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_FNFALImage::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function BNE_G3Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_FNFALImage::onReload2MagIn(%this,%obj,%slot)
 {
-	%obj.schedule(50, "aeplayThread", "2", "plant");
-	%obj.schedule(550, "aeplayThread", "3", "plant");
+   %obj.schedule(50, "aeplayThread", "2", "plant");
 }
 
-function BNE_G3Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_FNFALImage::onReloadMagOut(%this,%obj,%slot)
 {
-	%obj.aeplayThread(2, shiftleft);
-	%obj.aeplayThread(3, shiftright);
+   %obj.aeplayThread(2, shiftleft);
+   %obj.aeplayThread(0, shiftright);
 }
 
-function BNE_G3Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_FNFALImage::onReload2MagOut(%this,%obj,%slot)
 {
-	%obj.aeplayThread(2, shiftleft);
-	%obj.aeplayThread(3, shiftright);
+   %obj.aeplayThread(2, plant);
 }
 
-function BNE_G3Image::onReload2Bolt(%this,%obj,%slot)
+function BNE_FNFALImage::onReload2Bolt(%this,%obj,%slot)
 {
-	%obj.aeplayThread(2, plant);
-}
-
-function BNE_G3Image::onReloadEnd(%this,%obj,%slot)
-{
+   %obj.schedule(50, "aeplayThread", "2", "plant");
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_G3Image::onReload2End(%this,%obj,%slot)
+function BNE_FNFALImage::onReloadEnd(%this,%obj,%slot)
 {
-	%obj.schedule(50, playAudio, 1, BNE_AUGBoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function BNE_G3Image::onReloadStart(%this,%obj,%slot)
+function BNE_FNFALImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
-   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
+   %obj.reload3Schedule = %this.schedule(225,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function BNE_G3Image::onReload2Start(%this,%obj,%slot)
-{
-  %obj.aeplayThread(2, plant);
-  %obj.aeplayThread(3, shiftright);
-   %obj.reload3Schedule = %this.schedule(400,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(775,850),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
-}
-
-function BNE_G3Image::onReady(%this,%obj,%slot)
+function BNE_FNFALImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -421,7 +413,7 @@ function BNE_G3Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_G3Image::onMount(%this,%obj,%slot)
+function BNE_FNFALImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -430,21 +422,20 @@ function BNE_G3Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_G3Image::onUnMount(%this,%obj,%slot)
+function BNE_FNFALImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
-
 	cancel(%obj.reload3Schedule);
 	cancel(%obj.reload4Schedule);
 
-	parent::onUnMount(%this,%obj,%slot);	
+	parent::onUnMount(%this,%obj,%slot);
 }
 
 /////////////////////////////////////////////////////////////////////
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function BNE_G3Image::onMagDrop(%this,%obj,%slot)
+function BNE_FNFALImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -454,7 +445,7 @@ function BNE_G3Image::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(BNE_G3MagImage,0);
+	%a.mountImage(BNE_FNFALMagImage,0);
 	%a.schedule(2500,delete);
 }
 
@@ -462,33 +453,33 @@ function BNE_G3Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(BNE_G3MagImage)
+datablock ShapeBaseImageData(BNE_FNFALMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
-	offset = "0.02 0.65 0.05";
-   rotation = eulerToMatrix( "0 40 0" );	
-	
-	casing = BNE_G3MagDebris;
+	offset = "-0.1 0.75 0.05";
+   rotation = eulerToMatrix( "0 20 0" );
+
+	casing = BNE_FNFALMagDebris;
 	shellExitDir        = "0 1 -0.25";
 	shellExitOffset     = "0 0 0";
-	shellExitVariance   = 10.0;	
+	shellExitVariance   = 10.0;
 	shellVelocity       = 2.0;
-	
+
 	stateName[0]					= "Ready";
 	stateTimeoutValue[0]			= 0.01;
 	stateTransitionOnTimeout[0] 	= "EjectA";
 	
 	stateName[1]					= "EjectA";
-	stateEjectShell[1]				= true;
 	stateTimeoutValue[1]			= 1;
+	stateEjectShell[1]				= true;
 	stateTransitionOnTimeout[1] 	= "Done";
 	
 	stateName[2]					= "Done";
 	stateScript[2]					= "onDone";
 };
 
-function BNE_G3MagImage::onDone(%this,%obj,%slot)
+function BNE_FNFALMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -497,25 +488,25 @@ function BNE_G3MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(BNE_G3SafetyImage)
+datablock ShapeBaseImageData(BNE_FNFALSafetyImage)
 {
-   shapeFile = "./G3/G3.dts";
+   shapeFile = "./FNFAL/FNFAL.dts";
    emap = true;
    mountPoint = 0;
-   offset = "0 0 -0.065";
+   offset = "-0.025 0 -0.04";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = BNE_G3Item;
+   item = BNE_FNFALItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   scopingImage = BNE_G3IronsightImage;
-   safetyImage = BNE_G3Image;
+   scopingImage = BNE_FNFALIronsightImage;
+   safetyImage = BNE_FNFALImage;
    doColorShift = true;
-   colorShiftColor = BNE_G3Item.colorShiftColor;
+   colorShiftColor = BNE_FNFALItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -531,12 +522,12 @@ datablock ShapeBaseImageData(BNE_G3SafetyImage)
 
 };
 
-function BNE_G3SafetyImage::onDone(%this,%obj,%slot)
+function BNE_FNFALSafetyImage::onDone(%this,%obj,%slot)
 {
 	%obj.mountImage(%this.safetyImage, 0);
 }
 
-function BNE_G3SafetyImage::onMount(%this,%obj,%slot)
+function BNE_FNFALSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -545,73 +536,73 @@ function BNE_G3SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function BNE_G3SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_FNFALSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
-	%obj.aeplayThread(1, armReadyRight);	
-	parent::onUnMount(%this,%obj,%slot);	
+	%obj.aeplayThread(1, armReadyRight);
+	parent::onUnMount(%this,%obj,%slot);
 }
 
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(BNE_G3IronsightImage : BNE_G3Image)
+datablock ShapeBaseImageData(BNE_FNFALIronsightImage : BNE_FNFALImage)
 {
-	recoilHeight = 0.1875;
+	recoilHeight = 0.2;
 
-	scopingImage = BNE_G3Image;
-	sourceImage = BNE_G3Image;
-	
-   offset = "0 0 -0.065";
-	eyeOffset = "0.01035 1.0 -1.0899";
+	scopingImage = BNE_FNFALImage;
+	sourceImage = BNE_FNFALImage;
+
+   offset = "-0.025 0 -0.04";
+	eyeOffset = "-0.0005 1.0 -1.0535";
 	rotation = eulerToMatrix( "0 -20 0" );
 
 	desiredFOV = $ae_LowIronsFOV;
 	projectileZOffset = 0;
 	R_MovePenalty = 0.5;
-   
-	stateName[16]				= "Reload2";
-	stateScript[16]				= "onDone";
-	stateTimeoutValue[16]			= 1;
-	stateTransitionOnTimeout[16]		= "";
-	stateSound[16]				= "";
+
+	stateName[15]				= "Reload2";
+	stateScript[15]				= "onDone";
+	stateTimeoutValue[15]			= 1;
+	stateTransitionOnTimeout[15]		= "";
+	stateSound[15]				= "";
 	
-	stateName[21]				= "Reload";
-	stateScript[21]				= "onDone";
-	stateTimeoutValue[21]			= 1;
-	stateTransitionOnTimeout[21]		= "";
-	stateSound[21]				= "";
+	stateName[7]				= "Reload";
+	stateScript[7]				= "onDone";
+	stateTimeoutValue[7]			= 1;
+	stateTransitionOnTimeout[7]		= "";
+	stateSound[7]				= "";
 };
 
-function BNE_G3IronsightImage::onDone(%this,%obj,%slot)
+function BNE_FNFALIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function BNE_G3IronsightImage::onReady(%this,%obj,%slot)
+function BNE_FNFALIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function BNE_G3IronsightImage::onEndLoop(%this, %obj, %slot)
+function BNE_FNFALIronsightImage::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, %this.loopingEndSound);
-	%obj.FireLoop = false;
-}
-
-function BNE_G3IronsightImage::AEOnFire(%this,%obj,%slot)
-{	
-	%obj.playAudio(0, BNE_G3FireLoopSound);
-	%obj.FireLoop = true;
-  
+	%obj.playAudio(0, BNE_FNFALFireLoopSound);
+    %obj.FireLoop = true;
+	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
-
-	Parent::AEOnFire(%this, %obj, %slot);
+	
+	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function BNE_G3IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_FNFALIronsightImage::onEndLoop(%this, %obj, %slot)
+{
+    %obj.playAudio(0, %this.loopingEndSound);
+    %obj.FireLoop = false;
+}
+
+function BNE_FNFALIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -619,7 +610,7 @@ function BNE_G3IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_G3IronsightImage::onMount(%this,%obj,%slot)
+function BNE_FNFALIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -630,10 +621,10 @@ function BNE_G3IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_G3IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_FNFALIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound); // %obj.getHackPosition());
 	%this.AEUnmountCleanup(%obj, %slot);
-	parent::onUnMount(%this,%obj,%slot);	
+	parent::onUnMount(%this,%obj,%slot);
 }

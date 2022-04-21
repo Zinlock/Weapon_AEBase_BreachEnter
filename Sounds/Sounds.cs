@@ -925,3 +925,18 @@ datablock AudioProfile(BNE_PythonOutSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//FN FAL
+datablock AudioProfile(BNE_FNFALMagInSound)
+{
+   filename    = "./Reload/FNFAL/FNFAL_MagIn.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_FNFALMagOutSound)
+{
+   filename    = "./Reload/FNFAL/FNFAL_MagOut.wav";
+   description = AudioClose3d;
+   preload = true;
+};
