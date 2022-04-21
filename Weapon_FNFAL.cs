@@ -64,7 +64,7 @@ datablock ItemData(BNE_FNFALItem)
 	RPM = 700;
 	recoil = "Heavy";
 	uiColor = "1 1 1";
-	description = "The FN FAL is a battle rifle developed in Belgium in 1953, famously nicknamed 'Right Arm of the Free World.'" NL "The weapon is chambered in 7.62x51mm NATO cartridges and packs quite a hefty punch, while having a lot of recoil." NL "'Our journey to victory has begin! Death to the MPLA!!' - Jonas Savimbi";
+	description = "The FN FAL is a battle rifle developed in Belgium in 1953, famously nicknamed 'Right Arm of the Free World.'" NL "The weapon is chambered in 7.62x51mm NATO cartridges and packs quite a hefty punch, while having a lot of recoil." NL "'Our journey to victory has begun! Death to the MPLA!!' - Jonas Savimbi";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
