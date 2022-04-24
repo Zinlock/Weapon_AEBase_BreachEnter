@@ -114,9 +114,9 @@ datablock ShapeBaseImageData(BNE_Ithaca37Image)
    muzzleFlashScale = "1.5 1.5 1.5";
    bulletScale = "1 1 1";
 
-   projectileDamage = 12;
+   projectileDamage = 13;
    projectileCount = 8;
-   projectileHeadshotMult = 1.7;
+   projectileHeadshotMult = 1.75;
    projectileVelocity = 200;
    projectileTagStrength = 0.35;  // tagging strength
    projectileTagRecovery = 0.03; // tagging decay rate
