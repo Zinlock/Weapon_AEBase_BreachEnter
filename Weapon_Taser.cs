@@ -221,7 +221,7 @@ datablock ItemData(BNE_TaserItem)
 	image = BNE_TaserImage;
 	canDrop = true;
 
-	AEAmmo = 1;
+	AEAmmo = 2;
 	AEType = AE_TaserAmmoItem.getID();
 	AEBase = 1;
 

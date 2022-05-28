@@ -107,5 +107,8 @@ else
 	exec("./Weapon_Tec9.cs");
 	exec("./Weapon_L85.cs");
 	exec("./Weapon_FNFAL.cs");
+	exec("./Weapon_M500.cs");
+	exec("./Weapon_M500Tac.cs");
+	exec("./Weapon_MP5SD.cs");
 	// exec("./Weapon_Mosin.cs");
 }

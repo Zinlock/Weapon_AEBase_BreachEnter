@@ -940,3 +940,32 @@ datablock AudioProfile(BNE_FNFALMagOutSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//M500
+datablock AudioProfile(BNE_M500PumpSound)
+{
+   filename    = "./Reload/M500/M500_pump.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M500TacPumpSound)
+{
+   filename    = "./Reload/M500/M500Tac_pump.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M500PumpBackSound)
+{
+   filename    = "./Reload/M500/M500_pumpback.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M500PumpForwardSound)
+{
+   filename    = "./Reload/M500/M500_pumpforward.wav";
+   description = AudioClose3d;
+   preload = true;
+};

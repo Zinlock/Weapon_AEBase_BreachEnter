@@ -1,20 +1,20 @@
-datablock AudioProfile(BNE_TMPSFire1Sound)
+datablock AudioProfile(BNE_MP5SDFire1Sound)
 {
-   filename    = "./Sounds/Fire/TMPS/TMPS_fire1.wav";
+   filename    = "./Sounds/Fire/MP5/MP5SD_fire1.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(BNE_TMPSFire2Sound)
+datablock AudioProfile(BNE_MP5SDFire2Sound)
 {
-   filename    = "./Sounds/Fire/TMPS/TMPS_fire2.wav";
+   filename    = "./Sounds/Fire/MP5/MP5SD_fire2.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(BNE_TMPSFire3Sound)
+datablock AudioProfile(BNE_MP5SDFire3Sound)
 {
-   filename    = "./Sounds/Fire/TMPS/TMPS_fire3.wav";
+   filename    = "./Sounds/Fire/MP5/MP5SD_fire3.wav";
    description = LightClose3D;
    preload = true;
 };
@@ -22,13 +22,13 @@ datablock AudioProfile(BNE_TMPSFire3Sound)
 //////////
 // item //
 //////////
-datablock ItemData(BNE_TMPSItem)
+datablock ItemData(BNE_MP5SDItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
 
 	 // Basic Item Properties
-	shapeFile = "./TMPS/TMPS.dts";
+	shapeFile = "./MP5/MP5SD.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -37,13 +37,13 @@ datablock ItemData(BNE_TMPSItem)
 	emap = true;
 
 	//gui stuff
-	uiName = "B&E: TMPS";
-	iconName = "./Icons/48";
+	uiName = "B&E: MP5SD";
+	iconName = "./Icons/52";
 	doColorShift = true;
-	colorShiftColor = "0.7 0.7 0.7 1";
+	colorShiftColor = "0.28 0.3 0.33 1";
 
 	 // Dynamic properties defined by the scripts
-	image = BNE_TMPSImage;
+	image = BNE_MP5SDImage;
 	canDrop = true;
 
 	AEAmmo = 30;
@@ -51,10 +51,10 @@ datablock ItemData(BNE_TMPSItem)
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 600;
-	recoil = "Heavy"; 
+	RPM = 680;
+	recoil = "Medium";
 	uiColor = "1 1 1";
-	description = "The TMP is a 9mm machine pistol manufactured by Steyr Mannlicher." NL "It is popular among police units and military special forces. This one comes fitted with a suppressor.";
+	description = "The MP5SD is a more compact variant of the MP5 submachine gun.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -66,10 +66,10 @@ datablock ItemData(BNE_TMPSItem)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(BNE_TMPSImage)
+datablock ShapeBaseImageData(BNE_MP5SDImage)
 {
    // Basic Item properties
-   shapeFile = "./TMPS/TMPS.dts";
+   shapeFile = "./MP5/MP5SD.dts";
    emap = true;
 
    // Specify mount point & offset for 3rd person, and eye offset
@@ -90,7 +90,7 @@ datablock ShapeBaseImageData(BNE_TMPSImage)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = BNE_TMPSItem;
+   item = BNE_MP5SDItem;
    ammo = " ";
    projectile = AEProjectile;
    projectileType = Projectile;
@@ -106,10 +106,10 @@ datablock ShapeBaseImageData(BNE_TMPSImage)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = BNE_TMPSSafetyImage;
-    scopingImage = BNE_TMPSIronsightImage;
+	safetyImage = BNE_MP5SDSafetyImage;
+    scopingImage = BNE_MP5SDIronsightImage;
 	doColorShift = true;
-	colorShiftColor = BNE_TMPSItem.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_MP5SDItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -117,36 +117,40 @@ datablock ShapeBaseImageData(BNE_TMPSImage)
 
 	bulletScale = "1 1 1";
 
-	projectileDamage = 18;
+	projectileDamage = 30;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.7;
+	projectileHeadshotMult = 1.75 ;
 	projectileVelocity = 200;
-	projectileTagStrength = 0.51;  // tagging strength
+	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.85;
+	recoilHeight = 0.4;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
-	spreadReset = 150; // m
-	spreadBase = 125;
-	spreadMin = 250;
+	spreadReset = 250; // m
+	spreadBase = 40;
+	spreadMin = 60;
 	spreadMax = 1000;
 
-	screenshakeMin = "0.025 0.025 0.025"; 
-	screenshakeMax = "0.075 0.075 0.075";
+	screenshakeMin = "0.015 0.015 0.015"; 
+	screenshakeMax = "0.1 0.1 0.1"; 
+	
 	sonicWhizz = true;
 	whizzSupersonic = true;
 	whizzThrough = false;
 	whizzDistance = 14;
 	whizzChance = 100;
 	whizzAngle = 80;
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 48;
-	projectileFalloffDamage = 0.4;
 
+	staticHitscan = false;
+	
+	projectileFalloffStart = 32;
+	projectileFalloffEnd = 128;
+	projectileFalloffDamage = 0.44;
+	
    //casing = " ";
 
    // Images have a state system which controls how the animations
@@ -183,121 +187,114 @@ datablock ShapeBaseImageData(BNE_TMPSImage)
 	stateSequence[3]                = "Fire";
 	stateWaitForTimeout[3]			= true;
 	
-	stateName[5]				= "LoadCheckA";
-	stateScript[5]				= "AEMagLoadCheck";
-	stateTimeoutValue[5]			= 0.1;
-	stateTransitionOnTimeout[5]		= "LoadCheckB";
+	stateName[4]				= "FireLoadCheckA";
+	stateScript[4]				= "AEMagLoadCheck";
+	stateTimeoutValue[4]			= 0.075;
+	stateTransitionOnTimeout[4]		= "FireLoadCheckB";
 	
-	stateName[6]				= "LoadCheckB";
-	stateTransitionOnAmmo[6]		= "Ready";
-	stateTransitionOnNotLoaded[6] = "Empty";
-	stateTransitionOnNoAmmo[6]		= "Reload2";
+	stateName[5]				= "FireLoadCheckB";
+	stateTransitionOnAmmo[5]		= "Ready";
+	stateTransitionOnNoAmmo[5]		= "Reload2";
+	stateTransitionOnNotLoaded[5]  = "Ready";
 
-	stateName[7]				= "Reload";
-	stateTimeoutValue[7]			= 0.25;
-	stateScript[7]				= "onReloadStart";
-	stateTransitionOnTimeout[7]		= "ReloadMagOut";
-	stateWaitForTimeout[7]			= true;
-	stateSequence[7]			= "ReloadStart";
-	
-	stateName[8]				= "ReloadMagOut";
-	stateTimeoutValue[8]			= 0.5;
-	stateScript[8]				= "onReloadMagOut";
-	stateTransitionOnTimeout[8]		= "ReloadMagIn";
-	stateWaitForTimeout[8]			= true;
-	stateSequence[8]			= "MagOut";
-	stateSound[8]				= BNE_TMPMagOutSound;
-	
-	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.35;
-	stateScript[9]				= "onReloadMagIn";
-	stateTransitionOnTimeout[9]		= "ReloadEnd";
-	stateWaitForTimeout[9]			= true;
-	stateSequence[9]			= "MagIn";
-	stateSound[9]				= BNE_TMPMagInSound;
-	
-	stateName[10]				= "ReloadEnd";
-	stateTimeoutValue[10]			= 0.25;
-	stateScript[10]				= "onReloadEnd";
-	stateTransitionOnTimeout[10]		= "Ready";
-	stateWaitForTimeout[10]			= true;
-	stateSequence[10]			= "ReloadEnd";
-	
-	stateName[11]				= "FireLoadCheckA";
-	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.06;
-	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
-	
-	stateName[12]				= "FireLoadCheckB";
-	stateTransitionOnAmmo[12]		= "Ready";
-	stateTransitionOnNoAmmo[12]		= "Reload2";	
-	stateTransitionOnNotLoaded[12]  = "Ready";
-		
-	stateName[14]				= "Reloaded";
+	stateName[14]				= "LoadCheckA";
+	stateScript[14]				= "AEMagLoadCheck";
 	stateTimeoutValue[14]			= 0.1;
-	stateScript[14]				= "AEMagReloadAll";
-	stateTransitionOnTimeout[14]		= "Ready";
+	stateTransitionOnTimeout[14]		= "LoadCheckB";
+	
+	stateName[15]				= "LoadCheckB";
+	stateTransitionOnAmmo[15]		= "Ready";
+	stateTransitionOnNotLoaded[15] = "Empty";
+	stateTransitionOnNoAmmo[15]		= "Reload2";
 
-// EMPTY RELOAD STATE
-
-	stateName[15]				= "Reload2";
-	stateTimeoutValue[15]			= 0.25;
-	stateScript[15]				= "onReloadStart";
-	stateTransitionOnTimeout[15]		= "Reload2MagOut";
-	stateWaitForTimeout[15]			= true;
-	stateSequence[15]			= "ReloadStart";
-
-	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 0.5;
-	stateScript[16]				= "onReload2MagOut";
-	stateTransitionOnTimeout[16]		= "Reload2MagIn";
+	stateName[16]				= "Reload";
+	stateTimeoutValue[16]			= 0.25;
+	stateScript[16]				= "onReloadStart";
+	stateTransitionOnTimeout[16]		= "ReloadMagOut";
 	stateWaitForTimeout[16]			= true;
-	stateSequence[16]			= "MagOut";
-	stateSound[16]				= BNE_TMPMagOutSound;
+	stateSequence[16]			= "ReloadStart";
 	
-	stateName[17]				= "Reload2MagIn";
-	stateTimeoutValue[17]			= 0.35;
-	stateScript[17]				= "onReload2MagIn";
-	stateTransitionOnTimeout[17]		= "Reload2Bolt";
+	stateName[17]				= "ReloadMagOut";
+	stateTimeoutValue[17]			= 0.5;
+	stateScript[17]				= "onReloadMagOut";
+	stateTransitionOnTimeout[17]		= "ReloadMagIn";
 	stateWaitForTimeout[17]			= true;
-	stateSequence[17]			= "MagIn";
-	stateSound[17]				= BNE_TMPMagInSound;
+	stateSequence[17]			= "MagOut";
+	stateSound[17]				= BNE_HKMagOutSound;
 	
-	stateName[18]				= "Reload2Bolt";
-	stateTimeoutValue[18]			= 0.35;
-	stateScript[18]				= "onReload2Bolt";
-	stateTransitionOnTimeout[18]		= "Reload2End";
+	stateName[18]				= "ReloadMagIn";
+	stateTimeoutValue[18]			= 0.45;
+	stateScript[18]				= "onReloadMagIn";
+	stateTransitionOnTimeout[18]		= "ReloadEnd";
 	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "Bolt";
-	stateSound[18]				= BNE_TMPBoltSound;
+	stateSequence[18]			= "MagIn";
+	stateSound[18]				= BNE_HKMagInSound;
 	
-	stateName[19]				= "Reload2End";
+	stateName[19]				= "ReloadEnd";
 	stateTimeoutValue[19]			= 0.25;
-	stateScript[19]				= "onReload2End";
+	stateScript[19]				= "onReloadEnd";
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEnd";
-	
-	stateName[20]				= "ReadyLoop";
+		
+	stateName[20]				= "Reloaded";
+	stateTimeoutValue[20]			= 0.1;
+	stateScript[20]				= "AEMagReloadAll";
 	stateTransitionOnTimeout[20]		= "Ready";
 
-	stateName[21]          = "Empty";
-	stateTransitionOnTriggerDown[21]  = "Dryfire";
-	stateTransitionOnLoaded[21] = "Reload2";
-	stateScript[21]        = "AEOnEmpty";
+// EMPTY RELOAD STATE
 
-	stateName[22]           = "Dryfire";
-	stateTransitionOnTriggerUp[22] = "Empty";
-	stateWaitForTimeout[22]    = false;
-	stateScript[22]      = "onDryFire";
+	stateName[21]				= "Reload2";
+	stateTimeoutValue[21]			= 0.4;
+	stateScript[21]				= "onReload2Start";
+	stateTransitionOnTimeout[21]		= "Reload2MagOut";
+	stateWaitForTimeout[21]			= true;
+	stateSequence[21]			= "ReloadStartEmpty";
+	stateSound[21]				= BNE_HKBoltLockSound;
+	
+	stateName[22]				= "Reload2MagOut";
+	stateTimeoutValue[22]			= 0.5;
+	stateScript[22]				= "onReload2MagOut";
+	stateTransitionOnTimeout[22]		= "Reload2MagIn";
+	stateWaitForTimeout[22]			= true;
+	stateSequence[22]			= "MagOutEmpty";
+	stateSound[22]				= BNE_HKMagOutSound;
+	
+	stateName[23]				= "Reload2MagIn";
+	stateTimeoutValue[23]			= 0.4;
+	stateScript[23]				= "onReload2MagIn";
+	stateTransitionOnTimeout[23]		= "Reload2End";
+	stateWaitForTimeout[23]			= true;
+	stateSequence[23]			= "MagInEmpty";
+	stateSound[23]				= BNE_HKMagInSound;
+	
+	stateName[24]				= "Reload2End";
+	stateTimeoutValue[24]			= 0.4;
+	stateScript[24]				= "onReload2End";
+	stateTransitionOnTimeout[24]		= "Ready";
+	stateWaitForTimeout[24]			= true;
+	stateSequence[24]			= "ReloadEndEmpty";
+	
+	stateName[25]				= "ReadyLoop";
+	stateTransitionOnTimeout[25]		= "Ready";
+
+	stateName[26]          = "Empty";
+	stateTransitionOnTriggerDown[26]  = "Dryfire";
+	stateTransitionOnLoaded[26] = "Reload2";
+	stateScript[26]        = "AEOnEmpty";
+
+	stateName[27]           = "Dryfire";
+	stateTransitionOnTriggerUp[27] = "Empty";
+	stateWaitForTimeout[27]    = false;
+	stateScript[27]      = "onDryFire";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function BNE_TMPSImage::AEOnFire(%this,%obj,%slot)
+function BNE_MP5SDImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_TMPSFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_MP5SDFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -305,48 +302,65 @@ function BNE_TMPSImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function BNE_TMPSImage::onDryFire(%this, %obj, %slot)
+function BNE_MP5SDImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function BNE_TMPSImage::onReloadMagIn(%this,%obj,%slot)
-{
-   %obj.schedule(50, "aeplayThread", "2", "shiftright");
-}
-
-function BNE_TMPSImage::onReload2MagIn(%this,%obj,%slot)
-{
-   %obj.schedule(50, "aeplayThread", "2", "shiftright");
-}
-
-function BNE_TMPSImage::onReload2Bolt(%this,%obj,%slot)
-{
-   %obj.aeplayThread(2, plant);
-}
-
-function BNE_TMPSImage::onReloadEnd(%this,%obj,%slot)
+function BNE_MP5SDImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_TMPSImage::onReload2End(%this,%obj,%slot)
+function BNE_MP5SDImage::onReload2End(%this,%obj,%slot)
 {
-	Parent::AEMagReloadAll(%this, %obj, %slot);
+    %obj.schedule(50, playAudio, 1, BNE_HKBoltCloseSound);
+    Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 // MAGAZINE DROPPING
 
-function BNE_TMPSImage::onReloadStart(%this,%obj,%slot)
+function BNE_MP5SDImage::onReload2MagOut(%this,%obj,%slot)
 {
-   %obj.schedule(200, "aeplayThread", "2", "wrench");
-   %obj.aeplayThread(3, shiftleft);
-   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagPlasticAr @ getRandom(1,3) @ Sound,%obj.getPosition());
+   %obj.aeplayThread(2, shiftleft);
+   %obj.aeplayThread(3, shiftright);
 }
 
-function BNE_TMPSImage::onReady(%this,%obj,%slot)
+function BNE_MP5SDImage::onReloadMagOut(%this,%obj,%slot)
+{
+   %obj.aeplayThread(2, shiftleft);
+   %obj.aeplayThread(3, shiftright);
+}
+
+function BNE_MP5SDImage::onReloadMagIn(%this,%obj,%slot)
+{
+   %obj.schedule(50, "aeplayThread", "2", "plant");
+}
+
+function BNE_MP5SDImage::onReload2MagIn(%this,%obj,%slot)
+{
+   %obj.schedule(50, "aeplayThread", "2", "plant");
+   %obj.schedule(300, "aeplayThread", "2", "shiftleft");
+   %obj.schedule(450, "aeplayThread", "3", "plant");
+}
+
+function BNE_MP5SDImage::onReloadStart(%this,%obj,%slot)
+{
+  %obj.aeplayThread(2, plant);
+   %obj.reload3Schedule = %this.schedule(150,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
+}
+
+function BNE_MP5SDImage::onReload2Start(%this,%obj,%slot)
+{
+  %obj.aeplayThread(2, plant);
+  %obj.aeplayThread(3, shiftright);
+   %obj.reload3Schedule = %this.schedule(400,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
+}
+
+function BNE_MP5SDImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -356,7 +370,7 @@ function BNE_TMPSImage::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_TMPSImage::onMount(%this,%obj,%slot)
+function BNE_MP5SDImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -365,7 +379,7 @@ function BNE_TMPSImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_TMPSImage::onUnMount(%this,%obj,%slot)
+function BNE_MP5SDImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -379,7 +393,7 @@ function BNE_TMPSImage::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function BNE_TMPSImage::onMagDrop(%this,%obj,%slot)
+function BNE_MP5SDImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new aiPlayer()
 	{
@@ -389,17 +403,13 @@ function BNE_TMPSImage::onMagDrop(%this,%obj,%slot)
 	};
 	%a.setDamageLevel(100);
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(BNE_TMPMagImage,0);
+	%a.mountImage(BNE_MP5KMagImage,0);
 	%a.schedule(2500,delete);
 }
 
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-
-datablock ShapeBaseImageData(BNE_TMPSSafetyImage)
+datablock ShapeBaseImageData(BNE_MP5SDSafetyImage)
 {
-   shapeFile = "./TMPS/TMPS.dts";
+   shapeFile = "./MP5/MP5SD.dts";
    emap = true;
    mountPoint = 0;
    offset = "0 0 0";
@@ -407,15 +417,15 @@ datablock ShapeBaseImageData(BNE_TMPSSafetyImage)
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = BNE_TMPSItem;
+   item = BNE_MP5SDItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   scopingImage = BNE_TMPSIronsightImage;
-   safetyImage = BNE_TMPSImage;
+   scopingImage = BNE_MP5SDIronsightImage;
+   safetyImage = BNE_MP5SDImage;
    doColorShift = true;
-   colorShiftColor = BNE_TMPSItem.colorShiftColor;
+   colorShiftColor = BNE_MP5SDItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -431,12 +441,12 @@ datablock ShapeBaseImageData(BNE_TMPSSafetyImage)
 
 };
 
-function BNE_TMPSSafetyImage::onDone(%this,%obj,%slot)
+function BNE_MP5SDSafetyImage::onDone(%this,%obj,%slot)
 {
 	%obj.mountImage(%this.safetyImage, 0);
 }
 
-function BNE_TMPSSafetyImage::onMount(%this,%obj,%slot)
+function BNE_MP5SDSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -445,7 +455,7 @@ function BNE_TMPSSafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function BNE_TMPSSafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_MP5SDSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -455,57 +465,57 @@ function BNE_TMPSSafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(BNE_TMPSIronsightImage : BNE_TMPSImage)
+datablock ShapeBaseImageData(BNE_MP5SDIronsightImage : BNE_MP5SDImage)
 {
-	recoilHeight = 0.225;
+	recoilHeight = 0.3;
 
-	scopingImage = BNE_TMPSImage;
-	sourceImage = BNE_TMPSImage;
+	scopingImage = BNE_MP5SDImage;
+	sourceImage = BNE_MP5SDImage;
 	
 	offset = "0 0 0";
-	eyeOffset = "0 1.0 -1.025";
+	eyeOffset = "-0.0035 1.0 -1.16";
 	rotation = eulerToMatrix( "0 -20 0" );
 
 	desiredFOV = $ae_LowIronsFOV;
-	projectileZOffset = 2;
+	projectileZOffset = 0;
 	R_MovePenalty = 0.5;
    
-	stateName[15]				= "Reload2";
-	stateScript[15]				= "onDone";
-	stateTimeoutValue[15]			= 1;
-	stateTransitionOnTimeout[15]		= "";
-	stateSound[15]				= "";
+	stateName[21]				= "Reload2";
+	stateScript[21]				= "onDone";
+	stateTimeoutValue[21]			= 1;
+	stateTransitionOnTimeout[21]		= "";
+	stateSound[21]				= "";
 	
-	stateName[7]				= "Reload";
-	stateScript[7]				= "onDone";
-	stateTimeoutValue[7]			= 1;
-	stateTransitionOnTimeout[7]		= "";
-	stateSound[7]				= "";
+	stateName[16]				= "Reload";
+	stateScript[16]				= "onDone";
+	stateTimeoutValue[16]			= 1;
+	stateTransitionOnTimeout[16]		= "";
+	stateSound[16]				= "";
 };
 
-function BNE_TMPSIronsightImage::onDone(%this,%obj,%slot)
+function BNE_MP5SDIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function BNE_TMPSIronsightImage::onReady(%this,%obj,%slot)
+function BNE_MP5SDIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function BNE_TMPSIronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_MP5SDIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_TMPSFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_MP5SDFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
-	%obj.schedule(200, unBlockImageDismount);
+	%obj.schedule(500, unBlockImageDismount);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function BNE_TMPSIronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_MP5SDIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -513,21 +523,21 @@ function BNE_TMPSIronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_TMPSIronsightImage::onMount(%this,%obj,%slot)
+function BNE_MP5SDIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsIn3Sound); // %obj.getHackPosition());
+		%obj.client.play2D(AEAdsIn3Sound);
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_TMPSIronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_MP5SDIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsOut3Sound); // %obj.getHackPosition());
+		%obj.client.play2D(AEAdsOut3Sound);
 	%this.AEUnmountCleanup(%obj, %slot);
 	parent::onUnMount(%this,%obj,%slot);	
 }

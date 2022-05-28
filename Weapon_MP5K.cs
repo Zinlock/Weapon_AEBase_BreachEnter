@@ -1,20 +1,20 @@
 datablock AudioProfile(BNE_MP5KFire1Sound)
 {
-   filename    = "./Sounds/Fire/MP5K/MP5K_fire1.wav";
+   filename    = "./Sounds/Fire/MP5/MP5K_fire1.wav";
    description = MediumClose3D;
    preload = true;
 };
 
 datablock AudioProfile(BNE_MP5KFire2Sound)
 {
-   filename    = "./Sounds/Fire/MP5K/MP5K_fire2.wav";
+   filename    = "./Sounds/Fire/MP5/MP5K_fire2.wav";
    description = MediumClose3D;
    preload = true;
 };
 
 datablock AudioProfile(BNE_MP5KFire3Sound)
 {
-   filename    = "./Sounds/Fire/MP5K/MP5K_fire3.wav";
+   filename    = "./Sounds/Fire/MP5/MP5K_fire3.wav";
    description = MediumClose3D;
    preload = true;
 };
@@ -22,7 +22,7 @@ datablock AudioProfile(BNE_MP5KFire3Sound)
 // MP5K
 datablock DebrisData(BNE_MP5KMagDebris)
 {
-	shapeFile = "./MP5K/MP5KMag.dts";
+	shapeFile = "./MP5/MP5KMag.dts";
 	lifetime = 2.0;
 	minSpinSpeed = -700.0;
 	maxSpinSpeed = -600.0;
@@ -45,7 +45,7 @@ datablock ItemData(BNE_MP5KItem)
 	className = "Weapon"; // For inventory system
 
 	 // Basic Item Properties
-	shapeFile = "./MP5K/MP5K.dts";
+	shapeFile = "./MP5/MP5K.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -86,7 +86,7 @@ datablock ItemData(BNE_MP5KItem)
 datablock ShapeBaseImageData(BNE_MP5KImage)
 {
    // Basic Item properties
-   shapeFile = "./MP5K/MP5K.dts";
+   shapeFile = "./MP5/MP5K.dts";
    emap = true;
 
    // Specify mount point & offset for 3rd person, and eye offset
@@ -112,7 +112,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
    projectile = AETrailedProjectile;
    projectileType = Projectile;
 
-   casing = AE_BERifleShellDebris;
+   casing = AE_BEPistolShellDebris;
    shellExitDir        = "1 0 0.5";
    shellExitOffset     = "0 0 0";
    shellExitVariance   = 25;	
@@ -128,7 +128,7 @@ datablock ShapeBaseImageData(BNE_MP5KImage)
 	doColorShift = true;
 	colorShiftColor = BNE_MP5KItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
-	shellSound = AEShellRifle;
+	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
 
@@ -472,7 +472,7 @@ function BNE_MP5KMagImage::onDone(%this,%obj,%slot)
 
 datablock ShapeBaseImageData(BNE_MP5KSafetyImage)
 {
-   shapeFile = "./MP5K/MP5K.dts";
+   shapeFile = "./MP5/MP5K.dts";
    emap = true;
    mountPoint = 0;
    offset = "0 0 0";
