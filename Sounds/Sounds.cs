@@ -969,3 +969,32 @@ datablock AudioProfile(BNE_M500PumpForwardSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//LAPD Blaster
+datablock AudioProfile(BNE_LAPDBlasterOpenSound)
+{
+   filename    = "./Reload/LAPDBlaster/LAPDBlasterOpen.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_LAPDBlasterOutSound)
+{
+   filename    = "./Reload/LAPDBlaster/LAPDBlasterOut.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_LAPDBlasterInSound)
+{
+   filename    = "./Reload/LAPDBlaster/LAPDBlasterIn.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_LAPDBlasterCloseSound)
+{
+   filename    = "./Reload/LAPDBlaster/LAPDBlasterClose.wav";
+   description = AudioClose3d;
+   preload = true;
+};

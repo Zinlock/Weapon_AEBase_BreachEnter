@@ -110,5 +110,6 @@ else
 	exec("./Weapon_M500.cs");
 	exec("./Weapon_M500Tac.cs");
 	exec("./Weapon_MP5SD.cs");
+	exec("./Weapon_LAPDBlaster.cs");
 	// exec("./Weapon_Mosin.cs");
 }
