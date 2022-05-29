@@ -1041,3 +1041,25 @@ datablock AudioProfile(BNE_MosinInsert3Sound)
    description = AudioClose3d;
    preload = true;
 };
+
+//M40
+datablock AudioProfile(BNE_M40BoltCloseSound)
+{
+   filename    = "./Fire/M40/M40BoltClose.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M40BoltOpenSound)
+{
+   filename    = "./Fire/M40/M40BoltOpen.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M40BoltSound)
+{
+   filename    = "./Fire/M40/M40Bolt.wav";
+   description = AudioClose3d;
+   preload = true;
+};

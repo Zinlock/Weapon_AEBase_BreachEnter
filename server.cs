@@ -45,7 +45,7 @@ else
 	exec("./SmokesFlashes.cs");
 	exec("./Item_Ammo.cs");
 	exec("./Sounds/Sounds.cs");
-//	exec("./Weapon_AR15S.cs"); // polish humor     :PP
+	exec("./Weapon_AR15S.cs"); // polish humor     :PP
 	exec("./Weapon_AK47.cs");
 	exec("./Weapon_KBP9A91.cs");
 	exec("./Weapon_M9.cs");
@@ -112,4 +112,5 @@ else
 	exec("./Weapon_MP5SD.cs");
 	exec("./Weapon_LAPDBlaster.cs");
 	exec("./Weapon_Mosin.cs");
+	exec("./Weapon_M40.cs");
 }

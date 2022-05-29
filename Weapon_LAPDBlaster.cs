@@ -177,6 +177,12 @@ datablock ShapeBaseImageData(BNE_LAPDBlasterImage)
 	staticScaleLength = 0.25;
 	staticUnitsPerSecond = $ae_RifleUPS;
 
+	laserSize = "1.25 1.25 1.25";
+	laserColor = "0.1 1.0 0.1 1";
+	laserDistance = 50;
+	laserOffStates = "Reload ReloadExtract ReloadIn ReloadWaitA ReloadWaitB";
+  laserFade = 16;
+
    //casing = " ";
 
    // Images have a state system which controls how the animations
