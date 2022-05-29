@@ -998,3 +998,46 @@ datablock AudioProfile(BNE_LAPDBlasterCloseSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//Mosin
+datablock AudioProfile(BNE_MosinBoltCloseSound)
+{
+   filename    = "./Fire/Mosin/MosinBoltClose.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MosinBoltOpenSound)
+{
+   filename    = "./Fire/Mosin/MosinBoltOpen.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MosinBoltSound)
+{
+   filename    = "./Fire/Mosin/MosinBolt.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MosinInsert1Sound)
+{
+   filename    = "./Reload/Mosin/Mosin_INSERT1.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MosinInsert2Sound)
+{
+   filename    = "./Reload/Mosin/Mosin_INSERT2.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MosinInsert3Sound)
+{
+   filename    = "./Reload/Mosin/Mosin_INSERT3.wav";
+   description = AudioClose3d;
+   preload = true;
+};

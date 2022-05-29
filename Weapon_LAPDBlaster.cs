@@ -130,7 +130,7 @@ datablock ShapeBaseImageData(BNE_LAPDBlasterImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 40;
+	projectileDamage = 50;
 	projectileCount = 1;
 	projectileHeadshotMult = 2;
 	projectileVelocity = 400;
@@ -154,9 +154,9 @@ datablock ShapeBaseImageData(BNE_LAPDBlasterImage)
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 128;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = 16;
+	projectileFalloffEnd = 64;
+	projectileFalloffDamage = 0.73;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;
