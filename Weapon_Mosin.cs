@@ -119,9 +119,9 @@ datablock ShapeBaseImageData(BNE_MosinImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 47;
+	projectileDamage = 30;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.5;
+	projectileHeadshotMult = 2;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
