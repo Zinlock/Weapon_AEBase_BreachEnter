@@ -46,7 +46,7 @@ datablock ItemData(BNE_M1873Item)
 	image = BNE_M1873Image;
 	canDrop = true;
 	
-	AEAmmo = 6;
+	AEAmmo = 12;
 	AEType = AE_HeavyRAmmoItem.getID(); 
 	AEBase = 1;
 
