@@ -113,4 +113,5 @@ else
 	exec("./Weapon_LAPDBlaster.cs");
 	exec("./Weapon_Mosin.cs");
 	exec("./Weapon_M40.cs");
+	exec("./Weapon_M1873.cs");
 }

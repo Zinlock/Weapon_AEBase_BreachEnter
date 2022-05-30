@@ -1063,3 +1063,46 @@ datablock AudioProfile(BNE_M40BoltSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//M1873
+datablock AudioProfile(BNE_M1873PumpSound)
+{
+   filename    = "./Reload/M1873/M1873_LEVER.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M1873PumpBackSound)
+{
+   filename    = "./Reload/M1873/M1873_LEVEROPEN.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M1873PumpForwardSound)
+{
+   filename    = "./Reload/M1873/M1873_LEVERCLOSE.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M1873Insert1Sound)
+{
+   filename    = "./Reload/M1873/M1873_INSERT1.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M1873Insert2Sound)
+{
+   filename    = "./Reload/M1873/M1873_INSERT2.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M1873Insert3Sound)
+{
+   filename    = "./Reload/M1873/M1873_INSERT3.wav";
+   description = AudioClose3d;
+   preload = true;
+};
