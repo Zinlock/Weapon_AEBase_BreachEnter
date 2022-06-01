@@ -1106,3 +1106,32 @@ datablock AudioProfile(BNE_M1873Insert3Sound)
    description = AudioClose3d;
    preload = true;
 };
+
+//M79
+datablock AudioProfile(BNE_M79OpenSound)
+{
+   filename    = "./Reload/M79/M79_OPEN.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M79ExtractSound)
+{
+   filename    = "./Reload/M79/M79_EXTRACT.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M79InsertSound)
+{
+   filename    = "./Reload/M79/M79_INSERT.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M79CloseSound)
+{
+   filename    = "./Reload/M79/M79_CLOSE.wav";
+   description = AudioClose3d;
+   preload = true;
+};
