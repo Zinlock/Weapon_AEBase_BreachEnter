@@ -1135,3 +1135,25 @@ datablock AudioProfile(BNE_M79CloseSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//870XP
+datablock AudioProfile(BNE_870XPPumpSound)
+{
+   filename    = "./Reload/870XP/870XP_pump.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_870XPPumpBackSound)
+{
+   filename    = "./Reload/870XP/870XP_pumpback.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_870XPPumpForwardSound)
+{
+   filename    = "./Reload/870XP/870XP_pumpforward.wav";
+   description = AudioClose3d;
+   preload = true;
+};

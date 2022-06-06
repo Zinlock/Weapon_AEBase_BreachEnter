@@ -115,4 +115,7 @@ else
 	exec("./Weapon_M40.cs");
 	exec("./Weapon_M1873.cs");
 	exec("./Weapon_M79.cs");
+	exec("./Weapon_PPK.cs");
+	exec("./Weapon_Bizon.cs");
+	exec("./Weapon_870XP.cs");
 }
