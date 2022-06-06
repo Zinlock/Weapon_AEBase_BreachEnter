@@ -166,9 +166,9 @@ datablock ShapeBaseImageData(BNE_P90Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 8;
-	projectileFalloffEnd = 64;
-	projectileFalloffDamage = 0.4;
+	projectileFalloffStart = $ae_falloffSMGStart;
+	projectileFalloffEnd = $ae_falloffSMGEnd;
+	projectileFalloffDamage = $ae_falloffSMG;
 
 	staticHitscan = true;
 	staticEffectiveRange = 110;

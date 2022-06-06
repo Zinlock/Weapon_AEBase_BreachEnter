@@ -114,22 +114,22 @@ datablock ShapeBaseImageData(BNE_M4A1Image)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 15;
+	projectileDamage = 30;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.3;
-	projectileVelocity = 500;
+	projectileHeadshotMult = 1.5;
+	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.5;
+	recoilHeight = 1;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 150; // m
-	spreadBase = 100;
-	spreadMin = 175;
+	spreadBase = 200;
+	spreadMin = 350;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
@@ -138,9 +138,9 @@ datablock ShapeBaseImageData(BNE_M4A1Image)
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 75;
-	projectileFalloffEnd = 200;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;
@@ -151,9 +151,9 @@ datablock ShapeBaseImageData(BNE_M4A1Image)
 
 	staticHitscan = true;
 	staticEffectiveRange = 1;
-	staticTotalRange = 2;
+	staticTotalRange = 2000;
 	staticGravityScale = 1.5;
-	staticSwayMod = 200;
+	staticSwayMod = 2;
 	staticEffectiveSpeedBonus = 0;
 	staticSpawnFakeProjectiles = true;
 	staticTracerEffect = ""; // defaults to AEBulletStaticShape
@@ -513,7 +513,7 @@ function BNE_M4A1SafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_M4A1IronsightImage : BNE_M4A1Image)
 {
-	recoilHeight = 0.125;
+	recoilHeight = 0.25;
 
 	scopingImage = BNE_M4A1Image;
 	sourceImage = BNE_M4A1Image;

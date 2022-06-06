@@ -50,7 +50,7 @@ datablock ItemData(BNE_AKS47UItem)
 	canDrop = true;
 
 	AEAmmo = 30;
-	AEType = AE_HeavyRAmmoItem.getID();
+	AEType = AE_LightRAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 
@@ -123,7 +123,7 @@ datablock ShapeBaseImageData(BNE_AKS47UImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 35;
+	projectileDamage = 30;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.7;
 	projectileVelocity = 400;
@@ -137,8 +137,8 @@ datablock ShapeBaseImageData(BNE_AKS47UImage)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 25;
-	spreadMin = 200;
+	spreadBase = 300;
+	spreadMin = 450;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
@@ -166,9 +166,9 @@ datablock ShapeBaseImageData(BNE_AKS47UImage)
 	staticScaleLength = 0.25;
 	staticUnitsPerSecond = $ae_RifleUPS;
 	
-	projectileFalloffStart = 75;
-	projectileFalloffEnd = 200;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 
    //casing = " ";
 
@@ -542,7 +542,7 @@ function BNE_AKS47USafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_AKS47UIronsightImage : BNE_AKS47UImage)
 {
-	recoilHeight = 0.1875;
+	recoilHeight = 0.25;
 
 	scopingImage = BNE_AKS47UImage;
 	sourceImage = BNE_AKS47UImage;

@@ -178,9 +178,9 @@ datablock ShapeBaseImageData(BNE_USP45Image)
 	laserOffStates = "Reload Reload2 ReloadMagOut ReloadMagIn ReloadEnd Reload2MagIn Reload2MagOut Reload2End";
   laserFade = 16;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 64;
-	projectileFalloffDamage = 0.6;
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 
    //casing = " ";
 

@@ -143,6 +143,10 @@ datablock ShapeBaseImageData(BNE_M40Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
+	projectileFalloffStart = $ae_falloffSniperStart;
+	projectileFalloffEnd = $ae_falloffSniperEnd;
+	projectileFalloffDamage = $ae_falloffSniper;
+
 	staticHitscan = true;
 	staticEffectiveRange = 260;
 	staticTotalRange = 2000;
@@ -154,10 +158,6 @@ datablock ShapeBaseImageData(BNE_M40Image)
 	staticScaleCalibre = 0.35;
 	staticScaleLength = 0.35;
 	staticUnitsPerSecond = $ae_SniperUPS;
-
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 2;
 
    // Images have a state system which controls how the animations
    // are run, which sounds are played, script callbacks, etc. This

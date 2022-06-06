@@ -119,9 +119,9 @@ datablock ShapeBaseImageData(BNE_MosinImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 30;
+	projectileDamage = 40;
 	projectileCount = 1;
-	projectileHeadshotMult = 2;
+	projectileHeadshotMult = 2.5;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
@@ -150,6 +150,10 @@ datablock ShapeBaseImageData(BNE_MosinImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
+	projectileFalloffStart = $ae_falloffSniperStart;
+	projectileFalloffEnd = $ae_falloffSniperEnd;
+	projectileFalloffDamage = $ae_falloffSniper;
+
 	staticHitscan = true;
 	staticEffectiveRange = 110;
 	staticTotalRange = 2000;
@@ -160,11 +164,7 @@ datablock ShapeBaseImageData(BNE_MosinImage)
 	staticTracerEffect = ""; // defaults to AEBulletStaticShape
 	staticScaleCalibre = 0.25;
 	staticScaleLength = 0.25;
-	staticUnitsPerSecond = $ae_RifleUPS;
-
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 2;
+	staticUnitsPerSecond = $ae_SniperUPS;
 
    // Images have a state system which controls how the animations
    // are run, which sounds are played, script callbacks, etc. This

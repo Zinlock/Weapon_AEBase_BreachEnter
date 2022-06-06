@@ -130,9 +130,9 @@ datablock ShapeBaseImageData(BNE_LAPDBlasterImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 50;
+	projectileDamage = 40;
 	projectileCount = 1;
-	projectileHeadshotMult = 2;
+	projectileHeadshotMult = 1.5;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
@@ -154,9 +154,9 @@ datablock ShapeBaseImageData(BNE_LAPDBlasterImage)
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 64;
-	projectileFalloffDamage = 0.73;
+	projectileFalloffStart = $ae_falloffSMGStart;
+	projectileFalloffEnd = $ae_falloffSMGEnd;
+	projectileFalloffDamage = $ae_falloffSMG;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;

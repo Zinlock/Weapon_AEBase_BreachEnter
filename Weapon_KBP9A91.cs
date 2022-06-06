@@ -136,15 +136,15 @@ datablock ShapeBaseImageData(BNE_KBP9A91Image)
 	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.5;
+	recoilHeight = 1;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 3; // how much shots it takes to trigger spread i think
-	spreadReset = 150; // m
-	spreadBase = 50;
-	spreadMin = 200;
+	spreadBurst = 5; // how much shots it takes to trigger spread i think
+	spreadReset = 350; // m
+	spreadBase = 300;
+	spreadMin = 500;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.025 0.025 0.025"; 
@@ -160,9 +160,9 @@ datablock ShapeBaseImageData(BNE_KBP9A91Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 32;
-	projectileFalloffEnd = 96;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 
 	staticHitscan = true;
 	staticEffectiveRange = 110;

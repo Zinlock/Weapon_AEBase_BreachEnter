@@ -113,7 +113,7 @@ datablock ShapeBaseImageData(BNE_Glock17Image)
 	muzzleFlashScale = "0.5 0.5 0.5";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 19;
+	projectileDamage = 20;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.58;
 	projectileVelocity = 200;
@@ -143,10 +143,10 @@ datablock ShapeBaseImageData(BNE_Glock17Image)
 	whizzDistance = 14;
 	whizzChance = 100;
 	whizzAngle = 80;
-
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 50;
-	projectileFalloffDamage = 0.55;
+	
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 
    //casing = " ";
 

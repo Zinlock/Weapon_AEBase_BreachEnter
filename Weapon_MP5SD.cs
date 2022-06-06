@@ -147,9 +147,9 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 
 	staticHitscan = false;
 	
-	projectileFalloffStart = 32;
-	projectileFalloffEnd = 128;
-	projectileFalloffDamage = 0.44;
+	projectileFalloffStart = $ae_falloffSMGStart;
+	projectileFalloffEnd = $ae_falloffSMGEnd;
+	projectileFalloffDamage = $ae_falloffSMG;
 	
    //casing = " ";
 

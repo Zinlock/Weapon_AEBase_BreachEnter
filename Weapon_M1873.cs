@@ -121,9 +121,9 @@ datablock ShapeBaseImageData(BNE_M1873Image)
 	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 128;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffDMRStart;
+	projectileFalloffEnd = $ae_falloffDMREnd;
+	projectileFalloffDamage = $ae_falloffDMR;
 
 	recoilHeight = 0.6;
 	recoilWidth = 0;
@@ -131,10 +131,10 @@ datablock ShapeBaseImageData(BNE_M1873Image)
 	recoilHeightMax = 20;
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
-	spreadBase = 125;
-	spreadReset = 800; // m
-	spreadMin = 125;
-	spreadMax = 800;
+	spreadReset = 150; // m
+	spreadBase = 350;
+	spreadMin = 500;
+	spreadMax = 1000;
 	screenshakeMin = "0.25 0.25 0.25"; 
 	screenshakeMax = "0.5 0.5 0.5"; 
 	farShotSound = SniperADistantSound;
@@ -468,10 +468,16 @@ function BNE_M1873SafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_M1873IronsightImage : BNE_M1873Image)
 {
-	recoilHeight = 0.25;
+	recoilHeight = 0.5;
 
 	scopingImage = BNE_M1873Image;
 	sourceImage = BNE_M1873Image;
+	
+	spreadBurst = 1; // how much shots it takes to trigger spread i think
+	spreadBase = 125;
+	spreadReset = 800; // m
+	spreadMin = 125;
+	spreadMax = 800;
 	
    offset = "0 0 -0.015";
 	eyeOffset = "-0.0 0.9 -0.651";

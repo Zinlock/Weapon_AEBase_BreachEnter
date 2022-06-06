@@ -133,7 +133,7 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 39;
+	projectileDamage = 49;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.7;
 	projectileVelocity = 400;
@@ -157,9 +157,9 @@ datablock ShapeBaseImageData(BNE_SVDImage)
 	farShotSound = SniperCDistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 96;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 2;
+	projectileFalloffStart = $ae_falloffSniperStart;
+	projectileFalloffEnd = $ae_falloffSniperEnd;
+	projectileFalloffDamage = $ae_falloffSniper;
 	
 	sonicWhizz = true;
 	whizzSupersonic = 2;

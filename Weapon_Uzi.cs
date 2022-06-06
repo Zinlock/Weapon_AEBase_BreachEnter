@@ -166,9 +166,9 @@ datablock ShapeBaseImageData(BNE_UziImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 96;
-	projectileFalloffDamage = 0.53;
+	projectileFalloffStart = $ae_falloffSMGStart;
+	projectileFalloffEnd = $ae_falloffSMGEnd;
+	projectileFalloffDamage = $ae_falloffSMG;
 
    //casing = " ";
 

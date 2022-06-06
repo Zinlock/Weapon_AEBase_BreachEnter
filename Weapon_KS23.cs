@@ -121,9 +121,9 @@ datablock ShapeBaseImageData(BNE_KS23Image)
 	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	projectileFalloffStart = 8;
-	projectileFalloffEnd = 32;
-	projectileFalloffDamage = 0.2;
+	projectileFalloffStart = $ae_falloffShotgunStart;
+	projectileFalloffEnd = $ae_falloffShotgunEnd;
+	projectileFalloffDamage = $ae_falloffShotgun;
 
 	recoilHeight = 3;
 	recoilWidth = 0;

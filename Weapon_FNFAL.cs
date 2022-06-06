@@ -173,9 +173,9 @@ datablock ShapeBaseImageData(BNE_FNFALImage)
 	staticScaleLength = 0.25;
 	staticUnitsPerSecond = $ae_RifleUPS;
 
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 0.65;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 
    //casing = " ";
 

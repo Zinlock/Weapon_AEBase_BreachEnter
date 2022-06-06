@@ -144,8 +144,8 @@ datablock ShapeBaseImageData(BNE_American180Image)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 25;
-	spreadMin = 100;
+	spreadBase = 225;
+	spreadMin = 300;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.01 0.01 0.01"; 
@@ -161,9 +161,9 @@ datablock ShapeBaseImageData(BNE_American180Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 	
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 50;
-	projectileFalloffDamage = 0.48;
+	projectileFalloffStart = $ae_falloffSMGStart;
+	projectileFalloffEnd = $ae_falloffSMGEnd;
+	projectileFalloffDamage = $ae_falloffSMG;
 
    //casing = " ";
 

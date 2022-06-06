@@ -143,9 +143,10 @@ datablock ShapeBaseImageData(BNE_TMPSImage)
 	whizzDistance = 14;
 	whizzChance = 100;
 	whizzAngle = 80;
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 48;
-	projectileFalloffDamage = 0.4;
+
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 
    //casing = " ";
 

@@ -141,7 +141,7 @@ datablock ShapeBaseImageData(BNE_MK14Image)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 35;
+	projectileDamage = 45;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.76;
 	projectileVelocity = 400;
@@ -165,9 +165,9 @@ datablock ShapeBaseImageData(BNE_MK14Image)
 	farShotSound = RifleDDistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 96;
-	projectileFalloffEnd = 224;
-	projectileFalloffDamage = 0.46;
+	projectileFalloffStart = $ae_falloffDMRStart;
+	projectileFalloffEnd = $ae_falloffDMREnd;
+	projectileFalloffDamage = $ae_falloffDMR;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;

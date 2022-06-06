@@ -184,9 +184,9 @@ datablock ShapeBaseImageData(BNE_SaigaImage)
 
 	staticHitscan = false;
 	
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 128;
-	projectileFalloffDamage = 0.1;
+	projectileFalloffStart = $ae_falloffShotgunStart;
+	projectileFalloffEnd = $ae_falloffShotgunEnd;
+	projectileFalloffDamage = $ae_falloffShotgun;
 
    //casing = " ";
 

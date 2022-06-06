@@ -133,7 +133,7 @@ datablock ShapeBaseImageData(BNE_AR1550Image)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 44;
+	projectileDamage = 54;
 	projectileCount = 1;
 	projectileHeadshotMult = 2.0;
 	projectileVelocity = 400;
@@ -159,9 +159,9 @@ datablock ShapeBaseImageData(BNE_AR1550Image)
 	farShotSound = SniperADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 75;
-	projectileFalloffEnd = 200;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffDMRStart;
+	projectileFalloffEnd = $ae_falloffDMREnd;
+	projectileFalloffDamage = $ae_falloffDMR;
 	
 	sonicWhizz = true;
 	whizzSupersonic = 2;

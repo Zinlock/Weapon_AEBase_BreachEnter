@@ -145,9 +145,9 @@ datablock ShapeBaseImageData(BNE_M500TacImage)
 	laserOffStates = "Reload Reload2 ReloadMagOut ReloadMagIn ReloadEnd Reload2MagIn Reload2MagOut Reload2End";
     laserFade = 16;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 32;
-	projectileFalloffDamage = 0.3;
+	projectileFalloffStart = $ae_falloffShotgunStart;
+	projectileFalloffEnd = $ae_falloffShotgunEnd;
+	projectileFalloffDamage = $ae_falloffShotgun;
 
    // Images have a state system which controls how the animations
    // are run, which sounds are played, script callbacks, etc. This

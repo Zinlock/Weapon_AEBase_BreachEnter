@@ -145,9 +145,9 @@ datablock ShapeBaseImageData(BNE_PythonImage)
 		whizzAngle = 80;
 	staticTotalRange = 100;			
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 64;
-	projectileFalloffDamage = 0.73;
+	projectileFalloffStart = $ae_falloffPistolLongStart;
+	projectileFalloffEnd = $ae_falloffPistolLongEnd;
+	projectileFalloffDamage = $ae_falloffLongPistol;
 
    // Images have a state system which controls how the animations
    // are run, which sounds are played, script callbacks, etc. This

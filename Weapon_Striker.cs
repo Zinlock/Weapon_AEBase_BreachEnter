@@ -142,9 +142,9 @@ datablock ShapeBaseImageData(BNE_StrikerImage)
 		whizzChance = 100;
 		whizzAngle = 80;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 32;
-	projectileFalloffDamage = 0.11;
+	projectileFalloffStart = $ae_falloffShotgunStart;
+	projectileFalloffEnd = $ae_falloffShotgunEnd;
+	projectileFalloffDamage = $ae_falloffShotgun;
 
    // Images have a state system which controls how the animations
    // are run, which sounds are played, script callbacks, etc. This

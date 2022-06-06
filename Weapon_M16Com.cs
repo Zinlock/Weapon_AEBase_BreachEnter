@@ -121,9 +121,9 @@ datablock ShapeBaseImageData(BNE_M16ComImage)
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 60;
-	projectileFalloffDamage = 0.47;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;

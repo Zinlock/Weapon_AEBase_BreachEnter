@@ -131,7 +131,7 @@ datablock ShapeBaseImageData(BNE_M60Image)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 34;
+	projectileDamage = 32;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.27;
 	projectileVelocity = 400;
@@ -155,9 +155,9 @@ datablock ShapeBaseImageData(BNE_M60Image)
 	farShotSound = RifleFDistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 75;
-	projectileFalloffEnd = 200;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;
@@ -293,7 +293,7 @@ datablock ShapeBaseImageData(BNE_M60Image)
 
 // EMPTY RELOAD STATE
 
-	stateName[15]				= "Reload2";
+	stateName[15]				= "	";
 	stateTimeoutValue[15]			= 0.35;
 	stateScript[15]				= "onReload2Start";
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";

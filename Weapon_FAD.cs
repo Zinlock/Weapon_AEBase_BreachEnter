@@ -135,22 +135,22 @@ datablock ShapeBaseImageData(BNE_FADImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 29;
+	projectileDamage = 30;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.45;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.18;
+	recoilHeight = 1;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
-	recoilHeightMax = 18;
+	recoilHeightMax = 20;
 
-	spreadBurst = 1; // how much shots it takes to trigger spread i think
-	spreadReset = 300; // m
-	spreadBase = 25;
-	spreadMin = 100;
+	spreadBurst = 3; // how much shots it takes to trigger spread i think
+	spreadReset = 150; // m
+	spreadBase = 200;
+	spreadMin = 350;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.075 0.075 0.075"; 
@@ -165,6 +165,10 @@ datablock ShapeBaseImageData(BNE_FADImage)
 	whizzDistance = 14;
 	whizzChance = 100;
 	whizzAngle = 80;
+
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 
 	staticHitscan = true;
 	staticEffectiveRange = 110;
@@ -540,7 +544,7 @@ function BNE_FADSafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_FADIronsightImage : BNE_FADImage)
 {
-	recoilHeight = 0.1;
+	recoilHeight = 0.25;
 
 	scopingImage = BNE_FADImage;
 	sourceImage = BNE_FADImage;

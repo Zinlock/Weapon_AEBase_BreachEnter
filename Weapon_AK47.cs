@@ -137,15 +137,15 @@ datablock ShapeBaseImageData(BNE_AK47Image)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.77;
+	recoilHeight = 1.54;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 1; // how much shots it takes to trigger spread i think
+	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
-	spreadBase = 50;
-	spreadMin = 200;
+	spreadBase = 300;
+	spreadMin = 450;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1";
@@ -171,11 +171,11 @@ datablock ShapeBaseImageData(BNE_AK47Image)
 	staticTracerEffect = ""; // defaults to AEBulletStaticShape
 	staticScaleCalibre = 0.25;
 	staticScaleLength = 0.25;
-	staticUnitsPerSecond = $ae_RifleUPS;
+	staticUnitsPerSecond = 400;
 
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 0.65;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 
    //casing = " ";
 
@@ -547,7 +547,7 @@ function BNE_AK47SafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_AK47IronsightImage : BNE_AK47Image)
 {
-	recoilHeight = 0.1875;
+	recoilHeight = 0.385;
 
 	scopingImage = BNE_AK47Image;
 	sourceImage = BNE_AK47Image;

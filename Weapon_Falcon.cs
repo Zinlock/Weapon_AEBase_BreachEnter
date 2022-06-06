@@ -157,6 +157,10 @@ datablock ShapeBaseImageData(BNE_FalconImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
+	projectileFalloffStart = $ae_falloffSniperStart;
+	projectileFalloffEnd = $ae_falloffSniperEnd;
+	projectileFalloffDamage = $ae_falloffSniper;
+
 	staticHitscan = true;
 	staticEffectiveRange = 260;
 	staticTotalRange = 2000;

@@ -148,9 +148,10 @@ datablock ShapeBaseImageData(BNE_RangerImage)
 		whizzChance = 100;
 		whizzAngle = 80;
 	staticTotalRange = 100;	
-	projectileFalloffStart = 18;
-	projectileFalloffEnd = 64;
-	projectileFalloffDamage = 0.1;
+
+	projectileFalloffStart = $ae_falloffShotgunStart;
+	projectileFalloffEnd = $ae_falloffShotgunEnd;
+	projectileFalloffDamage = $ae_falloffShotgun;
 
    //casing = " ";
 

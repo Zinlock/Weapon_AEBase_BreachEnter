@@ -172,9 +172,9 @@ datablock ShapeBaseImageData(BNE_OLINCAWSImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 18;
-	projectileFalloffEnd = 48;
-	projectileFalloffDamage = 0.12;
+	projectileFalloffStart = $ae_falloffShotgunStart;
+	projectileFalloffEnd = $ae_falloffShotgunEnd;
+	projectileFalloffDamage = $ae_falloffShotgun;
 	
    //casing = " ";
 

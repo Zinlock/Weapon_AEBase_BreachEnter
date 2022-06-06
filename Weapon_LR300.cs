@@ -97,7 +97,7 @@ datablock ShapeBaseImageData(BNE_LR300Image)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 29;
+	projectileDamage = 30;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.32;
 	projectileVelocity = 400;
@@ -121,9 +121,9 @@ datablock ShapeBaseImageData(BNE_LR300Image)
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 75;
-	projectileFalloffEnd = 200;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;

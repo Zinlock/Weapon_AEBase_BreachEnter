@@ -106,15 +106,15 @@ datablock ShapeBaseImageData(BNE_AK103Image)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.77;
+	recoilHeight = 1.54;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 1; // how much shots it takes to trigger spread i think
-	spreadReset = 350; // m
-	spreadBase = 25;
-	spreadMin = 100;
+	spreadBurst = 3; // how much shots it takes to trigger spread i think
+	spreadReset = 150; // m
+	spreadBase = 200;
+	spreadMin = 350;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1";
@@ -142,9 +142,9 @@ datablock ShapeBaseImageData(BNE_AK103Image)
 	staticScaleLength = 0.25;
 	staticUnitsPerSecond = $ae_RifleUPS;
 
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 0.65;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 
    //casing = " ";
 

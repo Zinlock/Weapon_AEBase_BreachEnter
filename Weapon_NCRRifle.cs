@@ -120,9 +120,9 @@ datablock ShapeBaseImageData(BNE_NCRRifleImage)
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 75;
-	projectileFalloffEnd = 200;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;

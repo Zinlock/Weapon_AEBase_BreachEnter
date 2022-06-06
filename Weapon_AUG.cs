@@ -135,22 +135,22 @@ datablock ShapeBaseImageData(BNE_AUGImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 27;
+	projectileDamage = 34;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.6;
+	projectileHeadshotMult = 1.75;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.28;
+	recoilHeight = 0.75;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
-	spreadReset = 250; // m
-	spreadBase = 25;
-	spreadMin = 100;
+	spreadReset = 150; // m
+	spreadBase = 200;
+	spreadMin = 350;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.015 0.015 0.015"; 
@@ -178,9 +178,9 @@ datablock ShapeBaseImageData(BNE_AUGImage)
 	staticScaleLength = 0.25;
 	staticUnitsPerSecond = $ae_RifleUPS;
 	
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 0.45;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 	
    //casing = " ";
 
@@ -540,7 +540,7 @@ function BNE_AUGSafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_AUGIronsightImage : BNE_AUGImage)
 {
-	recoilHeight = 0.07;
+	recoilHeight = 0.1875;
 
 	scopingImage = BNE_AUGImage;
 	sourceImage = BNE_AUGImage;

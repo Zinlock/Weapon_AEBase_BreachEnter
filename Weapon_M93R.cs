@@ -116,7 +116,7 @@ datablock ShapeBaseImageData(BNE_M93RImage)
 
 	projectileDamage = 20;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.8;
+	projectileHeadshotMult = 1.6;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.15;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
@@ -145,9 +145,9 @@ datablock ShapeBaseImageData(BNE_M93RImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 50;
-	projectileFalloffDamage = 0.7;
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 	
    //casing = " ";
 

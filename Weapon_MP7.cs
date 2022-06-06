@@ -135,7 +135,7 @@ datablock ShapeBaseImageData(BNE_MP7Image)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 29;
+	projectileDamage = 24;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.65;
 	projectileVelocity = 400;
@@ -166,9 +166,9 @@ datablock ShapeBaseImageData(BNE_MP7Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 64;
-	projectileFalloffDamage = 0.55;
+	projectileFalloffStart = $ae_falloffSMGStart;
+	projectileFalloffEnd = $ae_falloffSMGEnd;
+	projectileFalloffDamage = $ae_falloffSMG;
 
 	staticHitscan = true;
 	staticEffectiveRange = 110;

@@ -170,6 +170,10 @@ datablock ShapeBaseImageData(BNE_M200Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
+	projectileFalloffStart = $ae_falloffSniperStart;
+	projectileFalloffEnd = $ae_falloffSniperEnd;
+	projectileFalloffDamage = $ae_falloffSniper;
+
 	staticHitscan = true;
 	staticEffectiveRange = 260;
 	staticTotalRange = 2000;
@@ -181,10 +185,6 @@ datablock ShapeBaseImageData(BNE_M200Image)
 	staticScaleCalibre = 0.35;
 	staticScaleLength = 0.35;
 	staticUnitsPerSecond = $ae_SniperUPS;
-
-	// projectileFalloffStart = 96;
-	// projectileFalloffEnd = 256;
-	// projectileFalloffDamage = 1.5; // Maybe sniper rifles should have damage ramp-up...?
 
 	laserSize = "1.25 1.25 1.25";
 	laserColor = "0.1 1.0 0.1 1";

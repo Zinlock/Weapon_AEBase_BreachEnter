@@ -166,6 +166,10 @@ datablock ShapeBaseImageData(BNE_FAMASImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
+
 	staticHitscan = true;
 	staticEffectiveRange = 110;
 	staticTotalRange = 2000;

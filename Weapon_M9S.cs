@@ -151,9 +151,10 @@ datablock ShapeBaseImageData(BNE_M9SImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 	staticSpawnFakeProjectiles = false;
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 50;
-	projectileFalloffDamage = 0.7;
+
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 
    //casing = " ";
 

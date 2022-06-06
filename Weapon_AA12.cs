@@ -161,9 +161,9 @@ datablock ShapeBaseImageData(BNE_AA12Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 48;
-	projectileFalloffDamage = 0.11;
+	projectileFalloffStart = $ae_falloffShotgunStart;
+	projectileFalloffEnd = $ae_falloffShotgunEnd;
+	projectileFalloffDamage = $ae_falloffShotgun;
 
    //casing = " ";
 

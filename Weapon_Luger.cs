@@ -165,10 +165,10 @@ datablock ShapeBaseImageData(BNE_LugerImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 64;
-	projectileFalloffDamage = 0.75;
-
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
+	
    //casing = " ";
 
    // Images have a state system which controls how the animations

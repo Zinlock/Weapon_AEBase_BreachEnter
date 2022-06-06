@@ -131,15 +131,15 @@ datablock ShapeBaseImageData(BNE_AR15Image)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.24;
+	recoilHeight = 1;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 2; // how much shots it takes to trigger spread i think
-	spreadReset = 200; // m
-	spreadBase = 25;
-	spreadMin = 80;
+	spreadBurst = 3; // how much shots it takes to trigger spread i think
+	spreadReset = 150; // m
+	spreadBase = 200;
+	spreadMin = 350;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.1 0.1 0.1"; 
@@ -148,9 +148,9 @@ datablock ShapeBaseImageData(BNE_AR15Image)
 	farShotSound = RifleADistantSound;
 	farShotDistance = 40;
 	
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 128;
-	projectileFalloffDamage = 0.5;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;

@@ -135,7 +135,7 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	muzzleFlashScale = "0.5 0.5 0.5";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 36;
+	projectileDamage = 30;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.7;
 	projectileVelocity = 200;
@@ -178,9 +178,9 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	staticScaleLength = 0.25;
 	staticUnitsPerSecond = $ae_RifleUPS;
 
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 128;
-	projectileFalloffDamage = 0.75;
+	projectileFalloffStart = $ae_falloffRifleStart;
+	projectileFalloffEnd = $ae_falloffRifleEnd;
+	projectileFalloffDamage = $ae_falloffRifle;
 
    //casing = " ";
 
