@@ -24,8 +24,8 @@ datablock DebrisData(BNE_BizonMagDebris)
 {
 	shapeFile = "./Bizon/BizonMag.dts";
 	lifetime = 2.0;
-	minSpinSpeed = -700.0;
-	maxSpinSpeed = -600.0;
+	minSpinSpeed = -300.0;
+	maxSpinSpeed = -200.0;
 	elasticity = 0.5;
 	friction = 0.1;
 	numBounces = 3;
@@ -135,9 +135,9 @@ datablock ShapeBaseImageData(BNE_BizonImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 33;
+	projectileDamage = 19;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.7;
+	projectileHeadshotMult = 1.6;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
@@ -166,21 +166,9 @@ datablock ShapeBaseImageData(BNE_BizonImage)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	staticHitscan = false;
-	staticEffectiveRange = 110;
-	staticTotalRange = 2000;
-	staticGravityScale = 1.5;
-	staticSwayMod = 2;
-	staticEffectiveSpeedBonus = 0;
-	staticSpawnFakeProjectiles = true;
-	staticTracerEffect = ""; // defaults to AEBulletStaticShape
-	staticScaleCalibre = 0.25;
-	staticScaleLength = 0.25;
-	staticUnitsPerSecond = $ae_RifleUPS;
-
-	projectileFalloffStart = 64;
-	projectileFalloffEnd = 192;
-	projectileFalloffDamage = 0.65;
+	projectileFalloffStart = 16;
+	projectileFalloffEnd = 64;
+	projectileFalloffDamage = 0.5;
 
    //casing = " ";
 
@@ -448,11 +436,11 @@ datablock ShapeBaseImageData(BNE_BizonMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
-	offset = "-0.15 0.7 0.15";
+	offset = "0.06 1 0.3";
    rotation = eulerToMatrix( "0 40 0" );
 
 	casing = BNE_BizonMagDebris;
-	shellExitDir        = "0 1 -0.25";
+	shellExitDir        = "0 1 -1.0";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;
 	shellVelocity       = 2.0;
