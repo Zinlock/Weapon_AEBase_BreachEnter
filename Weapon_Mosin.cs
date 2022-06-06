@@ -507,7 +507,7 @@ function BNE_MosinIronsightImage::AEOnFire(%this,%obj,%slot)
 function BNE_MosinIronsightImage::onBolt(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
-	schedule(500, 0, serverPlay3D, AEShellShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
+	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 	serverPlay3D(BNE_MosinBoltSound,%obj.getPosition());	
 }
 
