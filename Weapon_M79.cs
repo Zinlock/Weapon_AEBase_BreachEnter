@@ -689,7 +689,7 @@ datablock ShapeBaseImageData(BNE_M79IronsightImage : BNE_M79Image)
 	eyeRotation = eulerToMatrix("12 0 0");
 
 	desiredFOV = $ae_HighIronsFOV;
-	projectileZOffset = 3;
+	projectileZOffset = 6;
 	R_MovePenalty = 0.5;
    
 	stateName[7]				= "Reload";
