@@ -293,7 +293,7 @@ datablock ShapeBaseImageData(BNE_M60Image)
 
 // EMPTY RELOAD STATE
 
-	stateName[15]				= "	";
+	stateName[15]				= "Reload2";
 	stateTimeoutValue[15]			= 0.35;
 	stateScript[15]				= "onReload2Start";
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
