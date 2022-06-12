@@ -394,13 +394,13 @@ function BNE_UMP45Image::onUnMount(%this,%obj,%slot)
 
 function BNE_UMP45Image::onMagDrop(%this,%obj,%slot)
 {
-	%a = new aiPlayer()
+	%a = new Camera()
 	{
-		datablock = emptyPlayer;
+		datablock = Observer;
 		position = %obj.getPosition();
 		scale = "1 1 1";
 	};
-	%a.setDamageLevel(100);
+
 	%a.setTransform(%obj.getSlotTransform(0));
 	%a.mountImage(BNE_UMP45MagImage,0);
 	%a.schedule(2500,delete);

@@ -47,7 +47,7 @@ datablock ItemData(BNE_M1873Item)
 	canDrop = true;
 	
 	AEAmmo = 9;
-	AEType = AE_HeavyRAmmoItem.getID(); 
+	AEType = AE_HeavyPAmmoItem.getID(); 
 	AEBase = 1;
 
   RPM = 60;

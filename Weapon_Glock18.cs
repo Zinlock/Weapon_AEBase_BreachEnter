@@ -418,13 +418,13 @@ function BNE_Glock18Image::onUnMount(%this,%obj,%slot)
 
 function BNE_Glock18Image::onMagDrop(%this,%obj,%slot)
 {
-	%a = new aiPlayer()
+	%a = new Camera()
 	{
-		datablock = emptyPlayer;
+		datablock = Observer;
 		position = %obj.getPosition();
 		scale = "1 1 1";
 	};
-	%a.setDamageLevel(100);
+
 	%a.setTransform(%obj.getSlotTransform(0));
 	%a.mountImage(BNE_Glock18MagImage,0);
 	%a.schedule(2500,delete);

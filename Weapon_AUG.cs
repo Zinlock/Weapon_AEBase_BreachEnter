@@ -429,13 +429,13 @@ function BNE_AUGImage::onUnMount(%this,%obj,%slot)
 
 function BNE_AUGImage::onMagDrop(%this,%obj,%slot)
 {
-	%a = new aiPlayer()
+	%a = new Camera()
 	{
-		datablock = emptyPlayer;
+		datablock = Observer;
 		position = %obj.getPosition();
 		scale = "1 1 1";
 	};
-	%a.setDamageLevel(100);
+
 	%a.setTransform(%obj.getSlotTransform(0));
 	%a.mountImage(BNE_AUGMagImage,0);
 	%a.schedule(2500,delete);

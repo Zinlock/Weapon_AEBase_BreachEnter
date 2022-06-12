@@ -345,13 +345,13 @@ function BNE_LAPDBlasterImage::onReloadEnd(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, shiftright); 
 	
-	%a = new aiPlayer()
+	%a = new Camera()
 	{
-		datablock = emptyPlayer;
+		datablock = Observer;
 		position = %obj.getPosition();
 		scale = "1 1 1";
 	};
-	%a.setDamageLevel(100);
+
 	%a.setTransform(%obj.getSlotTransform(0));
 	%a.mountImage(BNE_LAPDBlasterLoaderImage,0);
 	%a.schedule(2500,delete);

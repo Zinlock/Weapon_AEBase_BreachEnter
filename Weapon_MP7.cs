@@ -420,13 +420,13 @@ function BNE_MP7Image::onUnMount(%this,%obj,%slot)
 
 function BNE_MP7Image::onMagDrop(%this,%obj,%slot)
 {
-	%a = new aiPlayer()
+	%a = new Camera()
 	{
-		datablock = emptyPlayer;
+		datablock = Observer;
 		position = %obj.getPosition();
 		scale = "1 1 1";
 	};
-	%a.setDamageLevel(100);
+
 	%a.setTransform(%obj.getSlotTransform(0));
 	%a.mountImage(BNE_MP7MagImage,0);
 	%a.schedule(2500,delete);

@@ -423,13 +423,12 @@ function BNE_RangerImage::onUnMount(%this,%obj,%slot)
 
 function BNE_RangerImage::onMagDrop(%this,%obj,%slot,%right)
 {
-    %a = new aiPlayer()
-    {
-        datablock = emptyPlayer;
+	%a = new Camera()
+	{
+		datablock = Observer;
         position = %obj.getPosition();
         scale = "1 1 1";
     };
-    %a.setDamageLevel(100);
     %side = %right * 0.2;
     %trf = %obj.getSlotTransform(0);
     %pos = getWords(%trf, 0, 2);
