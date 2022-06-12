@@ -626,6 +626,11 @@ function BNE_M60BipodImage::AEOnFire(%this,%obj,%slot)
 	BNE_M60Image::AEOnFire(%this, %obj, %slot);
 }
 
+function BNE_M60BipodImage::onEndLoop(%this, %obj, %slot)
+{
+	BNE_M60Image::onEndLoop(%this, %obj, %slot);
+}
+
 function BNE_M60BipodImage::onReloadEnd(%this,%obj,%slot)
 {
 	BNE_M60Image::onReloadEnd(%this, %obj, %slot);

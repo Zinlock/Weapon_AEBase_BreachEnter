@@ -583,6 +583,11 @@ function BNE_RPKBipodImage::AEOnFire(%this,%obj,%slot)
 	BNE_RPKImage::AEOnFire(%this, %obj, %slot);
 }
 
+function BNE_RPKBipodImage::onEndLoop(%this, %obj, %slot)
+{
+	BNE_RPKImage::onEndLoop(%this, %obj, %slot);
+}
+
 function BNE_RPKBipodImage::onDryFire(%this, %obj, %slot)
 {
 	BNE_RPKImage::onDryFire(%this, %obj, %slot);

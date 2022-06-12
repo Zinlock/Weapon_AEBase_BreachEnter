@@ -114,7 +114,7 @@ datablock ShapeBaseImageData(BNE_M40Image)
 
 	projectileDamage = 47;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.5;
+	projectileHeadshotMult = 2.2;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
@@ -126,8 +126,8 @@ datablock ShapeBaseImageData(BNE_M40Image)
 
 	spreadBurst = 1; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
-	spreadBase = 350;
-	spreadMin = 350;
+	spreadBase = 550;
+	spreadMin = 550;
 	spreadMax = 1000;
 
 	screenshakeMin = "0.2 0.2 0.2";
@@ -514,7 +514,7 @@ function BNE_M40IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
-		%obj.client.play2D(AEAdsIn3Sound); // %obj.getHackPosition());
+		%obj.client.play2D(AEAdsIn6Sound); // %obj.getHackPosition());
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }

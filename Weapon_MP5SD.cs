@@ -117,9 +117,9 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 
 	bulletScale = "1 1 1";
 
-	projectileDamage = 30;
+	projectileDamage = 22;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.75 ;
+	projectileHeadshotMult = 1.65;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
