@@ -38,7 +38,7 @@ datablock ItemData(BNE_870XPItem)
 
 	//gui stuff
 	uiName = "B&E: 870 Express";
-	iconName = "./Icons/21";
+	iconName = "./Icons/Icon_870";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

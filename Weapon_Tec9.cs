@@ -55,7 +55,7 @@ datablock ItemData(BNE_Tec9Item)
 
 	//gui stuff
 	uiName = "B&E: TEC-9";
-	iconName = "./Tec9/icon_Tec9";
+	iconName = "./Icons/Icon_Tec9";
 	doColorShift = true;
 	colorShiftColor = "0.8 0.8 0.8 1";
 

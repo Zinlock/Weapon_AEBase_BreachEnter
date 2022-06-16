@@ -38,7 +38,7 @@ datablock ItemData(BNE_M40Item)
 
 	//gui stuff
 	uiName = "B&E: M40";
-	iconName = "./Icons/21";
+	iconName = "./Icons/Icon_M40";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

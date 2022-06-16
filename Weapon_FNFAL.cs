@@ -48,7 +48,7 @@ datablock ItemData(BNE_FNFALItem)
 
 	//gui stuff
 	uiName = "B&E: FN FAL";
-	iconName = "./Icons/6";
+	iconName = "./Icons/Icon_FNFAL";
 	doColorShift = true;
 	colorShiftColor = "0.42 0.41 0.4 1";
 

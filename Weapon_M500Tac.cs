@@ -38,7 +38,7 @@ datablock ItemData(BNE_M500TacItem)
 
 	//gui stuff
 	uiName = "B&E: Mossberg 500 Tac.";
-	iconName = "./Icons/21";
+	iconName = "./Icons/Icon_M500Tac";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

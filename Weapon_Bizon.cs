@@ -55,7 +55,7 @@ datablock ItemData(BNE_BizonItem)
 
 	//gui stuff
 	uiName = "B&E: PP-19 Bizon";
-	iconName = "./Icons/6";
+	iconName = "./Icons/Icon_Bizon";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

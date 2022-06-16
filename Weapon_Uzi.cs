@@ -55,7 +55,7 @@ datablock ItemData(BNE_UziItem)
 
 	//gui stuff
 	uiName = "B&E: Uzi";
-	iconName = "./Uzi/icon_Uzi"; // todo
+	iconName = "./Icons/Icon_Uzi";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

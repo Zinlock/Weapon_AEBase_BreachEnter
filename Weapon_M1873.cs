@@ -38,7 +38,7 @@ datablock ItemData(BNE_M1873Item)
 
 	//gui stuff
 	uiName = "B&E: Winchester 1873";
-	iconName = "./Icons/58";
+	iconName = "./Icons/Icon_M1873";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

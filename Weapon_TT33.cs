@@ -55,7 +55,7 @@ datablock ItemData(BNE_TT33Item)
 
 	//gui stuff
 	uiName = "B&E: TT-33";
-	iconName = "./TT33/icon_TT33";
+	iconName = "./Icons/Icon_TT33";
 	doColorShift = true;
 	colorShiftColor = "0.3 0.3 0.3 1";
 

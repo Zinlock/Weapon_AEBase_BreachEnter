@@ -55,7 +55,7 @@ datablock ItemData(BNE_LAPDBlasterItem)
 
 	//gui stuff
 	uiName = "B&E: That Gun";
-	iconName = "./Icons/54";
+	iconName = "./Icons/Icon_LAPDBlaster";
 	doColorShift = true;
 	colorShiftColor = "0.75 0.75 0.75 1";
 

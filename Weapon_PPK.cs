@@ -55,7 +55,7 @@ datablock ItemData(BNE_PPKItem)
 
 	//gui stuff
 	uiName = "B&E: Walther PPK";
-	iconName = "./PPK/icon_PPK";
+	iconName = "./Icons/Icon_PPK";
 	doColorShift = true;
 	colorShiftColor = "0.5 0.5 0.5 1";
 

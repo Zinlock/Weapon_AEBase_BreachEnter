@@ -278,7 +278,7 @@ datablock ItemData(BNE_M79Item)
 
 	//gui stuff
 	uiName = "B&E: M79";
-	iconName = "./Icons/55";
+	iconName = "./Icons/Icon_M79";
 	doColorShift = true;
 	colorShiftColor = "0.6 0.6 0.6 1";
 

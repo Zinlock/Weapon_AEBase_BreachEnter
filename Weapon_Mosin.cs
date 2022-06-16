@@ -45,7 +45,7 @@ datablock ItemData(BNE_MosinItem)
 
 	//gui stuff
 	uiName = "B&E: Mosin Nagant";
-	iconName = "./Icons/21";
+	iconName = "./Icons/Icon_Mosin";
 	doColorShift = true;
 	colorShiftColor = "0.75 0.75 0.75 1";
 

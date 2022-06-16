@@ -55,7 +55,7 @@ datablock ItemData(BNE_LugerItem)
 
 	//gui stuff
 	uiName = "B&E: Luger";
-	iconName = "./Luger/icon_Luger";
+	iconName = "./Icons/Icon_Luger";
 	doColorShift = true;
 	colorShiftColor = "0.3 0.3 0.3 1";
 

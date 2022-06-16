@@ -55,7 +55,7 @@ datablock ItemData(BNE_L85Item)
 
 	//gui stuff
 	uiName = "B&E: L85A2";
-	iconName = "./L85/icon_L85";
+	iconName = "./Icons/Icon_L85";
 	doColorShift = true;
 	colorShiftColor = "0.5 0.5 0.5 1";
 

@@ -38,7 +38,7 @@ datablock ItemData(BNE_MP5SDItem)
 
 	//gui stuff
 	uiName = "B&E: MP5SD";
-	iconName = "./Icons/52";
+	iconName = "./Icons/Icon_MP5SD";
 	doColorShift = true;
 	colorShiftColor = "0.28 0.3 0.33 1";
 
