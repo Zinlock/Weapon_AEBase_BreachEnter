@@ -498,7 +498,7 @@ function BNE_M40IronsightImage::AEOnFire(%this,%obj,%slot)
 function BNE_M40IronsightImage::onBolt(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant); 
-	schedule(500, 0, serverPlay3D, AEShellShotgun @ getRandom(1,2) @ Sound, %obj.getPosition());
+	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 	serverPlay3D(BNE_M40BoltSound,%obj.getPosition());	
 }
 
