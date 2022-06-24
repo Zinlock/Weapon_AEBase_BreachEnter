@@ -461,6 +461,13 @@ datablock AudioProfile(BNE_L96BoltOpenSound)
    preload = true;
 };
 
+datablock AudioProfile(BNE_L96BoltSound)
+{
+   filename    = "./Reload/L96/L96_BOLT.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
 datablock AudioProfile(BNE_L96MagInSound)
 {
    filename    = "./Reload/L96/L96_MAGIN.wav";
@@ -544,6 +551,13 @@ datablock AudioProfile(BNE_M200BoltCloseSound)
 datablock AudioProfile(BNE_M200BoltOpenSound)
 {
    filename    = "./Reload/M200/M200BoltOpen.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_M200BoltSound)
+{
+   filename    = "./Reload/M200/M200Bolt.wav";
    description = AudioClose3d;
    preload = true;
 };
@@ -1154,6 +1168,35 @@ datablock AudioProfile(BNE_870XPPumpBackSound)
 datablock AudioProfile(BNE_870XPPumpForwardSound)
 {
    filename    = "./Reload/870XP/870XP_pumpforward.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+//Kar98
+datablock AudioProfile(BNE_Kar98ClipInSound)
+{
+   filename    = "./Reload/Kar98/Kar98_ClipIn.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Kar98RemoveClipSound)
+{
+   filename    = "./Reload/Kar98/Kar98_RemoveClip.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Kar98ClipInsert1Sound)
+{
+   filename    = "./Reload/Kar98/Kar98_ClipInsert1.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Kar98ClipInsert2Sound)
+{
+   filename    = "./Reload/Kar98/Kar98_ClipInsert2.wav";
    description = AudioClose3d;
    preload = true;
 };

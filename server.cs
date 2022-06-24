@@ -117,4 +117,5 @@ else
 	exec("./Weapon_PPK.cs");
 	exec("./Weapon_Bizon.cs");
 	exec("./Weapon_870XP.cs");
+	exec("./Weapon_Kar98.cs");
 }

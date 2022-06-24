@@ -238,6 +238,7 @@ datablock ShapeBaseImageData(BNE_M200Image)
 	stateSequence[4]			= "Bolt";
 	stateWaitForTimeout[4]		  	= true;
 	stateEjectShell[4]                = true;
+	stateSound[4]				= BNE_M200BoltSound;
 
 	stateName[5]				= "LoadCheckA";
 	stateScript[5]				= "AEMagLoadCheck";
@@ -375,8 +376,6 @@ function BNE_M200Image::AEOnLowClimb(%this, %obj, %slot)
 
 function BNE_M200Image::onBolt(%this,%obj,%slot)
 {
-  %obj.schedule(0, playAudio, 1, BNE_M200BoltOpenSound);
-  %obj.schedule(350, playAudio, 1, BNE_M200BoltCloseSound);
 	%obj.aeplayThread(2, shiftleft);
 	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 }
@@ -634,8 +633,6 @@ function BNE_M200IronsightImage::AEOnFire(%this,%obj,%slot)
 
 function BNE_M200IronsightImage::onBolt(%this,%obj,%slot)
 {
-  %obj.schedule(0, playAudio, 1, BNE_M200BoltOpenSound);
-  %obj.schedule(350, playAudio, 1, BNE_M200BoltCloseSound);
 	%obj.aeplayThread(2, plant);
 	schedule(500, 0, serverPlay3D, AEShellRifle @ getRandom(1,2) @ Sound, %obj.getPosition());
 }
