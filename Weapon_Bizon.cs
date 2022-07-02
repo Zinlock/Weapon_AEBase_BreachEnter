@@ -379,7 +379,7 @@ function BNE_BizonImage::onReloadEnd(%this,%obj,%slot)
 function BNE_BizonImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.reload3Schedule = %this.schedule(225,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
+   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
 function BNE_BizonImage::onReady(%this,%obj,%slot)
