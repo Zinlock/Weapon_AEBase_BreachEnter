@@ -116,7 +116,7 @@ datablock ShapeBaseImageData(BNE_SPAS12Image)
 
    projectileDamage = 13;
    projectileCount = 8;
-   projectileHeadshotMult = 1.65;
+   projectileHeadshotMult = 1.3;
    projectileVelocity = 200;
    projectileTagStrength = 0.35;  // tagging strength
    projectileTagRecovery = 0.03; // tagging decay rate
