@@ -1,21 +1,21 @@
-datablock AudioProfile(BNE_M60FireLoopSound)
+datablock AudioProfile(BNE_MG42FireLoopSound)
 {
-   filename    = "./Sounds/Fire/M60/M60_LP.wav";
+   filename    = "./Sounds/Fire/MG42/MG42_LP.wav";
    description = BAADFireMediumLoop3D;
    preload = true;
 };
 
-datablock AudioProfile(BNE_M60FireLoopEndSound)
+datablock AudioProfile(BNE_MG42FireLoopEndSound)
 {
-   filename    = "./Sounds/Fire/M60/M60_LP_END.wav";
+   filename    = "./Sounds/Fire/MG42/MG42_LP_END.wav";
    description = MediumClose3D;
    preload = true;
 };
 
-// M60
-datablock DebrisData(BNE_M60MagDebris)
+// MG42
+datablock DebrisData(BNE_MG42MagDebris)
 {
-	shapeFile = "./M60/M60Mag.dts";
+	shapeFile = "./MG42/MG42Mag.dts";
 	lifetime = 2.0;
 	minSpinSpeed = -150.0;
 	maxSpinSpeed = -100.0;
@@ -32,13 +32,13 @@ datablock DebrisData(BNE_M60MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(BNE_M60Item)
+datablock ItemData(BNE_MG42Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
 
 	 // Basic Item Properties
-	shapeFile = "./M60/M60.dts";
+	shapeFile = "./MG42/MG42.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -47,16 +47,16 @@ datablock ItemData(BNE_M60Item)
 	emap = true;
 
 	//gui stuff
-	uiName = "B&E: M60";
+	uiName = "B&E: MG 42";
 	iconName = "./Icons/30";
 	doColorShift = true;
-	colorShiftColor = "0.75 0.75 0.75 1";
+	colorShiftColor = "0.65 0.65 0.65 1";
 
 	 // Dynamic properties defined by the scripts
-	image = BNE_M60Image;
+	image = BNE_MG42Image;
 	canDrop = true;
 
-	AEAmmo = 100;
+	AEAmmo = 50;
 	AEType = AE_HeavyRAmmoItem.getID();
 	AEBase = 1;
 
@@ -64,7 +64,7 @@ datablock ItemData(BNE_M60Item)
 	RPM = 600;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "The M60 is a 7.62x51mm NATO belt-fed machine gun used by the United States military.";
+	description = "The MG42 is a 7.62x51mm NATO belt-fed machine gun used by the United States military.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -76,16 +76,16 @@ datablock ItemData(BNE_M60Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(BNE_M60Image)
+datablock ShapeBaseImageData(BNE_MG42Image)
 {
    // Basic Item properties
-   shapeFile = "./M60/M60.dts";
+   shapeFile = "./MG42/MG42.dts";
    emap = true;
 
    // Specify mount point & offset for 3rd person, and eye offset
    // for first person rendering.
    mountPoint = 0;
-   offset = "-0.05 0.05 0.02";
+   offset = "0 0.05 0.075";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
 
@@ -100,13 +100,13 @@ datablock ShapeBaseImageData(BNE_M60Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = BNE_M60Item;
+   item = BNE_MG42Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
 
    casing = AE_BELMGShellDebris;
-   shellExitDir        = "1 0 0.5";
+   shellExitDir        = "0 0 -1";
    shellExitOffset     = "0 0 0";
    shellExitVariance   = 25;	
    shellVelocity       = 5.0;
@@ -116,17 +116,17 @@ datablock ShapeBaseImageData(BNE_M60Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = BNE_M60BipodImage;
-    scopingImage = BNE_M60IronsightImage;
+	safetyImage = BNE_MG42BipodImage;
+    scopingImage = BNE_MG42IronsightImage;
 	doColorShift = true;
-	colorShiftColor = BNE_M60Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_MG42Item.colorShiftColor;//"0.400 0.196 0 1.000";
 	R_MovePenalty = 0.9;
 
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
 
-    loopingEndSound = BNE_M60FireLoopEndSound;
+    loopingEndSound = BNE_MG42FireLoopEndSound;
 
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
@@ -138,7 +138,7 @@ datablock ShapeBaseImageData(BNE_M60Image)
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.4;
+	recoilHeight = 0.5;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
@@ -240,134 +240,155 @@ datablock ShapeBaseImageData(BNE_M60Image)
 	stateName[7]				= "Reload";
 	stateTimeoutValue[7]			= 0.35;
 	stateScript[7]				= "onReloadStart";
-	stateTransitionOnTimeout[7]		= "ReloadHideBelt";
+	stateTransitionOnTimeout[7]		= "OpenTop";
 	stateWaitForTimeout[7]			= true;
 	stateSequence[7]			= "ReloadStart";
 	
-	stateName[8]				= "ReloadHideBelt";
-	stateTimeoutValue[8]			= 0.5;
-	stateScript[8]				= "onReloadHideBelt";
-	stateTransitionOnTimeout[8]		= "ReloadMagOut";
+	stateName[8]				= "OpenTop";
+	stateTimeoutValue[8]			= 0.35;
+	stateScript[8]				= "onOpenTop";
+	stateTransitionOnTimeout[8]		= "ReloadHideBelt";
 	stateWaitForTimeout[8]			= true;
-	stateSequence[8]			= "HideBelt";
-	stateSound[8]				= BNE_M60RemoveSound;
+	stateSequence[8]			= "OpenTop";
 	
-	stateName[9]				= "ReloadMagOut";
-	stateTimeoutValue[9]			= 1.25;
-	stateScript[9]				= "onReloadMagOut";
-	stateTransitionOnTimeout[9]		= "ReloadMagIn";
+	stateName[9]				= "ReloadHideBelt";
+	stateTimeoutValue[9]			= 0.5;
+	stateScript[9]				= "onReloadHideBelt";
+	stateTransitionOnTimeout[9]		= "ReloadMagOut";
 	stateWaitForTimeout[9]			= true;
-	stateSequence[9]			= "MagOut";
-	stateSound[9]				= BNE_M60MagOutSound;
+	stateSequence[9]			= "HideBelt";
+	stateSound[9]				= BNE_MG42RemoveSound;
 	
-	stateName[10]				= "ReloadMagIn";
-	stateTimeoutValue[10]			= 0.75;
-	stateScript[10]				= "onReloadMagIn";
-	stateTransitionOnTimeout[10]		= "ReloadPutBelt";
+	stateName[10]				= "ReloadMagOut";
+	stateTimeoutValue[10]			= 1.25;
+	stateScript[10]				= "onReloadMagOut";
+	stateTransitionOnTimeout[10]		= "ReloadMagIn";
 	stateWaitForTimeout[10]			= true;
-	stateSequence[10]			= "MagIn";
-	stateSound[10]				= BNE_M60MagInSound;
+	stateSequence[10]			= "MagOut";
+	stateSound[10]				= BNE_MG42MagOutSound;
 	
-	stateName[11]				= "ReloadPutBelt";
-	stateTimeoutValue[11]			= 0.5;
-	stateScript[11]				= "onReloadPutBelt";
-	stateTransitionOnTimeout[11]		= "Reload2End";
+	stateName[11]				= "ReloadMagIn";
+	stateTimeoutValue[11]			= 0.75;
+	stateScript[11]				= "onReloadMagIn";
+	stateTransitionOnTimeout[11]		= "ReloadPutBelt";
 	stateWaitForTimeout[11]			= true;
-	stateSequence[11]			= "PutBelt";
-	stateSound[11]				= BNE_M60AttachSound;
+	stateSequence[11]			= "MagIn";
+	stateSound[11]				= BNE_MG42MagInSound;
 	
-	stateName[12]				= "FireLoadCheckA";
-	stateScript[12]				= "AEMagLoadCheck";
-	stateTimeoutValue[12]			= 0.1;
-	stateTransitionOnTimeout[12]		= "FireLoadCheckB";
+	stateName[12]				= "ReloadPutBelt";
+	stateTimeoutValue[12]			= 0.5;
+	stateScript[12]				= "onReloadPutBelt";
+	stateTransitionOnTimeout[12]		= "CloseTop";
+	stateWaitForTimeout[12]			= true;
+	stateSequence[12]			= "PutBelt";
+	stateSound[12]				= BNE_MG42AttachSound;
 	
-	stateName[13]				= "FireLoadCheckB";
-	stateTransitionOnAmmo[13]		= "TrigCheck";
-	stateTransitionOnNoAmmo[13]		= "EndLoopEmpty";
-	stateTransitionOnNotLoaded[13]  = "EndLoop";
+	stateName[13]				= "CloseTop";
+	stateTimeoutValue[13]			= 0.35;
+	stateScript[13]				= "onCloseTop";
+	stateTransitionOnTimeout[13]		= "Reload2End";
+	stateWaitForTimeout[13]			= true;
+	stateSequence[13]			= "CloseTop";
+	
+	stateName[14]				= "FireLoadCheckA";
+	stateScript[14]				= "AEMagLoadCheck";
+	stateTimeoutValue[14]			= 0.0325;
+	stateTransitionOnTimeout[14]		= "FireLoadCheckB";
+	
+	stateName[15]				= "FireLoadCheckB";
+	stateTransitionOnAmmo[15]		= "TrigCheck";
+	stateTransitionOnNoAmmo[15]		= "EndLoopEmpty";
+	stateTransitionOnNotLoaded[15]  = "EndLoop";
 		
-	stateName[14]				= "Reloaded";
-	stateTimeoutValue[14]			= 0.1;
-	stateScript[14]				= "AEMagReloadAll";
-	stateTransitionOnTimeout[14]		= "Ready";
+	stateName[16]				= "Reloaded";
+	stateTimeoutValue[16]			= 0.1;
+	stateScript[16]				= "AEMagReloadAll";
+	stateTransitionOnTimeout[16]		= "Ready";
 
 // EMPTY RELOAD STATE
 
-	stateName[15]				= "Reload2";
-	stateTimeoutValue[15]			= 0.35;
-	stateScript[15]				= "onReload2Start";
-	stateTransitionOnTimeout[15]		= "Reload2MagOut";
-	stateWaitForTimeout[15]			= true;
-	stateSequence[15]			= "ReloadStartEmpty";
-	
-	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 1.25;
-	stateScript[16]				= "onReloadMagOut";
-	stateTransitionOnTimeout[16]		= "Reload2MagIn";
-	stateWaitForTimeout[16]			= true;
-	stateSequence[16]			= "MagOut";
-	stateSound[16]				= BNE_M60MagOutSound;
-	
-	stateName[17]				= "Reload2MagIn";
-	stateTimeoutValue[17]			= 0.75;
-	stateScript[17]				= "onReloadMagIn";
-	stateTransitionOnTimeout[17]		= "Reload2PutBelt";
+	stateName[17]				= "Reload2";
+	stateTimeoutValue[17]			= 0.35;
+	stateScript[17]				= "onReload2Start";
+	stateTransitionOnTimeout[17]		= "OpenTopEmpty";
 	stateWaitForTimeout[17]			= true;
-	stateSequence[17]			= "MagIn";
-	stateSound[17]				= BNE_M60MagInSound;
+	stateSequence[17]			= "ReloadStartEmpty";
 	
-	stateName[18]				= "Reload2PutBelt";
-	stateTimeoutValue[18]			= 0.5;
-	stateScript[18]				= "onReloadPutBelt";
-	stateTransitionOnTimeout[18]		= "Reload2End";
+	stateName[18]				= "OpenTopEmpty";
+	stateTimeoutValue[18]			= 0.35;
+	stateScript[18]				= "onOpenTop";
+	stateTransitionOnTimeout[18]		= "Reload2MagOut";
 	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "PutBelt";
-	stateSound[18]				= BNE_M60AttachSound;
+	stateSequence[18]			= "OpenTopEmpty";
 	
-	stateName[19]				= "Reload2End";
-	stateTimeoutValue[19]			= 0.75;
-	stateScript[19]				= "onReload2End";     
-	stateTransitionOnTimeout[19]		= "Reloaded";
+	stateName[19]				= "Reload2MagOut";
+	stateTimeoutValue[19]			= 1.25;
+	stateScript[19]				= "onReloadMagOut";
+	stateTransitionOnTimeout[19]		= "Reload2MagIn";
 	stateWaitForTimeout[19]			= true;
-	stateSequence[19]			= "ReloadEndEmpty";
+	stateSequence[19]			= "MagOut";
+	stateSound[19]				= BNE_MG42MagOutSound;
 	
-	stateName[20]				= "ReadyLoop";
-	stateTransitionOnTimeout[20]		= "Ready";
+	stateName[20]				= "Reload2MagIn";
+	stateTimeoutValue[20]			= 0.75;
+	stateScript[20]				= "onReloadMagIn";
+	stateTransitionOnTimeout[20]		= "Reload2PutBelt";
+	stateWaitForTimeout[20]			= true;
+	stateSequence[20]			= "MagIn";
+	stateSound[20]				= BNE_MG42MagInSound;
+	
+	stateName[21]				= "Reload2PutBelt";
+	stateTimeoutValue[21]			= 0.5;
+	stateScript[21]				= "onReloadPutBelt";
+	stateTransitionOnTimeout[21]		= "CloseTop";
+	stateWaitForTimeout[21]			= true;
+	stateSequence[21]			= "PutBelt";
+	stateSound[21]				= BNE_MG42AttachSound;
+	
+	stateName[22]				= "Reload2End";
+	stateTimeoutValue[22]			= 1;
+	stateScript[22]				= "onReload2End";     
+	stateTransitionOnTimeout[22]		= "Reloaded";
+	stateWaitForTimeout[22]			= true;
+	stateSequence[22]			= "ReloadEnd";
+	
+	stateName[23]				= "ReadyLoop";
+	stateTransitionOnTimeout[23]		= "Ready";
 
-	stateName[21]          = "Empty";
-	stateTransitionOnTriggerDown[21]  = "Dryfire";
-	stateTransitionOnLoaded[21] = "Reload2";
-	stateScript[21]        = "AEOnEmpty";
+	stateName[24]          = "Empty";
+	stateTransitionOnTriggerDown[24]  = "Dryfire";
+	stateTransitionOnLoaded[24] = "Reload2";
+	stateScript[24]        = "AEOnEmpty";
 
-	stateName[22]           = "Dryfire";
-	stateTransitionOnTriggerUp[22] = "Empty";
-	stateWaitForTimeout[22]    = false;
-	stateScript[22]      = "onDryFire";
+	stateName[25]           = "Dryfire";
+	stateTransitionOnTriggerUp[25] = "Empty";
+	stateWaitForTimeout[25]    = false;
+	stateScript[25]      = "onDryFire";
 	
-	stateName[23]           = "NoAmmoFlashFix";
-	stateTransitionOnTimeout[23] = "FireEmpty";
-	stateEmitter[23]					= AEBaseRifleFlashEmitter;
-	stateEmitterTime[23]				= 0.05;
-	stateEmitterNode[23]				= "muzzlePoint";
+	stateName[26]           = "NoAmmoFlashFix";
+	stateTransitionOnTimeout[26] = "FireEmpty";
+	stateEmitter[26]					= AEBaseRifleFlashEmitter;
+	stateEmitterTime[26]				= 0.05;
+	stateEmitterNode[26]				= "muzzlePoint";
 	
-	stateName[24]          = "TrigCheck";
-	stateTransitionOnTriggerDown[24]  = "preFire";
-	stateTransitionOnTimeout[24]		= "EndLoop";
+	stateName[27]          = "TrigCheck";
+	stateTransitionOnTriggerDown[27]  = "preFire";
+	stateTransitionOnTimeout[27]		= "EndLoop";
 	
-	stateName[25]          = "EndLoop";
-	stateScript[25]				= "onEndLoop";
-	stateTransitionOnTimeout[25]		= "Ready";
+	stateName[28]          = "EndLoop";
+	stateScript[28]				= "onEndLoop";
+	stateTransitionOnTimeout[28]		= "Ready";
 	
-	stateName[26]          = "EndLoopEmpty";
-	stateScript[26]				= "onEndLoop";
-	stateTransitionOnTimeout[26]		= "Reload2";
+	stateName[29]          = "EndLoopEmpty";
+	stateScript[29]				= "onEndLoop";
+	stateTransitionOnTimeout[29]		= "Reload2";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function BNE_M60Image::AEOnFire(%this,%obj,%slot)
+function BNE_MG42Image::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, BNE_M60FireLoopSound);
+	%obj.playAudio(0, BNE_MG42FireLoopSound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -376,70 +397,80 @@ function BNE_M60Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function BNE_M60Image::onEndLoop(%this, %obj, %slot)
+function BNE_MG42Image::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function BNE_M60Image::onReloadEnd(%this,%obj,%slot)
+function BNE_MG42Image::onReloadEnd(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, shiftright);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_M60Image::onReload2End(%this,%obj,%slot)
+function BNE_MG42Image::onReload2End(%this,%obj,%slot)
 {
 	%obj.schedule(250, "aeplayThread", "2", "plant");
-    %obj.schedule(350, playAudio, 1, BNE_M60BoltSound);
+    %obj.schedule(350, playAudio, 1, BNE_MG42BoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_M60Image::onDryFire(%this, %obj, %slot)
+function BNE_MG42Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function BNE_M60Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_MG42Image::onReloadMagIn(%this,%obj,%slot)
 {
    %obj.schedule(50, "aeplayThread", "2", "shiftright");
 }
 
-function BNE_M60Image::onReloadHideBelt(%this,%obj,%slot)
+function BNE_MG42Image::onOpenTop(%this,%obj,%slot)
+{
+	%obj.aeplayThread(2, plant);
+}
+
+function BNE_MG42Image::onCloseTop(%this,%obj,%slot)
+{
+   %obj.schedule(150, "aeplayThread", "2", "plant");
+}
+
+function BNE_MG42Image::onReloadHideBelt(%this,%obj,%slot)
 {
    %obj.schedule(0, "aeplayThread", "3", "shiftleft");
    %obj.schedule(200, "aeplayThread", "2", "plant");
 }
 
-function BNE_M60Image::onReloadPutBelt(%this,%obj,%slot)
+function BNE_MG42Image::onReloadPutBelt(%this,%obj,%slot)
 {
    %obj.schedule(100, "aeplayThread", "3", "shiftleft");
    %obj.schedule(300, "aeplayThread", "2", "plant");
 }
 
-function BNE_M60Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_MG42Image::onReloadMagOut(%this,%obj,%slot)
 {
 	%obj.aeplayThread(3, shiftleft);
 }
 
 // MAGAZINE DROPPING
 
-function BNE_M60Image::onReloadStart(%this,%obj,%slot)
+function BNE_MG42Image::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
-   %obj.reload3Schedule = %this.schedule(825,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(1200,1300),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
+   %obj.reload3Schedule = %this.schedule(1175,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(1500,1600),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function BNE_M60Image::onReload2Start(%this,%obj,%slot)
+function BNE_MG42Image::onReload2Start(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, shiftleft);
-   %obj.reload3Schedule = %this.schedule(350,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
+   %obj.reload3Schedule = %this.schedule(675,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(1000,1100),0,serverPlay3D,AEMagDrum @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function BNE_M60Image::onReady(%this,%obj,%slot)
+function BNE_MG42Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -449,7 +480,7 @@ function BNE_M60Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_M60Image::onMount(%this,%obj,%slot)
+function BNE_MG42Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -458,7 +489,7 @@ function BNE_M60Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_M60Image::onUnMount(%this,%obj,%slot)
+function BNE_MG42Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -472,7 +503,7 @@ function BNE_M60Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function BNE_M60Image::onMagDrop(%this,%obj,%slot)
+function BNE_MG42Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new Camera()
 	{
@@ -482,7 +513,7 @@ function BNE_M60Image::onMagDrop(%this,%obj,%slot)
 	};
 
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(BNE_M60MagImage,0);
+	%a.mountImage(BNE_MG42MagImage,0);
 	%a.schedule(2500,delete);
 }
 
@@ -490,14 +521,14 @@ function BNE_M60Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(BNE_M60MagImage)
+datablock ShapeBaseImageData(BNE_MG42MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
-	offset = "-0.2 0.3 0.35";
+	offset = "-0.2 0.575 0.45";
    rotation = eulerToMatrix( "0 25 0" );	
 	
-	casing = BNE_M60MagDebris;
+	casing = BNE_MG42MagDebris;
 	shellExitDir        = "-1 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
@@ -516,33 +547,33 @@ datablock ShapeBaseImageData(BNE_M60MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function BNE_M60MagImage::onDone(%this,%obj,%slot)
+function BNE_MG42MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(BNE_M60IronsightImage : BNE_M60Image)
+datablock ShapeBaseImageData(BNE_MG42IronsightImage : BNE_MG42Image)
 {
 	recoilHeight = 0.125;
 
-	scopingImage = BNE_M60Image;
-	sourceImage = BNE_M60Image;
+	scopingImage = BNE_MG42Image;
+	sourceImage = BNE_MG42Image;
 	
    offset = "-0.05 0.05 0.02";
-	eyeOffset = "-0.0235 1.1 -0.965";
+	eyeOffset = "0 0.8 -0.3255";
 	rotation = eulerToMatrix( "0 -20 0" );
 
 	desiredFOV = $ae_LowIronsFOV;
 	projectileZOffset = 0;
 	R_MovePenalty = 0.25;
    
-	stateName[15]				= "Reload2";
-	stateScript[15]				= "onDone";
-	stateTimeoutValue[15]			= 1;
-	stateTransitionOnTimeout[15]		= "";
-	stateSound[15]				= "";
+	stateName[17]				= "Reload2";
+	stateScript[17]				= "onDone";
+	stateTimeoutValue[17]			= 1;
+	stateTransitionOnTimeout[17]		= "";
+	stateSound[17]				= "";
 	
 	stateName[7]				= "Reload";
 	stateScript[7]				= "onDone";
@@ -551,20 +582,20 @@ datablock ShapeBaseImageData(BNE_M60IronsightImage : BNE_M60Image)
 	stateSound[7]				= "";
 };
 
-function BNE_M60IronsightImage::onDone(%this,%obj,%slot)
+function BNE_MG42IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function BNE_M60IronsightImage::onReady(%this,%obj,%slot)
+function BNE_MG42IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function BNE_M60IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_MG42IronsightImage::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, BNE_M60FireLoopSound);
+	%obj.playAudio(0, BNE_MG42FireLoopSound);
     %obj.FireLoop = true;
 	
 	%obj.blockImageDismount = true;
@@ -573,13 +604,13 @@ function BNE_M60IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot); 	
 }
 
-function BNE_M60IronsightImage::onEndLoop(%this, %obj, %slot)
+function BNE_MG42IronsightImage::onEndLoop(%this, %obj, %slot)
 {
     %obj.playAudio(0, %this.loopingEndSound);
     %obj.FireLoop = false;
 }
 
-function BNE_M60IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_MG42IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -587,7 +618,7 @@ function BNE_M60IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_M60IronsightImage::onMount(%this,%obj,%slot)
+function BNE_MG42IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -598,7 +629,7 @@ function BNE_M60IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_M60IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_MG42IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound);
@@ -608,11 +639,11 @@ function BNE_M60IronsightImage::onUnMount(%this,%obj,%slot)
 
 //ALT BIPOD STATES
 
-datablock ShapeBaseImageData(BNE_M60BipodImage : BNE_M60Image)
+datablock ShapeBaseImageData(BNE_MG42BipodImage : BNE_MG42Image)
 {
-	shapeFile = "./M60/M60Bipod.dts";
-	safetyImage = BNE_M60Image;
-	scopingImage = BNE_M60IronsightBipodImage;
+	shapeFile = "./MG42/MG42Bipod.dts";
+	safetyImage = BNE_MG42Image;
+	scopingImage = BNE_MG42IronsightBipodImage;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	screenshakeMin = "0 0 0"; 
@@ -621,87 +652,87 @@ datablock ShapeBaseImageData(BNE_M60BipodImage : BNE_M60Image)
 	isBipod = true;
 };
 
-function BNE_M60BipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_MG42BipodImage::AEOnFire(%this,%obj,%slot)
 {	
-	BNE_M60Image::AEOnFire(%this, %obj, %slot);
+	BNE_MG42Image::AEOnFire(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onEndLoop(%this, %obj, %slot)
+function BNE_MG42BipodImage::onEndLoop(%this, %obj, %slot)
 {
-	BNE_M60Image::onEndLoop(%this, %obj, %slot);
+	BNE_MG42Image::onEndLoop(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReloadEnd(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReloadEnd(%this,%obj,%slot)
 {
-	BNE_M60Image::onReloadEnd(%this, %obj, %slot);
+	BNE_MG42Image::onReloadEnd(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReload2End(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReload2End(%this,%obj,%slot)
 {
-	BNE_M60Image::onReload2End(%this, %obj, %slot);
+	BNE_MG42Image::onReload2End(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onDryFire(%this, %obj, %slot)
+function BNE_MG42BipodImage::onDryFire(%this, %obj, %slot)
 {
-	BNE_M60Image::onDryFire(%this, %obj, %slot);
+	BNE_MG42Image::onDryFire(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReloadMagIn(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReloadMagIn(%this,%obj,%slot)
 {
-	BNE_M60Image::onReloadMagIn(%this, %obj, %slot);
+	BNE_MG42Image::onReloadMagIn(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReloadHideBelt(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReloadHideBelt(%this,%obj,%slot)
 {
-	BNE_M60Image::onReloadHideBelt(%this, %obj, %slot);
+	BNE_MG42Image::onReloadHideBelt(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReloadPutBelt(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReloadPutBelt(%this,%obj,%slot)
 {
-	BNE_M60Image::onReloadPutBelt(%this, %obj, %slot);
+	BNE_MG42Image::onReloadPutBelt(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReloadMagOut(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReloadMagOut(%this,%obj,%slot)
 {
-	BNE_M60Image::onReloadMagOut(%this, %obj, %slot);
+	BNE_MG42Image::onReloadMagOut(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReloadStart(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReloadStart(%this,%obj,%slot)
 {
-	BNE_M60Image::onReloadStart(%this, %obj, %slot);
+	BNE_MG42Image::onReloadStart(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReload2Start(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReload2Start(%this,%obj,%slot)
 {
-	BNE_M60Image::onReload2Start(%this, %obj, %slot);
+	BNE_MG42Image::onReload2Start(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onReady(%this,%obj,%slot)
+function BNE_MG42BipodImage::onReady(%this,%obj,%slot)
 {
-	BNE_M60Image::onReady(%this, %obj, %slot);
+	BNE_MG42Image::onReady(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onMount(%this,%obj,%slot)
+function BNE_MG42BipodImage::onMount(%this,%obj,%slot)
 {
-	BNE_M60Image::onMount(%this, %obj, %slot);
+	BNE_MG42Image::onMount(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onUnMount(%this,%obj,%slot)
+function BNE_MG42BipodImage::onUnMount(%this,%obj,%slot)
 {
-	BNE_M60Image::onUnMount(%this, %obj, %slot);
+	BNE_MG42Image::onUnMount(%this, %obj, %slot);
 }
 
-function BNE_M60BipodImage::onMagDrop(%this,%obj,%slot)
+function BNE_MG42BipodImage::onMagDrop(%this,%obj,%slot)
 {
-	BNE_M60Image::onMagDrop(%this, %obj, %slot);	
+	BNE_MG42Image::onMagDrop(%this, %obj, %slot);	
 }
 
-datablock ShapeBaseImageData(BNE_M60IronsightBipodImage : BNE_M60IronsightImage)
+datablock ShapeBaseImageData(BNE_MG42IronsightBipodImage : BNE_MG42IronsightImage)
 {
-  shapeFile = "./M60/M60Bipod.dts";
-	sourceImage = BNE_M60BipodImage;
-	scopingImage = BNE_M60BipodImage;
-	safetyImage = BNE_M60Image;
+  shapeFile = "./MG42/MG42Bipod.dts";
+	sourceImage = BNE_MG42BipodImage;
+	scopingImage = BNE_MG42BipodImage;
+	safetyImage = BNE_MG42Image;
 	recoilHeight = 0;
 	R_MovePenalty = 0.15;
 	screenshakeMin = "0 0 0"; 
@@ -710,37 +741,37 @@ datablock ShapeBaseImageData(BNE_M60IronsightBipodImage : BNE_M60IronsightImage)
 	isBipod = true;
 };
 
-function BNE_M60IronsightBipodImage::onDone(%this,%obj,%slot)
+function BNE_MG42IronsightBipodImage::onDone(%this,%obj,%slot)
 {
-	BNE_M60IronsightImage::onDone(%this, %obj, %slot);	
+	BNE_MG42IronsightImage::onDone(%this, %obj, %slot);	
 }
 
-function BNE_M60IronsightBipodImage::onReady(%this,%obj,%slot)
+function BNE_MG42IronsightBipodImage::onReady(%this,%obj,%slot)
 {
-	BNE_M60IronsightImage::onReady(%this, %obj, %slot);	
+	BNE_MG42IronsightImage::onReady(%this, %obj, %slot);	
 }
 
-function BNE_M60IronsightBipodImage::AEOnFire(%this,%obj,%slot)
+function BNE_MG42IronsightBipodImage::AEOnFire(%this,%obj,%slot)
 {	
-	BNE_M60IronsightImage::AEOnFire(%this, %obj, %slot);	
+	BNE_MG42IronsightImage::AEOnFire(%this, %obj, %slot);	
 }
 
-function BNE_M60IronsightBipodImage::onEndLoop(%this, %obj, %slot)
-{
-	BNE_M60IronsightImage::onEndLoop(%this, %obj, %slot);
+function BNE_MG42IronsightBipodImage::onEndLoop(%this,%obj,%slot)
+{	
+	BNE_MG42IronsightImage::onEndLoop(%this, %obj, %slot);	
 }
 
-function BNE_M60IronsightBipodImage::onDryFire(%this, %obj, %slot)
+function BNE_MG42IronsightBipodImage::onDryFire(%this, %obj, %slot)
 {
-	BNE_M60IronsightImage::onDryFire(%this, %obj, %slot);	
+	BNE_MG42IronsightImage::onDryFire(%this, %obj, %slot);	
 }
 
-function BNE_M60IronsightBipodImage::onMount(%this,%obj,%slot)
+function BNE_MG42IronsightBipodImage::onMount(%this,%obj,%slot)
 {
-	BNE_M60IronsightImage::onMount(%this, %obj, %slot);	
+	BNE_MG42IronsightImage::onMount(%this, %obj, %slot);	
 }
 
-function BNE_M60IronsightBipodImage::onUnMount(%this,%obj,%slot)
+function BNE_MG42IronsightBipodImage::onUnMount(%this,%obj,%slot)
 {
-	BNE_M60IronsightImage::onUnMount(%this, %obj, %slot);	
+	BNE_MG42IronsightImage::onUnMount(%this, %obj, %slot);	
 }

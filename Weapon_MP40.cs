@@ -477,7 +477,7 @@ datablock ShapeBaseImageData(BNE_MP40SafetyImage)
    shapeFile = "./MP40/MP40.dts";
    emap = true;
    mountPoint = 0;
-   offset = "0 -0.1 -0.025";
+   offset = "0 0.05 -0.05";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
@@ -532,12 +532,12 @@ function BNE_MP40SafetyImage::onUnMount(%this, %obj, %slot)
 
 datablock ShapeBaseImageData(BNE_MP40IronsightImage : BNE_MP40Image)
 {
-	recoilHeight = 0.25;
+	recoilHeight = 0.0375;
 
 	scopingImage = BNE_MP40Image;
 	sourceImage = BNE_MP40Image;
 	
-   offset = "0 -0.1 -0.025";
+   offset = "0 0.05 -0.05";
 	eyeOffset = "0.0 1.0 -0.471";
 	rotation = eulerToMatrix( "0 -20 0" );
 

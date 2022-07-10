@@ -687,6 +687,11 @@ function BNE_RPKIronsightBipodImage::AEOnFire(%this,%obj,%slot)
 	BNE_RPKIronsightImage::AEOnFire(%this, %obj, %slot);
 }
 
+function BNE_RPKIronsightBipodImage::onEndLoop(%this,%obj,%slot)
+{	
+	BNE_RPKIronsightImage::onEndLoop(%this, %obj, %slot);
+}
+
 function BNE_RPKIronsightBipodImage::onDryFire(%this, %obj, %slot)
 {
 	BNE_RPKIronsightImage::onDryFire(%this, %obj, %slot);
