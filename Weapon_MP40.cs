@@ -1,7 +1,28 @@
-// UMP45
-datablock DebrisData(BNE_UMP45MagDebris)
+datablock AudioProfile(BNE_MP40Fire1Sound)
 {
-	shapeFile = "./UMP45/UMP45Mag.dts";
+   filename    = "./Sounds/Fire/MP40/MP40_fire1.wav";
+   description = LightClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MP40Fire2Sound)
+{
+   filename    = "./Sounds/Fire/MP40/MP40_fire2.wav";
+   description = LightClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MP40Fire3Sound)
+{
+   filename    = "./Sounds/Fire/MP40/MP40_fire3.wav";
+   description = LightClose3D;
+   preload = true;
+};
+
+// MP40
+datablock DebrisData(BNE_MP40MagDebris)
+{
+	shapeFile = "./MP40/MP40Mag.dts";
 	lifetime = 2.0;
 	minSpinSpeed = -200.0;
 	maxSpinSpeed = -100.0;
@@ -18,13 +39,13 @@ datablock DebrisData(BNE_UMP45MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(BNE_UMP45Item)
+datablock ItemData(BNE_MP40Item)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
 
 	 // Basic Item Properties
-	shapeFile = "./UMP45/UMP45.dts";
+	shapeFile = "./MP40/MP40.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -33,24 +54,24 @@ datablock ItemData(BNE_UMP45Item)
 	emap = true;
 
 	//gui stuff
-	uiName = "B&E: UMP .45";
-	iconName = "./Icons/49";
+	uiName = "B&E: MP40";
+	iconName = "./Icons/34";
 	doColorShift = true;
-	colorShiftColor = "0.3 0.3 0.3 1";
+	colorShiftColor = "0.6 0.6 0.6 1";
 
 	 // Dynamic properties defined by the scripts
-	image = BNE_UMP45Image;
+	image = BNE_MP40Image;
 	canDrop = true;
 
-	AEAmmo = 25;
-	AEType = AE_MediumPAmmoItem.getID();
+	AEAmmo = 32;
+	AEType = AE_LightPAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 
-	RPM = 600;
-	recoil = "Low"; 
+	RPM = 1200;
+	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "The UMP.45 is a .45 ACP submachine gun developed and manufactured by Heckler & Koch in the 1990's." NL "Popular among police and military forces alike.";
+	description = "insert description here";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -62,16 +83,16 @@ datablock ItemData(BNE_UMP45Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(BNE_UMP45Image)
+datablock ShapeBaseImageData(BNE_MP40Image)
 {
    // Basic Item properties
-   shapeFile = "./UMP45/UMP45.dts";
+   shapeFile = "./MP40/MP40.dts";
    emap = true;
 
    // Specify mount point & offset for 3rd person, and eye offset
    // for first person rendering.
    mountPoint = 0;
-   offset = "0 0 0";
+   offset = "0 0.05 -0.05";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
 
@@ -86,13 +107,13 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = BNE_UMP45Item;
+   item = BNE_MP40Item;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
 
    casing = AE_BEPistolShellDebris;
-   shellExitDir        = "1 0 0.5";
+   shellExitDir        = "0.5 0 1";
    shellExitOffset     = "0 0 0";
    shellExitVariance   = 25;	
    shellVelocity       = 5.0;
@@ -102,10 +123,10 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = BNE_UMP45SafetyImage;
-    scopingImage = BNE_UMP45IronsightImage;
+	safetyImage = BNE_MP40SafetyImage;
+    scopingImage = BNE_MP40IronsightImage;
 	doColorShift = true;
-	colorShiftColor = BNE_UMP45Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_MP40Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
 	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
@@ -114,28 +135,28 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 	muzzleFlashScale = "0.5 0.5 0.5";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 25;
+	projectileDamage = 21;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.6;
+	projectileHeadshotMult = 2;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.25;
+	recoilHeight = 0.15;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 5; // how much shots it takes to trigger spread i think
+	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 250; // m
-	spreadBase = 100;
-	spreadMin = 150;
+	spreadBase = 200;
+	spreadMin = 250;
 	spreadMax = 1000;
 
-	screenshakeMin = "0.075 0.075 0.075"; 
-	screenshakeMax = "0.1 0.1 0.1"; 
+	screenshakeMin = "0.1 0.1 0.1"; 
+	screenshakeMax = "0.15 0.15 0.15"; 
 
-	farShotSound = SMGDDistantSound;
+	farShotSound = SMGBDistantSound;
 	farShotDistance = 40;
 	staticTotalRange = 100;	
 	sonicWhizz = true;
@@ -145,9 +166,9 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	projectileFalloffStart = $ae_falloffSMGStart;
-	projectileFalloffEnd = $ae_falloffSMGEnd;
-	projectileFalloffDamage = $ae_falloffSMG;
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 
    //casing = " ";
 
@@ -172,6 +193,7 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 
 	stateName[2]                       = "preFire";
 	stateTransitionOnTimeout[2]        = "Fire";
+	stateTransitionOnNoAmmo[2]       	= "NoAmmoFlashFix";
 	stateScript[2]                     = "AEOnFire";
 	stateEmitter[2]					= AEBaseGenericFlashEmitter;
 	stateEmitterTime[2]				= 0.05;
@@ -187,6 +209,15 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 	stateAllowImageChange[3]        = false;
 	stateSequence[3]                = "Fire";
 	stateWaitForTimeout[3]			= true;
+	
+	stateName[29]                    = "FireEmpty";
+	stateTransitionOnTimeout[29]     = "FireLoadCheckA";
+	stateEmitter[29]					= AEBaseSmokeEmitter;
+	stateEmitterTime[29]				= 0.05;
+	stateEmitterNode[29]				= "muzzlePoint";
+	stateAllowImageChange[29]        = false;
+	stateSequence[29]                = "FireEmpty";
+	stateWaitForTimeout[29]			= true;
 	
 	stateName[5]				= "LoadCheckA";
 	stateScript[5]				= "AEMagLoadCheck";
@@ -206,7 +237,7 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 	stateSequence[7]			= "ReloadStart";
 	
 	stateName[8]				= "ReloadMagOut";
-	stateTimeoutValue[8]			= 0.65;
+	stateTimeoutValue[8]			= 0.55;
 	stateScript[8]				= "onReloadMagOut";
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
@@ -230,7 +261,7 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.075;
+	stateTimeoutValue[11]			= 0.1;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";
@@ -246,16 +277,15 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 // EMPTY RELOAD STATE
 
 	stateName[15]				= "Reload2";
-	stateTimeoutValue[15]			= 0.5;
+	stateTimeoutValue[15]			= 0.55;
 	stateScript[15]				= "onReload2Start";
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
 	stateWaitForTimeout[15]			= true;
-	stateSequence[15]			= "ReloadStartEmpty";
-	stateSound[15]				= BNE_HKBoltLockSound;
+	stateSequence[15]			= "ReloadEmptyStart";
 	
 	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 0.65;
-	stateScript[16]				= "onReload2MagOut";
+	stateTimeoutValue[16]			= 0.55;
+	stateScript[16]				= "onReloadMagOut";
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOutEmpty";
@@ -263,18 +293,18 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.3;
-	stateScript[17]				= "onReload2MagIn";
+	stateScript[17]				= "onReloadMagIn";
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
 	stateSound[17]				= BNE_HKMagInSound;
 	
 	stateName[18]				= "Reload2End";
-	stateTimeoutValue[18]			= 0.5;
+	stateTimeoutValue[18]			= 0.4;
 	stateScript[18]				= "onReload2End";
 	stateTransitionOnTimeout[18]		= "Ready";
 	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "ReloadEndEmpty";
+	stateSequence[18]			= "ReloadEmptyEnd";
 	
 	stateName[20]				= "ReadyLoop";
 	stateTransitionOnTimeout[20]		= "Ready";
@@ -288,14 +318,20 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 	stateTransitionOnTriggerUp[22] = "Empty";
 	stateWaitForTimeout[22]    = false;
 	stateScript[22]      = "onDryFire";
+	
+	stateName[28]           = "NoAmmoFlashFix";
+	stateTransitionOnTimeout[28] = "FireEmpty";
+	stateEmitter[28]					= AEBaseGenericFlashEmitter;
+	stateEmitterTime[28]				= 0.05;
+	stateEmitterNode[28]				= "muzzlePoint";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function BNE_UMP45Image::AEOnFire(%this,%obj,%slot)
+function BNE_MP40Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_TMPFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_MP40Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -303,63 +339,54 @@ function BNE_UMP45Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function BNE_UMP45Image::onDryFire(%this, %obj, %slot)
+function BNE_MP40Image::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function BNE_UMP45Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_MP40Image::onReloadMagIn(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, shiftleft);
-   %obj.aeplayThread(3, shiftright);
+   %obj.schedule(50, "aeplayThread", "2", "shiftright");
+   %obj.schedule(50, "aeplayThread", "3", "shiftleft");
 }
 
-function BNE_UMP45Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_MP40Image::onReloadMagOut(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, shiftleft);
-   %obj.aeplayThread(3, shiftright);
+   %obj.aeplayThread(2, plant);
 }
 
-function BNE_UMP45Image::onReloadMagIn(%this,%obj,%slot)
+function BNE_MP40Image::onReloadEnd(%this,%obj,%slot)
 {
-   %obj.schedule(50, "aeplayThread", "2", "plant");
+	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_UMP45Image::onReload2MagIn(%this,%obj,%slot)
+function BNE_MP40Image::onReload2End(%this,%obj,%slot)
 {
-   %obj.schedule(50, "aeplayThread", "2", "plant");
-   %obj.schedule(400, "aeplayThread", "3", "shiftleft");
-   %obj.schedule(500, "aeplayThread", "2", "plant");
+    %obj.schedule(150, "aeplayThread", "3", "plant");
+    %obj.schedule(150, playAudio, 1, BNE_HKBoltCloseSound);
+	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_UMP45Image::onReloadStart(%this,%obj,%slot)
+// MAGAZINE DROPPING
+
+function BNE_MP40Image::onReloadStart(%this,%obj,%slot)
 {
-  %obj.aeplayThread(2, shiftleft);
+  %obj.aeplayThread(3, shiftleft);
   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(450,550),0,serverPlay3D,AEMagPlasticAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function BNE_UMP45Image::onReload2Start(%this,%obj,%slot)
+function BNE_MP40Image::onReload2Start(%this,%obj,%slot)
 {
-  %obj.aeplayThread(2, plant);
-  %obj.aeplayThread(3, shiftright);
-  %obj.reload3Schedule = %this.schedule(475,onMagDrop,%obj,%slot);
+  %obj.schedule(250, "aeplayThread", "2", "plant");
+  %obj.aeplayThread(3, shiftleft);
+  %obj.schedule(150, playAudio, 1, BNE_HKBoltLockSound);
+  %obj.reload3Schedule = %this.schedule(525,onMagDrop,%obj,%slot);
   %obj.reload4Schedule = schedule(getRandom(550,650),0,serverPlay3D,AEMagPlasticAr @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
-function BNE_UMP45Image::onReloadEnd(%this,%obj,%slot)
-{
-	Parent::AEMagReloadAll(%this, %obj, %slot);
-}
-
-function BNE_UMP45Image::onReload2End(%this,%obj,%slot)
-{
-    %obj.schedule(250, playAudio, 1, BNE_HKBoltCloseSound);
-	Parent::AEMagReloadAll(%this, %obj, %slot);
-}
-
-function BNE_UMP45Image::onReady(%this,%obj,%slot)
+function BNE_MP40Image::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -369,7 +396,7 @@ function BNE_UMP45Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_UMP45Image::onMount(%this,%obj,%slot)
+function BNE_MP40Image::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -378,7 +405,7 @@ function BNE_UMP45Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_UMP45Image::onUnMount(%this,%obj,%slot)
+function BNE_MP40Image::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -392,7 +419,7 @@ function BNE_UMP45Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function BNE_UMP45Image::onMagDrop(%this,%obj,%slot)
+function BNE_MP40Image::onMagDrop(%this,%obj,%slot)
 {
 	%a = new Camera()
 	{
@@ -402,7 +429,7 @@ function BNE_UMP45Image::onMagDrop(%this,%obj,%slot)
 	};
 
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(BNE_UMP45MagImage,0);
+	%a.mountImage(BNE_MP40MagImage,0);
 	%a.schedule(2500,delete);
 }
 
@@ -410,18 +437,18 @@ function BNE_UMP45Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(BNE_UMP45MagImage)
+datablock ShapeBaseImageData(BNE_MP40MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
-	offset = "-0.125 0.75 -0.125";
-   rotation = eulerToMatrix( "10 25 0" );	
+	offset = "-0.2 0.9 -0.2";
+   rotation = eulerToMatrix( "10 15 0" );
 	
-	casing = BNE_UMP45MagDebris;
-	shellExitDir        = "0 0.25 -1";
+	casing = BNE_MP40MagDebris;
+	shellExitDir        = "0 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
-	shellVelocity       = 4.0;
+	shellVelocity       = 3.0;
 	
 	stateName[0]					= "Ready";
 	stateTimeoutValue[0]			= 0.01;
@@ -436,7 +463,7 @@ datablock ShapeBaseImageData(BNE_UMP45MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function BNE_UMP45MagImage::onDone(%this,%obj,%slot)
+function BNE_MP40MagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -445,25 +472,25 @@ function BNE_UMP45MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(BNE_UMP45SafetyImage)
+datablock ShapeBaseImageData(BNE_MP40SafetyImage)
 {
-   shapeFile = "./UMP45/UMP45.dts";
+   shapeFile = "./MP40/MP40.dts";
    emap = true;
    mountPoint = 0;
-   offset = "0 0 0";
+   offset = "0 -0.1 -0.025";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = BNE_UMP45Item;
+   item = BNE_MP40Item;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   scopingImage = BNE_UMP45IronsightImage;
-   safetyImage = BNE_UMP45Image;
+   scopingImage = BNE_MP40IronsightImage;
+   safetyImage = BNE_MP40Image;
    doColorShift = true;
-   colorShiftColor = BNE_UMP45Item.colorShiftColor;
+   colorShiftColor = BNE_MP40Item.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -479,12 +506,12 @@ datablock ShapeBaseImageData(BNE_UMP45SafetyImage)
 
 };
 
-function BNE_UMP45SafetyImage::onDone(%this,%obj,%slot)
+function BNE_MP40SafetyImage::onDone(%this,%obj,%slot)
 {
 	%obj.mountImage(%this.safetyImage, 0);
 }
 
-function BNE_UMP45SafetyImage::onMount(%this,%obj,%slot)
+function BNE_MP40SafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -493,7 +520,7 @@ function BNE_UMP45SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function BNE_UMP45SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_MP40SafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -503,15 +530,15 @@ function BNE_UMP45SafetyImage::onUnMount(%this, %obj, %slot)
 
 ///////// IRONSIGHTS?
 
-datablock ShapeBaseImageData(BNE_UMP45IronsightImage : BNE_UMP45Image)
+datablock ShapeBaseImageData(BNE_MP40IronsightImage : BNE_MP40Image)
 {
-	recoilHeight = 0.125;
+	recoilHeight = 0.25;
 
-	scopingImage = BNE_UMP45Image;
-	sourceImage = BNE_UMP45Image;
+	scopingImage = BNE_MP40Image;
+	sourceImage = BNE_MP40Image;
 	
-	offset = "0 0 0";
-	eyeOffset = "0.00045 1.0 -0.46";
+   offset = "0 -0.1 -0.025";
+	eyeOffset = "0.0 1.0 -0.471";
 	rotation = eulerToMatrix( "0 -20 0" );
 
 	desiredFOV = $ae_LowIronsFOV;
@@ -531,21 +558,21 @@ datablock ShapeBaseImageData(BNE_UMP45IronsightImage : BNE_UMP45Image)
 	stateSound[7]				= "";
 };
 
-function BNE_UMP45IronsightImage::onDone(%this,%obj,%slot)
+function BNE_MP40IronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function BNE_UMP45IronsightImage::onReady(%this,%obj,%slot)
+function BNE_MP40IronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function BNE_UMP45IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_MP40IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_TMPFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_MP40Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -553,7 +580,7 @@ function BNE_UMP45IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function BNE_UMP45IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_MP40IronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -561,7 +588,7 @@ function BNE_UMP45IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_UMP45IronsightImage::onMount(%this,%obj,%slot)
+function BNE_MP40IronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -572,7 +599,7 @@ function BNE_UMP45IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_UMP45IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_MP40IronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound); // %obj.getHackPosition());
