@@ -123,8 +123,8 @@ datablock ShapeBaseImageData(BNE_MG42Image)
 	R_MovePenalty = 0.9;
 
 	shellSound = AEShellRifle;
-	shellSoundMin = 450; //min delay for when the shell sound plays
-	shellSoundMax = 550; //max delay for when the shell sound plays
+	shellSoundMin = 250; //min delay for when the shell sound plays
+	shellSoundMax = 350; //max delay for when the shell sound plays
 
     loopingEndSound = BNE_MG42FireLoopEndSound;
 

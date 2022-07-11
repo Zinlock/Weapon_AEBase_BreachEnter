@@ -1200,3 +1200,32 @@ datablock AudioProfile(BNE_Kar98ClipInsert2Sound)
    description = AudioClose3d;
    preload = true;
 };
+
+//double barrel
+datablock AudioProfile(BNE_DoubleBarrelOpenSound)
+{
+   filename    = "./Reload/DoubleBarrel/DoubleBarrel_Open.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_DoubleBarrelCloseSound)
+{
+   filename    = "./Reload/DoubleBarrel/DoubleBarrel_Close.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_DoubleBarrelShell1Sound)
+{
+   filename    = "./Reload/DoubleBarrel/DoubleBarrel_Shell1.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_DoubleBarrelShell2Sound)
+{
+   filename    = "./Reload/DoubleBarrel/DoubleBarrel_Shell2.wav";
+   description = AudioClose3d;
+   preload = true;
+};

@@ -120,4 +120,5 @@ else
 	exec("./Weapon_Kar98.cs");
 	exec("./Weapon_MP40.cs");
 	exec("./Weapon_MG42.cs");
+	exec("./Weapon_DoubleBarrel.cs");
 }
