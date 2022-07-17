@@ -64,7 +64,7 @@ datablock ItemData(BNE_LAPDBlasterItem)
 	canDrop = true;
 
 	AEAmmo = 5;
-	AEType = AE_LightRAmmoItem.getID();
+	AEType = AE_PDRAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 600;

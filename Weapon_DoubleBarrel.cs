@@ -422,7 +422,7 @@ function BNE_DoubleBarrelImage::onMagDrop(%this,%obj,%slot,%right)
         position = %obj.getPosition();
         scale = "1 1 1";
     };
-    %side = %right * 0.2;
+    %side = %right * 0.1;
     %trf = %obj.getSlotTransform(0);
     %pos = getWords(%trf, 0, 2);
     %rot = getWords(%trf, 3, 7);

@@ -64,7 +64,7 @@ datablock ItemData(BNE_P90Item)
 	canDrop = true;
 
 	AEAmmo = 50;
-	AEType = AE_LightRAmmoItem.getID();
+	AEType = AE_PDRAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

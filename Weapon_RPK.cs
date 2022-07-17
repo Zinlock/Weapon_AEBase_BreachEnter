@@ -46,7 +46,7 @@ datablock ItemData(BNE_RPKItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = BNE_RPKImage;
+	image = AE_LMGAmmoItem;
 	canDrop = true;
 
 	AEAmmo = 75;
