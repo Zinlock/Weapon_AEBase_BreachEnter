@@ -46,11 +46,11 @@ datablock ItemData(BNE_RPKItem)
 	colorShiftColor = "0.4 0.4 0.4 1";
 
 	 // Dynamic properties defined by the scripts
-	image = AE_LMGAmmoItem;
+	image = BNE_RPKImage;
 	canDrop = true;
 
 	AEAmmo = 75;
-	AEType = AE_HeavyRAmmoItem.getID();
+	AEType = AE_LMGAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 
