@@ -64,7 +64,7 @@ datablock ItemData(BNE_SKSMItem)
 	canDrop = true;
 
 	AEAmmo = 20;
-	AEType = AE_DMRAmmoItem.getID();
+	AEType = AE_HeavyRAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 700;

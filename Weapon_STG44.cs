@@ -64,7 +64,7 @@ datablock ItemData(BNE_STG44Item)
 	canDrop = true;
 
 	AEAmmo = 30;
-	AEType = AE_PDRAmmoItem.getID();
+	AEType = AE_HeavyRAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

@@ -64,7 +64,7 @@ datablock ItemData(BNE_PDRItem)
 	canDrop = true;
 
 	AEAmmo = 20;
-	AEType = AE_PDRAmmoItem.getID();
+	AEType = AE_LightRAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

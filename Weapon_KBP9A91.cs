@@ -57,7 +57,7 @@ datablock ItemData(BNE_KBP9A91Item)
 	canDrop = true;
 
 	AEAmmo = 20;
-	AEType = AE_LightRAmmoItem.getID();
+	AEType = AE_HeavyRAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

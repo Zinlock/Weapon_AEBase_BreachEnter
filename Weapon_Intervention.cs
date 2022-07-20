@@ -71,7 +71,7 @@ datablock ItemData(BNE_M200Item)
 	canDrop = true;
 
 	AEAmmo = 5;
-	AEType = AE_MediumSRAmmoItem.getID();
+	AEType = AE_HeavySRAmmoItem.getID();
 	AEBase = 1;
 
     RPM = 60;

@@ -50,7 +50,7 @@ datablock ItemData(BNE_AKS47UItem)
 	canDrop = true;
 
 	AEAmmo = 30;
-	AEType = AE_LightRAmmoItem.getID();
+	AEType = AE_HeavyRAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

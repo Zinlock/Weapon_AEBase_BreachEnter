@@ -54,7 +54,7 @@ datablock ItemData(BNE_MosinItem)
 	canDrop = true;
 	
 	AEAmmo = 5;
-	AEType = AE_DMRAmmoItem.getID();
+	AEType = AE_HeavierRAmmoItem.getID();
 	AEBase = 1;
 
   RPM = 60;

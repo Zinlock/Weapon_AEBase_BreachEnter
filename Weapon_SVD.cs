@@ -63,7 +63,7 @@ datablock ItemData(BNE_SVDItem)
 	canDrop = true;
 
 	AEAmmo = 10;
-	AEType = AE_DMRAmmoItem.getID();
+	AEType = AE_HeavierRAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 240;
