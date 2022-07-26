@@ -63,7 +63,7 @@ datablock ItemData(BNE_AR1550Item)
 	canDrop = true;
 
 	AEAmmo = 6;
-	AEType = AE_HeavySRAmmoItem.getID();
+	AEType = AE_HeavierSRAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 480;

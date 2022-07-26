@@ -159,8 +159,8 @@ datablock ShapeBaseImageData(BNE_MK14Image)
 	spreadMin = 60;
 	spreadMax = 1000;
 
-	screenshakeMin = "0.025 0.025 0.025"; 
-	screenshakeMax = "0.075 0.075 0.075"; 
+	screenshakeMin = "0.1 0.1 0.1"; 
+	screenshakeMax = "0.3 0.3 0.3"; 
 
 	farShotSound = RifleDDistantSound;
 	farShotDistance = 40;

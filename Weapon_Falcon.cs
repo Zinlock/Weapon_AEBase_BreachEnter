@@ -54,7 +54,7 @@ datablock ItemData(FalconItem)
 	canDrop = true;
 
 	AEAmmo = 1;
-	AEType = AE_HeavySRAmmoItem.getID();
+	AEType = AE_HeavierSRAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 600;

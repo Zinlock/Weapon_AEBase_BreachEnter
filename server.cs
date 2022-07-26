@@ -122,4 +122,5 @@ else
 	exec("./Weapon_MG42.cs");
 	exec("./Weapon_DoubleBarrel.cs");
 	exec("./Weapon_STG44.cs");
+	exec("./Weapon_Springfield.cs");
 }

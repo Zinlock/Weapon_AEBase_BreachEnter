@@ -189,7 +189,7 @@ datablock ShapeBaseImageData(BNE_American180Image)
 	stateName[2]                       = "preFire";
 	stateTransitionOnTimeout[2]        = "Fire";
 	stateScript[2]                     = "AEOnFire";
-	stateEmitter[2]					= AEBaseRifleFlashEmitter;
+	stateEmitter[2]					= AEBaseGenericFlashEmitter;
 	stateEmitterTime[2]				= 0.05;
 	stateEmitterNode[2]				= "muzzlePoint";
 	stateFire[2]                       = true;
