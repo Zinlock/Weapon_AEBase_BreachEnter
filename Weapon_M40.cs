@@ -453,6 +453,8 @@ datablock ShapeBaseImageData(BNE_M40IronsightImage : BNE_M40Image)
 	scopingImage = BNE_M40Image;
 	sourceImage = BNE_M40Image;
 	
+	isScopedImage = true;
+	
 	eyeOffset = "0.00205 1 -0.51859";
 	rotation = eulerToMatrix( "0 -20 0" );
 

@@ -546,6 +546,8 @@ datablock ShapeBaseImageData(BNE_L85IronsightImage : BNE_L85Image)
 	eyeOffset = "0.01425 1.5 -1.0293";
 	rotation = eulerToMatrix( "0 -20 0" );
 
+	isScopedImage = true;
+
 	desiredFOV = $ae_LowScopeFOV;
 	projectileZOffset = 0.25;
 	R_MovePenalty = 0.5;

@@ -513,6 +513,7 @@ datablock ShapeBaseImageData(BNE_L96IronsightImage : BNE_L96Image)
 	spreadMin = 0;
 	spreadMax = 0;
 
+	isScopedImage = true;
 
 	scopingImage = BNE_L96Image;
 	sourceImage = BNE_L96Image;

@@ -779,7 +779,6 @@ datablock ShapeBaseImageData(BNE_M200IronsightBipodImage : BNE_M200IronsightImag
 	screenshakeMin = "0 0 0"; 
 	screenshakeMax = "0 0 0"; 
 	isSafetyImage = true;
-	isScopedImage = true;
 	isBipod = true;
 };
 

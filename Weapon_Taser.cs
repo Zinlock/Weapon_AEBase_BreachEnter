@@ -618,8 +618,6 @@ datablock ShapeBaseImageData(BNE_TaserIronsightImage : BNE_TaserImage)
 
 	scopingImage = BNE_TaserImage;
 	sourceImage = BNE_TaserImage;
-	
-	isScopedImage = true;
 
 	offset = "0 -0.05 0.05";
 	eyeOffset = "0 1.25 -0.125";

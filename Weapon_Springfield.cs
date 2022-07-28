@@ -427,6 +427,8 @@ datablock ShapeBaseImageData(BNE_SpringfieldIronsightImage : BNE_SpringfieldImag
 	spreadBase = 50;
 	spreadMin = 50;
 
+	isScopedImage = true;
+
 	scopingImage = BNE_SpringfieldImage;
 	sourceImage = BNE_SpringfieldImage;
 	

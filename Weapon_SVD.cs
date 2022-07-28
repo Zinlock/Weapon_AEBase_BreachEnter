@@ -544,6 +544,8 @@ datablock ShapeBaseImageData(BNE_SVDIronsightImage : BNE_SVDImage)
 	spreadMin = 10;
 	spreadMax = 20;
 
+	isScopedImage = true;
+
 	scopingImage = BNE_SVDImage;
 	sourceImage = BNE_SVDImage;
 	
