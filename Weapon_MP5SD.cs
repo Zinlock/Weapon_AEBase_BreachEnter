@@ -111,10 +111,7 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 	doColorShift = true;
 	colorShiftColor = BNE_MP5SDItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
-	shellSound = AEShellSMG;
-	shellSoundMin = 450; //min delay for when the shell sound plays
-	shellSoundMax = 550; //max delay for when the shell sound plays
-
+	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
 	projectileDamage = 22;
@@ -137,6 +134,9 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 
 	screenshakeMin = "0.015 0.015 0.015"; 
 	screenshakeMax = "0.1 0.1 0.1"; 
+	
+	farShotSound = SMGCDistantSound;
+	farShotDistance = 40;
 	
 	sonicWhizz = true;
 	whizzSupersonic = true;
@@ -175,6 +175,9 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 	stateName[2]                       = "preFire";
 	stateTransitionOnTimeout[2]        = "Fire";
 	stateScript[2]                     = "AEOnFire";
+	stateEmitter[2]					= AEBaseRifleFlashEmitter;
+	stateEmitterTime[2]				= 0.05;
+	stateEmitterNode[2]				= "muzzlePoint";
 	stateFire[2]                       = true;
 	stateEjectShell[2]                       = true;
 

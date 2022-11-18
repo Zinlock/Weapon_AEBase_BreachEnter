@@ -116,7 +116,7 @@ datablock ShapeBaseImageData(BNE_M1873Image)
 
 	projectileDamage = 38;
 	projectileCount = 1;
-	projectileHeadshotMult = 2;
+	projectileHeadshotMult = 2.64;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.35;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate

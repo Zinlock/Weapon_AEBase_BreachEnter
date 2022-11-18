@@ -1229,3 +1229,48 @@ datablock AudioProfile(BNE_DoubleBarrelShell2Sound)
    description = AudioClose3d;
    preload = true;
 };
+
+//stoner 63
+datablock AudioProfile(BNE_Stoner63MagInSound)
+{
+   filename    = "./Reload/Stoner63/Stoner63_MagIn.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Stoner63MagOutSound)
+{
+   filename    = "./Reload/Stoner63/Stoner63_MagOut.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Stoner63OpenSound)
+{
+   filename    = "./Reload/Stoner63/Stoner63_Open.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Stoner63CloseSound)
+{
+   filename    = "./Reload/Stoner63/Stoner63_Close.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Stoner63AttachSound)
+{
+   filename    = "./Reload/Stoner63/Stoner63_Attach.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_Stoner63RemoveSound)
+{
+   filename    = "./Reload/Stoner63/Stoner63_Remove.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+

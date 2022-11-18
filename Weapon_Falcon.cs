@@ -123,9 +123,9 @@ datablock ShapeBaseImageData(BNE_FalconImage)
 
 	gunType = "Sniper";
 
-	projectileDamage = 100;
+	projectileDamage = 200;
 	projectileCount = 1;
-	projectileHeadshotMult = 2;
+	projectileHeadshotMult = 2.5;
 	projectileVelocity = 1000;
 	projectileTagStrength = 0.78;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate

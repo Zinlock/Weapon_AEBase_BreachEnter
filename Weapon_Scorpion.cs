@@ -1,28 +1,28 @@
-datablock AudioProfile(BNE_L85Fire1Sound)
+datablock AudioProfile(BNE_ScorpionFire1Sound)
 {
-   filename    = "./Sounds/Fire/L85/L85_FIRE_1.wav";
+   filename    = "./Sounds/Fire/Scorpion/Scorpion_FIRE_1.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(BNE_L85Fire2Sound)
+datablock AudioProfile(BNE_ScorpionFire2Sound)
 {
-   filename    = "./Sounds/Fire/L85/L85_FIRE_2.wav";
+   filename    = "./Sounds/Fire/Scorpion/Scorpion_FIRE_2.wav";
    description = LightClose3D;
    preload = true;
 };
 
-datablock AudioProfile(BNE_L85Fire3Sound)
+datablock AudioProfile(BNE_ScorpionFire3Sound)
 {
-   filename    = "./Sounds/Fire/L85/L85_FIRE_3.wav";
+   filename    = "./Sounds/Fire/Scorpion/Scorpion_FIRE_3.wav";
    description = LightClose3D;
    preload = true;
 };
 
-// L85
-datablock DebrisData(BNE_L85MagDebris)
+// Scorpion
+datablock DebrisData(BNE_ScorpionMagDebris)
 {
-	shapeFile = "./L85/L85Mag.dts";
+	shapeFile = "./Scorpion/ScorpionMag.dts";
 	lifetime = 2.0;
 	minSpinSpeed = -200.0;
 	maxSpinSpeed = -100.0;
@@ -39,13 +39,13 @@ datablock DebrisData(BNE_L85MagDebris)
 //////////
 // item //
 //////////
-datablock ItemData(BNE_L85Item)
+datablock ItemData(BNE_ScorpionItem)
 {
 	category = "Weapon";  // Mission editor category
 	className = "Weapon"; // For inventory system
 
 	 // Basic Item Properties
-	shapeFile = "./L85/L85.dts";
+	shapeFile = "./Scorpion/Scorpion.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -54,24 +54,23 @@ datablock ItemData(BNE_L85Item)
 	emap = true;
 
 	//gui stuff
-	uiName = "B&E: L85A2";
-	iconName = "./Icons/Icon_L85";
+	uiName = "B&E: Scorpion VZ-61";
+	iconName = "./Icons/59";
 	doColorShift = true;
-	colorShiftColor = "0.5 0.5 0.5 1";
+	colorShiftColor = "0.65 0.65 0.65 1";
 
 	 // Dynamic properties defined by the scripts
-	image = BNE_L85Image;
+	image = BNE_ScorpionImage;
 	canDrop = true;
 
-	AEAmmo = 30;
-	AEType = AE_LightRAmmoItem.getID();
+	AEAmmo = 20;
+	AEType = AE_LightPAmmoItem.getID();
 	AEBase = 1;
 
-	Auto = true; 
-	RPM = 775;
-	recoil = "Heavy"; 
+	RPM = 850;
+	recoil = "Light"; 
 	uiColor = "1 1 1";
-	description = "The L85A2 is an upgrade of the A1 variant by Heckler & Koch that remains in use today.";
+	description = "The Beretta 92 is a precision-made Italian pistol chambered in 9x19 Parabellum, designated as the Scorpion by the US Military.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -83,16 +82,16 @@ datablock ItemData(BNE_L85Item)
 ////////////////
 //weapon image//
 ////////////////
-datablock ShapeBaseImageData(BNE_L85Image)
+datablock ShapeBaseImageData(BNE_ScorpionImage)
 {
    // Basic Item properties
-   shapeFile = "./L85/L85.dts";
+   shapeFile = "./Scorpion/Scorpion.dts";
    emap = true;
 
    // Specify mount point & offset for 3rd person, and eye offset
    // for first person rendering.
    mountPoint = 0;
-   offset = "0 0 0";
+   offset = "0 0.1 -0.05";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
 
@@ -107,56 +106,56 @@ datablock ShapeBaseImageData(BNE_L85Image)
    className = "WeaponImage";
 
    // Projectile && Ammo.
-   item = BNE_L85Item;
+   item = BNE_ScorpionItem;
    ammo = " ";
    projectile = AETrailedProjectile;
    projectileType = Projectile;
 
-   casing = AE_BERifleShellDebris;
-   shellExitDir        = "1 0 0.5";
+   casing = AE_BEPistolShellDebris;
+   shellExitDir        = "0.25 -0.1 1";
    shellExitOffset     = "0 0 0";
-   shellExitVariance   = 25;	
-   shellVelocity       = 5.0;
+   shellExitVariance   = 10;	
+   shellVelocity       = 6.0;
 	
    //melee particles shoot from eye node for consistancy
 	melee = false;
    //raise your arm up or not
 	armReady = true;
 	hideHands = false;
-	safetyImage = BNE_L85SafetyImage;
-    scopingImage = BNE_L85IronsightImage;
+	safetyImage = BNE_ScorpionSafetyImage;
+    scopingImage = BNE_ScorpionIronsightImage;
 	doColorShift = true;
-	colorShiftColor = BNE_L85Item.colorShiftColor;//"0.400 0.196 0 1.000";
+	colorShiftColor = BNE_ScorpionItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
-	shellSound = AEShellRifle;
+	shellSound = AEShellSMG;
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
 
 	muzzleFlashScale = "0.5 0.5 0.5";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 30;
+	projectileDamage = 20;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.7;
+	projectileHeadshotMult = 1.8;
 	projectileVelocity = 200;
-	projectileTagStrength = 0.51;  // tagging strength
+	projectileTagStrength = 0.15;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 0.8;
+	recoilHeight = 0.5;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
-	spreadBurst = 4; // how much shots it takes to trigger spread i think
+	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 350; // m
-	spreadBase = 35;
-	spreadMin = 180;
-	spreadMax = 1000;
+	spreadBase = 300;
+	spreadMin = 600;
+	spreadMax = 2000;
 
-	screenshakeMin = "0.075 0.075 0.075"; 
-	screenshakeMax = "0.1 0.1 0.1"; 
+	screenshakeMin = "0.025 0.025 0.025"; 
+	screenshakeMax = "0.075 0.075 0.075"; 
 
-	farShotSound = RifleDDistantSound;
+	farShotSound = PistolADistantSound;
 	farShotDistance = 40;
 	staticTotalRange = 100;	
 	sonicWhizz = true;
@@ -166,21 +165,9 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	whizzChance = 100;
 	whizzAngle = 80;
 
-	staticHitscan = true;
-	staticEffectiveRange = 110;
-	staticTotalRange = 2000;
-	staticGravityScale = 1.5;
-	staticSwayMod = 2;
-	staticEffectiveSpeedBonus = 0;
-	staticSpawnFakeProjectiles = true;
-	staticTracerEffect = ""; // defaults to AEBulletStaticShape
-	staticScaleCalibre = 0.25;
-	staticScaleLength = 0.25;
-	staticUnitsPerSecond = $ae_RifleUPS;
-
-	projectileFalloffStart = $ae_falloffRifleStart;
-	projectileFalloffEnd = $ae_falloffRifleEnd;
-	projectileFalloffDamage = $ae_falloffRifle;
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 
    //casing = " ";
 
@@ -205,8 +192,9 @@ datablock ShapeBaseImageData(BNE_L85Image)
 
 	stateName[2]                       = "preFire";
 	stateTransitionOnTimeout[2]        = "Fire";
+	stateTransitionOnNoAmmo[2]       	= "NoAmmoFlashFix";
 	stateScript[2]                     = "AEOnFire";
-	stateEmitter[2]					= AEBaseRifleFlashEmitter;
+	stateEmitter[2]					= AEBaseGenericFlashEmitter;
 	stateEmitterTime[2]				= 0.05;
 	stateEmitterNode[2]				= "muzzlePoint";
 	stateFire[2]                       = true;
@@ -221,6 +209,15 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	stateSequence[3]                = "Fire";
 	stateWaitForTimeout[3]			= true;
 	
+	stateName[4]                    = "FireEmpty";
+	stateTransitionOnTimeout[4]     = "FireLoadCheckA";
+	stateEmitter[4]					= AEBaseSmokeEmitter;
+	stateEmitterTime[4]				= 0.05;
+	stateEmitterNode[4]				= "muzzlePoint";
+	stateAllowImageChange[4]        = false;
+	stateSequence[4]                = "FireEmpty";
+	stateWaitForTimeout[4]			= true;
+	
 	stateName[5]				= "LoadCheckA";
 	stateScript[5]				= "AEMagLoadCheck";
 	stateTimeoutValue[5]			= 0.1;
@@ -232,27 +229,27 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	stateTransitionOnNoAmmo[6]		= "Reload2";
 
 	stateName[7]				= "Reload";
-	stateTimeoutValue[7]			= 0.25;
+	stateTimeoutValue[7]			= 0.15;
 	stateScript[7]				= "onReloadStart";
 	stateTransitionOnTimeout[7]		= "ReloadMagOut";
 	stateWaitForTimeout[7]			= true;
-	stateSequence[7]			= "ReloadStart";
+	stateSequence[7]			= "MagOut";
+	stateSound[7]				= BNE_FMGMagOutSound;
 	
 	stateName[8]				= "ReloadMagOut";
-	stateTimeoutValue[8]			= 0.5;
+	stateTimeoutValue[8]			= 0.65;
 	stateScript[8]				= "onReloadMagOut";
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
-	stateSequence[8]			= "MagOut";
-	stateSound[8]				= BNE_FADMagOutSound;
+	stateSequence[8]			= "ReloadStart";
 	
 	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.35;
+	stateTimeoutValue[9]			= 0.4;
 	stateScript[9]				= "onReloadMagIn";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= BNE_FADMagInSound;
+	stateSound[9]				= BNE_FMGMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.25;
@@ -263,7 +260,7 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.08;
+	stateTimeoutValue[11]			= 0.09;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 	
 	stateName[12]				= "FireLoadCheckB";
@@ -279,19 +276,19 @@ datablock ShapeBaseImageData(BNE_L85Image)
 // EMPTY RELOAD STATE
 
 	stateName[15]				= "Reload2";
-	stateTimeoutValue[15]			= 0.35;
-	stateScript[15]				= "onReload2Start";
+	stateTimeoutValue[15]			= 0.15;
+	stateScript[15]				= "onReloadStart";
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
 	stateWaitForTimeout[15]			= true;
-	stateSequence[15]			= "ReloadStartEmpty";
+	stateSequence[15]			= "MagOutEmpty";
+	stateSound[15]				= BNE_FMGMagOutSound;
 	
 	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 0.5;
+	stateTimeoutValue[16]			= 0.65;
 	stateScript[16]				= "onReload2MagOut";
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
-	stateSequence[16]			= "MagOutEmpty";
-	stateSound[16]				= BNE_FADMagOutSound;
+	stateSequence[16]			= "ReloadStartEmpty";
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.4;
@@ -299,14 +296,15 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= BNE_FADMagInSound;
+	stateSound[17]				= BNE_FMGMagInSound;
 	
-	stateName[18]				= "Reload2End";
-	stateTimeoutValue[18]			= 0.4;
-	stateScript[18]				= "onReload2End";
-	stateTransitionOnTimeout[18]		= "Ready";
-	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "ReloadEndEmpty";
+	stateName[19]				= "Reload2End";
+	stateTimeoutValue[19]			= 0.5;
+	stateScript[19]				= "onReload2End";
+	stateTransitionOnTimeout[19]		= "Ready";
+	stateWaitForTimeout[19]			= true;
+	stateSequence[19]			= "ReloadEndEmpty";
+	stateSound[19]				= BNE_FMGBoltSound;
 	
 	stateName[20]				= "ReadyLoop";
 	stateTransitionOnTimeout[20]		= "Ready";
@@ -320,14 +318,21 @@ datablock ShapeBaseImageData(BNE_L85Image)
 	stateTransitionOnTriggerUp[22] = "Empty";
 	stateWaitForTimeout[22]    = false;
 	stateScript[22]      = "onDryFire";
+	
+	stateName[30]           = "NoAmmoFlashFix";
+	stateTransitionOnTimeout[30] = "FireEmpty";
+	stateEmitter[30]					= AEBaseGenericFlashEmitter;
+	stateEmitterTime[30]				= 0.05;
+	stateEmitterNode[30]				= "muzzlePoint";
+	
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
-function BNE_L85Image::AEOnFire(%this,%obj,%slot)
+function BNE_ScorpionImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_L85Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M9Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -335,63 +340,49 @@ function BNE_L85Image::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function BNE_L85Image::onDryFire(%this, %obj, %slot)
+function BNE_ScorpionImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function BNE_L85Image::onReload2MagOut(%this,%obj,%slot)
+function BNE_ScorpionImage::onReloadMagIn(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, shiftleft);
-   %obj.aeplayThread(3, shiftright);
+   %obj.schedule(50, "aeplayThread", "2", "shiftright");
+   %obj.schedule(50, "aeplayThread", "3", "plant");
+   %obj.schedule(300, "aeplayThread", "3", "shiftleft");
 }
 
-function BNE_L85Image::onReloadMagOut(%this,%obj,%slot)
+function BNE_ScorpionImage::onReload2MagIn(%this,%obj,%slot)
 {
-   %obj.aeplayThread(2, shiftleft);
-   %obj.aeplayThread(3, shiftright);
+   %obj.schedule(50, "aeplayThread", "2", "shiftright");
+   %obj.schedule(50, "aeplayThread", "3", "plant");
+   %obj.schedule(300, "aeplayThread", "3", "shiftleft");
+   %obj.schedule(400, "aeplayThread", "2", "plant");
 }
 
-function BNE_L85Image::onReloadMagIn(%this,%obj,%slot)
-{
-   %obj.schedule(50, "aeplayThread", "2", "plant");
-}
-
-function BNE_L85Image::onReload2MagIn(%this,%obj,%slot)
-{
-   %obj.schedule(50, "aeplayThread", "2", "plant");
-   %obj.schedule(500, "aeplayThread", "3", "shiftleft");
-   %obj.schedule(600, "aeplayThread", "2", "plant");
-}
-
-function BNE_L85Image::onReloadStart(%this,%obj,%slot)
-{
-  %obj.aeplayThread(2, shiftleft);
-  %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
-  %obj.reload4Schedule = schedule(getRandom(450,550),0,serverPlay3D,AEMagPlasticAr @ getRandom(1,3) @ Sound,%obj.getPosition());
-}
-
-function BNE_L85Image::onReload2Start(%this,%obj,%slot)
-{
-  %obj.aeplayThread(2, plant);
-  %obj.aeplayThread(3, shiftright);
-  %obj.reload3Schedule = %this.schedule(475,onMagDrop,%obj,%slot);
-  %obj.reload4Schedule = schedule(getRandom(550,650),0,serverPlay3D,AEMagPlasticAr @ getRandom(1,3) @ Sound,%obj.getPosition());
-}
-
-function BNE_L85Image::onReloadEnd(%this,%obj,%slot)
+function BNE_ScorpionImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_L85Image::onReload2End(%this,%obj,%slot)
+function BNE_ScorpionImage::onReload2End(%this,%obj,%slot)
 {
-    %obj.schedule(300, playAudio, 1, BNE_AR15BoltSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function BNE_L85Image::onReady(%this,%obj,%slot)
+// MAGAZINE DROPPING
+
+function BNE_ScorpionImage::onReloadStart(%this,%obj,%slot)
+{
+   %obj.schedule(300, "aeplayThread", "3", "shiftleft");
+   %obj.aeplayThread(2, wrench);
+   %obj.aeplayThread(3, plant);
+   %obj.reload3Schedule = %this.schedule(0,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(150,250),0,serverPlay3D,AEMagPistol @ getRandom(1,3) @ Sound,%obj.getPosition());
+}
+
+function BNE_ScorpionImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -401,7 +392,7 @@ function BNE_L85Image::onReady(%this,%obj,%slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_L85Image::onMount(%this,%obj,%slot)
+function BNE_ScorpionImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
@@ -410,7 +401,7 @@ function BNE_L85Image::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_L85Image::onUnMount(%this,%obj,%slot)
+function BNE_ScorpionImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
@@ -424,7 +415,7 @@ function BNE_L85Image::onUnMount(%this,%obj,%slot)
 ///////////////////////// MAG DROP FUNCTIONS/////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-function BNE_L85Image::onMagDrop(%this,%obj,%slot)
+function BNE_ScorpionImage::onMagDrop(%this,%obj,%slot)
 {
 	%a = new Camera()
 	{
@@ -434,7 +425,7 @@ function BNE_L85Image::onMagDrop(%this,%obj,%slot)
 	};
 
 	%a.setTransform(%obj.getSlotTransform(0));
-	%a.mountImage(BNE_L85MagImage,0);
+	%a.mountImage(BNE_ScorpionMagImage,0);
 	%a.schedule(2500,delete);
 }
 
@@ -442,18 +433,18 @@ function BNE_L85Image::onMagDrop(%this,%obj,%slot)
 ///////////////////////// MAG DROP IMAGES/////////////////////////
 //////////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(BNE_L85MagImage)
+datablock ShapeBaseImageData(BNE_ScorpionMagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
-	offset = "0.1 -0.42 -0.125";
-   rotation = eulerToMatrix( "10 25 0" );	
+	offset = "0 0.9 -0.3";
+   rotation = eulerToMatrix( "0 0 0" );
 	
-	casing = BNE_L85MagDebris;
-	shellExitDir        = "0 0.45 -1";
+	casing = BNE_ScorpionMagDebris;
+	shellExitDir        = "0.01 0 -0.25";
 	shellExitOffset     = "0 0 0";
 	shellExitVariance   = 10.0;	
-	shellVelocity       = 4.0;
+	shellVelocity       = 10.0;
 	
 	stateName[0]					= "Ready";
 	stateTimeoutValue[0]			= 0.01;
@@ -468,7 +459,7 @@ datablock ShapeBaseImageData(BNE_L85MagImage)
 	stateScript[2]					= "onDone";
 };
 
-function BNE_L85MagImage::onDone(%this,%obj,%slot)
+function BNE_ScorpionMagImage::onDone(%this,%obj,%slot)
 {
 	%obj.unMountImage(%slot);
 }
@@ -477,25 +468,25 @@ function BNE_L85MagImage::onDone(%this,%obj,%slot)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-datablock ShapeBaseImageData(BNE_L85SafetyImage)
+datablock ShapeBaseImageData(BNE_ScorpionSafetyImage)
 {
-   shapeFile = "./L85/L85.dts";
+   shapeFile = "./Scorpion/Scorpion.dts";
    emap = true;
    mountPoint = 0;
-   offset = "0 0 0";
+   offset = "0 0 -0.06";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
    className = "WeaponImage";
-   item = BNE_L85Item;
+   item = BNE_ScorpionItem;
    ammo = " ";
    melee = false;
    armReady = false;
    hideHands = false;
-   scopingImage = BNE_L85IronsightImage;
-   safetyImage = BNE_L85Image;
+   scopingImage = BNE_ScorpionIronsightImage;
+   safetyImage = BNE_ScorpionImage;
    doColorShift = true;
-   colorShiftColor = BNE_L85Item.colorShiftColor;
+   colorShiftColor = BNE_ScorpionItem.colorShiftColor;
 
 	isSafetyImage = true;
 
@@ -511,12 +502,12 @@ datablock ShapeBaseImageData(BNE_L85SafetyImage)
 
 };
 
-function BNE_L85SafetyImage::onDone(%this,%obj,%slot)
+function BNE_ScorpionSafetyImage::onDone(%this,%obj,%slot)
 {
 	%obj.mountImage(%this.safetyImage, 0);
 }
 
-function BNE_L85SafetyImage::onMount(%this,%obj,%slot)
+function BNE_ScorpionSafetyImage::onMount(%this,%obj,%slot)
 {
 	%this.AEMountSetup(%obj, %slot);
 	%obj.aeplayThread(1, root);
@@ -525,7 +516,7 @@ function BNE_L85SafetyImage::onMount(%this,%obj,%slot)
 	parent::onMount(%this,%obj,%slot);
 }
 
-function BNE_L85SafetyImage::onUnMount(%this, %obj, %slot)
+function BNE_ScorpionSafetyImage::onUnMount(%this, %obj, %slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 	%obj.aeplayThread(1, armReadyRight);	
@@ -534,22 +525,20 @@ function BNE_L85SafetyImage::onUnMount(%this, %obj, %slot)
 
 
 ///////// IRONSIGHTS?
-
-datablock ShapeBaseImageData(BNE_L85IronsightImage : BNE_L85Image)
-{
-	recoilHeight = 0.3;
-
-	scopingImage = BNE_L85Image;
-	sourceImage = BNE_L85Image;
 	
-	offset = "0 0 0";
-	eyeOffset = "0.01425 1.5 -1.0293";
+datablock ShapeBaseImageData(BNE_ScorpionIronsightImage : BNE_ScorpionImage)
+{
+	recoilHeight = 0.125;
+
+	scopingImage = BNE_ScorpionImage;
+	sourceImage = BNE_ScorpionImage;
+	
+   offset = "0 0 -0.06";
+	eyeOffset = "0 1 -0.22";
 	rotation = eulerToMatrix( "0 -20 0" );
 
-	isScopedImage = true;
-
-	desiredFOV = $ae_LowScopeFOV;
-	projectileZOffset = 0.25;
+	desiredFOV = $ae_LowIronsFOV;
+	projectileZOffset = 0;
 	R_MovePenalty = 0.5;
    
 	stateName[15]				= "Reload2";
@@ -565,21 +554,21 @@ datablock ShapeBaseImageData(BNE_L85IronsightImage : BNE_L85Image)
 	stateSound[7]				= "";
 };
 
-function BNE_L85IronsightImage::onDone(%this,%obj,%slot)
+function BNE_ScorpionIronsightImage::onDone(%this,%obj,%slot)
 {
 	%obj.reloadTime[%this.sourceImage.getID()] = getSimTime();
 	%obj.mountImage(%this.sourceImage, 0);
 }
 
-function BNE_L85IronsightImage::onReady(%this,%obj,%slot)
+function BNE_ScorpionIronsightImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 }
 
-function BNE_L85IronsightImage::AEOnFire(%this,%obj,%slot)
+function BNE_ScorpionIronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_L85Fire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_M9Fire @ getRandom(1, 4) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -587,7 +576,7 @@ function BNE_L85IronsightImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function BNE_L85IronsightImage::onDryFire(%this, %obj, %slot)
+function BNE_ScorpionIronsightImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
@@ -595,7 +584,7 @@ function BNE_L85IronsightImage::onDryFire(%this, %obj, %slot)
 
 // HIDES ALL HAND NODES
 
-function BNE_L85IronsightImage::onMount(%this,%obj,%slot)
+function BNE_ScorpionIronsightImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
@@ -606,7 +595,7 @@ function BNE_L85IronsightImage::onMount(%this,%obj,%slot)
 
 // APLLY BODY PARTS IS LIKE PRESSING CTRL O AND ESC, IT APPLIES THE AVATAR COLORS FOR YOU
 
-function BNE_L85IronsightImage::onUnMount(%this,%obj,%slot)
+function BNE_ScorpionIronsightImage::onUnMount(%this,%obj,%slot)
 {
 	if(isObject(%obj.client) && %obj.client.IsA("GameConnection"))
 		%obj.client.play2D(AEAdsOut3Sound); // %obj.getHackPosition());

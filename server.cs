@@ -123,4 +123,7 @@ else
 	exec("./Weapon_DoubleBarrel.cs");
 	exec("./Weapon_STG44.cs");
 	exec("./Weapon_Springfield.cs");
+	exec("./Weapon_1911S.cs");
+	exec("./Weapon_Scorpion.cs");
+	exec("./Weapon_Stoner63.cs");
 }
