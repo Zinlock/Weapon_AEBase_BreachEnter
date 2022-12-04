@@ -38,7 +38,7 @@ datablock ItemData(BNE_DoubleBarrelItem)
 
 	//gui stuff
 	uiName = "B&E: DB Shotgun";
-	iconName = "./Icons/39";
+	iconName = "./Icons/Icon_DB";
 	doColorShift = true;
 	colorShiftColor = "0.65 0.65 0.65 1";
 

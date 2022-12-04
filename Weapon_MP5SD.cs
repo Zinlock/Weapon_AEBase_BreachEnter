@@ -134,10 +134,7 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 
 	screenshakeMin = "0.015 0.015 0.015"; 
 	screenshakeMax = "0.1 0.1 0.1"; 
-	
-	farShotSound = SMGCDistantSound;
-	farShotDistance = 40;
-	
+
 	sonicWhizz = true;
 	whizzSupersonic = true;
 	whizzThrough = false;

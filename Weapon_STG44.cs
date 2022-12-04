@@ -55,7 +55,7 @@ datablock ItemData(BNE_STG44Item)
 
 	//gui stuff
 	uiName = "B&E: StG 44";
-	iconName = "./Icons/36";
+	iconName = "./Icons/Icon_StG44";
 	doColorShift = true;
 	colorShiftColor = "0.65 0.65 0.65 1";
 
