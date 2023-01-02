@@ -33,9 +33,9 @@ function gameConnection::DropInventory(%client)
 }
 
 //we need the base add-on for this, so force it to load
-%error = ForceRequiredAddOn("Weapon_AEBase");
+$error = ForceRequiredAddOn("Weapon_AEBase");
 
-if(%error == $Error::AddOn_NotFound)
+if($error == $Error::AddOn_NotFound)
 {
 	//we don't have the base, so we're screwed =(
 	error("ERROR: AEBase_BreachEnter - required add-on Weapon_AEBase not found");
@@ -127,4 +127,5 @@ else
 	exec("./Weapon_Scorpion.cs");
 	exec("./Weapon_Stoner63.cs");
 	exec("./Weapon_PPKS.cs");
+	exec("./Weapon_Deagle.cs");
 }
