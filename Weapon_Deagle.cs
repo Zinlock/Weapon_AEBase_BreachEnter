@@ -153,8 +153,8 @@ datablock ShapeBaseImageData(BNE_DeagleImage)
 	spreadMin = 400;
 	spreadMax = 1500;
 
-	screenshakeMin = "0.025 0.025 0.025"; 
-	screenshakeMax = "0.075 0.075 0.075"; 
+	screenshakeMin = "0.1 0.1 0.1";
+	screenshakeMax = "0.2 0.2 0.2";
 
 	farShotSound = PistolHeavyDistantSound;
 	farShotDistance = 40;
