@@ -1274,3 +1274,25 @@ datablock AudioProfile(BNE_Stoner63RemoveSound)
 };
 
 
+//Deagle
+datablock AudioProfile(BNE_DeagleSlideSound)
+{
+   filename    = "./Reload/Deagle/Deagle_Slide.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_DeagleMagOutSound)
+{
+   filename    = "./Reload/Deagle/Deagle_MagOut.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_DeagleMagInSound)
+{
+   filename    = "./Reload/Deagle/Deagle_MagIn.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+

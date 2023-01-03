@@ -64,14 +64,14 @@ datablock ItemData(BNE_DeagleItem)
 	image = BNE_DeagleImage;
 	canDrop = true;
 
-	AEAmmo = 7;
-	AEType = AE_LightPAmmoItem.getID();
+	AEAmmo = 8;
+	AEType = AE_HeavyPAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 300;
-	recoil = "Light"; 
+	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "The Beretta 92 is a precision-made Italian pistol chambered in 9x19 Parabellum, designated as the Deagle by the US Military.";
+	description = "The Mark XIX is the most recent model of the Desert Eagle, designed by Magnum Research Inc. and manufactured by Israel Military Industries.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
@@ -242,7 +242,7 @@ datablock ShapeBaseImageData(BNE_DeagleImage)
 	stateTransitionOnTimeout[8]		= "ReloadMagIn";
 	stateWaitForTimeout[8]			= true;
 	stateSequence[8]			= "MagOut";
-	stateSound[8]				= BNE_M9MagOutSound;//BNE_DeagleMagOutSound;
+	stateSound[8]				= BNE_DeagleMagOutSound;
 	
 	stateName[9]				= "ReloadMagIn";
 	stateTimeoutValue[9]			= 0.5;
@@ -250,7 +250,7 @@ datablock ShapeBaseImageData(BNE_DeagleImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "MagIn";
-	stateSound[9]				= BNE_M9MagInSound; //BNE_DeagleMagInSound;
+	stateSound[9]				= BNE_DeagleMagInSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.4;
@@ -289,7 +289,7 @@ datablock ShapeBaseImageData(BNE_DeagleImage)
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
 	stateSequence[16]			= "MagOutEmpty";
-	stateSound[16]				= BNE_M9MagOutSound; //BNE_DeagleMagOutSound;
+	stateSound[16]				= BNE_DeagleMagOutSound;
 	
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.5;
@@ -297,7 +297,7 @@ datablock ShapeBaseImageData(BNE_DeagleImage)
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagInEmpty";
-	stateSound[17]				= BNE_M9MagInSound; //BNE_DeagleMagInSound;
+	stateSound[17]				= BNE_DeagleMagInSound;
 	
 	stateName[19]				= "Reload2End";
 	stateTimeoutValue[19]			= 0.6;
@@ -305,7 +305,7 @@ datablock ShapeBaseImageData(BNE_DeagleImage)
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
 	stateSequence[19]			= "ReloadEndEmpty";
-	stateSound[19]				= ""; //BNE_DeagleSlideSound;
+	stateSound[19]				= "";
 	
 	stateName[20]				= "ReadyLoop";
 	stateTransitionOnTimeout[20]		= "Ready";
@@ -369,7 +369,7 @@ function BNE_DeagleImage::onReloadEnd(%this,%obj,%slot)
 
 function BNE_DeagleImage::onReload2End(%this,%obj,%slot)
 {
-  %obj.reload2Schedule = schedule(150,0,serverPlay3D,BNE_M9SlideSound,%obj.getPosition());
+  %obj.reload2Schedule = %obj.schedule(250,playAudio,1,BNE_DeagleSlideSound);
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
