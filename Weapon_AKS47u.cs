@@ -1,7 +1,21 @@
-datablock AudioProfile(BNE_AKS47UFireLoopSound)
+datablock AudioProfile(BNE_AKS47UFire1Sound)
 {
-   filename    = "./Sounds/Fire/AK47/AKu_LP.wav";
-   description = BAADFireMediumLoop3D;
+   filename    = "./Sounds/Fire/AK47/AKU_fire1.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_AKS47UFire2Sound)
+{
+   filename    = "./Sounds/Fire/AK47/AKU_fire2.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_AKS47UFire3Sound)
+{
+   filename    = "./Sounds/Fire/AK47/AKU_fire3.wav";
+   description = MediumClose3D;
    preload = true;
 };
 
@@ -117,8 +131,6 @@ datablock ShapeBaseImageData(BNE_AKS47UImage)
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
-
-    loopingEndSound = BNE_AK47FireLoopEndSound;
 
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
@@ -256,8 +268,8 @@ datablock ShapeBaseImageData(BNE_AKS47UImage)
 	
 	stateName[12]				= "FireLoadCheckB";
 	stateTransitionOnAmmo[12]		= "TrigCheck";
-	stateTransitionOnNoAmmo[12]		= "EndLoopEmpty";	
-	stateTransitionOnNotLoaded[12]  = "EndLoop";
+	stateTransitionOnNoAmmo[12]		= "Reload2";
+	stateTransitionOnNotLoaded[12]  = "Ready";
 		
 	stateName[14]				= "Reloaded";
 	stateTimeoutValue[14]			= 0.1;
@@ -319,34 +331,20 @@ datablock ShapeBaseImageData(BNE_AKS47UImage)
 	
 	stateName[23]          = "TrigCheck";
 	stateTransitionOnTriggerDown[23]  = "preFire";
-	stateTransitionOnTimeout[23]		= "EndLoop";
-	
-	stateName[24]          = "EndLoop";
-	stateScript[24]				= "onEndLoop";
-	stateTransitionOnTimeout[24]		= "Ready";
-	
-	stateName[25]          = "EndLoopEmpty";
-	stateScript[25]				= "onEndLoop";
-	stateTransitionOnTimeout[25]		= "Reload2";
+	stateTransitionOnTimeout[23]		= "Ready";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
 function BNE_AKS47UImage::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, BNE_AKS47UFireLoopSound);
-    %obj.FireLoop = true;
+	%obj.stopAudio(0);
+	%obj.playAudio(0, BNE_AKS47UFire @ getRandom(1, 3) @ Sound);
 	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
 	
 	Parent::AEOnFire(%this, %obj, %slot); 	
-}
-
-function BNE_AKS47UImage::onEndLoop(%this, %obj, %slot)
-{
-    %obj.playAudio(0, %this.loopingEndSound);
-    %obj.FireLoop = false;
 }
 
 function BNE_AKS47UImage::onDryFire(%this, %obj, %slot)
@@ -581,19 +579,13 @@ function BNE_AKS47UIronsightImage::onReady(%this,%obj,%slot)
 
 function BNE_AKS47UIronsightImage::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, BNE_AKS47UFireLoopSound);
-    %obj.FireLoop = true;
+	%obj.stopAudio(0);
+	%obj.playAudio(0, BNE_AKS47UFire @ getRandom(1, 3) @ Sound);
 	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
 	
 	Parent::AEOnFire(%this, %obj, %slot); 	
-}
-
-function BNE_AKS47UIronsightImage::onEndLoop(%this, %obj, %slot)
-{
-    %obj.playAudio(0, %this.loopingEndSound);
-    %obj.FireLoop = false;
 }
 
 function BNE_AKS47UIronsightImage::onDryFire(%this, %obj, %slot)
