@@ -128,4 +128,5 @@ else
 	exec("./Weapon_Stoner63.cs");
 	exec("./Weapon_PPKS.cs");
 	exec("./Weapon_Deagle.cs");
+	exec("./Weapon_Contender.cs");
 }

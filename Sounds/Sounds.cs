@@ -1339,3 +1339,17 @@ datablock AudioProfile(BNE_DeagleMagInSound)
    preload = true;
 };
 
+//Contender
+datablock AudioProfile(BNE_ContenderOpenSound)
+{
+   filename    = "./Reload/Contender/Contender_Open.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_ContenderCloseSound)
+{
+   filename    = "./Reload/Contender/Contender_Close.wav";
+   description = AudioClose3d;
+   preload = true;
+};
