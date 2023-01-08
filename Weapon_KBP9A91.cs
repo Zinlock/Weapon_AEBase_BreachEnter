@@ -287,24 +287,17 @@ datablock ShapeBaseImageData(BNE_KBP9A91Image)
 	stateName[17]				= "Reload2MagIn";
 	stateTimeoutValue[17]			= 0.35;
 	stateScript[17]				= "onReload2MagIn";
-	stateTransitionOnTimeout[17]		= "Reload2Bolt";
+	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
 	stateSequence[17]			= "MagIn";
 	stateSound[17]				= BNE_KBP9A91MagInSound;
-	
-	stateName[18]				= "Reload2Bolt";
-	stateTimeoutValue[18]			= 0.45;
-	stateScript[18]				= "onReload2Bolt";
-	stateTransitionOnTimeout[18]		= "Reload2End";
-	stateWaitForTimeout[18]			= true;
-	stateSequence[18]			= "Bolt";
-	
+		
 	stateName[19]				= "Reload2End";
-	stateTimeoutValue[19]			= 0.25;
+	stateTimeoutValue[19]			= 0.7;
 	stateScript[19]				= "onReload2End";
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
-	stateSequence[19]			= "ReloadEnd";
+	stateSequence[19]			= "ReloadEndEmpty";
 	
 	stateName[20]				= "ReadyLoop";
 	stateTransitionOnTimeout[20]		= "Ready";
@@ -377,11 +370,11 @@ function BNE_KBP9A91Image::onReload2MagOut(%this,%obj,%slot)
    %obj.aeplayThread(2, plant);
 }
 
-function BNE_KBP9A91Image::onReload2Bolt(%this,%obj,%slot)
+function BNE_KBP9A91Image::onReload2End(%this,%obj,%slot)
 {
   %obj.schedule(50, playAudio, 1, BNE_KBP9A91BoltSound);
-   %obj.aeplayThread(2, plant);
-   	Parent::AEMagReloadAll(%this, %obj, %slot);
+  %obj.aeplayThread(2, plant);
+  Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
 function BNE_KBP9A91Image::onReloadEnd(%this,%obj,%slot)
@@ -453,7 +446,7 @@ datablock ShapeBaseImageData(BNE_KBP9A91MagImage)
 {
 	shapeFile = "base/data/shapes/empty.dts";
 	mountPoint = 0;
-	offset = "0.05 0.65 0.1";
+	offset = "-0.125 0.65 0.1";
    rotation = eulerToMatrix( "0 40 0" );	
 	
 	casing = BNE_KBP9A91MagDebris;
