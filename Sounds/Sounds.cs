@@ -540,6 +540,49 @@ datablock AudioProfile(BNE_M60RemoveSound)
    preload = true;
 };
 
+//MG42
+datablock AudioProfile(BNE_MG42BoltSound)
+{
+   filename    = "./Reload/MG42/MG42_BOLT.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MG42AttachSound)
+{
+   filename    = "./Reload/MG42/MG42_BELT.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MG42MagOutSound)
+{
+   filename    = "./Reload/MG42/MG42_MAGOUT.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MG42MagInSound)
+{
+   filename    = "./Reload/MG42/MG42_MAGIN.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MG42CloseSound)
+{
+   filename    = "./Reload/MG42/MG42_CLOSE.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_MG42OpenSound)
+{
+   filename    = "./Reload/MG42/MG42_OPEN.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
 //M200
 datablock AudioProfile(BNE_M200BoltCloseSound)
 {

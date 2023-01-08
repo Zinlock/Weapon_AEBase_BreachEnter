@@ -257,7 +257,7 @@ datablock ShapeBaseImageData(BNE_MG42Image)
 	stateTransitionOnTimeout[9]		= "ReloadMagOut";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "HideBelt";
-	stateSound[9]				= BNE_MG42RemoveSound;
+	stateSound[9]				= BNE_M60RemoveSound; //BNE_MG42RemoveSound;
 	
 	stateName[10]				= "ReloadMagOut";
 	stateTimeoutValue[10]			= 1.25;
@@ -429,12 +429,14 @@ function BNE_MG42Image::onReloadMagIn(%this,%obj,%slot)
 
 function BNE_MG42Image::onOpenTop(%this,%obj,%slot)
 {
+  %obj.playAudio(1, BNE_MG42OpenSound);
 	%obj.aeplayThread(2, plant);
 }
 
 function BNE_MG42Image::onCloseTop(%this,%obj,%slot)
 {
-   %obj.schedule(150, "aeplayThread", "2", "plant");
+  %obj.playAudio(1, BNE_MG42OpenSound);
+	%obj.schedule(150, "aeplayThread", "2", "plant");
 }
 
 function BNE_MG42Image::onReloadHideBelt(%this,%obj,%slot)
