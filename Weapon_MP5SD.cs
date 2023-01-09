@@ -111,7 +111,6 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 	doColorShift = true;
 	colorShiftColor = BNE_MP5SDItem.colorShiftColor;//"0.400 0.196 0 1.000";
 
-	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
 	projectileDamage = 22;
@@ -172,9 +171,6 @@ datablock ShapeBaseImageData(BNE_MP5SDImage)
 	stateName[2]                       = "preFire";
 	stateTransitionOnTimeout[2]        = "Fire";
 	stateScript[2]                     = "AEOnFire";
-	stateEmitter[2]					= AEBaseRifleFlashEmitter;
-	stateEmitterTime[2]				= 0.05;
-	stateEmitterNode[2]				= "muzzlePoint";
 	stateFire[2]                       = true;
 	stateEjectShell[2]                       = true;
 
@@ -348,8 +344,8 @@ function BNE_MP5SDImage::onReload2MagIn(%this,%obj,%slot)
 function BNE_MP5SDImage::onReloadStart(%this,%obj,%slot)
 {
   %obj.aeplayThread(2, plant);
-   %obj.reload3Schedule = %this.schedule(150,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
+   %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
 function BNE_MP5SDImage::onReload2Start(%this,%obj,%slot)
@@ -357,7 +353,7 @@ function BNE_MP5SDImage::onReload2Start(%this,%obj,%slot)
   %obj.aeplayThread(2, plant);
   %obj.aeplayThread(3, shiftright);
    %obj.reload3Schedule = %this.schedule(400,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(200,300),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
+   %obj.reload4Schedule = schedule(getRandom(650,750),0,serverPlay3D,AEMagMetalAR @ getRandom(1,3) @ Sound,%obj.getPosition());
 }
 
 function BNE_MP5SDImage::onReady(%this,%obj,%slot)
