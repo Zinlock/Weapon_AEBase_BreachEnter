@@ -1,3 +1,31 @@
+datablock AudioProfile(BNE_AK103Fire1Sound)
+{
+	filename    = "./Sounds/Fire/AK47/AKSD_FIRE1.wav";
+	description = LightClose3D;
+	preload = true;
+};
+
+datablock AudioProfile(BNE_AK103Fire2Sound)
+{
+	filename    = "./Sounds/Fire/AK47/AKSD_FIRE2.wav";
+	description = LightClose3D;
+	preload = true;
+};
+
+datablock AudioProfile(BNE_AK103Fire3Sound)
+{
+	filename    = "./Sounds/Fire/AK47/AKSD_FIRE3.wav";
+	description = LightClose3D;
+	preload = true;
+};
+
+datablock AudioProfile(BNE_AK103Fire4Sound)
+{
+	filename    = "./Sounds/Fire/AK47/AKSD_FIRE4.wav";
+	description = LightClose3D;
+	preload = true;
+};
+
 //////////
 // item //
 //////////
@@ -7,7 +35,7 @@ datablock ItemData(BNE_AK103Item)
 	className = "Weapon"; // For inventory system
 
 	 // Basic Item Properties
-	shapeFile = "./AK103/AK103.dts";
+	shapeFile = "./AK103/AK103SD.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -16,7 +44,7 @@ datablock ItemData(BNE_AK103Item)
 	emap = true;
 
 	//gui stuff
-	uiName = "B&E: AK-103";
+	uiName = "B&E: AK-103 SD";
 	iconName = "./Icons/5";
 	doColorShift = true;
 	colorShiftColor = "0.4 0.4 0.4 1";
@@ -48,7 +76,7 @@ datablock ItemData(BNE_AK103Item)
 datablock ShapeBaseImageData(BNE_AK103Image)
 {
    // Basic Item properties
-   shapeFile = "./AK103/AK103.dts";
+   shapeFile = "./AK103/AK103SD.dts";
    emap = true;
 
    // Specify mount point & offset for 3rd person, and eye offset
@@ -71,7 +99,7 @@ datablock ShapeBaseImageData(BNE_AK103Image)
    // Projectile && Ammo.
    item = BNE_AK103Item;
    ammo = " ";
-   projectile = AETrailedProjectile;
+   projectile = AEProjectile;
    projectileType = Projectile;
 
    casing = AE_BERifleShellDebris;
@@ -90,38 +118,32 @@ datablock ShapeBaseImageData(BNE_AK103Image)
 	doColorShift = true;
 	colorShiftColor = BNE_AK103Item.colorShiftColor;//"0.400 0.196 0 1.000";
 
-    loopingEndSound = BNE_AK47FireLoopEndSound;
-
 	shellSound = AEShellRifle;
 	shellSoundMin = 450; //min delay for when the shell sound plays
 	shellSoundMax = 550; //max delay for when the shell sound plays
 
-	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 33;
+	projectileDamage = 31;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.7;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
 
-	recoilHeight = 1.54;
+	recoilHeight = 1.4;
 	recoilWidth = 0;
 	recoilWidthMax = 0;
 	recoilHeightMax = 20;
 
 	spreadBurst = 3; // how much shots it takes to trigger spread i think
 	spreadReset = 150; // m
-	spreadBase = 200;
-	spreadMin = 350;
-	spreadMax = 1000;
+	spreadBase = 100;
+	spreadMin = 250;
+	spreadMax = 500;
 
 	screenshakeMin = "0.1 0.1 0.1";
 	screenshakeMax = "0.15 0.15 0.15";
-
-	farShotSound = RifleGDistantSound;
-	farShotDistance = 40;
 
 	sonicWhizz = true;
 	whizzSupersonic = true;
@@ -137,9 +159,9 @@ datablock ShapeBaseImageData(BNE_AK103Image)
 	staticSwayMod = 2;
 	staticEffectiveSpeedBonus = 0;
 	staticSpawnFakeProjectiles = true;
-	staticTracerEffect = ""; // defaults to AEBulletStaticShape
-	staticScaleCalibre = 0.25;
-	staticScaleLength = 0.25;
+	staticTracerEffect = AEStealthBulletStaticShape; // defaults to AEBulletStaticShape
+	staticScaleCalibre = 0.2;
+	staticScaleLength = 0.2;
 	staticUnitsPerSecond = $ae_RifleUPS;
 
 	projectileFalloffStart = $ae_falloffRifleStart;
@@ -170,9 +192,6 @@ datablock ShapeBaseImageData(BNE_AK103Image)
 	stateName[2]                       = "preFire";
 	stateTransitionOnTimeout[2]        = "Fire";
 	stateScript[2]                     = "AEOnFire";
-	stateEmitter[2]					= AEBaseRifleFlashEmitter;
-	stateEmitterTime[2]				= 0.05;
-	stateEmitterNode[2]				= "muzzlePoint";
 	stateFire[2]                       = true;
 	stateEjectShell[2]                       = true;
 
@@ -232,8 +251,8 @@ datablock ShapeBaseImageData(BNE_AK103Image)
 
 	stateName[12]				= "FireLoadCheckB";
 	stateTransitionOnAmmo[12]		= "TrigCheck";
-	stateTransitionOnNoAmmo[12]		= "EndLoopEmpty";
-	stateTransitionOnNotLoaded[12]  = "EndLoop";
+	stateTransitionOnNoAmmo[12]		= "Reload2";
+	stateTransitionOnNotLoaded[12]  = "Ready";
 
 	stateName[14]				= "Reloaded";
 	stateTimeoutValue[14]			= 0.2;
@@ -295,34 +314,20 @@ datablock ShapeBaseImageData(BNE_AK103Image)
 	
 	stateName[23]          = "TrigCheck";
 	stateTransitionOnTriggerDown[23]  = "preFire";
-	stateTransitionOnTimeout[23]		= "EndLoop";
-	
-	stateName[24]          = "EndLoop";
-	stateScript[24]				= "onEndLoop";
-	stateTransitionOnTimeout[24]		= "Ready";
-	
-	stateName[25]          = "EndLoopEmpty";
-	stateScript[25]				= "onEndLoop";
-	stateTransitionOnTimeout[25]		= "Reload2";
+	stateTransitionOnTimeout[23]		= "Ready";
 };
 
 // THERE ARE THREE STAGES OF VISUAL RECOIL, NONE, PLANT, JUMP
 
 function BNE_AK103Image::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, BNE_AK47FireLoopSound);
-    %obj.FireLoop = true;
+	%obj.stopAudio(0);
+  %obj.playAudio(0, BNE_AK103Fire @ getRandom(1, 4) @ Sound);
 	
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
 	
 	Parent::AEOnFire(%this, %obj, %slot); 	
-}
-
-function BNE_AK103Image::onEndLoop(%this, %obj, %slot)
-{
-    %obj.playAudio(0, %this.loopingEndSound);
-    %obj.FireLoop = false;
 }
 
 function BNE_AK103Image::onDryFire(%this, %obj, %slot)
@@ -424,7 +429,7 @@ function BNE_AK103Image::onMagDrop(%this,%obj,%slot)
 
 datablock ShapeBaseImageData(BNE_AK103SafetyImage)
 {
-   shapeFile = "./AK103/AK103.dts";
+   shapeFile = "./AK103/AK103SD.dts";
    emap = true;
    mountPoint = 0;
    offset = "0 0 -0.065";
@@ -488,7 +493,7 @@ datablock ShapeBaseImageData(BNE_AK103IronsightImage : BNE_AK103Image)
 	sourceImage = BNE_AK103Image;
 	
    offset = "0 0 -0.065";
-	eyeOffset = "0.01 1.0 -1";
+	eyeOffset = "0.01015 1.0 -1.0768";
 	rotation = eulerToMatrix( "0 -20 0" );
 
 	desiredFOV = $ae_LowIronsFOV;
@@ -521,19 +526,13 @@ function BNE_AK103IronsightImage::onReady(%this,%obj,%slot)
 
 function BNE_AK103IronsightImage::AEOnFire(%this,%obj,%slot)
 {
-	%obj.playAudio(0, BNE_AK47FireLoopSound);
-    %obj.FireLoop = true;
-	
+	%obj.stopAudio(0);
+  %obj.playAudio(0, BNE_AK103Fire @ getRandom(1, 4) @ Sound);
+
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
 	
 	Parent::AEOnFire(%this, %obj, %slot); 	
-}
-
-function BNE_AK103IronsightImage::onEndLoop(%this, %obj, %slot)
-{
-    %obj.playAudio(0, %this.loopingEndSound);
-    %obj.FireLoop = false;
 }
 
 function BNE_AK103IronsightImage::onDryFire(%this, %obj, %slot)
