@@ -316,8 +316,8 @@ function BNE_ContenderImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
 	 %obj.schedule(100, playAudio, 1, BNE_ContenderOpenSound);
-   %obj.reload3Schedule = %this.schedule(150,onMagDrop,%obj,%slot);
-   %obj.reload4Schedule = schedule(getRandom(400,500),0,serverPlay3D,AEShellRifle @ getRandom(1,2) @ Sound,%obj.getPosition());
+   %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
+   %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEShellRifle @ getRandom(1,2) @ Sound,%obj.getPosition());
 }
 
 function BNE_ContenderImage::onReady(%this,%obj,%slot)
