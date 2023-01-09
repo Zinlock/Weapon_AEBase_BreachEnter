@@ -170,10 +170,10 @@ datablock ShapeBaseImageData(BNE_KBP9A91Image)
 	staticGravityScale = 1.5;
 	staticSwayMod = 2;
 	staticEffectiveSpeedBonus = 0;
-	staticSpawnFakeProjectiles = false;
-	staticTracerEffect = ""; // defaults to AEBulletStaticShape
-	staticScaleCalibre = 0.25;
-	staticScaleLength = 0.25;
+	staticSpawnFakeProjectiles = true;
+	staticTracerEffect = AEStealthBulletStaticShape; // defaults to AEBulletStaticShape
+	staticScaleCalibre = 0.2;
+	staticScaleLength = 0.2;
 	staticUnitsPerSecond = $ae_RifleUPS;
 
    //casing = " ";
