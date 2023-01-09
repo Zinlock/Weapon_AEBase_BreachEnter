@@ -117,7 +117,7 @@ datablock ShapeBaseImageData(BNE_ContenderImage)
 
 	projectileDamage = 75;
 	projectileCount = 1;
-	projectileHeadshotMult = 2;
+	projectileHeadshotMult = 2.3;
 	projectileVelocity = 1000;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
@@ -160,7 +160,7 @@ datablock ShapeBaseImageData(BNE_ContenderImage)
 	staticTracerEffect = ""; // defaults to AEBulletStaticShape
 	staticScaleCalibre = 0.25;
 	staticScaleLength = 0.25;
-	staticUnitsPerSecond = $ae_RifleUPS;
+	staticUnitsPerSecond = $ae_SniperUPS;
 
    //casing = " ";
 
@@ -195,7 +195,7 @@ datablock ShapeBaseImageData(BNE_ContenderImage)
 	stateTransitionOnTimeout[3]     = "SemiAutoCheck";
 	stateEmitter[3]					= AEBaseSmokeEmitter;
 	stateEmitterTime[3]				= 0.05;
-	stateTimeoutValue[3]             	= 0.5;
+	stateTimeoutValue[3]             	= 0.35;
 	stateEmitterNode[3]				= "muzzlePoint";
 	stateAllowImageChange[3]        = false;
 	stateSequence[3]                = "Fire";
@@ -212,7 +212,7 @@ datablock ShapeBaseImageData(BNE_ContenderImage)
 	stateTransitionOnNoAmmo[6]		= "Reload";
 
 	stateName[7]				= "Reload";
-	stateTimeoutValue[7]			= 0.45;
+	stateTimeoutValue[7]			= 0.35;
 	stateScript[7]				= "onReloadStart";
 	stateTransitionOnTimeout[7]		= "ReloadWait";
 	stateWaitForTimeout[7]			= true;
@@ -221,11 +221,11 @@ datablock ShapeBaseImageData(BNE_ContenderImage)
 
 	stateName[8]				= "ReloadWait";
 	stateScript[8]				= "onReloadWait";
-	stateTimeoutValue[8]			= 0.15;
+	stateTimeoutValue[8]			= 0.1;
 	stateTransitionOnTimeout[8]		= "ReloadInsert";
 
 	stateName[9]				= "ReloadInsert";
-	stateTimeoutValue[9]			= 0.35;
+	stateTimeoutValue[9]			= 0.3;
 	stateScript[9]				= "onReloadInsert";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
@@ -242,7 +242,7 @@ datablock ShapeBaseImageData(BNE_ContenderImage)
 
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.1;
+	stateTimeoutValue[11]			= 0.07;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 
 	stateName[12]				= "FireLoadCheckB";
@@ -299,8 +299,8 @@ function BNE_ContenderImage::AEOnLowClimb(%this, %obj, %slot)
 function BNE_ContenderImage::onReloadInsert(%this,%obj,%slot)
 {
   %obj.schedule(50, "aeplayThread", "2", "plant");
-  %obj.schedule(450, "aeplayThread", "3", "shiftright");
-	%obj.schedule(450, playAudio, 2, BNE_ContenderCloseSound);
+  %obj.schedule(400, "aeplayThread", "3", "shiftright");
+	%obj.schedule(400, playAudio, 2, BNE_ContenderCloseSound);
 }
 
 function BNE_ContenderImage::onReloadEnd(%this,%obj,%slot)
@@ -315,8 +315,8 @@ function BNE_ContenderImage::onReloadEnd(%this,%obj,%slot)
 function BNE_ContenderImage::onReloadStart(%this,%obj,%slot)
 {
    %obj.aeplayThread(2, plant);
-	 %obj.schedule(100, playAudio, 1, BNE_ContenderOpenSound);
-   %obj.reload3Schedule = %this.schedule(250,onMagDrop,%obj,%slot);
+	 %obj.schedule(50, playAudio, 1, BNE_ContenderOpenSound);
+   %obj.reload3Schedule = %this.schedule(200,onMagDrop,%obj,%slot);
    %obj.reload4Schedule = schedule(getRandom(700,800),0,serverPlay3D,AEShellRifle @ getRandom(1,2) @ Sound,%obj.getPosition());
 }
 
