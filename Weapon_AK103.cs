@@ -45,7 +45,7 @@ datablock ItemData(BNE_AK103Item)
 
 	//gui stuff
 	uiName = "B&E: AK-103 SD";
-	iconName = "./Icons/5";
+	iconName = "./Icons/icon_ak103sd";
 	doColorShift = true;
 	colorShiftColor = "0.4 0.4 0.4 1";
 
