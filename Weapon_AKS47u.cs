@@ -135,9 +135,9 @@ datablock ShapeBaseImageData(BNE_AKS47UImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 30;
+	projectileDamage = 29;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.7;
+	projectileHeadshotMult = 1.6;
 	projectileVelocity = 400;
 	projectileTagStrength = 0.51;  // tagging strength
 	projectileTagRecovery = 0.03; // tagging decay rate
