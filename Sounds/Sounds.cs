@@ -1353,3 +1353,25 @@ datablock AudioProfile(BNE_ContenderCloseSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//ScarH
+datablock AudioProfile(BNE_ScarHMagOutSound)
+{
+   filename    = "./Reload/ScarH/ScarH_MagOut.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_ScarHMagInSound)
+{
+   filename    = "./Reload/ScarH/ScarH_MagIn.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_ScarHBoltSound)
+{
+   filename    = "./Reload/ScarH/ScarH_Bolt.wav";
+   description = AudioClose3d;
+   preload = true;
+};

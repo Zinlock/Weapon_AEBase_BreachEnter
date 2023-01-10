@@ -85,7 +85,6 @@ else
 	exec("./Weapon_AK103.cs");
 	exec("./Weapon_AKS47U.cs");
 	exec("./Weapon_AR15.cs");
-	exec("./Weapon_LR300.cs");
 	exec("./Weapon_RPK.cs");
 	exec("./Weapon_Thompson.cs");
 	exec("./Weapon_TommyGun.cs");
@@ -129,4 +128,5 @@ else
 	exec("./Weapon_PPKS.cs");
 	exec("./Weapon_Deagle.cs");
 	exec("./Weapon_Contender.cs");
+	exec("./Weapon_ScarH.cs");
 }
