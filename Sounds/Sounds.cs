@@ -1375,3 +1375,25 @@ datablock AudioProfile(BNE_ScarHBoltSound)
    description = AudioClose3d;
    preload = true;
 };
+
+// M82A1
+// datablock AudioProfile(BNE_M82A1MagOutSound)
+// {
+//    filename    = "./Reload/M82A1/M82A1_MagOut.wav";
+//    description = AudioClose3d;
+//    preload = true;
+// };
+
+// datablock AudioProfile(BNE_M82A1MagInSound)
+// {
+//    filename    = "./Reload/M82A1/M82A1_MagIn.wav";
+//    description = AudioClose3d;
+//    preload = true;
+// };
+
+datablock AudioProfile(BNE_M82A1BoltSound)
+{
+   filename    = "./Reload/M82A1/M82A1_Bolt.wav";
+   description = AudioClose3d;
+   preload = true;
+};

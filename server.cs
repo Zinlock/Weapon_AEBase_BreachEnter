@@ -129,4 +129,5 @@ else
 	exec("./Weapon_Deagle.cs");
 	exec("./Weapon_Contender.cs");
 	exec("./Weapon_ScarH.cs");
+	exec("./Weapon_M82A1.cs");
 }
