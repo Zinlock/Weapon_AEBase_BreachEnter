@@ -92,7 +92,7 @@ datablock ShapeBaseImageData(BNE_DeagleImage)
    // Specify mount point & offset for 3rd person, and eye offset
    // for first person rendering.
    mountPoint = 0;
-   offset = "0 0 -0.06";
+   offset = "0 0 0";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
 
@@ -475,7 +475,7 @@ datablock ShapeBaseImageData(BNE_DeagleSafetyImage)
    shapeFile = "./Deagle/Deagle.dts";
    emap = true;
    mountPoint = 0;
-   offset = "0 0 -0.06";
+   offset = "0 0 0";
    eyeOffset = "0 0 0";
    rotation = eulerToMatrix( "0 0 0" );
    correctMuzzleVector = true;
@@ -536,7 +536,7 @@ datablock ShapeBaseImageData(BNE_DeagleIronsightImage : BNE_DeagleImage)
 	scopingImage = BNE_DeagleImage;
 	sourceImage = BNE_DeagleImage;
 	
-   offset = "0 0 -0.06";
+   offset = "0 0 0";
 	eyeOffset = "0 1.15 -0.55";
 	rotation = eulerToMatrix( "0 -20 0" );
 
