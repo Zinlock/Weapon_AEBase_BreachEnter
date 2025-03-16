@@ -71,7 +71,7 @@ datablock ItemData(BNE_MP40Item)
 	RPM = 1200;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "insert description here";
+	description = "The MP40 is a German sub-machine gun chambered in 9mm.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

@@ -70,7 +70,7 @@ datablock ItemData(BNE_Tec9Item)
 	RPM = 300;
 	recoil = "Light"; 
 	uiColor = "1 1 1";
-	description = "The TEC-9 is a semi-automatic pistol developed by Intratec in 1984 that quickly" NL "fell into the wrong hands and eventually received a nation-wide ban in the United States.";
+	description = "The TEC-9 is a semi-automatic pistol developed by Intratec in 1984.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

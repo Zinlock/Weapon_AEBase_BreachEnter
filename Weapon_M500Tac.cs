@@ -53,7 +53,7 @@ datablock ItemData(BNE_M500TacItem)
   RPM = 60;
   Recoil = "Medium";
 	uiColor = "1 1 1";
-  description = "The Ithaca Model 37 is an accurate 12-gauge shotgun made for both civilian and military use.";
+  description = "The Mossberg 500 is an accurate 12-gauge shotgun made for both civilian and military use. This variant is equiped with a silencer, and a red laser.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

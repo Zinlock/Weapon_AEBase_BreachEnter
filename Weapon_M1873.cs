@@ -53,7 +53,7 @@ datablock ItemData(BNE_M1873Item)
   RPM = 60;
   Recoil = "Medium";
 	uiColor = "1 1 1";
-  description = "The M1873 is a heavy Soviet shotgun designed to fire multiple different round types, such as tear gas grenades or less-lethal rounds.";
+  description = "The Model 1873 is a lever action rifle designed by Winchester.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

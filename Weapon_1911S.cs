@@ -53,7 +53,7 @@ datablock ItemData(BNE_M1911SDItem)
 	RPM = 600;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The M1911 is a .45 ACP semi-auto, magazine-fed pistol made by Colt in the year 1911.";
+	description = "The M1911 is a .45 ACP semi-auto, magazine-fed pistol made by Colt in the year 1911. This one is fitted with a supressor.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

@@ -71,7 +71,7 @@ datablock ItemData(BNE_AKS47UItem)
 	RPM = 680;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "A compact version of the AK-74 popular among Russian tank crews. It is considered a prized weapon by many Arabs." NL "Osama Bin Laden was one who managed to get his hands on this little beauty.";
+	description = "A compact version of the AK-74 popular among Russian tank crews.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

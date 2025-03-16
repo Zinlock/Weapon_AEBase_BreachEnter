@@ -70,7 +70,7 @@ datablock ItemData(BNE_ScorpionItem)
 	RPM = 850;
 	recoil = "Light"; 
 	uiColor = "1 1 1";
-	description = "The Beretta 92 is a precision-made Italian pistol chambered in 9x19 Parabellum, designated as the Scorpion by the US Military.";
+	description = "The Skorpion vz. 61 is an open-bolt sub-machine gun made by Zastava Arms.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

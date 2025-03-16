@@ -71,7 +71,7 @@ datablock ItemData(BNE_BizonItem)
 	RPM = 700;
 	recoil = "Low";
 	uiColor = "1 1 1";
-	description = "Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world.";
+	description = "The PP-19 Bizon sub-machine gun is a 9x18mm Makarov slinging unit, with a high ammo capacity thanks to its helical magazine.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

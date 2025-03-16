@@ -70,7 +70,7 @@ datablock ItemData(BNE_ScarHItem)
 	RPM = 800;
 	recoil = "Heavy";
 	uiColor = "1 1 1";
-	description = "The LR-300 is a folding stock version of the common AR-15 rifle. This results in a more compact weapon system.";
+	description = "The FN SCAR-H is an automatic rifle chambered in 5.56x45mm." NL "It's perfect for defending burger joints from Russian invasion.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

@@ -228,7 +228,7 @@ datablock ItemData(BNE_TaserItem)
 	RPM = 30;
 	recoil = "No"; 
 	uiColor = "1 1 1";
-	description = "The XME brand made in America taser, loaded with mostly non lethal electric bolts." NL "This big fella is capable of stopping any fentanyl addicts dead in their tracks, guaranteed!";
+	description = "The XME brand made in America taser, loaded with mostly non lethal electric bolts.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

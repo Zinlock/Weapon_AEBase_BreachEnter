@@ -60,7 +60,7 @@ datablock ItemData(BNE_MosinItem)
   RPM = 60;
   Recoil = "Medium";
 	uiColor = "1 1 1";
-  description = "The Ithaca Model 37 is an accurate 12-gauge shotgun made for both civilian and military use.";
+  description = "Sergei Mosin's bolt action rifle is a notoriously unreliable tool." NL "It is chambered in 7.62x54mm rounds.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

@@ -61,7 +61,7 @@ datablock ItemData(BNE_AK103Item)
 	RPM = 600;
 	recoil = "Heavy"; 
 	uiColor = "1 1 1";
-	description = "The AK-103 is pretty much a more modern AKM, but comes with Picatinny rails." NL "Our glorious leader Vladimir Putin decided to give us a Kobra sight for our very important training exercise in Ukraine.";
+	description = "The AK-103 is a modernized AK rifle, rebuilt with attachments in mind.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

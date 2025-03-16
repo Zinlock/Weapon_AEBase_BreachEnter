@@ -70,7 +70,7 @@ datablock ItemData(BNE_PPKItem)
 	RPM = 300;
 	recoil = "Light"; 
 	uiColor = "1 1 1";
-	description = "The TT-33 is a Soviet pistol developed in 1930 by Fedor Tokarev aiming to replace the Nagant M1895 revolver in service.";
+	description = "The Walther PPK is a semi-automatic handgun made by Carl Walther.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

@@ -293,7 +293,7 @@ datablock ItemData(BNE_M79Item)
 	RPM = 4;
 	recoil = "Low";
 	uiColor = "1 1 1";
-	description = "The M79 is a big, strong and powerful Anti-Armor weapon produced in the USSR from 1961 to even today." NL "It recently saw adoption by Terrorist forces in the middle east. It is the perfect weapon for protecting your 72 virgins." NL "Also, stand behind somebody who is firing this thing for a nice surprise!";
+	description = "The American-made M79 \"Thumper\" is a break action grenade launcher chambered in 40mm.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

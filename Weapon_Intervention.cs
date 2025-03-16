@@ -77,7 +77,7 @@ datablock ItemData(BNE_M200Item)
     RPM = 60;
     Recoil = "Medium";
 	uiColor = "1 1 1";
-    description = "MOM GET THE CAMERA WOOOOOOO 360 Noscope muddafucka!!1";
+    description = "Cheyenne Tactical's M200 Intervention is the best weapon, ever, of all time." NL "It's chambered in the best round ever, .408 Cheyenne Tactical.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

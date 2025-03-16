@@ -70,7 +70,7 @@ datablock ItemData(BNE_LAPDBlasterItem)
 	RPM = 600;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "The LAPDBlaster is a .45 ACP semi-auto, magazine-fed pistol made by Colt in the year 1911.";
+	description = "The 2019 Detective Special. All your missed rounds will be lost in time..." NL "...like tears in rain. Time to die.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

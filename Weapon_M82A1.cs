@@ -70,7 +70,7 @@ datablock ItemData(BNE_M82A1Item)
     RPM = 60;
     Recoil = "Medium";
 	uiColor = "1 1 1";
-    description = "MOM GET THE CAMERA WOOOOOOO 360 Noscope muddafucka!!1";
+    description = "The Barrett M82 A1 is an anti-materiel rifle chambered in .50 BMG.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

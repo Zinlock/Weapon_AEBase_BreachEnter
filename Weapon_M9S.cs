@@ -60,7 +60,7 @@ datablock ItemData(BNE_M9SItem)
 	RPM = 300;
 	recoil = "Light"; 
 	uiColor = "1 1 1";
-	description = "The Beretta 92 is a precision-made Italian pistol chambered in 9x19 Parabellum, designated as the M9 by the US Military.";
+	description = "The Beretta 92 is a precision-made Italian pistol chambered in 9x19 Parabellum, designated as the M9 by the US Military. This variant is fitted with a supressor.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
