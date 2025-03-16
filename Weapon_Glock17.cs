@@ -49,7 +49,7 @@ datablock ItemData(BNE_Glock17Item)
 	RPM = 600;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "Gangsta niggas, PMC mercs, and law enforcement. The Glock 17 is a reliable and popular handgun among many fields of combat.";
+	description = "The Glock 17 is a reliable and popular handgun among many fields of combat.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;

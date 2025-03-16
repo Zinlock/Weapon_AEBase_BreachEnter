@@ -71,7 +71,7 @@ datablock ItemData(BNE_Glock18Item)
 	RPM = 1200;
 	recoil = "Medium"; 
 	uiColor = "1 1 1";
-	description = "Sheeeeit mayun dis muddafuckin blicky got a big ass magazine and it fuckin busts caps like a dayum machine gun!";
+	description = "The automatic sibling to the Glock 17, the Glock 18 offers a high firerate at the cost of high ammo usage.";
 
 	useImpactSounds = true;
 	softImpactThreshold = 2;
