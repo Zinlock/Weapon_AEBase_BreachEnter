@@ -57,7 +57,7 @@ datablock ItemData(BNE_AK47Item)
 	canDrop = true;
 
 	AEAmmo = 30;
-	AEType = AE_HeavyRAmmoItem.getID();
+	AEType = AE_MediumAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

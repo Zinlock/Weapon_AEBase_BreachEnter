@@ -64,7 +64,7 @@ datablock ItemData(BNE_FAMASItem)
 	canDrop = true;
 
 	AEAmmo = 24;
-	AEType = AE_LightRAmmoItem.getID();
+	AEType = AE_MediumAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

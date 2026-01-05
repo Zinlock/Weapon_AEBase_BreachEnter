@@ -57,7 +57,7 @@ datablock ItemData(BNE_FNFALItem)
 	canDrop = true;
 
 	AEAmmo = 20;
-	AEType = AE_HeavierRAmmoItem.getID();
+	AEType = AE_MediumAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

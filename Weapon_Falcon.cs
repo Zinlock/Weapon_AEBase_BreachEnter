@@ -54,7 +54,7 @@ datablock ItemData(FalconItem)
 	canDrop = true;
 
 	AEAmmo = 1;
-	AEType = AE_HeavierSRAmmoItem.getID();
+	AEType = AE_SpecialAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 600;
@@ -223,7 +223,7 @@ datablock ShapeBaseImageData(BNE_FalconImage)
 	stateTransitionOnNoAmmo[6]		= "Reload";
 
 	stateName[7]				= "Reload";
-	stateTimeoutValue[7]			= 0.45;
+	stateTimeoutValue[7]			= 0.55;
 	stateScript[7]				= "onReloadStart";
 	stateTransitionOnTimeout[7]		= "ReloadWait";
 	stateWaitForTimeout[7]			= true;
@@ -232,11 +232,11 @@ datablock ShapeBaseImageData(BNE_FalconImage)
 
 	stateName[8]				= "ReloadWait";
 	stateScript[8]				= "onReloadWait";
-	stateTimeoutValue[8]			= 0.25;
+	stateTimeoutValue[8]			= 0.45;
 	stateTransitionOnTimeout[8]		= "ReloadInsert";
 
 	stateName[9]				= "ReloadInsert";
-	stateTimeoutValue[9]			= 0.35;
+	stateTimeoutValue[9]			= 0.55;
 	stateScript[9]				= "onReloadInsert";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;

@@ -43,7 +43,7 @@ datablock ItemData(BNE_UMP45Item)
 	canDrop = true;
 
 	AEAmmo = 25;
-	AEType = AE_MediumPAmmoItem.getID();
+	AEType = AE_LightAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

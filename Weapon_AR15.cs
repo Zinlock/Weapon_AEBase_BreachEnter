@@ -54,7 +54,7 @@ datablock ItemData(BNE_AR15Item)
 	canDrop = true;
 
 	AEAmmo = 30;
-	AEType = AE_LightRAmmoItem.getID();
+	AEType = AE_MediumAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 800;

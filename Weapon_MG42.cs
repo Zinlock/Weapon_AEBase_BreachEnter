@@ -57,7 +57,7 @@ datablock ItemData(BNE_MG42Item)
 	canDrop = true;
 
 	AEAmmo = 50;
-	AEType = AE_HeavierRAmmoItem.getID();
+	AEType = AE_MediumAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

@@ -71,7 +71,7 @@ datablock ItemData(BNE_M9Item)
 	canDrop = true;
 
 	AEAmmo = 15;
-	AEType = AE_LightPAmmoItem.getID();
+	AEType = AE_LightAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 300;

@@ -57,7 +57,7 @@ datablock ItemData(BNE_AA12Item)
 	canDrop = true;
 
 	AEAmmo = 20;
-	AEType = AE_LightSAmmoItem.getID();
+	AEType = AE_ShotgunAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

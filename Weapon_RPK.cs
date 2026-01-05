@@ -50,7 +50,7 @@ datablock ItemData(BNE_RPKItem)
 	canDrop = true;
 
 	AEAmmo = 75;
-	AEType = AE_HeavyRAmmoItem.getID();
+	AEType = AE_MediumAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

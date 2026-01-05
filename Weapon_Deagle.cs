@@ -65,7 +65,7 @@ datablock ItemData(BNE_DeagleItem)
 	canDrop = true;
 
 	AEAmmo = 8;
-	AEType = AE_HeavyPAmmoItem.getID();
+	AEType = AE_LightAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 300;

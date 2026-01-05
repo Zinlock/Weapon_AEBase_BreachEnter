@@ -64,7 +64,7 @@ datablock ItemData(BNE_Glock18Item)
 	canDrop = true;
 
 	AEAmmo = 33;
-	AEType = AE_LightPAmmoItem.getID();
+	AEType = AE_LightAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

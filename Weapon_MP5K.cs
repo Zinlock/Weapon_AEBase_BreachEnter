@@ -64,7 +64,7 @@ datablock ItemData(BNE_MP5KItem)
 	canDrop = true;
 
 	AEAmmo = 30;
-	AEType = AE_LightPAmmoItem.getID();
+	AEType = AE_LightAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true; 

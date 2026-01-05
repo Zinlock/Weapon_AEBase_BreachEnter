@@ -71,7 +71,7 @@ datablock ItemData(BNE_L96Item)
 	canDrop = true;
 
 	AEAmmo = 5;
-	AEType = AE_HeavierRAmmoItem.getID();
+	AEType = AE_HeavyAmmoItem.getID();
 	AEBase = 1;
 
     RPM = 60;

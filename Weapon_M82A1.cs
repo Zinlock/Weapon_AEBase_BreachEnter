@@ -64,7 +64,7 @@ datablock ItemData(BNE_M82A1Item)
 	canDrop = true;
 
 	AEAmmo = 5;
-	AEType = AE_HeavySRAmmoItem.getID();
+	AEType = AE_HeavyAmmoItem.getID();
 	AEBase = 1;
 
     RPM = 60;

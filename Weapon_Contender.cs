@@ -47,7 +47,7 @@ datablock ItemData(BNE_ContenderItem)
 	canDrop = true;
 
 	AEAmmo = 1;
-	AEType = AE_HeavyPAmmoItem.getID();
+	AEType = AE_HeavyAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 600;
@@ -230,7 +230,7 @@ datablock ShapeBaseImageData(BNE_ContenderImage)
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "ReloadIn";
-	stateSound[9]				= BNE_M1873Insert3Sound; //BNE_ContenderInsertSound;
+	stateSound[9]				= BNE_ContenderInsertSound;
 
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.55;

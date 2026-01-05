@@ -562,7 +562,7 @@ datablock ItemData(BNE_RPG7Item)
 	canDrop = true;
 
 	AEAmmo = 1;
-	AEType = AE_RocketLAmmoItem.getID();
+	AEType = AE_SpecialAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 4;

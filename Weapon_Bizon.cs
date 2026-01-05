@@ -64,7 +64,7 @@ datablock ItemData(BNE_BizonItem)
 	canDrop = true;
 
 	AEAmmo = 64;
-	AEType = AE_LightPAmmoItem.getID();
+	AEType = AE_LightAmmoItem.getID();
 	AEBase = 1;
 
 	Auto = true;

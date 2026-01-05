@@ -47,7 +47,7 @@ datablock ItemData(BNE_Ithaca37Item)
 	canDrop = true;
 	
 	AEAmmo = 6;
-	AEType = AE_LightSAmmoItem.getID(); 
+	AEType = AE_ShotgunAmmoItem.getID(); 
 	AEBase = 1;
 
   RPM = 60;

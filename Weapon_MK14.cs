@@ -71,7 +71,7 @@ datablock ItemData(BNE_MK14Item)
 	canDrop = true;
 
 	AEAmmo = 20;
-	AEType = AE_HeavierRAmmoItem.getID();
+	AEType = AE_MediumAmmoItem.getID();
 	AEBase = 1;
 
 	RPM = 700;
