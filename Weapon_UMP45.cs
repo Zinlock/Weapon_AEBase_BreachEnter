@@ -1,3 +1,24 @@
+datablock AudioProfile(BNE_UMPFire1Sound)
+{
+   filename    = "./Sounds/Fire/UMP/UMP_FIRE_1.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_UMPFire2Sound)
+{
+   filename    = "./Sounds/Fire/UMP/UMP_FIRE_2.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_UMPFire3Sound)
+{
+   filename    = "./Sounds/Fire/UMP/UMP_FIRE_3.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+
 // UMP45
 datablock DebrisData(BNE_UMP45MagDebris)
 {
@@ -295,7 +316,7 @@ datablock ShapeBaseImageData(BNE_UMP45Image)
 function BNE_UMP45Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_TMPFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_UMPFire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -545,7 +566,7 @@ function BNE_UMP45IronsightImage::onReady(%this,%obj,%slot)
 function BNE_UMP45IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_TMPFire @ getRandom(1, 3) @ Sound);
+  %obj.playAudio(0, BNE_UMPFire  @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);

@@ -19,13 +19,6 @@ datablock AudioProfile(BNE_L96Fire3Sound)
    preload = true;
 };
 
-datablock AudioProfile(BNE_L96Fire4Sound)
-{
-   filename    = "./Sounds/Fire/L96/L96_FIRE_4.wav";
-   description = MediumClose3D;
-   preload = true;
-};
-
 // L96
 datablock DebrisData(BNE_L96MagDebris)
 {
@@ -354,7 +347,7 @@ datablock ShapeBaseImageData(BNE_L96Image)
 function BNE_L96Image::AEOnFire(%this,%obj,%slot)
 {
 	%obj.stopAudio(0);
-  %obj.playAudio(0, BNE_L96Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_L96Fire @ getRandom(1, 3) @ Sound);
 
 	%obj.blockImageDismount = true;
 	%obj.schedule(800, unBlockImageDismount);
@@ -557,7 +550,7 @@ function BNE_L96IronsightImage::AEOnFire(%this,%obj,%slot)
 
 	cancel(%obj.reloadSoundSchedule);
 	%obj.stopAudio(0);
-	%obj.playAudio(0, BNE_L96Fire @ getRandom(1, 4) @ Sound);
+	%obj.playAudio(0, BNE_L96Fire @ getRandom(1, 3) @ Sound);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }

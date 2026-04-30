@@ -12,19 +12,6 @@ datablock AudioProfile(BNE_AR15Fire2Sound)
    preload = true;
 };
 
-datablock AudioProfile(BNE_AR15Fire3Sound)
-{
-   filename    = "./Sounds/Fire/AR15/AR15_FIRE_3.wav";
-   description = MediumClose3D;
-   preload = true;
-};
-
-datablock AudioProfile(BNE_AR15Fire4Sound)
-{
-   filename    = "./Sounds/Fire/AR15/AR15_FIRE_4.wav";
-   description = MediumClose3D;
-   preload = true;
-};
 
 //////////
 // item //
@@ -319,7 +306,7 @@ datablock ShapeBaseImageData(BNE_AR15Image)
 function BNE_AR15Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 2) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -533,7 +520,7 @@ function BNE_AR15IronsightImage::onReady(%this,%obj,%slot)
 function BNE_AR15IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 2) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);

@@ -19,13 +19,6 @@ datablock AudioProfile(BNE_FalconFire3Sound)
    preload = true;
 };
 
-datablock AudioProfile(BNE_FalconFire4Sound)
-{
-   filename    = "./Sounds/Fire/Falcon/Falcon_FIRE_4.wav";
-   description = HeavyClose3D;
-   preload = true;
-};
-
 //////////
 // item //
 //////////
@@ -288,7 +281,7 @@ datablock ShapeBaseImageData(BNE_FalconImage)
 function BNE_FalconImage::AEOnFire(%this,%obj,%slot)
 {
 	%obj.stopAudio(0);
-  %obj.playAudio(0, BNE_FalconFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_FalconFire @ getRandom(1, 3) @ Sound);
 
 	%obj.blockImageDismount = true;
 	%obj.schedule(500, unBlockImageDismount);
@@ -460,7 +453,7 @@ function BNE_FalconIronsightImage::AEOnFire(%this,%obj,%slot)
 	%obj.schedule(500, unBlockImageDismount);
 
 	%obj.stopAudio(0);
-  %obj.playAudio(0, BNE_FalconFire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_FalconFire @ getRandom(1, 3) @ Sound);
 
 	Parent::AEOnFire(%this, %obj, %slot);
 }

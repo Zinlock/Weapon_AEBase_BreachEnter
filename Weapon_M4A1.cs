@@ -1,4 +1,24 @@
 // M4A1
+datablock AudioProfile(BNE_M4A1Fire1Sound)
+{
+   filename    = "./Sounds/Fire/M4A1/m4a1_fire_1.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+datablock AudioProfile(BNE_M4A1Fire2Sound)
+{
+   filename    = "./Sounds/Fire/M4A1/m4a1_fire_2.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+datablock AudioProfile(BNE_M4A1Fire3Sound)
+{
+   filename    = "./Sounds/Fire/M4A1/m4a1_fire_3.wav";
+   description = MediumClose3D;
+   preload = true;
+};
+
+
 datablock DebrisData(BNE_M4A1MagDebris)
 {
 	shapeFile = "./M4A1/M4A1Mag.dts";
@@ -186,7 +206,7 @@ datablock ShapeBaseImageData(BNE_M4A1Image)
 	stateTransitionOnTimeout[2]        = "Fire";
 	stateScript[2]                     = "AEOnFire";
 	stateEmitter[2]					= AEBaseRifleFlashEmitter;
-	stateEmitterTime[2]				= 0.05;
+	stateEmitterTime[2]				= 0.03;
 	stateEmitterNode[2]				= "muzzlePoint";
 	stateFire[2]                       = true;
 	stateEjectShell[2]                       = true;
@@ -306,7 +326,7 @@ datablock ShapeBaseImageData(BNE_M4A1Image)
 function BNE_M4A1Image::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_M4A1Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
@@ -553,7 +573,7 @@ function BNE_M4A1IronsightImage::onReady(%this,%obj,%slot)
 function BNE_M4A1IronsightImage::AEOnFire(%this,%obj,%slot)
 {	
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, BNE_AR15Fire @ getRandom(1, 4) @ Sound);
+  %obj.playAudio(0, BNE_M4A1Fire @ getRandom(1, 3) @ Sound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(200, unBlockImageDismount);
