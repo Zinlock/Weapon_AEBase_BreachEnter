@@ -208,7 +208,7 @@ datablock ShapeBaseImageData(BNE_L96Image)
 	stateFire[2]                       = true;
 
 	stateName[3]                    = "Fire";
-	stateTimeoutValue[3]            	= 0.4;
+	stateTimeoutValue[3]            	= 0.65;
 	stateTransitionOnTimeout[3]     = "SemiAutoCheck";
 	stateEmitter[3]					= AEBaseSmokeEmitter;
 	stateEmitterTime[3]				= 0.05;
@@ -218,7 +218,7 @@ datablock ShapeBaseImageData(BNE_L96Image)
 	stateWaitForTimeout[3]			= true;
 
 	stateName[4]                    	= "Bolt";
-	stateTimeoutValue[4]            	= 0.6;
+	stateTimeoutValue[4]            	= 0.65;
 	stateScript[4]                  	= "onBolt";
 	stateTransitionOnTimeout[4]     	= "FireLoadCheckA";
 	stateAllowImageChange[4]        	= false;
@@ -285,7 +285,7 @@ datablock ShapeBaseImageData(BNE_L96Image)
 // EMPTY RELOAD STATE
 
 	stateName[15]				= "Reload2";
-	stateTimeoutValue[15]			= 0.4;
+	stateTimeoutValue[15]			= 0.5;
 	stateScript[15]				= "onReload2Start";
 	stateTransitionOnTimeout[15]		= "Reload2MagOut";
 	stateWaitForTimeout[15]			= true;
@@ -294,7 +294,7 @@ datablock ShapeBaseImageData(BNE_L96Image)
 	stateSound[15]				= BNE_L96BoltOpenSound;
 
 	stateName[16]				= "Reload2MagOut";
-	stateTimeoutValue[16]			= 0.65;
+	stateTimeoutValue[16]			= 0.8;
 	stateScript[16]				= "onReload2MagOut";
 	stateTransitionOnTimeout[16]		= "Reload2MagIn";
 	stateWaitForTimeout[16]			= true;
@@ -302,7 +302,7 @@ datablock ShapeBaseImageData(BNE_L96Image)
 	stateSound[16]				= BNE_L96MagOutSound;
 
 	stateName[17]				= "Reload2MagIn";
-	stateTimeoutValue[17]			= 0.5;
+	stateTimeoutValue[17]			= 0.6;
 	stateScript[17]				= "onReload2MagIn";
 	stateTransitionOnTimeout[17]		= "Reload2End";
 	stateWaitForTimeout[17]			= true;
@@ -310,7 +310,7 @@ datablock ShapeBaseImageData(BNE_L96Image)
 	stateSound[17]				= BNE_L96MagInSound;
 
 	stateName[19]				= "Reload2End";
-	stateTimeoutValue[19]			= 0.5;
+	stateTimeoutValue[19]			= 0.6;
 	stateScript[19]				= "onReload2End";
 	stateTransitionOnTimeout[19]		= "Ready";
 	stateWaitForTimeout[19]			= true;
