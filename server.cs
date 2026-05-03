@@ -63,10 +63,11 @@ else
 	exec("./Weapon_MG42.cs");
 	exec("./Weapon_MK14.cs");
 	exec("./Weapon_MP5K.cs");
+	exec("./Weapon_Python.cs");
+	exec("./Weapon_Ranger.cs");
 	exec("./Weapon_RPG.cs");
 	exec("./Weapon_RPK.cs");
 	exec("./Weapon_Spas12.cs");
 	exec("./Weapon_SVD.cs");
 	exec("./Weapon_UMP45.cs");
-
 }

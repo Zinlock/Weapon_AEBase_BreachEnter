@@ -524,3 +524,75 @@ datablock AudioProfile(BNE_KBP9A91BoltSound)
    description = AudioClose3d;
    preload = true;
 };
+
+//Ranger
+datablock AudioProfile(BNE_RangerCloseSound)
+{
+   filename    = "./Reload/RANGER/RANGER_CLOSE.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_RangerOpenSound)
+{
+   filename    = "./Reload/RANGER/RANGER_OPEN.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_RangerInsert1Sound)
+{
+   filename    = "./Reload/RANGER/RANGER_INSERT1.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_RangerInsert2Sound)
+{
+   filename    = "./Reload/RANGER/RANGER_INSERT2.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+//PYTHON
+datablock AudioProfile(BNE_PythonInsert1Sound)
+{
+   filename    = "./Reload/Python/Python_In1.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_PythonInsert2Sound)
+{
+   filename    = "./Reload/Python/Python_In2.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_PythonInsert3Sound)
+{
+   filename    = "./Reload/Python/Python_In3.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_PythonOpenSound)
+{
+   filename    = "./Reload/Python/Python_Open.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_PythonCloseSound)
+{
+   filename    = "./Reload/Python/Python_Close.wav";
+   description = AudioClose3d;
+   preload = true;
+};
+
+datablock AudioProfile(BNE_PythonOutSound)
+{
+   filename    = "./Reload/Python/Python_Out.wav";
+   description = AudioClose3d;
+   preload = true;
+};
